@@ -1,196 +1,198 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>栀子花伞业 Gardenia Umbrella - 源头工厂 ODM/OEM 专业伞具制造商</title>
-<meta name="description" content="栀子花伞业 · 12年源头工厂，125+款雨伞/太阳伞/高尔夫伞/反向伞/儿童伞，ODM/OEM定制，出口欧美/日韩/东南亚。联系人MARTIN WANG。">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌂</text></svg>">
+<title>Gardenia Umbrella - Professional Umbrella Manufacturer | ODM/OEM Factory</title>
+<meta name="description" content="Gardenia Umbrella Manufacturing - 12 years experience, 125+ umbrella products, ODM/OEM custom manufacturer. Rain umbrellas, garden umbrellas, golf umbrellas. Contact MARTIN WANG.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%8C%82</text></svg>">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Gardenia Umbrella Manufacturing","description":"Professional umbrella manufacturer with 12 years export experience","url":"https://WangM-A3.github.io/umbrella-website","contactPoint":{"@type":"ContactPoint","contactType":"sales","telephone":"+86-13336021626","email":"wxy13336021626@foxmail.com","name":"MARTIN WANG"},"address":{"@type":"PostalAddress","addressCountry":"CN"}}
+</script>
 <style>
-:root{--primary:#1a1a2e;--accent:#c0392b;--gold:#d4a017;--bg:#f8f8f8;--card:#fff;--text:#333;--text-light:#777}
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter','Noto Sans SC',-apple-system,sans-serif}
+:root{--primary:#1a237e;--primary-light:#283593;--accent:#c62828;--gold:#ff8f00;--bg:#fafafa;--card:#fff;--text:#212121;--text-light:#757575}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,-apple-system,sans-serif}
 body{background:var(--bg);color:var(--text);line-height:1.5}
-a{text-decoration:none;color:inherit}
-/* === Top Bar === */
-.top-bar{background:var(--primary);color:#fff;padding:8px 20px;display:flex;justify-content:space-between;align-items:center;font-size:.82em;flex-wrap:wrap;gap:8px}
-.top-bar .info{display:flex;gap:20px;flex-wrap:wrap}
-.top-bar a{color:#ffd700;transition:opacity .2s}
-.top-bar a:hover{opacity:.8}
-/* === Header === */
-.header{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);color:#fff;padding:60px 20px 50px;text-align:center;position:relative;overflow:hidden}
-.header::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(255,255,255,.03) 0%,transparent 70%);pointer-events:none}
-.header h1{font-size:3em;letter-spacing:4px;margin-bottom:8px;font-weight:700}
-.header h1 span{color:var(--gold)}
-.header .sub{font-size:1.1em;opacity:.85;max-width:650px;margin:10px auto 20px;line-height:1.7}
-.header .badges{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;margin-top:25px}
-.header .badge{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:8px 20px;border-radius:25px;font-size:.85em;backdrop-filter:blur(5px)}
-/* === Contact Strip === */
-.contact-strip{background:#fff;padding:14px 20px;display:flex;justify-content:center;align-items:center;gap:30px;flex-wrap:wrap;font-size:.9em;border-bottom:1px solid #eee;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.06)}
-.contact-strip .item{display:flex;align-items:center;gap:6px}
-.contact-strip .item strong{color:var(--primary)}
-.contact-strip .btn{background:var(--accent);color:#fff;padding:8px 22px;border-radius:20px;font-weight:600;font-size:.88em;transition:.2s;border:none;cursor:pointer}
-.contact-strip .btn:hover{background:#e74c3c;transform:translateY(-1px)}
-/* === Nav === */
-.nav-wrap{background:var(--card);border-bottom:1px solid #eee;padding:0 20px}
-.nav{max-width:1200px;margin:0 auto;display:flex;gap:4px;flex-wrap:wrap;padding:10px 0}
-.nav a{padding:6px 16px;border-radius:20px;font-size:.82em;color:var(--text);cursor:pointer;transition:.2s;border:1px solid transparent}
-.nav a:hover{background:#f0f0f0;border-color:#e0e0e0}
-.nav a.active{background:var(--primary);color:#fff;border-color:var(--primary)}
-/* === Hero Section === */
-.hero{background:linear-gradient(135deg,#f8f8f8,#e8e8e8);padding:50px 20px;text-align:center}
-.hero h2{font-size:2em;color:var(--primary);margin-bottom:10px}
-.hero p{max-width:700px;margin:0 auto 25px;color:var(--text-light);font-size:1.05em}
-.hero .cta-group{display:flex;justify-content:center;gap:15px;flex-wrap:wrap}
-.hero .cta{display:inline-block;padding:12px 32px;border-radius:30px;font-weight:600;font-size:.95em;transition:.2s}
-.hero .cta.primary{background:var(--accent);color:#fff}
-.hero .cta.primary:hover{background:#e74c3c;transform:translateY(-2px)}
-.hero .cta.secondary{background:var(--primary);color:#fff}
-.hero .cta.secondary:hover{background:#2a2a4e;transform:translateY(-2px)}
-/* === Stats Bar === */
-.stats-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));max-width:900px;margin:30px auto;gap:10px;padding:0 20px}
-.stat-card{background:var(--card);border-radius:12px;padding:20px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.04)}
-.stat-card .num{font-size:1.8em;font-weight:700;color:var(--primary)}
-.stat-card .label{color:var(--text-light);font-size:.82em;margin-top:4px}
-/* === Search/Filter === */
-.toolbar{max-width:1200px;margin:20px auto;padding:0 20px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.toolbar .search-wrap{flex:1;min-width:200px;position:relative}
-.toolbar input{width:100%;padding:12px 18px;border:2px solid #e0e0e0;border-radius:25px;font-size:.9em;outline:none;transition:.2s;background:var(--card)}
-.toolbar input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(26,26,46,.1)}
-.toolbar .filter-btn{background:var(--primary);color:#fff;border:none;padding:12px 24px;border-radius:25px;cursor:pointer;font-size:.85em;font-weight:600;transition:.2s;white-space:nowrap}
-.toolbar .filter-btn:hover{background:#2a2a4e}
-.toolbar .filter-btn .count{background:var(--accent);padding:2px 10px;border-radius:12px;margin-left:6px;font-size:.8em}
-/* === Category Tabs === */
-.cat-wrap{max-width:1200px;margin:0 auto 20px;padding:0 20px}
-.cat-tabs{display:flex;gap:6px;flex-wrap:wrap}
-.cat-tab{padding:6px 16px;border-radius:16px;font-size:.8em;cursor:pointer;transition:.2s;background:var(--card);border:1px solid #e8e8e8;color:var(--text)}
-.cat-tab:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
-.cat-tab.active{background:var(--primary);color:#fff;border-color:var(--primary)}
-.cat-tab .count{opacity:.6;font-size:.85em;margin-left:4px}
-/* === Products Grid === */
-.container{max-width:1200px;margin:0 auto;padding:0 20px 50px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.card{background:var(--card);border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.04);transition:all .25s;position:relative;border:1px solid transparent}
-.card:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(0,0,0,.1);border-color:#e0e0e0}
-.card .top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
-.card .type-tag{padding:3px 12px;border-radius:12px;font-size:.72em;font-weight:600}
-.card .id-tag{color:#bbb;font-size:.72em}
-.card h3{font-size:.95em;font-weight:600;color:var(--primary);margin-bottom:6px;line-height:1.35;min-height:2.6em}
-.card .price{font-size:1.2em;font-weight:700;color:var(--accent);margin-bottom:8px}
-.card .price .unit{font-size:.55em;font-weight:400;color:#bbb}
-.card .specs{display:grid;grid-template-columns:1fr 1fr;gap:3px 10px;margin-bottom:8px;font-size:.76em}
-.card .spec{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px dotted #f0f0f0}
-.card .spec .k{color:#aaa}
-.card .spec .v{color:var(--text);font-weight:500}
-.card .colors{display:flex;flex-wrap:wrap;gap:3px;margin:6px 0}
-.card .colors span{background:#f5f5f5;padding:2px 8px;border-radius:4px;font-size:.68em;color:#888}
-.card .inq{width:100%;padding:8px;border:1.5px solid var(--primary);background:transparent;color:var(--primary);border-radius:8px;cursor:pointer;font-size:.78em;font-weight:600;transition:.2s;margin-top:6px}
-.card .inq:hover{background:var(--primary);color:#fff}
-.card .inq.added{background:#27ae60;color:#fff;border-color:#27ae60}
-.ta{background:#e3f2fd;color:#1565c0}.tm{background:#f3e5f5;color:#7b1fa2}.tr{background:#e8f5e9;color:#2e7d32}
-.tc{background:#fff3e0;color:#e65100}.tl{background:#ffeaea;color:#c62828}.tg{background:#e0f2f1;color:#00695c}
-.tt{background:#f5f5f5;color:#616161}.tf{background:#f3e5f5;color:#6a1b9a}.ti{background:#fff8e1;color:#b7950b}.tq{background:#e8eaf6;color:#283593}.ts{background:#efebe9;color:#4e342e}
-/* === About Section === */
-.about{background:var(--card);padding:50px 20px;margin-top:30px}
-.about-inner{max-width:1000px;margin:0 auto}
-.about h2{font-size:1.6em;color:var(--primary);margin-bottom:20px;text-align:center}
-.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:30px}
-.about-item{text-align:center;padding:20px}
-.about-item .icon{font-size:2.5em;margin-bottom:10px}
-.about-item h3{font-size:1.05em;color:var(--primary);margin-bottom:6px}
-.about-item p{font-size:.85em;color:var(--text-light);line-height:1.6}
-/* === Footer === */
-.footer{background:var(--primary);color:#fff;padding:40px 20px;text-align:center}
-.footer h3{font-size:1.3em;margin-bottom:6px}
-.footer .contact-card{background:rgba(255,255,255,.08);display:inline-block;padding:16px 32px;border-radius:12px;margin:16px 0;line-height:2}
-.footer .contact-card a{color:var(--gold)}
-.footer .contact-card .name{font-size:1.1em}
-.footer .copy{opacity:.4;font-size:.78em;margin-top:16px}
-/* === Modal === */
-.modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:1000;justify-content:center;align-items:center;padding:20px}
-.modal.show{display:flex}
-.modal-box{background:var(--card);border-radius:16px;padding:30px;max-width:600px;width:100%;max-height:80vh;overflow-y:auto}
-.modal-box h2{font-size:1.2em;margin-bottom:16px}
-.modal-box .close{float:right;cursor:pointer;font-size:1.3em;color:#aaa;transition:.2s}
-.modal-box .close:hover{color:var(--accent)}
-.modal-box .cart-item{border:1px solid #eee;padding:10px 14px;border-radius:8px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;font-size:.88em}
-.modal-box .cart-item .del{color:var(--accent);cursor:pointer;font-size:.8em;font-weight:600}
-.modal-box input,.modal-box textarea{width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:8px;margin-bottom:10px;font-size:.88em;transition:.2s}
-.modal-box input:focus,.modal-box textarea:focus{border-color:var(--primary);outline:none;box-shadow:0 0 0 3px rgba(26,26,46,.08)}
-.modal-box textarea{min-height:80px;resize:vertical}
-.modal-box .submit{background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:8px;cursor:pointer;font-size:.95em;font-weight:600;width:100%;transition:.2s}
-.modal-box .submit:hover{background:#e74c3c}
+/* === TOP CONTACT BAR - Always visible === */
+.top-contact{background:var(--primary);color:#fff;padding:8px 20px;display:flex;justify-content:space-between;align-items:center;font-size:.8em;flex-wrap:wrap;gap:6px;position:relative;z-index:1001}
+.top-contact .left{display:flex;gap:16px;flex-wrap:wrap}
+.top-contact a{color:#ffd54f;text-decoration:none;transition:.2s;display:inline-flex;align-items:center;gap:4px}
+.top-contact a:hover{color:#fff}
+.top-contact .cta{background:var(--accent);color:#fff;padding:4px 14px;border-radius:4px;font-weight:600;font-size:.95em}
+.top-contact .cta:hover{background:#e53935;transform:translateY(-1px)}
+/* === HEADER === */
+.header{background:linear-gradient(135deg,#1a237e,#283593,#1565c0);color:#fff;padding:50px 20px 40px;text-align:center}
+.header h1{font-size:2.8em;font-weight:700;letter-spacing:2px;margin-bottom:6px}
+.header h1 span{color:#ffd54f}
+.header .tagline{font-size:1.1em;opacity:.9;max-width:600px;margin:8px auto;line-height:1.6}
+.header .badges{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:20px}
+.header .badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:6px 18px;border-radius:20px;font-size:.82em;backdrop-filter:blur(4px)}
+/* === STICKY CONTACT STRIP === */
+.sticky-contact{background:#fff;padding:10px 20px;display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.08);font-size:.85em}
+.sticky-contact .name{font-weight:700;color:var(--primary)}
+.sticky-contact .btn-group{display:flex;gap:8px}
+.sticky-contact .btn{display:inline-flex;align-items:center;gap:5px;padding:7px 18px;border-radius:6px;font-weight:600;font-size:.85em;text-decoration:none;transition:.2s}
+.sticky-contact .btn-phone{background:#43a047;color:#fff}
+.sticky-contact .btn-phone:hover{background:#388e3c}
+.sticky-contact .btn-email{background:var(--primary);color:#fff}
+.sticky-contact .btn-email:hover{background:var(--primary-light)}
+.sticky-contact .btn-whatsapp{background:#25d366;color:#fff}
+.sticky-contact .btn-whatsapp:hover{background:#20bd5a}
+/* === NAV === */
+.nav-wrap{background:var(--card);border-bottom:1px solid #eee}
+.nav{max-width:1200px;margin:0 auto;display:flex;gap:2px;flex-wrap:wrap;padding:8px 16px;overflow-x:auto}
+.nav a{padding:6px 14px;border-radius:6px;font-size:.78em;color:var(--text);cursor:pointer;transition:.2s;white-space:nowrap;text-decoration:none}
+.nav a:hover{background:#f0f0f0}
+.nav a.active{background:var(--primary);color:#fff}
+/* === SEARCH BAR === */
+.toolbar{max-width:1200px;margin:16px auto;padding:0 16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.toolbar input{flex:1;min-width:200px;padding:10px 16px;border:2px solid #e0e0e0;border-radius:8px;font-size:.85em;outline:none;transition:.2s}
+.toolbar input:focus{border-color:var(--primary)}
+.toolbar button{background:var(--primary);color:#fff;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-size:.82em;font-weight:600;transition:.2s;white-space:nowrap}
+.toolbar button:hover{background:var(--primary-light)}
+/* === STATS === */
+.stats-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));max-width:700px;margin:12px auto;gap:8px;padding:0 16px}
+.sc{background:var(--card);border-radius:8px;padding:12px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.sc .n{font-size:1.3em;font-weight:700;color:var(--primary)}
+.sc .l{color:var(--text-light);font-size:.72em;margin-top:2px}
+/* === PRODUCT GRID === */
+.container{max-width:1200px;margin:0 auto;padding:0 16px 40px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.card{background:var(--card);border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.04);transition:.25s;position:relative}
+.card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.card .img-wrap{width:100%;height:200px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;color:#ccc;font-size:.75em;overflow:hidden}
+.card .img-wrap img{width:100%;height:100%;object-fit:cover}
+.card .info{padding:14px}
+.card .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.card .tag{padding:2px 10px;border-radius:4px;font-size:.7em;font-weight:600}
+.cta{background:#e3f2fd;color:#1565c0}.ctm{background:#f3e5f5;color:#7b1fa2}.ctr{background:#e8f5e9;color:#2e7d32}
+.ctc{background:#fff3e0;color:#e65100}.ctl{background:#fce4ec;color:#c62828}.ctg{background:#e0f2f1;color:#00695c}
+.ctf{background:#f3e5f5;color:#6a1b9a}.ctt{background:#f5f5f5;color:#616161}.cti{background:#fff8e1;color:#f57f17}.ctq{background:#e8eaf6;color:#283593}
+.card .id-tag{color:#bbb;font-size:.7em}
+.card h3{font-size:.88em;font-weight:600;color:var(--text);margin-bottom:4px;line-height:1.3;min-height:2.3em}
+.card .price{font-size:1.05em;font-weight:700;color:var(--accent);margin-bottom:6px}
+.card .price .u{font-size:.55em;font-weight:400;color:#aaa}
+.card .specs{font-size:.74em;color:var(--text-light);line-height:1.7;margin-bottom:6px}
+.card .specs span{margin-right:10px}
+.card .inq-btn{width:100%;padding:7px;border:1.5px solid var(--primary);background:transparent;color:var(--primary);border-radius:6px;cursor:pointer;font-size:.76em;font-weight:600;transition:.2s;margin-top:4px}
+.card .inq-btn:hover{background:var(--primary);color:#fff}
+.card .inq-btn.added{background:#43a047;color:#fff;border-color:#43a047}
+/* === ABOUT FACTORY === */
+.factory-section{background:var(--card);padding:50px 20px;margin-top:20px}
+.factory-inner{max-width:1000px;margin:0 auto}
+.factory-inner h2{font-size:1.5em;color:var(--primary);text-align:center;margin-bottom:8px}
+.factory-inner .lead{text-align:center;color:var(--text-light);margin-bottom:30px}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.feat{text-align:center;padding:20px}
+.feat .ico{font-size:2.2em;margin-bottom:8px}
+.feat h3{font-size:.95em;color:var(--primary);margin-bottom:4px}
+.feat p{font-size:.82em;color:var(--text-light);line-height:1.5}
+.trust-badges{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:30px}
+.trust-badges span{background:#f5f5f5;padding:8px 20px;border-radius:8px;font-size:.8em;border-left:3px solid var(--accent)}
+/* === CONTACT SECTION === */
+.contact-section{max-width:700px;margin:30px auto;padding:0 16px}
+.contact-section h2{font-size:1.4em;color:var(--primary);text-align:center;margin-bottom:20px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.contact-info{background:var(--card);padding:24px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.contact-info h3{font-size:1em;color:var(--primary);margin-bottom:12px}
+.contact-info .row{margin-bottom:10px;line-height:1.7}
+.contact-info .row a{color:var(--primary);text-decoration:none}
+.contact-info .big-phone{font-size:1.4em;font-weight:700;color:var(--accent);display:block;margin:10px 0}
+.contact-form{background:var(--card);padding:24px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.contact-form input,.contact-form textarea{width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:6px;margin-bottom:10px;font-size:.85em;outline:none;transition:.2s}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--primary)}
+.contact-form textarea{min-height:80px;resize:vertical}
+.contact-form button{background:var(--accent);color:#fff;border:none;padding:12px;border-radius:6px;cursor:pointer;font-size:.9em;font-weight:600;width:100%;transition:.2s}
+.contact-form button:hover{background:#e53935}
+/* === FOOTER === */
+.footer{background:var(--primary);color:#fff;text-align:center;padding:30px 20px;margin-top:30px}
+.footer .copy{opacity:.5;font-size:.75em;margin-top:10px}
 /* === LANG === */
-.en-only{display:none}.lang-en .zh-only{display:none}.lang-en .en-only{display:inline}
-/* === Responsive === */
+.lang-bar{background:rgba(255,255,255,.1);padding:6px 20px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-size:.78em}
+.lang-bar a{color:rgba(255,255,255,.7);text-decoration:none;cursor:pointer;padding:2px 8px;border-radius:4px;transition:.2s}
+.lang-bar a:hover,.lang-bar a.active{color:#fff;background:rgba(255,255,255,.15)}
+/* === MODAL === */
+.modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:2000;justify-content:center;align-items:center;padding:20px}
+.modal.show{display:flex}
+.modal-box{background:var(--card);border-radius:14px;padding:28px;max-width:560px;width:100%;max-height:80vh;overflow-y:auto}
+.modal-box h2{font-size:1.15em;margin-bottom:14px}
+.modal-box .close{float:right;cursor:pointer;font-size:1.2em;color:#aaa}
+.modal-box .close:hover{color:var(--accent)}
+.modal-box .item{border:1px solid #eee;padding:8px 12px;border-radius:6px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;font-size:.82em}
+.modal-box .item .del{color:var(--accent);cursor:pointer;font-size:.78em}
+.modal-box input,.modal-box textarea{width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:6px;margin-bottom:10px;font-size:.85em}
+.modal-box textarea{min-height:70px;resize:vertical}
+.modal-box .submit{background:var(--accent);color:#fff;border:none;padding:12px;border-radius:8px;cursor:pointer;font-size:.9em;font-weight:600;width:100%}
+/* === LANG CLASSES === */
+[data-lang]{display:none}
+[data-lang="en"],html[lang="en"] [data-lang="en"],html[lang="zh"] [data-lang="zh"]{display:inline}
+html[lang="en"] [data-lang="en"].block,html[lang="zh"] [data-lang="zh"].block{display:block}
 @media(max-width:768px){
-  .header h1{font-size:2.2em}.top-bar .info{gap:10px;font-size:.78em}
-  .contact-strip{gap:12px;font-size:.82em}
-  .header .badge{font-size:.78em;padding:6px 14px}
-  .grid{grid-template-columns:1fr}
+  .header h1{font-size:2.2em}.top-contact .left{gap:8px;font-size:.78em}
+  .contact-grid{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}
 }
-@media(max-width:480px){
-  .header{padding:40px 16px 30px}.header h1{font-size:1.8em}
-  .hero h2{font-size:1.4em}.stats-bar{grid-template-columns:1fr 1fr}
-}
+@media(max-width:480px){.grid{grid-template-columns:1fr}.header h1{font-size:1.8em}}
 </style>
 </head>
-<body class="lang-zh">
+<html lang="en">
+<!-- Language Bar -->
+<div class="lang-bar">
+  <a class="active" onclick="setLang(`en`)" data-lang="en">🌐 English</a>
+  <a onclick="setLang(`zh`)" data-lang="zh">中文</a>
+</div>
 
-<!-- Top Bar -->
-<div class="top-bar">
-  <div class="info">
-    <span>👤 <strong>MARTIN WANG</strong></span>
-    <a href="mailto:wxy13336021626@foxmail.com">📧 wxy13336021626@foxmail.com</a>
+<!-- Top Contact -->
+<div class="top-contact">
+  <div class="left">
+    <span><span data-lang="en">👤 Contact:</span><span data-lang="zh">👤 联系人:</span> <strong>MARTIN WANG</strong></span>
+    <a href="mailto:wxy13336021626@foxmail.com">✉️ wxy13336021626@foxmail.com</a>
   </div>
-  <div class="info">
-    <a href="tel:13336021626">📞 13336021626</a>
-    <span style="opacity:.7;font-size:.85em">🌐 <span class="zh-only">中</span><span class="en-only">EN</span></span>
-  </div>
+  <a href="tel:13336021626" class="cta">📞 +86 13336021626</a>
 </div>
 
 <!-- Header -->
 <div class="header">
-  <h1>🌸 <span>栀子花</span><span class="en-only" style="display:none">Gardenia</span> 伞业</h1>
-  <p class="sub"><span class="zh-only">源头工厂 · 专业伞具制造商 · ODM/OEM · 12年出口经验</span><span class="en-only">Factory Direct · Professional Umbrella Manufacturer · ODM/OEM · 12 Years Export</span></p>
+  <h1><span>Gardenia</span> Umbrella</h1>
+  <p class="tagline"><span data-lang="en">Professional Umbrella Manufacturer · Factory Direct · ODM/OEM · 12 Years Export</span><span data-lang="zh">专业伞具制造商 · 源头工厂 · ODM/OEM · 12年出口经验</span></p>
   <div class="badges">
-    <span class="badge">🏭 125+ 款产品</span>
-    <span class="badge">🌍 出口欧美/日韩/东南亚</span>
-    <span class="badge">✅ ODM/OEM 定制</span>
-    <span class="badge">📦 源头工厂直供</span>
+    <span class="badge">📂 <span data-lang="en">125+ Products</span><span data-lang="zh">125+ 产品</span></span>
+    <span class="badge">🌍 <span data-lang="en">Export Worldwide</span><span data-lang="zh">出口全球</span></span>
+    <span class="badge">🏭 <span data-lang="en">Factory Direct</span><span data-lang="zh">源头工厂</span></span>
+    <span class="badge">✅ <span data-lang="en">ODM/OEM</span><span data-lang="zh">ODM/OEM 定制</span></span>
   </div>
 </div>
 
-<!-- Contact Strip -->
-<div class="contact-strip">
-  <div class="item">👤 <strong>MARTIN WANG</strong></div>
-  <div class="item">📧 <a href="mailto:wxy13336021626@foxmail.com" style="color:var(--primary)">wxy13336021626@foxmail.com</a></div>
-  <div class="item">📞 <a href="tel:13336021626" style="color:var(--primary)">13336021626</a></div>
-  <button class="btn" onclick="showModal()">📋 <span class="zh-only">立即询盘</span><span class="en-only">Inquiry</span> <span id="cartCount" style="display:none">(0)</span></button>
+<!-- Sticky Contact -->
+<div class="sticky-contact">
+  <span class="name">👤 MARTIN WANG</span>
+  <div class="btn-group">
+    <a href="tel:13336021626" class="btn btn-phone">📞 <span data-lang="en">Call Now</span><span data-lang="zh">立即致电</span></a>
+    <a href="https://wa.me/8613336021626" target="_blank" class="btn btn-whatsapp">💬 WhatsApp</a>
+    <button class="btn btn-email" onclick="showInquiry()">✉️ <span data-lang="en">Inquiry</span><span data-lang="zh">询盘</span></button>
+  </div>
 </div>
 
 <!-- Nav -->
 <div class="nav-wrap">
 <div class="nav" id="navBar">
-  <a class="active" onclick="filterAll()"><span class="zh-only">全部产品</span><span class="en-only">All Products</span></a>
-  <a onclick="filterType('自动')"><span class="zh-only">自动伞</span><span class="en-only">Auto Umbrella</span></a>
-  <a onclick="filterType('手动')"><span class="zh-only">手动伞</span><span class="en-only">Manual Umbrella</span></a>
-  <a onclick="filterType('反向')"><span class="zh-only">反向伞</span><span class="en-only">Reverse Umbrella</span></a>
-  <a onclick="filterType('儿童')"><span class="zh-only">儿童伞</span><span class="en-only">Kids Umbrella</span></a>
-  <a onclick="filterType('直杆长伞')"><span class="zh-only">长杆伞</span><span class="en-only">Long Stick</span></a>
-  <a onclick="filterType('高尔夫')"><span class="zh-only">高尔夫伞</span><span class="en-only">Golf Umbrella</span></a>
-  <a onclick="filterType('五折/六折')"><span class="zh-only">五/六折伞</span><span class="en-only">Compact</span></a>
-  <a onclick="filterType('透明')"><span class="zh-only">透明伞</span><span class="en-only">Clear Umbrella</span></a>
-  <a onclick="filterType('正版IP')"><span class="zh-only">IP联名</span><span class="en-only">Licensed</span></a>
-  <a onclick="filterType('汽车')"><span class="zh-only">汽车伞</span><span class="en-only">Car Umbrella</span></a>
+  <a class="active" onclick="filterAll()"><span data-lang="en">All Products</span><span data-lang="zh">全部产品</span></a>
+  <a onclick="filterType(`Auto`)">Auto</a>
+  <a onclick="filterType(`Manual`)">Manual</a>
+  <a onclick="filterType(`Reverse`)">Reverse</a>
+  <a onclick="filterType(`Golf`)">Golf</a>
+  <a onclick="filterType(`Kids`)">Kids</a>
+  <a onclick="filterType(`Long Stick`)">Long Stick</a>
+  <a onclick="filterType(`Compact`)">Compact</a>
+  <a onclick="filterType(`Clear`)">Clear</a>
+  <a onclick="filterType(`Licensed`)">Licensed</a>
+  <a onclick="filterType(`Car`)">Car</a>
 </div>
 </div>
 
-<!-- Search + Stats -->
+<!-- Search -->
 <div class="toolbar">
-  <div class="search-wrap">
-    <input id="searchInput" placeholder="🔍 搜索产品名称或货号..." oninput="doSearch()">
-  </div>
-  <button class="filter-btn" onclick="sortByPrice()">💰 <span class="zh-only">价格排序</span><span class="en-only">Sort by Price</span></button>
+  <input id="searchInput" placeholder="🔍 Search products..." oninput="doSearch()">
+  <button onclick="sortByPrice()">💰 <span data-lang="en">Sort by Price</span><span data-lang="zh">按价格排序</span></button>
 </div>
 
 <div class="stats-bar" id="statsBar"></div>
@@ -198,149 +200,193 @@ a{text-decoration:none;color:inherit}
 <!-- Products -->
 <div class="container"><div class="grid" id="productGrid"></div></div>
 
-<!-- About Section -->
-<div class="about">
-<div class="about-inner">
-  <h2><span class="zh-only">为什么选择栀子花伞业</span><span class="en-only">Why Choose Gardenia Umbrella</span></h2>
-  <div class="about-grid">
-    <div class="about-item">
-      <div class="icon">🏭</div>
-      <h3><span class="zh-only">源头工厂</span><span class="en-only">Factory Direct</span></h3>
-      <p><span class="zh-only">自有生产线，无中间商，价格直供</span><span class="en-only">Own production lines, no middlemen, direct pricing</span></p>
+<!-- Factory Credibility -->
+<div class="factory-section">
+<div class="factory-inner">
+  <h2><span data-lang="en">Why Choose Gardenia Umbrella</span><span data-lang="zh">为什么选择栀子花伞业</span></h2>
+  <p class="lead"><span data-lang="en">12 Years of Excellence in Umbrella Manufacturing & Export</span><span data-lang="zh">12年专注于伞具制造与出口</span></p>
+  <div class="feat-grid">
+    <div class="feat">
+      <div class="ico">🏭</div>
+      <h3><span data-lang="en">Factory Direct</span><span data-lang="zh">源头工厂直供</span></h3>
+      <p><span data-lang="en">Own production lines, competitive pricing, strict quality control</span><span data-lang="zh">自有生产线，价格优势，严格品控</span></p>
     </div>
-    <div class="about-item">
-      <div class="icon">📦</div>
-      <h3><span class="zh-only">125+ 产品矩阵</span><span class="en-only">125+ Products</span></h3>
-      <p><span class="zh-only">覆盖全品类伞具，一站式采购</span><span class="en-only">Full umbrella category coverage, one-stop sourcing</span></p>
+    <div class="feat">
+      <div class="ico">📦</div>
+      <h3><span data-lang="en">125+ Product Range</span><span data-lang="zh">125+产品矩阵</span></h3>
+      <p><span data-lang="en">Full umbrella category coverage for one-stop sourcing</span><span data-lang="zh">全品类覆盖，一站式采购</span></p>
     </div>
-    <div class="about-item">
-      <div class="icon">✈️</div>
-      <h3><span class="zh-only">全球出口</span><span class="en-only">Global Export</span></h3>
-      <p><span class="zh-only">12年出口经验，产品远销欧美日韩东南亚</span><span class="en-only">12 years export experience to EU/US/Asia</span></p>
+    <div class="feat">
+      <div class="ico">✈️</div>
+      <h3><span data-lang="en">Global Export</span><span data-lang="zh">全球出口经验</span></h3>
+      <p><span data-lang="en">12 years exporting to EU, USA, Japan, Korea, SE Asia</span><span data-lang="zh">12年出口欧美/日韩/东南亚</span></p>
     </div>
-    <div class="about-item">
-      <div class="icon">🎨</div>
-      <h3><span class="zh-only">ODM/OEM 定制</span><span class="en-only">ODM/OEM Custom</span></h3>
-      <p><span class="zh-only">来图定制/来样定制/品牌代工</span><span class="en-only">Custom design per your samples/branding needs</span></p>
+    <div class="feat">
+      <div class="ico">🎨</div>
+      <h3><span data-lang="en">ODM/OEM Service</span><span data-lang="zh">ODM/OEM定制</span></h3>
+      <p><span data-lang="en">Custom design, private label, brand manufacturing</span><span data-lang="zh">来图定制、品牌代工、个性化设计</span></p>
     </div>
   </div>
+  <div class="trust-badges">
+    <span>✅ <span data-lang="en">12 Years Export</span><span data-lang="zh">12年出口经验</span></span>
+    <span>✅ <span data-lang="en">Quality Control</span><span data-lang="zh">严格品控</span></span>
+    <span>✅ <span data-lang="en">Sample Available</span><span data-lang="zh">可提供样品</span></span>
+    <span>✅ <span data-lang="en">Flexible MOQ</span><span data-lang="zh">MOQ灵活</span></span>
+    <span>✅ <span data-lang="en">On-time Delivery</span><span data-lang="zh">交期保障</span></span>
+  </div>
 </div>
+</div>
+
+<!-- Contact -->
+<div class="contact-section">
+  <h2><span data-lang="en">Get In Touch</span><span data-lang="zh">联系我们</span></h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3><span data-lang="en">Contact Information</span><span data-lang="zh">联系方式</span></h3>
+      <div class="row"><strong>MARTIN WANG</strong></div>
+      <div class="row"><span data-lang="en">📧 Email:</span><span data-lang="zh">📧 邮箱:</span> <a href="mailto:wxy13336021626@foxmail.com">wxy13336021626@foxmail.com</a></div>
+      <div class="row"><span data-lang="en">📞 Phone / WhatsApp:</span><span data-lang="zh">📞 电话/WhatsApp:</span> <a href="tel:13336021626">+86 13336021626</a></div>
+      <a href="tel:13336021626" class="big-phone">📞 +86 13336021626</a>
+      <a href="https://wa.me/8613336021626" target="_blank" style="display:flex;align-items:center;gap:6px;color:#25d366;font-weight:600;text-decoration:none;font-size:.95em">💬 WhatsApp: +86 13336021626</a>
+    </div>
+    <div class="contact-form">
+      <h3><span data-lang="en">Quick Inquiry</span><span data-lang="zh">快速询盘</span></h3>
+      <input id="inqName" placeholder="Your Name / 您的姓名">
+      <input id="inqEmail" placeholder="Email / 邮箱" value="wxy13336021626@foxmail.com">
+      <input id="inqPhone" placeholder="Phone / 电话">
+      <textarea id="inqMsg" placeholder="Your message (products, quantity, requirements...) / 留言（产品、数量、要求）"></textarea>
+      <button onclick="submitQuickInq()">📤 <span data-lang="en">Send Inquiry</span><span data-lang="zh">发送询盘</span></button>
+    </div>
+  </div>
 </div>
 
 <!-- Footer -->
 <div class="footer">
-  <h3>🌻 <span class="zh-only">栀子花伞业</span><span class="en-only">Gardenia Umbrella</span></h3>
-  <div class="contact-card">
-    <div class="name">👤 <strong>MARTIN WANG</strong></div>
-    📧 <a href="mailto:wxy13336021626@foxmail.com">wxy13336021626@foxmail.com</a><br>
-    📞 <a href="tel:13336021626">13336021626</a>
-  </div>
-  <p style="opacity:.7;font-size:.9em"><span class="zh-only">12年源头工厂 · ODM/OEM · 出口全球</span><span class="en-only">12 Years Factory · ODM/OEM · Worldwide Export</span></p>
-  <div class="copy">© 2025 栀子花伞业 · Gardenia Umbrella Manufacturing</div>
+  <p style="font-size:1.05em">🌻 Gardenia Umbrella Manufacturing</p>
+  <p style="margin:4px 0">👤 <strong>MARTIN WANG</strong></p>
+  <p>📧 wxy13336021626@foxmail.com | 📞 +86 13336021626</p>
+  <p style="margin-top:6px;opacity:.7"><span data-lang="en">Professional Umbrella Manufacturer · Factory Direct · 12 Years Export</span><span data-lang="zh">专业伞具制造商 · 源头工厂 · 12年出口经验</span></p>
+  <div class="copy">© 2025 Gardenia Umbrella. All rights reserved.</div>
 </div>
 
 <!-- Inquiry Modal -->
-<div class="modal" id="inquiryModal"><div class="modal-box">
-  <span class="close" onclick="hideModal()">✕</span>
-  <h2><span class="zh-only">📋 询盘单</span><span class="en-only">📋 Inquiry List</span></h2>
+<div class="modal" id="inqModal"><div class="modal-box">
+  <span class="close" onclick="hideInquiry()">✕</span>
+  <h2>📋 <span data-lang="en">Inquiry List</span><span data-lang="zh">询盘单</span></h2>
   <div id="cartItems"></div>
-  <p id="emptyCart" style="color:#aaa;padding:16px;text-align:center"><span class="zh-only">询盘车为空，请点击产品上的"加入询盘"按钮</span><span class="en-only">Cart is empty. Click 'Inquiry' on products to add.</span></p>
-  <input id="inqName" placeholder="👤 您的姓名 / Your Name">
-  <input id="inqEmail" placeholder="📧 邮箱 / Email" value="wxy13336021626@foxmail.com">
-  <input id="inqPhone" placeholder="📞 电话 / Phone">
-  <textarea id="inqMsg" placeholder="📝 <span class="zh-only">留言（产品规格、数量、包装要求等）</span><span class="en-only">Message (specs, quantity, packaging requirements)</span>"></textarea>
-  <button class="submit" onclick="submitInquiry()">📤 <span class="zh-only">提交询盘</span><span class="en-only">Submit Inquiry</span></button>
+  <p id="emptyCart" style="color:#aaa;padding:16px;text-align:center"><span data-lang="en">Cart is empty. Click 'Add to Inquiry' on products.</span><span data-lang="zh">询盘车为空，请在产品上点击"加入询盘"</span></p>
+  <input id="modalName" placeholder="Your Name / 姓名">
+  <input id="modalEmail" placeholder="Email / 邮箱" value="wxy13336021626@foxmail.com">
+  <input id="modalPhone" placeholder="Phone / 电话">
+  <textarea id="modalMsg" placeholder="Message / 留言"></textarea>
+  <button class="submit" onclick="submitInquiry()">📤 Submit Inquiry</button>
 </div></div>
 
 <script>
 var products = [{"id": "1001", "name": "银胶款--颜色随机发", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*7K", "diameter": "92CM", "pack": "55*32*30", "qty": "100只/箱", "weight": "0.23kg", "price": 7.0, "colors": "粉红、天蓝、浅绿、藏青、", "type": "手动"}, {"id": "1001", "name": "7骨无胶款", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*7K", "diameter": "92CM", "pack": "55*32*30", "qty": "100只/箱", "weight": "0.23kg", "price": 7.0, "type": "手动"}, {"id": "001", "name": "久合版-金柄", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "100CM", "pack": "55*32*30", "qty": "90只/箱", "weight": "0.32kg", "price": 12.5, "colors": "黑色、墨绿、粉色、天蓝、", "type": "手动"}, {"id": "002", "name": "常规版", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "95CM", "pack": "55*32*30", "qty": "100只/箱", "weight": "0.26kg", "price": 8.5, "colors": "黑色、藏青、墨绿、粉色、", "type": "手动"}, {"id": "003", "name": "久合版-木柄", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布 规", "diameter": "100CM 折", "pack": "55*32*30", "qty": "90只/箱", "weight": "0.34kg", "price": 14.5, "colors": "米白、灰色、粉色、天蓝、", "type": "手动"}, {"id": "004", "name": "经典十骨", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*10K", "diameter": "105CM", "pack": "55*32*30", "qty": "80只/箱", "weight": "0.35kg", "price": 12.5, "colors": "天蓝、米白、藏青、黑色、", "type": "手动"}, {"id": "005", "name": "常规无UV版", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "95CM", "pack": "55*32*30", "qty": "100只/箱", "weight": "0.26kg", "price": 8.3, "colors": "黑色、藏青、酒红", "type": "手动"}, {"id": "006", "name": "12骨自动伞-配色系", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*12K", "diameter": "105CM", "pack": "伞套+opp袋/可定制礼盒装箱", "weight": "0.45kg", "price": 18.8, "colors": "粉色、藏青、湖绿、天蓝、米白、", "type": "自动"}, {"id": "007", "name": "8骨自动伞-配色系", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "100CM", "pack": "40*32*30", "qty": "60只/箱", "weight": "0.36kg", "price": 15.8, "colors": "米黄、深蓝、米白、墨绿、浅", "type": "自动"}, {"id": "008", "name": "306自动伞", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "100CM", "pack": "40*32*30", "qty": "60只/箱", "weight": "0.36kg", "price": 12.5, "colors": "米白、酒红、粉色、天蓝、黑", "type": "自动"}, {"id": "009", "name": "12骨自动伞-黑色伞柄", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*12K", "diameter": "105CM", "pack": "50*36*32", "qty": "50只/箱", "weight": "0.45kg", "price": 17.8, "colors": "黑色、墨绿、藏青", "type": "自动"}, {"id": "010", "name": "10骨自动伞-黑色伞柄", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*12K", "diameter": "105CM", "pack": "50*36*32", "qty": "50只/箱", "weight": "0.45kg", "price": 17.8, "colors": "黑羽毛、 白羽毛、黑色、藏青、", "type": "自动"}, {"id": "011", "name": "旋转手柄LED-双股", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*10K", "diameter": "105CM", "pack": "50*36*32", "qty": "50只/箱", "weight": "0.45kg", "price": 17.8, "colors": "黑色、藏青、酒红、抹茶绿、", "type": "手动"}, {"id": "012", "name": "反向伞-LED", "func": "晴雨两用骨", "fabric": "碰击布", "ribs": "55*10K", "diameter": "105CM", "pack": "50*36*30", "qty": "50只/箱", "weight": "0.45kg", "price": 32.8, "colors": "黑色、藏青、灰色、米白、抹", "type": "反向"}, {"id": "013", "name": "反向伞-黑色手柄", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*10K", "diameter": "105CM", "pack": "50*36*32", "qty": "50只/箱", "weight": "0.45kg", "price": 22.8, "colors": "黑色、藏青、灰色、米白、抹", "type": "反向"}, {"id": "014", "name": "反向伞-配色手柄", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*10K", "diameter": "105CM", "pack": "50*36*30", "qty": "50只/箱", "weight": "0.45kg", "price": 26.8, "colors": "黑色、藏青、灰色、米白、抹", "type": "反向"}, {"id": "015", "name": "反向伞-配色手柄-双股", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*10K", "diameter": "105CM", "pack": "50*36*32", "qty": "50只/箱", "weight": "0.45kg", "price": 26.8, "colors": "黑色、藏青、米白、抹茶绿、", "type": "反向"}, {"id": "016", "name": "八骨自动渐变色", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "100CM", "pack": "40*32*30", "qty": "50只/箱", "weight": "0.35kg", "price": 17.8, "colors": "渐变蓝、渐变粉、雾霾蓝、魔", "type": "自动"}, {"id": "017", "name": "八骨自动透明伞", "func": "防雨", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "100CM", "pack": "40*32*30", "qty": "50只/箱", "weight": "0.35kg", "price": 20.8, "type": "自动"}, {"id": "018", "name": "十六骨自动", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*16K", "diameter": "105CM", "pack": "55*36*32", "qty": "50只/箱", "weight": "0.55kg", "price": 21.8, "type": "自动"}, {"id": "019", "name": "彩胶手动款", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "100CM", "pack": "40*32*30", "qty": "50只/箱", "weight": "0.45kg", "price": 17.8, "type": "手动"}, {"id": "020", "name": "彩胶- 自动", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "100CM", "pack": "40*32*30", "qty": "50只/箱", "weight": "0.35kg", "price": 22.8, "type": "自动"}, {"id": "021", "name": "自动十二股-双股", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*12K", "diameter": "105CM", "pack": "50*36*30", "qty": "50只/箱", "weight": "0.45kg", "price": 18.8, "type": "自动"}, {"id": "022", "name": "3122十骨自动伞", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布 规", "diameter": "105CM折", "pack": "55*32*30", "qty": "60只/箱", "weight": "0.45kg", "price": 14.8, "colors": "藏青、黑色、酒红", "type": "自动"}, {"id": "023", "name": "汽车伞银胶布皮套", "fabric": "涤丝钛银布皮套", "ribs": "140*80*41", "diameter": "140CM*80CM", "pack": "单把皮套包装", "qty": "53*34*25", "weight": "0.4KG", "price": 0.0, "colors": "黑色", "type": "汽车"}, {"id": "024", "name": "汽车伞钛银伞套", "fabric": "涤丝钛银布皮套", "ribs": "140*80*41", "diameter": "140CM*80CM", "pack": "单把皮套包装", "qty": "53*34*25", "weight": "0.42KG", "price": 0.0, "colors": "黑色", "type": "汽车"}, {"id": "025", "name": "自动儿童伞-防回弹", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "100CM", "pack": "50*36*30", "qty": "50只/箱", "weight": "0.4kg", "price": 29.8, "colors": "黑白小熊、粉色小兔、紫色花", "type": "自动"}, {"id": "026", "name": "自动反光条儿童伞", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "100CM", "pack": "40*32*30", "qty": "50只/箱", "weight": "0.35kg", "price": 22.8, "colors": "黑白小熊、粉色小兔、紫色花", "type": "自动"}, {"id": "027", "name": "手动儿童伞", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "100CM", "pack": "伞套+opp袋/可定制礼盒装", "qty": "50只/箱", "weight": "0.35kg", "price": 17.8, "colors": "黑白小熊、粉色小兔、紫色花", "type": "儿童"}, {"id": "028", "name": "自动儿童伞", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "100CM", "pack": "伞套+opp袋/可定制礼盒装", "qty": "50只/箱", "weight": "0.35kg", "price": 20.8, "colors": "黑白小熊、粉色小兔、紫色花 朵", "type": "自动"}, {"id": "029", "name": "24骨配色款", "func": "防雨", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*24K", "diameter": "110CM", "pack": "98*31*25cm", "qty": "40只/箱", "weight": "0.7kg", "price": 23.8, "type": "手动"}, {"id": "030", "name": "24骨", "func": "防雨", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*24K", "diameter": "110CM", "pack": "98*31*25cm", "qty": "40只/箱", "weight": "0.7kg", "price": 17.9, "type": "手动"}, {"id": "031", "name": "16骨伞套款", "func": "防雨", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*16K", "diameter": "105CM", "pack": "98*31*25cm", "qty": "40只/箱", "weight": "0.5kg", "price": 19.8, "type": "手动"}, {"id": "032", "name": "24骨伞套款", "func": "防雨", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*24K", "diameter": "110CM", "pack": "98*31*25cm", "qty": "40只/箱", "weight": "0.7kg", "price": 25.8, "type": "手动"}, {"id": "033", "name": "24骨双层伞布", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*24K", "diameter": "110CM", "pack": "98*31*25cm", "qty": "40只/箱", "weight": "0.7kg", "price": 29.8, "type": "手动"}, {"id": "034", "name": "24骨黑胶款", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*24K", "diameter": "110CM", "pack": "98*31*25cm", "qty": "40只/箱", "weight": "0.7kg", "price": 25.8, "type": "手动"}, {"id": "035", "name": "16骨皮柄伞套款", "func": "防雨", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*16K", "diameter": "100CM", "pack": "98*31*25cm", "qty": "40只/箱", "weight": "0.6kg", "price": 19.9, "type": "手动"}, {"id": "036", "name": "直杆八骨双层伞骨", "func": "防雨", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "105CM", "pack": "伞套+opp袋", "qty": "50只/箱", "weight": "0.5kg", "price": 12.0, "type": "直杆长伞"}, {"id": "037", "name": "直杆八骨直柄", "func": "防雨", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "100CM", "pack": "伞套+opp袋", "qty": "50只/箱", "weight": "0.5kg", "price": 11.0, "type": "直杆长伞"}, {"id": "038", "name": "直杆八骨弯柄", "func": "防雨", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "60*8K", "diameter": "105CM", "pack": "伞套+opp袋", "qty": "50只/箱", "weight": "0.5kg", "price": 11.0, "type": "直杆长伞"}, {"id": "039", "name": "直杆十六骨木手柄", "func": "防雨", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*16K", "diameter": "105CM", "pack": "伞套+opp袋", "qty": "50只/箱", "weight": "0.6kg", "price": 19.8, "type": "直杆长伞"}, {"id": "040", "name": "直杆同色系八骨无胶", "func": "防雨", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "120CM", "pack": "伞套+opp袋", "qty": "50只/箱", "weight": "0.5kg", "price": 18.8, "type": "直杆长伞"}, {"id": "041", "name": "直杆同色系八骨黑胶", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "120CM", "pack": "伞套+opp袋", "qty": "50只/箱", "weight": "0.5kg", "price": 19.8, "type": "直杆长伞"}, {"id": "042", "name": "直杆反向伞", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "105CM", "pack": "opp袋", "qty": "50只/箱", "weight": "0.6kg", "price": 23.8, "type": "反向"}, {"id": "043", "name": "高尔夫无胶款", "func": "防雨", "frame": "纤维伞骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "120CM", "pack": "95*26*27CM", "weight": "0.6kg", "price": 14.8, "type": "高尔夫"}, {"id": "044", "name": "透明伞-全透明款", "func": "防雨", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "52*8K", "diameter": "90CM", "pack": "opp袋", "qty": "100只/箱", "weight": "0.2kg", "price": 4.4, "type": "透明"}, {"id": "045", "name": "透明伞-磨砂款", "func": "防雨", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "52*8K", "diameter": "90CM", "pack": "opp袋", "qty": "100只/箱", "weight": "0.2kg", "price": 4.4, "type": "透明"}, {"id": "046", "name": "透明伞-条纹款", "func": "防雨", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "52*8K", "diameter": "90CM", "pack": "opp袋", "qty": "100只/箱", "weight": "0.2kg", "price": 4.4, "type": "透明"}, {"id": "047", "name": "花苞伞-六折黑胶", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*6K", "diameter": "90CM", "pack": "伞套+opp袋/可定制礼盒装", "qty": "100只/箱", "weight": "0.25kg", "price": 19.8, "type": "五折/六折"}, {"id": "048", "name": "花苞伞-六折金胶", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*6K", "diameter": "90CM", "pack": "伞套+opp袋/可定制礼盒装", "qty": "100只/箱", "weight": "0.25kg", "price": 21.8, "type": "五折/六折"}, {"id": "049", "name": "花苞伞-五折金胶", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*6K", "diameter": "90CM", "pack": "伞套+opp袋/可定制礼盒装", "qty": "100只/箱", "weight": "0.25kg", "price": 17.8, "type": "五折/六折"}, {"id": "050", "name": "花苞伞-五折黑胶", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*6K", "diameter": "90CM", "pack": "伞套+opp袋/可定制礼盒装", "qty": "100只/箱", "weight": "0.25kg", "price": 17.8, "type": "五折/六折"}, {"id": "051", "name": "花伞-三折双层黑色伞杆", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "100CM", "pack": "伞套+opp袋/可定制礼盒装", "qty": "50只/箱", "weight": "0.45kg", "price": 33.8, "type": "手动"}, {"id": "052", "name": "花伞-三折双层黑色伞杆", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "100CM", "pack": "伞套+opp袋/可定制礼盒装", "qty": "50只/箱", "weight": "0.45kg", "price": 33.8, "type": "手动"}, {"id": "053", "name": "花伞-五折双层黑色伞杆", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "95CM", "pack": "伞套+opp袋/可定制礼盒装", "qty": "50只/箱", "weight": "0.4kg", "price": 32.8, "type": "五折/六折"}, {"id": "054", "name": "花伞-五折双层金色伞杆", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "95CM", "pack": "伞套+opp袋/可定制礼盒装", "qty": "50只/箱", "weight": "0.4kg", "price": 32.8, "type": "五折/六折"}, {"id": "055", "name": "扁五折", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "52*8K", "diameter": "90CM", "pack": "伞套+opp袋/可定制礼盒装", "qty": "100只/箱", "weight": "0.3kg", "price": 16.8, "colors": "黑色、粉色、黄色、藏青、天", "type": "五折/六折"}, {"id": "056", "name": "扁六折", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "52*6K", "diameter": "90CM", "pack": "伞套+opp袋/可定制礼盒装", "qty": "100只/箱", "weight": "0.3kg", "price": 20.8, "colors": "粉色、米白。浅蓝、浅绿、藏", "type": "五折/六折"}, {"id": "057", "name": "圆饼五折六骨", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "52*6K", "diameter": "90CM", "pack": "伞套+opp袋/可定制礼盒装", "qty": "100只/箱", "weight": "0.3kg", "price": 16.8, "colors": "米白、粉色、黄色、紫色、墨", "type": "五折/六折"}, {"id": "058", "name": "扁六折金胶", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "52*6K", "diameter": "90CM", "pack": "伞套+opp袋/可定制礼盒装", "qty": "100只/箱", "weight": "0.3kg", "price": 25.8, "type": "五折/六折"}, {"id": "059", "name": "扁六折金胶-花色", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "52*6K", "diameter": "90CM", "pack": "伞套+opp袋/可定制礼盒装", "qty": "100只/箱", "weight": "0.3kg", "price": 25.8, "type": "五折/六折"}, {"id": "060", "name": "圆饼五折八骨", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "95CM", "pack": "伞套+opp袋/可定制礼盒装", "qty": "100只/箱", "weight": "0.35kg", "price": 19.8, "colors": "天蓝、米白、酒红、黑色、粉", "type": "五折/六折"}, {"id": "061", "name": "金柄弯钩款", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "100CM", "pack": "伞套+opp袋/可定制礼盒装", "qty": "50只/箱", "weight": "0.45kg", "price": 39.9, "type": "手动"}, {"id": "062", "name": "儿童伞-无胶款", "func": "防雨", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "52*8K", "diameter": "72CM", "pack": "83*31*33", "weight": "0.3kg", "price": 10.0, "colors": "黑白小熊、粉色小兔、紫色花", "type": "儿童"}, {"id": "063", "name": "儿童伞-反光条", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "52*8K", "diameter": "85CM", "pack": "伞套", "qty": "80只/箱", "weight": "0.3kg", "price": 16.8, "type": "儿童"}, {"id": "065", "name": "圆角儿童伞-反光条", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "52*8K", "diameter": "90CM", "pack": "83*31*33cm", "qty": "80只/箱", "weight": "0.3kg", "price": 16.8, "type": "儿童"}, {"id": "066", "name": "2023款儿童伞-反光条", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "52*8K", "diameter": "90CM", "pack": "83*31*33cm", "qty": "80只/箱", "weight": "0.3kg", "price": 16.8, "type": "儿童"}, {"id": "067", "name": "2023款儿童伞", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "52*8K", "diameter": "90CM", "pack": "伞套", "qty": "80只/箱", "weight": "0.3kg", "price": 12.0, "type": "儿童"}, {"id": "069", "name": "60骨自动", "func": "晴雨两用", "fabric": "碰击布", "ribs": "55*10K", "diameter": "105CM", "pack": "伞套+opp袋/可定制礼盒", "qty": "50只/箱", "weight": "0.55kg", "price": 25.8, "type": "自动"}, {"id": "070", "name": "十骨加大", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布 规", "diameter": "125CM折", "pack": "55*32*30", "qty": "80只/箱", "weight": "0.36kg", "price": 13.5, "colors": "天蓝、米白、藏青、黑色、粉", "type": "手动"}, {"id": "071", "name": "小碎花", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "100CM", "pack": "55*32*30", "qty": "50只/箱", "weight": "0.34kg", "price": 0.0, "type": "手动"}, {"id": "072", "name": "高尔夫彩胶全纤维", "func": "晴雨两用", "frame": "纤维伞骨", "fabric": "碰击布", "ribs": "65*8K", "diameter": "120CM", "pack": "80*30*30", "qty": "50只/箱", "weight": "0.7kg", "price": 15.8, "type": "高尔夫"}, {"id": "073", "name": "头戴帽伞-彩虹色", "func": "防雨", "frame": "铁骨", "fabric": "碰击布", "ribs": "25*8K", "diameter": "50CM", "pack": "50*30*25", "qty": "100只/箱", "weight": "0.15kg", "price": 3.5, "type": "手动"}, {"id": "075", "name": "圆五折牛油果-带胶囊盒", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "48*8K", "diameter": "90CM", "pack": "50*35*30", "qty": "50只/箱", "weight": "0.3kg", "price": 19.8, "colors": "绿色。", "type": "五折/六折"}, {"id": "076", "name": "五折卡通口袋伞", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "48*6K", "diameter": "90CM", "pack": "50*35*30", "qty": "100只/箱", "weight": "0.26kg", "price": 19.8, "type": "五折/六折"}, {"id": "077", "name": "反向双股伞-黑色手柄", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*10K", "diameter": "105CM", "pack": "伞套+opp袋/可定制礼盒装", "qty": "50只/箱", "weight": "0.45kg", "price": 22.8, "colors": "黑色、藏青、灰色、米白、抹", "type": "反向"}, {"id": "078", "name": "自动十骨-实木手柄", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*10K", "diameter": "105CM", "pack": "伞套+opp袋/可定制礼盒装", "qty": "50只/箱", "weight": "0.55kg", "price": 29.9, "colors": "藏青色酒红色黑色浅", "type": "自动"}, {"id": "079", "name": "鸡蛋手柄- 自动苹果", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "48*8K", "diameter": "100CM", "pack": "50*30*30", "qty": "60只/箱", "weight": "0.3kg", "price": 19.8, "type": "自动"}, {"id": "080", "name": "五折伞-钛银涂层", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "48*6K", "diameter": "90CM", "pack": "50*30*30", "qty": "100只/箱", "weight": "0.25kg", "price": 19.9, "type": "五折/六折"}, {"id": "082", "name": "八骨金色伞杆-木柄", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "52*8K", "diameter": "100CM", "pack": "50*30*30", "qty": "50只/箱", "weight": "0.45kg", "price": 27.0, "colors": "淤泥牛奶 薄荷奶绿 生椰", "type": "手动"}, {"id": "083", "name": "十骨自动-环扣伞", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "58*10K", "diameter": "105CM", "pack": "50*30*30", "qty": "50只/箱", "weight": "0.5kg", "price": 26.0, "colors": "迷雾灰 深林绿 梧桐米 雾", "type": "自动"}, {"id": "084", "name": "十骨自动加大款-环扣伞", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "65*10K", "diameter": "125CM", "pack": "50*30*30", "qty": "50只/箱", "weight": "0.5kg", "price": 31.0, "colors": "迷雾灰 深林绿 梧桐米 雾", "type": "自动"}, {"id": "085", "name": "反向十骨自动-环扣伞", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "58*10K", "diameter": "105CM", "pack": "50*30*30", "qty": "50只/箱", "weight": "0.5kg", "price": 30.0, "colors": "迷雾灰 深林绿 梧桐米 雾", "type": "自动"}, {"id": "086", "name": "反向十骨自动加大款-环扣伞", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "65*10K", "diameter": "125CM", "pack": "50*30*30", "qty": "50只/箱", "weight": "0.5kg", "price": 37.5, "colors": "迷雾灰 深林绿 梧桐米 雾", "type": "自动"}, {"id": "087", "name": "60骨自动伞-三骨+2段", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "58*16K", "diameter": "105CM", "pack": "50*30*30", "qty": "50只/箱", "weight": "0.5kg", "price": 27.0, "colors": "薄荷绿 初桃粉,曜石黑,香", "type": "自动"}, {"id": "088", "name": "八骨手动-实木手柄", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "52*8K", "diameter": "100CM", "pack": "50*30*30", "qty": "50只/箱", "weight": "0.35kg", "price": 27.0, "colors": "玉子黄,樱花粉,梧桐米,葡", "type": "手动"}, {"id": "089", "name": "手动八骨原木手柄-双面花色", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "52*8K", "diameter": "100CM", "pack": "50*30*30", "qty": "50只/箱", "weight": "0.35kg", "price": 32.0, "colors": "紫霞精灵,云端梦境, 山野挽", "type": "手动"}, {"id": "090", "name": "格子伞--颜色随机发", "func": "防雨", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*7K", "diameter": "92CM", "pack": "55*32*30单", "qty": "100只/箱", "weight": "0.34kg", "price": 7.0, "colors": "粉红、天蓝、浅绿、藏青、酒红、", "type": "手动"}, {"id": "102", "name": "自动伞-96骨架", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*12K", "diameter": "105CM", "pack": "伞套+opp袋/可定制礼盒装", "qty": "50只/箱", "weight": "0.5kg", "price": 22.8, "type": "自动"}, {"id": "104", "name": "24骨木质手柄", "func": "防雨", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*24K", "diameter": "115CM", "pack": "98*31*25cm", "qty": "40只/箱", "weight": "0.7kg", "price": 28.8, "type": "手动"}, {"id": "106", "name": "手动12骨加大", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布 规", "diameter": "125CM", "pack": "55*32*30", "qty": "80只/箱", "weight": "0.36kg", "price": 13.5, "colors": "天蓝、米白、藏青、黑色、粉 色、", "type": "手动"}, {"id": "107", "name": "二折高尔夫", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布 规", "diameter": "105CM折", "pack": "伞套+opp袋/可定制礼盒装", "qty": "50只/箱", "weight": "0.4kg", "price": 14.8, "colors": "藏青、黑色、墨绿、酒红、咖啡", "type": "高尔夫"}, {"id": "108", "name": "三丽鸥正版库洛米-三折手动款", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "52*8K", "diameter": "100CM折", "pack": "55*29*31.5", "qty": "72只/箱", "weight": "0.35kg", "price": 23.8, "type": "正版IP"}, {"id": "109", "name": "三丽鸥正版库洛米-三折自动款", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "52*8K", "diameter": "100CM折", "pack": "59*34*33", "qty": "72只/箱", "weight": "0.4kg", "price": 26.8, "type": "自动"}, {"id": "110", "name": "三丽鸥正版库洛米-五折伞", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "48*6K", "diameter": "90CM折", "pack": "43*31*33", "qty": "72只/箱", "weight": "0.3kg", "price": 27.8, "type": "正版IP"}, {"id": "111", "name": "三丽鸥正版KT猫-三折手动款", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "52*8K", "diameter": "100CM折", "pack": "55*29*31.5", "qty": "72只/箱", "weight": "0.35kg", "price": 23.8, "type": "正版IP"}, {"id": "112", "name": "三丽鸥正版KT猫-五折伞卡通手柄", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "48*6K", "diameter": "90CM折", "pack": "43*31*33", "qty": "72只/箱", "weight": "0.3kg", "price": 28.8, "type": "正版IP"}, {"id": "113", "name": "三丽鸥正版KT猫-五折伞", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "48*6K", "diameter": "90CM折", "pack": "43*31*33", "qty": "72只/箱", "weight": "0.3kg", "price": 28.8, "type": "正版IP"}, {"id": "114", "name": "三丽鸥正版KT猫-磨砂半透明款", "func": "防雨", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "48*8K", "diameter": "90CM折", "pack": "77.5*25*45", "qty": "72只/箱", "weight": "0.3kg", "price": 12.8, "type": "透明"}, {"id": "115", "name": "三丽鸥正版蜡笔小新-磨砂半透明款", "func": "防雨", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "48*8K", "diameter": "90CM折", "pack": "77.5*25*45", "qty": "72只/箱", "weight": "0.3kg", "price": 12.8, "type": "透明"}, {"id": "116", "name": "三丽鸥正版初音未来-磨砂半透明款", "func": "防雨", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "48*8K", "diameter": "90CM折", "pack": "77.5*25*45", "qty": "72只/箱", "weight": "0.3kg", "price": 12.8, "type": "透明"}, {"id": "119", "name": "72股防回弹-带礼盒", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布 规", "diameter": "105CM", "pack": "55*36*30", "qty": "80只/箱", "weight": "0.55kg", "price": 42.5, "type": "手动"}, {"id": "120", "name": "自动防回弹儿童伞-白色圆饼", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布 规", "diameter": "100CM", "pack": "55*32*30", "qty": "50只/箱", "weight": "0.4kg", "price": 28.8, "type": "自动"}, {"id": "121", "name": "高尔夫实木手柄", "frame": "纤维伞骨", "fabric": "碰击布 规", "diameter": "120CM", "pack": "90*25*25", "qty": "40只/箱", "weight": "0.55kg", "price": 25.8, "type": "高尔夫"}, {"id": "122", "name": "自动60股透明伞柄", "frame": "烤漆钢骨", "fabric": "碰击布 规", "diameter": "105CM", "pack": "55*32*30", "qty": "50只/箱", "weight": "0.45kg", "price": 25.8, "type": "自动"}, {"id": "123", "name": "超大20骨自动伞", "frame": "烤漆钢骨", "fabric": "碰击布 规", "diameter": "125CM", "pack": "55*35*40", "qty": "50只/箱", "weight": "0.6kg", "price": 24.9, "type": "自动"}, {"id": "124", "name": "三折八骨彩胶小金柄", "frame": "烤漆钢骨", "fabric": "碰击布 规", "diameter": "100CM", "pack": "55*32*30", "qty": "50只/箱", "weight": "0.38kg", "price": 18.9, "type": "手动"}, {"id": "125", "name": "分体式拐杖伞", "frame": "烤漆钢骨", "fabric": "碰击布 规", "diameter": "100CM", "pack": "98*30*30", "qty": "40只/箱", "weight": "0.6kg", "price": 48.0, "type": "手动"}, {"id": "126", "name": "一体式拐杖伞", "frame": "烤漆钢骨", "fabric": "碰击布 规", "diameter": "100CM", "pack": "98*30*30", "qty": "40只/箱", "weight": "0.5kg", "price": 14.0, "type": "手动"}, {"id": "127", "name": "双层包边手动十骨折叠伞", "frame": "烤漆钢骨", "fabric": "碰击布 规", "diameter": "110CM", "pack": "55*32*30", "qty": "100只/箱", "weight": "0.35kg", "price": 19.8, "type": "手动"}, {"id": "128", "name": "直杆十六骨", "func": "防雨", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*16K", "diameter": "105CM", "pack": "伞套+opp袋", "qty": "50只/箱", "weight": "0.6kg", "price": 19.8, "type": "直杆长伞"}, {"id": "129", "name": "黑胶高尔夫", "frame": "纤维伞骨", "fabric": "碰击布 规", "diameter": "120CM", "pack": "90*25*25", "qty": "40只/箱", "weight": "0.55kg", "price": 15.8, "type": "高尔夫"}, {"id": "130", "name": "小白熊系列-自动款", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "100CM", "pack": "40*32*30", "qty": "50只/箱", "weight": "0.35kg", "price": 13.88, "type": "自动"}, {"id": "131", "name": "小白熊系列-手动款", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "95CM", "pack": "55*32*30", "qty": "100只/箱", "weight": "0.26kg", "price": 9.48, "type": "手动"}, {"id": "132", "name": "卡通小狗系列-自动款", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "100CM", "pack": "40*32*30", "qty": "50只/箱", "weight": "0.35kg", "price": 12.88, "type": "自动"}, {"id": "133", "name": "卡通小狗系列-手动款", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "95CM", "pack": "55*32*30", "qty": "100只/箱", "weight": "0.26kg", "price": 8.48, "type": "手动"}, {"id": "134", "name": "小白云系列-自动款", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "100CM", "pack": "40*32*30", "qty": "50只/箱", "weight": "0.35kg", "price": 12.88, "type": "自动"}, {"id": "135", "name": "小白云系列-手动款", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "95CM", "pack": "55*32*30", "qty": "100只/箱", "weight": "0.26kg", "price": 8.48, "type": "手动"}, {"id": "136", "name": "劳斯莱斯高尔夫", "frame": "纤维伞骨", "fabric": "碰击布 规", "diameter": "120CM", "pack": "90*25*25", "qty": "40只/箱", "weight": "0.6kg", "price": 16.8, "type": "高尔夫"}, {"id": "137", "name": "八骨直杆原木手柄", "frame": "纤维伞骨", "fabric": "碰击布 规", "diameter": "105CM", "pack": "90*25*25", "qty": "40只/箱", "weight": "0.6kg", "price": 16.8, "type": "直杆长伞"}, {"id": "138", "name": "72K自动黑胶配色柄", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "62*12K", "diameter": "105CM", "pack": "55*32*30", "qty": "50只/箱", "weight": "0.5kg", "price": 29.9, "type": "自动"}, {"id": "139", "name": "三折手开花瓣伞", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "52*6K", "diameter": "95CM", "pack": "55*32*30", "qty": "100只/箱", "weight": "0.22kg", "price": 30.9, "type": "手动"}, {"id": "140", "name": "直杆花瓣伞木直柄", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "55*8K", "diameter": "100CM", "pack": "55*32*30", "qty": "50只/箱", "weight": "0.4kg", "price": 27.9, "type": "直杆长伞"}, {"id": "141", "name": "自动PG贴片伞", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "65*10K", "diameter": "105CM", "pack": "55*32*30", "qty": "50只/箱", "weight": "0.5kg", "price": 59.9, "type": "自动"}, {"id": "142", "name": "五折8k自动黑胶", "func": "晴雨两用", "frame": "烤漆钢骨", "fabric": "碰击布", "ribs": "52*8K", "diameter": "95CM", "pack": "55*32*30", "qty": "60只/箱", "weight": "0.35kg", "price": 28.9, "type": "自动"}];
-var typeLabels = {'自动':'Auto','手动':'Manual','反向':'Reverse','儿童':'Kids','直杆长伞':'Long Stick','高尔夫':'Golf','五折/六折':'Compact','透明':'Clear','正版IP':'Licensed','汽车':'Car','特殊':'Special'};
-var typeColors = {'自动':'ta','手动':'tm','反向':'tr','儿童':'tc','直杆长伞':'tl','高尔夫':'tg','五折/六折':'tf','透明':'tt','正版IP':'ti','汽车':'tq','特殊':'ts'};
 var cart = [], currentFilter = 'all';
+
+var typeEN = {'自动':'Auto','手动':'Manual','反向':'Reverse','儿童':'Kids','直杆长伞':'Long Stick','高尔夫':'Golf','五折/六折':'Compact','透明':'Clear','正版IP':'Licensed','汽车':'Car','特殊':'Special'};
+var typeZH = {'自动':'自动伞','手动':'手动伞','反向':'反向伞','儿童':'儿童伞','直杆长伞':'长杆伞','高尔夫':'高尔夫伞','五折/六折':'五/六折伞','透明':'透明伞','正版IP':'联名IP','汽车':'汽车伞','特殊':'其他'};
+var typeColors = {'自动':'cta','手动':'ctm','反向':'ctr','儿童':'ctc','直杆长伞':'ctl','高尔夫':'ctg','五折/六折':'ctf','透明':'ctt','正版IP':'cti','汽车':'ctq'};
+
+function setLang(l){
+  document.documentElement.lang = l;
+  document.querySelectorAll('.lang-bar a').forEach(function(a){a.classList.toggle('active',a.textContent.includes(l==='en'?'English':'中文'))});
+  // Re-render products
+  render(filteredProducts());
+  renderStats(filteredProducts());
+}
+function getLang(){return document.documentElement.lang}
+function _(en,zh){return getLang()==='en'?en:zh}
+
+function filteredProducts(){
+  var q = document.getElementById('searchInput').value.toLowerCase();
+  var list = currentFilter === 'all' ? products : currentFilter === 'price' ? products.slice().sort(function(a,b){return a.price-b.price}) : products.filter(function(p){return p.type===currentFilter});
+  if(q) list = list.filter(function(p){return(p.name||'').toLowerCase().indexOf(q)>-1||(p.id||'').indexOf(q)>-1});
+  return list;
+}
 
 function render(list){
   var el = document.getElementById('productGrid');
-  if(!list.length){el.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:60px;color:#aaa;font-size:.9em"><span class="zh-only">暂无匹配产品</span><span class="en-only">No products found</span></div>';return}
-  var isEn = document.body.classList.contains('lang-en');
+  if(!list.length){el.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:60px;color:#aaa">'+(getLang()==='en'?'No products found':'暂无匹配产品')+'</div>';return}
+  var isEN = getLang()==='en';
   el.innerHTML = list.map(function(p){
-    var cs = (p.colors||'').split('、').filter(Boolean);
+    var tn = isEN ? (typeEN[p.type]||p.type) : (typeZH[p.type]||p.type);
+    var tc = typeColors[p.type]||'';
     var inCart = cart.indexOf(p.id) > -1;
-    return '<div class="card">'+
-      '<div class="top"><span class="type-tag '+(typeColors[p.type]||'')+'">'+(isEn?(typeLabels[p.type]||p.type):p.type)+'</span><span class="id-tag">#'+p.id+'</span></div>'+
-      '<h3>'+p.name+'</h3>'+
-      '<div class="price">¥'+p.price+' <span class="unit">FOB</span></div>'+
-      '<div class="specs">'+
-        (p.diameter?'<div class="spec"><span class="k">'+(isEn?'Diameter':'直径')+'</span><span class="v">'+p.diameter+'</span></div>':'')+
-        (p.ribs?'<div class="spec"><span class="k">'+(isEn?'Ribs':'伞骨')+'</span><span class="v">'+p.ribs+'</span></div>':'')+
-        (p.func?'<div class="spec"><span class="k">'+(isEn?'Function':'功能')+'</span><span class="v">'+p.func+'</span></div>':'')+
-        (p.fabric?'<div class="spec"><span class="k">'+(isEn?'Fabric':'伞布')+'</span><span class="v">'+p.fabric+'</span></div>':'')+
-        (p.weight?'<div class="spec"><span class="k">'+(isEn?'Weight':'重量')+'</span><span class="v">'+p.weight+'</span></div>':'')+
-        (p.qty?'<div class="spec"><span class="k">'+(isEn?'Qty/Box':'装箱')+'</span><span class="v">'+p.qty+'</span></div>':'')+
-      '</div>'+
-      (cs.length?'<div class="colors">'+cs.map(function(c){return '<span>'+c+'</span>'}).join('')+'</div>':'')+
-      '<button class="inq '+(inCart?'added':'')+'" onclick="toggleCart(\''+p.id+'\')">'+(inCart?'✓ '+(isEn?'Added':'已添加'):'+ '+(isEn?'Inquiry':'询盘'))+'</button></div>';
+    var imgHtml = '<div class="img-wrap"><span style="opacity:.4">📷 ' + p.id + '</span></div>';
+    return '<div class="card">'+imgHtml+'<div class="info"><div class="top"><span class="tag '+tc+'">'+tn+'</span><span class="id-tag">#'+p.id+'</span></div><h3>'+p.name+'</h3><div class="price">$'+ (p.price/7).toFixed(2) +' <span class="u">FOB</span></div><div class="specs">'+
+      (p.diameter?'<span>📏 '+p.diameter+'</span>':'')+(p.ribs?'<span>🦴 '+p.ribs+'</span>':'')+(p.weight?'<span>⚖️ '+p.weight+'</span>':'')+
+      '</div><button class="inq-btn '+(inCart?'added':'')+'" onclick="toggleCart(\''+p.id+'\')">'+(inCart?'✓ '+(isEN?'Added':'已添加'):'+ '+(isEN?'Inquiry':'询盘'))+'</button></div></div>';
   }).join('');
+  renderStats(list);
+}
+
+function renderStats(list){
+  var prices = list.map(function(p){return p.price});
   document.getElementById('statsBar').innerHTML =
-    '<div class="stat-card"><div class="num">'+list.length+'</div><div class="label">'+(isEn?'Shown':'当前')+'</div></div>'+
-    '<div class="stat-card"><div class="num">'+products.length+'</div><div class="label">'+(isEn?'Total':'全部')+'</div></div>'+
-    '<div class="stat-card"><div class="num">¥'+Math.min.apply(null,list.map(function(x){return x.price}))+'–¥'+Math.max.apply(null,list.map(function(x){return x.price}))+'</div><div class="label">'+(isEn?'Price':'价格')+'</div></div>';
+    '<div class="sc"><div class="n">'+list.length+'</div><div class="l">'+(getLang()==='en'?'Showing':'当前')+'</div></div>'+
+    '<div class="sc"><div class="n">'+products.length+'</div><div class="l">'+(getLang()==='en'?'Total':'全部')+'</div></div>'+
+    '<div class="sc"><div class="n">$'+(Math.min.apply(null,prices)/7).toFixed(0)+'–$'+(Math.max.apply(null,prices)/7).toFixed(0)+'</div><div class="l">FOB Price</div></div>';
 }
-function filterAll(){currentFilter='all';setActive('全部产品');render(products)}
-function filterType(t){currentFilter=t;setActive(t);render(products.filter(function(p){return p.type===t}))}
-function sortByPrice(){currentFilter='price';setActive('');render(products.slice().sort(function(a,b){return a.price-b.price}))}
-function doSearch(){
-  var q = document.getElementById('searchInput').value.toLowerCase();
-  if(!q){filterAll();return}
-  render(products.filter(function(p){return(p.name||'').toLowerCase().indexOf(q)>-1||(p.id||'').indexOf(q)>-1}));
-}
-function setActive(t){
-  var links = document.querySelectorAll('#navBar a');
-  links.forEach(function(l){l.classList.remove('active')});
-  if(t==='全部产品'){links[0].classList.add('active');return}
-  links.forEach(function(l){if(l.textContent.indexOf(t)>-1||l.textContent.indexOf(typeLabels[t])>-1)l.classList.add('active')});
-}
+
+function filterAll(){currentFilter='all';render(filteredProducts())}
+function filterType(t){currentFilter=t;render(filteredProducts())}
+function sortByPrice(){currentFilter='price';render(filteredProducts())}
+function doSearch(){render(filteredProducts())}
+
 function toggleCart(id){
   var idx = cart.indexOf(id);
   if(idx>-1){cart.splice(idx,1)}else{cart.push(id)}
-  document.getElementById('cartCount').textContent = cart.length?'('+cart.length+')':'';
-  document.getElementById('cartCount').style.display = cart.length?'inline':'none';
-  if(currentFilter==='all')render(products);
-  else if(currentFilter==='price')render(products.slice().sort(function(a,b){return a.price-b.price}));
-  else render(products.filter(function(p){return p.type===currentFilter}));
+  updateCartCount();
+  render(filteredProducts());
+}
+function updateCartCount(){
+  // No count display needed
+}
+function showInquiry(){
+  document.getElementById('inqModal').classList.add('show');
   updateCartModal();
 }
+function hideInquiry(){document.getElementById('inqModal').classList.remove('show')}
 function updateCartModal(){
   var el = document.getElementById('cartItems');
-  var empty = document.getElementById('emptyCart');
-  empty.style.display = cart.length?'none':'block';
+  document.getElementById('emptyCart').style.display = cart.length?'none':'block';
   el.innerHTML = cart.map(function(id){
     var p = products.find(function(p){return p.id===id});
-    return p?'<div class="cart-item"><span><strong>'+p.name+'</strong> (#'+p.id+') ¥'+p.price+'</span><span class="del" onclick="removeFromCart(\''+id+'\')">✕ 移除</span></div>':'';
+    if(!p)return'';
+    return '<div class="item"><span><strong>'+p.name+'</strong> #'+p.id+' $'+(p.price/7).toFixed(2)+'</span><span class="del" onclick="removeCart(\''+id+'\')">✕</span></div>';
   }).join('');
 }
-function removeFromCart(id){
+function removeCart(id){
   var idx = cart.indexOf(id);
   if(idx>-1)cart.splice(idx,1);
-  document.getElementById('cartCount').textContent = cart.length?'('+cart.length+')':'';
-  document.getElementById('cartCount').style.display = cart.length?'inline':'none';
   updateCartModal();
-  if(currentFilter==='all')render(products);
-  else if(currentFilter==='price')render(products.slice().sort(function(a,b){return a.price-b.price}));
-  else render(products.filter(function(p){return p.type===currentFilter}));
+  render(filteredProducts());
 }
-function showModal(){document.getElementById('inquiryModal').classList.add('show')}
-function hideModal(){document.getElementById('inquiryModal').classList.remove('show')}
 function submitInquiry(){
-  if(!cart.length){var isEn=document.body.classList.contains('lang-en');alert(isEn?'Please add products first':'请先添加产品');return}
-  var isEn = document.body.classList.contains('lang-en');
+  if(!cart.length){alert(getLang()==='en'?'Please add products first':'请先添加产品');return}
+  var name = document.getElementById('modalName').value||'';
+  var email = document.getElementById('modalEmail').value;
+  var phone = document.getElementById('modalPhone').value;
+  var msg = document.getElementById('modalMsg').value;
+  var items = cart.map(function(id){var p=products.find(function(p){return p.id===id});return p?p.id+' '+p.name+' $'+(p.price/7).toFixed(2):''}).join('\\n');
+  var lang = getLang();
+  var subject = lang==='en'?'Inquiry from Gardenia Umbrella Website':'栀子花伞业网站询盘';
+  var body = 'Name: '+name+'\\nEmail: '+email+'\\nPhone: '+phone+'\\n\\nProducts:\\n'+items+'\\n\\nMessage:\\n'+msg;
+  window.location.href='mailto:wxy13336021626@foxmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+  alert(lang==='en'?'✓ Inquiry sent! We will contact you soon.' : '✓ 询盘已发送！我们会尽快联系您。');
+}
+function submitQuickInq(){
   var name = document.getElementById('inqName').value||'';
   var email = document.getElementById('inqEmail').value;
   var phone = document.getElementById('inqPhone').value;
   var msg = document.getElementById('inqMsg').value;
-  var items = cart.map(function(id){var p=products.find(function(p){return p.id===id});return p?p.id+' '+p.name+' ¥'+p.price:''}).join('\\n');
-  window.location.href='mailto:wxy13336021626@foxmail.com?subject='+encodeURIComponent(isEn?'Umbrella Inquiry from Gardenia':'栀子花伞业网站询盘')+'&body='+encodeURIComponent('Name: '+name+'\\nEmail: '+email+'\\nPhone: '+phone+'\\n\\nProducts:\\n'+items+'\\n\\nMessage:\\n'+msg);
-  alert(isEn?'Inquiry submitted! ✓ We will contact you soon.':'询盘已提交！✓ 我们会尽快联系您。');
+  var lang = getLang();
+  window.location.href='mailto:wxy13336021626@foxmail.com?subject='+encodeURIComponent(lang==='en'?'Quick Inquiry from Website':'网站快速询盘')+'&body='+encodeURIComponent('Name: '+name+'\\nEmail: '+email+'\\nPhone: '+phone+'\\n\\nMessage:\\n'+msg);
+  alert(lang==='en'?'✓ Sent! We will contact you soon.' : '✓ 已发送！我们会尽快联系您。');
 }
-render(products);
+render(filteredProducts());
 </script>
-</body></html>
+</html>
