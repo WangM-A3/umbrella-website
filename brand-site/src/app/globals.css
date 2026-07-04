@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-orbitron: var(--font-orbitron);
+  --color-bg: var(--bg-color);
+  --color-fg: var(--fg-color);
+  --color-muted: var(--muted-color);
+}
+
+:root {
+  --bg-color: #f8f9fa;
+  --fg-color: #111111;
+  --muted-color: #666666;
+}
+
+.dark {
+  --bg-color: #0a0a0a;
+  --fg-color: #ffffff;
+  --muted-color: #999999;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--fg-color);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+  background: #0a0a0a;
+  color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
