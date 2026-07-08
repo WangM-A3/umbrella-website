@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品详情 · AI服务平台</title>
+    <style>
+        /* ===== 全局重置 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: #0a0e27;
+            color: #e8e8f0;
+            min-height: 100vh;
+        }
+
+        /* ===== 导航 ===== */
+        .navbar {
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(10, 14, 39, 0.85);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00f0ff, #7b2fbe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo a {
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #00f0ff;
+        }
+
+        .back-btn {
+            padding: 6px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            border-color: rgba(0, 240, 255, 0.3);
+            color: #00f0ff;
+        }
+
+        /* ===== 详情容器 ===== */
+        .detail-container {
+            max-width: 960px;
+            margin: 30px auto 60px;
+            padding: 0 24px;
+        }
+
+        /* ===== 产品头部 ===== */
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+
+        .product-header .left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .product-header .icon {
+            font-size: 48px;
+        }
+
+        .product-header .meta .category {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.25);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .product-header .meta .name {
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .product-header .price {
+            font-size: 22px;
+            font-weight: 600;
+            color: #00f0ff;
+            padding: 8px 20px;
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            border-radius: 12px;
+            background: rgba(0, 240, 255, 0.04);
+            white-space: nowrap;
+        }
+
+        .product-header .tagline {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 4px;
+            margin-bottom: 20px;
+        }
+
+        /* ===== 操作按钮 ===== */
+        .action-bar {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+        }
+
+        .btn-primary {
+            padding: 12px 32px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #00f0ff, #7b2fbe);
+            color: #0a0e27;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0, 240, 255, 0.2);
+        }
+
+        .btn-secondary {
+            padding: 12px 28px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(0, 240, 255, 0.3);
+            color: #00f0ff;
+        }
+
+        .btn-api {
+            padding: 12px 28px;
+            border: 1px solid rgba(123, 47, 190, 0.3);
+            border-radius: 10px;
+            background: rgba(123, 47, 190, 0.08);
+            color: #b388ff;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-api:hover {
+            background: rgba(123, 47, 190, 0.15);
+            border-color: rgba(123, 47, 190, 0.5);
+        }
+
+        /* ===== 关键指标 ===== */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 24px 28px;
+            margin-bottom: 32px;
+        }
+
+        .metric-item {
+            text-align: center;
+        }
+
+        .metric-item .number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #00f0ff;
+        }
+
+        .metric-item .label {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.3);
+            margin-top: 2px;
+        }
+
+        /* ===== 核心能力 ===== */
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 28px 0 14px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .section-title .count {
+            color: rgba(255, 255, 255, 0.2);
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        .capability-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .capability-item {
+            padding: 14px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            transition: all 0.2s;
+        }
+
+        .capability-item:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(0, 240, 255, 0.08);
+        }
+
+        .capability-item .title {
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .capability-item .desc {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.35);
+            margin-top: 2px;
+            line-height: 1.5;
+        }
+
+        /* ===== 使用场景 ===== */
+        .scenario-box {
+            background: rgba(0, 240, 255, 0.03);
+            border: 1px solid rgba(0, 240, 255, 0.06);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .scenario-box .emoji {
+            font-size: 24px;
+        }
+
+        .scenario-box .text {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .scenario-box .text strong {
+            color: #00f0ff;
+            font-weight: 500;
+        }
+
+        /* ===== 其他产品推荐 ===== */
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 14px;
+            margin-top: 10px;
+        }
+
+        .related-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 16px 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .related-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(0, 240, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .related-card .icon {
+            font-size: 24px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .related-card .name {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .related-card .price {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.3);
+            margin-top: 2px;
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            text-align: center;
+            padding: 24px 20px;
+            color: rgba(255, 255, 255, 0.08);
+            font-size: 13px;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        /* ===== 加载状态 ===== */
+        .loading {
+            text-align: center;
+            padding: 80px 20px;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .not-found {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .not-found h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .not-found p {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 640px) {
+            .navbar {
+                padding: 12px 18px;
+            }
+            .detail-container {
+                padding: 0 16px;
+            }
+            .product-header {
+                flex-direction: column;
+            }
+            .product-header .left {
+                gap: 12px;
+            }
+            .product-header .meta .name {
+                font-size: 22px;
+            }
+            .product-header .price {
+                font-size: 18px;
+                padding: 6px 16px;
+                align-self: flex-start;
+            }
+            .metrics {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 16px;
+            }
+            .metric-item .number {
+                font-size: 24px;
+            }
+            .action-bar {
+                flex-direction: column;
+            }
+            .action-bar .btn-primary,
+            .action-bar .btn-secondary,
+            .action-bar .btn-api {
+                width: 100%;
+                text-align: center;
+            }
+            .related-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== 导航 ===== -->
+    <nav class="navbar">
+        <div class="logo"><a href="product_demo.html" style="text-decoration:none;color:inherit;">AI服务平台</a></div>
+        <div class="nav-links">
+            <a href="product_demo.html">← 返回产品矩阵</a>
+            <button class="back-btn" onclick="history.back()">← 返回</button>
+        </div>
+    </nav>
+
+    <!-- ===== 详情容器 ===== -->
+    <div class="detail-container" id="detailContainer">
+        <div class="loading" id="loadingState">加载中...</div>
+        <div id="contentState" style="display:none;"></div>
+    </div>
+
+    <footer class="footer">
+        © 2026 AI服务平台 · 点击同类产品查看更多
+    </footer>
+
+    <script>
+        // =============================================================
+        //  产品数据（与 product_demo.html 保持一致）
+        // =============================================================
+        const PRODUCTS = [{
+            id: 'trade-engine',
+            icon: '🚢',
+            category: '外贸核心',
+            name: 'Trade Engine',
+            desc: '全链路AI外贸决策OS · 13个全球市场 · 每日巡检',
+            price: '¥50-500万/年',
+            tags: ['外贸', '飞轮', '自动化'],
+            hasApi: true,
+            metrics: [
+                { number: '13', label: '全球市场' },
+                { number: '6', label: '飞轮模块' },
+                { number: '24/7', label: '自动巡检' },
+                { number: '$0.20', label: '日成本上限' }
+            ],
+            capabilities: [
+                { title: 'config · 配置层', desc: '多币种+多语言+合规ISO，一键切换市场' },
+                { title: 'buyer_memory · 买家记忆', desc: '历史交互沉淀，每次触达都更精准' },
+                { title: 'template_store · 模板库', desc: 'A/B测试最优模板自动入库，持续进化' },
+                { title: 'ab_test_scheduler · 测试调度', desc: '自动编排A/B测试，数据驱动策略优化' },
+                { title: 'risk_controller · 风控', desc: 'ClaudeCode启发，虚假买家识别+置信度过滤' },
+                { title: 'orchestrator · 编排器', desc: 'patrol→触达→记录→学习→进化，完整飞轮闭环' }
+            ],
+            scenario: '外贸企业客户开发，从获客到成交全链路AI决策',
+            relatedIds: ['skills-api', 'v6-security', 'boss-ip', 'platform-kernel', 'enterprise-gateway', 'workbuddy']
+        }, {
+            id: 'skills-api',
+            icon: '⚡',
+            category: '外贸核心',
+            name: 'Agent Skills API',
+            desc: '4个独立AI能力 · REST即插即用 · LLM桥接',
+            price: '按需·API调用',
+            tags: ['API', 'Agent', '即插即用'],
+            hasApi: true,
+            metrics: [
+                { number: '4', label: '独立Skill' },
+                { number: '11', label: 'API端点' },
+                { number: '3', label: 'LLM供应商' },
+                { number: 'Mock', label: '降级策略' }
+            ],
+            capabilities: [
+                { title: 'prospector · 拓客引擎', desc: 'ICP匹配 → 多源信号扫描 → 买家评分' },
+                { title: 'analyzer · 分析引擎', desc: 'GBM评分 + 行为序列，预测成交概率' },
+                { title: 'outreach · 触达引擎', desc: '多通道触达优化 + 动态跟进树' },
+                { title: 'content · 内容引擎', desc: '多格式本地化流水线 · 多平台适配' }
+            ],
+            scenario: '技术团队快速集成AI能力到自有系统，即插即用',
+            relatedIds: ['trade-engine', 'platform-kernel', 'enterprise-gateway', 'ai-solution-gen', 'v6-security',
+                'workbuddy'
+            ]
+        }, {
+            id: 'v6-security',
+            icon: '🛡️',
+            category: '合规安全',
+            name: 'V6.0 AI 安全治理平台',
+            desc: '8大算法5层防御 · 人格塑造 · AIP国标',
+            price: '¥30-300万/年',
+            tags: ['安全', '合规', '全链路'],
+            hasApi: false,
+            metrics: [
+                { number: '5', label: '防护层' },
+                { number: '8', label: '核心算法' },
+                { number: '7', label: '合规维度' },
+                { number: '私有化', label: '部署方式' }
+            ],
+            capabilities: [
+                { title: '人格塑造层', desc: 'OpenAI好人格RL + Anthropic宪法对齐引擎' },
+                { title: '智能决策层', desc: 'TRIAD三路决策 + AgentTrust自进化 + DRIFT动态隔离' },
+                { title: '供应链防线', desc: 'AI-SBOM + 投毒检测 + MCP准入控制' },
+                { title: '运行时防线', desc: 'MCP网关 + AEBA序列评估 + BraveGuard自进化护栏' },
+                { title: '国标合规防线', desc: 'AIP 7部分全栈合规，覆盖国内监管要求' }
+            ],
+            scenario: '上市集团/金融机构/大模型公司AI安全合规，满足AIP国标要求',
+            relatedIds: ['compliance-mw', 'crossborder-cmpl', 'enterprise-gateway', 'platform-kernel', 'trade-engine',
+                'ai-os'
+            ]
+        }, {
+            id: 'boss-ip',
+            icon: '🎬',
+            category: '内容创意',
+            name: 'BOSS IP Factory',
+            desc: '15分钟录制AI出视频 · 多平台发布 · 线索追踪',
+            price: '¥10-30万/年',
+            tags: ['IP', '短视频', '自动化'],
+            hasApi: false,
+            metrics: [
+                { number: '15min', label: '录制时长' },
+                { number: '3', label: '平台同步' },
+                { number: 'AI', label: '脚本生成' },
+                { number: '自动', label: '线索追踪' }
+            ],
+            capabilities: [
+                { title: 'AI转写', desc: '15分钟语音自动转写，智能分段' },
+                { title: 'AI脚本生成', desc: '情感分析 + 黄金句提取 + 封面金句生成' },
+                { title: 'AI视频合成', desc: '自动剪辑 + 配音 + 字幕，一键成片' },
+                { title: '多平台发布', desc: '抖音 · 视频号 · 小红书，自动适配' },
+                { title: '线索收集', desc: '评论区 + 私信自动汇总，效果追踪' }
+            ],
+            scenario: '企业创始人/高管打造个人IP，批量生产高质量短视频内容',
+            relatedIds: ['short-drama', 'moe-video', 'scifi-select', 'trade-engine', 'workbuddy', 'taini-cloud']
+        }, {
+            id: 'ai-os',
+            icon: '🧠',
+            category: '行业方案',
+            name: 'AI-OS',
+            desc: '5层决策闭环 · L1-L5全链路 · ROI量化',
+            price: '¥5-500万',
+            tags: ['诊断', 'ROI', '合规闸门'],
+            hasApi: false,
+            metrics: [
+                { number: '5', label: '决策层' },
+                { number: 'L1-L5', label: '全链路' },
+                { number: 'ROI', label: '量化引擎' },
+                { number: '¥5-500万', label: '弹性定价' }
+            ],
+            capabilities: [
+                { title: 'L1 适配度诊断', desc: '10分钟问卷 + 四维雷达图 + 同行对标' },
+                { title: 'L2 场景规划', desc: 'AI场景落地路径图 + ROI排序 + 分期路径' },
+                { title: 'L3 合规闸门', desc: '合规闸门仪表盘 + 审计追踪' },
+                { title: 'L4 ROI量化', desc: 'ROI仪表盘 + Token价值量化' },
+                { title: 'L5 飞轮防御', desc: '数据飞轮 + 范式飞轮，越用壁垒越厚' }
+            ],
+            scenario: '企业AI战略规划，回答"AI怎么用、花多少钱、赚多少、怎么防抄袭"',
+            relatedIds: ['platform-kernel', 'ai-solution-gen', 'v6-security', 'trade-engine', 'enterprise-gateway',
+                'workbuddy'
+            ]
+        }, {
+            id: 'enterprise-gateway',
+            icon: '🔀',
+            category: '平台基础设施',
+            name: 'Enterprise Gateway',
+            desc: '有状态网关+算力套利 · Spot节省70% · 零信任',
+            price: '¥30-150万/年',
+            tags: ['网关', '算力', '安全'],
+            hasApi: false,
+            metrics: [
+                { number: '70%', label: 'Spot节省' },
+                { number: '14', label: 'PII脱敏模式' },
+                { number: 'GitOps', label: '交付方式' },
+                { number: '零信任', label: '安全架构' }
+            ],
+            capabilities: [
+                { title: '版本化状态机', desc: 'StateVersion链 + Delta Diff，Token节省40-70%' },
+                { title: 'DAG执行器', desc: '拓扑排序 + 并行执行 + 幂等校验' },
+                { title: '算力套利', desc: 'On-Demand保底 + Spot弹性(70%权重) + KV Cache快照' },
+                { title: '零信任安全', desc: 'JWT(RS256) + mTLS + PII脱敏 + eBPF审计' },
+                { title: 'GitOps交付', desc: 'Terraform → ArgoCD → Prometheus → Jaeger → Loki' }
+            ],
+            scenario: '大模型公司/有大量AI调用的企业，降低算力成本+加强安全',
+            relatedIds: ['platform-kernel', 'v6-security', 'trade-engine', 'skills-api', 'ai-os', 'compliance-mw']
+        }, {
+            id: 'taini-cloud',
+            icon: '☁️',
+            category: '企业AI辅助',
+            name: '苔米云驾驶舱',
+            desc: '6大模块AI赋能 · MOS运营官 · 智能预警',
+            price: '¥5-30万/年',
+            tags: ['中小企业', '运营', 'BI'],
+            hasApi: false,
+            metrics: [
+                { number: '6', label: 'AI模块' },
+                { number: 'MOS', label: '数字运营官' },
+                { number: '智能', label: '预警系统' },
+                { number: 'SaaS', label: '开箱即用' }
+            ],
+            capabilities: [
+                { title: 'MOS数字运营官', desc: 'AI经营问数 · 诊断报告 · 智能预警' },
+                { title: '经营目标管理', desc: '目标达成预测 · 沙盘推演' },
+                { title: '数字分析系统', desc: '自然语言查数 · 根因分析' },
+                { title: '执行效能管理', desc: '智能派单 · 延期预警' },
+                { title: '组织效能管理', desc: '组织健康度 · 高潜识别' },
+                { title: '流程管理', desc: '智能路由 · 风险检测' }
+            ],
+            scenario: '中小企业用AI运营大脑，替代传统BI+管理工具',
+            relatedIds: ['workbuddy', 'platform-kernel', 'ai-os', 'boss-ip', 'trade-engine', 'ai-solution-gen']
+        }, {
+            id: 'platform-kernel',
+            icon: '⚙️',
+            category: '平台基础设施',
+            name: 'Platform Kernel',
+            desc: 'Agent编排+本体+模板 · 语义层 · 结果计价',
+            price: '¥50-200万/年',
+            tags: ['编排', '语义', 'SaaS'],
+            hasApi: true,
+            metrics: [
+                { number: '统一', label: '编排层' },
+                { number: '共享', label: '语义层' },
+                { number: '资产', label: '模板市场' },
+                { number: '结果', label: '计价引擎' }
+            ],
+            capabilities: [
+                { title: 'orchestrator · 编排器', desc: 'Planner→Executor→Reviewer→Publisher→Tracker' },
+                { title: 'ontology · 共享语义层', desc: '跨域语义一致，消除数据孤岛' },
+                { title: 'template-store · 模板资产', desc: '交付物复用，不再重复造轮子' },
+                { title: 'outcome-tracker · 结果计价', desc: '从工时计费到结果计费的商业模式转型' },
+                { title: 'api-gateway · 统一入口', desc: '多产品线统一网关，横向扩展' }
+            ],
+            scenario: '多产品线企业的AI统一编排底座，让各产品跑在同一个内核上',
+            relatedIds: ['enterprise-gateway', 'trade-engine', 'skills-api', 'ai-os', 'v6-security', 'ai-solution-gen']
+        }, {
+            id: 'workbuddy',
+            icon: '💼',
+            category: '企业AI辅助',
+            name: 'WorkBuddy',
+            desc: '企业AI办公助手 · 文件操作 · 远程操控PC',
+            price: '¥3-15万/年',
+            tags: ['办公', '自动化', '腾讯'],
+            hasApi: false,
+            metrics: [
+                { number: '90%+', label: '文件整理提升' },
+                { number: '85%+', label: 'PPT制作提升' },
+                { number: '远程', label: '手机操控PC' },
+                { number: 'MCP', label: '协议扩展' }
+            ],
+            capabilities: [
+                { title: '本地文件操作', desc: '直接读写Excel/Word/PPT/PDF/图片' },
+                { title: '手机远程操控PC', desc: '在外也能调度办公室电脑干活' },
+                { title: 'MCP协议+Skills', desc: '零代码自定义扩展能力' },
+                { title: '企业版统一入口', desc: '数字员工 + 企业知识 + 任务交付' }
+            ],
+            scenario: '企业办公自动化，让每个员工拥有AI助手',
+            relatedIds: ['taini-cloud', 'platform-kernel', 'boss-ip', 'trade-engine', 'ai-os', 'skills-api']
+        }, {
+            id: 'short-drama',
+            icon: '🎭',
+            category: '内容创意',
+            name: 'AI短剧制作',
+            desc: 'AI驱动的短剧全流程 · 剧本→场景→成片',
+            price: '¥3-20万/项目',
+            tags: ['短剧', 'AI制作', '视频'],
+            hasApi: false,
+            metrics: [
+                { number: 'AI', label: '剧本生成' },
+                { number: 'AI', label: '场景生成' },
+                { number: 'AI', label: '镜头编排' },
+                { number: '全流程', label: '制作链路' }
+            ],
+            capabilities: [
+                { title: '剧本生成', desc: 'AI分析故事结构，自动生成完整剧本' },
+                { title: '场景生成', desc: '根据剧本自动生成分场景描述' },
+                { title: '镜头编排', desc: '智能镜头规划，视觉化故事板' },
+                { title: '成片输出', desc: '一站式输出可播放的短剧视频' }
+            ],
+            scenario: '品牌营销团队/影视制作公司，快速生成品牌短剧内容',
+            relatedIds: ['boss-ip', 'moe-video', 'scifi-select', 'trade-engine', 'workbuddy', 'taini-cloud']
+        }, {
+            id: 'scifi-select',
+            icon: '🚀',
+            category: '内容创意',
+            name: '科幻IP选品',
+            desc: 'Reddit挖掘 → AI创意分析 → 供应链匹配',
+            price: '¥2-5万/月',
+            tags: ['IP', '选品', '数据挖掘'],
+            hasApi: false,
+            metrics: [
+                { number: 'Reddit', label: '数据源' },
+                { number: 'AI', label: '创意分析' },
+                { number: '1688', label: '供应链匹配' },
+                { number: '看板', label: '决策展示' }
+            ],
+            capabilities: [
+                { title: 'Reddit采集', desc: '从科幻社区挖掘高潜力产品创意' },
+                { title: 'AI分析', desc: 'OpenAI + 规则引擎，筛选高价值IP' },
+                { title: '供应链搜索', desc: '1688/淘宝自动匹配供应商' },
+                { title: '邮件告警', desc: '高潜力IP自动推送通知' },
+                { title: 'Streamlit看板', desc: '可视化决策面板，一键筛选' }
+            ],
+            scenario: '产品经理/品牌方/创业者，从社区挖掘爆款产品创意',
+            relatedIds: ['boss-ip', 'short-drama', 'trade-engine', 'ai-solution-gen', 'taini-cloud', 'workbuddy']
+        }, {
+            id: 'ai-solution-gen',
+            icon: '📄',
+            category: '行业方案',
+            name: 'AI Solution Gen',
+            desc: '5个标准Agent · 全链路方案自动生成',
+            price: '¥3-10万/次',
+            tags: ['方案生成', 'AI', 'ROI'],
+            hasApi: true,
+            metrics: [
+                { number: '5', label: '标准Agent' },
+                { number: 'MD+PPT', label: '双输出' },
+                { number: '716%', label: '最高ROI' },
+                { number: '全链路', label: '方案覆盖' }
+            ],
+            capabilities: [
+                { title: '产品研发Agent', desc: 'ROI 300万/年·产品创新加速' },
+                { title: '采购供应Agent', desc: 'ROI 200万/年·供应链优化' },
+                { title: '生产制造Agent', desc: 'ROI 400万/年·智能制造' },
+                { title: '销售出口Agent', desc: 'ROI 500万/年·出海增长' },
+                { title: '售后服务Agent', desc: 'ROI 150万/年·客户留存' }
+            ],
+            scenario: '企业AI战略规划，一周出完整方案文档+PPT',
+            relatedIds: ['ai-os', 'platform-kernel', 'trade-engine', 'v6-security', 'enterprise-gateway', 'skills-api']
+        }, {
+            id: 'compliance-mw',
+            icon: '📋',
+            category: '合规安全',
+            name: '合规中间件',
+            desc: 'FDA 510(k)等监管合规 · 静态分析 · WASM',
+            price: '¥20-80万/年',
+            tags: ['合规', '医疗', '监管'],
+            hasApi: false,
+            metrics: [
+                { number: 'FDA', label: '510(k)' },
+                { number: 'WASM', label: '运行时' },
+                { number: 'DSL', label: '合规定义' },
+                { number: 'OCI', label: '镜像仓库' }
+            ],
+            capabilities: [
+                { title: 'DSL · 合规定义', desc: '声明式合规规则，可编程治理' },
+                { title: '静态分析器', desc: '代码扫描 + 合规漏洞检测' },
+                { title: 'WASM运行时', desc: '轻量级合规执行环境' },
+                { title: 'WASM网关', desc: '合规请求路由 + 策略执行' },
+                { title: 'FBS仲裁器', desc: '合规冲突裁决 + 自动修复' }
+            ],
+            scenario: '医疗器械厂商/受监管行业，满足FDA等监管要求',
+            relatedIds: ['v6-security', 'crossborder-cmpl', 'enterprise-gateway', 'platform-kernel', 'ai-os',
+                'trade-engine'
+            ]
+        }, {
+            id: 'crossborder-cmpl',
+            icon: '🌐',
+            category: '合规安全',
+            name: '跨境数据合规',
+            desc: 'GDPR · CCPA · 跨境数据流动管控',
+            price: '¥10-40万/年',
+            tags: ['跨境', 'GDPR', 'CCPA'],
+            hasApi: false,
+            metrics: [
+                { number: 'GDPR', label: '欧盟合规' },
+                { number: 'CCPA', label: '加州合规' },
+                { number: '跨境', label: '数据流动' },
+                { number: '审计', label: '追踪' }
+            ],
+            capabilities: [
+                { title: 'GDPR合规', desc: '数据主体权利管理 + 同意管理 + 数据映射' },
+                { title: 'CCPA合规', desc: '消费者权利响应 + 不出售请求' },
+                { title: '跨境数据流动', desc: '数据出境风险评估 + 标准合同条款' },
+                { title: '审计追踪', desc: '全链路数据流转审计，满足监管要求' }
+            ],
+            scenario: '出海企业/跨境电商，满足GDPR/CCPA等跨境合规要求',
+            relatedIds: ['compliance-mw', 'v6-security', 'trade-engine', 'enterprise-gateway', 'platform-kernel',
+                'ai-os'
+            ]
+        }, {
+            id: 'moe-video',
+            icon: '📺',
+            category: '内容创意',
+            name: 'MOE Video Platform',
+            desc: '基于MoE架构的视频平台',
+            price: '按需定价',
+            tags: ['视频', 'MoE', '架构'],
+            hasApi: false,
+            metrics: [
+                { number: 'MoE', label: '架构' },
+                { number: 'Vite', label: '前端' },
+                { number: 'TypeScript', label: '语言' },
+                { number: '按需', label: '定价' }
+            ],
+            capabilities: [
+                { title: 'MoE混合专家架构', desc: '多专家模型协同，提升视频处理质量' },
+                { title: 'Vite前端', desc: '极速开发体验，现代化技术栈' },
+                { title: 'TypeScript', desc: '类型安全的代码，可维护性高' }
+            ],
+            scenario: '视频平台/内容团队，基于MoE架构的视频处理',
+            relatedIds: ['boss-ip', 'short-drama', 'scifi-select', 'trade-engine', 'workbuddy', 'taini-cloud']
+        }];
+
+        // =============================================================
+        //  工具函数
+        // =============================================================
+        function getProduct(id) {
+            return PRODUCTS.find(p => p.id === id);
+        }
+
+        function getRelatedProducts(ids) {
+            const result = [];
+            const seen = new Set();
+            for (const id of ids) {
+                const p = getProduct(id);
+                if (p && !seen.has(p.id)) {
+                    seen.add(p.id);
+                    result.push(p);
+                }
+            }
+            return result;
+        }
+
+        // =============================================================
+        //  渲染详情页
+        // =============================================================
+        function renderDetail(product) {
+            const container = document.getElementById('contentState');
+            container.style.display = 'block';
+            document.getElementById('loadingState').style.display = 'none';
+
+            const related = getRelatedProducts(product.relatedIds || []);
+
+            let html = `
+                <!-- 头部 -->
+                <div class="product-header">
+                    <div class="left">
+                        <span class="icon">${product.icon}</span>
+                        <div class="meta">
+                            <div class="category">${product.category}</div>
+                            <div class="name">${product.name}</div>
+                        </div>
+                    </div>
+                    <div class="price">${product.price}</div>
+                </div>
+                <div class="tagline">${product.desc}</div>
+
+                <!-- 操作按钮 -->
+                <div class="action-bar">
+                    <button class="btn-primary" onclick="alert('已记录咨询意向，销售将联系您')">📞 立即咨询</button>
+                    ${product.hasApi ? `<button class="btn-api" onclick="alert('API文档：/api/v1/products/${product.id}')">🔗 查看API</button>` : ''}
+                    <button class="btn-secondary" onclick="history.back()">← 返回产品矩阵</button>
+                </div>
+
+                <!-- 关键指标 -->
+                <div class="metrics">
+                    ${product.metrics.map(m => `
+                        <div class="metric-item">
+                            <div class="number">${m.number}</div>
+                            <div class="label">${m.label}</div>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <!-- 核心能力 -->
+                <div class="section-title">核心能力 <span class="count">（${product.capabilities.length}项）</span></div>
+                <div class="capability-list">
+                    ${product.capabilities.map(c => `
+                        <div class="capability-item">
+                            <div class="title">▸ ${c.title}</div>
+                            <div class="desc">${c.desc}</div>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <!-- 使用场景 -->
+                <div class="section-title">💡 使用场景</div>
+                <div class="scenario-box">
+                    <span class="emoji">🎯</span>
+                    <span class="text"><strong>${product.scenario}</strong></span>
+                </div>
+            `;
+
+            // 其他产品推荐
+            if (related.length > 0) {
+                html += `
+                    <div class="section-title" style="margin-top:36px;">其他产品 <span class="count">（${related.length}个推荐）</span></div>
+                    <div class="related-grid">
+                        ${related.map(p => `
+                            <div class="related-card" onclick="window.location.href='product_detail.html?id=${p.id}'">
+                                <span class="icon">${p.icon}</span>
+                                <div class="name">${p.name}</div>
+                                <div class="price">${p.price}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
+            container.innerHTML = html;
+        }
+
+        // =============================================================
+        //  启动
+        // =============================================================
+        function init() {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+
+            if (!id) {
+                document.getElementById('loadingState').innerHTML = `
+                    <div class="not-found">
+                        <h2>🤔 未指定产品</h2>
+                        <p>请从 <a href="product_demo.html" style="color:#00f0ff;">产品矩阵</a> 中选择一个产品查看详情</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const product = getProduct(id);
+            if (!product) {
+                document.getElementById('loadingState').innerHTML = `
+                    <div class="not-found">
+                        <h2>🔍 产品未找到</h2>
+                        <p>产品 ID "${id}" 不存在，<a href="product_demo.html" style="color:#00f0ff;">返回产品矩阵</a></p>
+                    </div>
+                `;
+                return;
+            }
+
+            renderDetail(product);
+        }
+
+        // =============================================================
+        //  页面加载后执行
+        // =============================================================
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+<script src="patch.js"></script>
+
+</body>
+</html>
+使用说明
+步骤	操作	效果
+1	双击打开 product_demo.html	看到15款产品网格
+2	点击任意产品卡片（如"V6.0 AI 安全治理"）	自动跳转到 product_detail.html?id=v6-security
+3	详情页展示	完整产品信息：指标+能力+场景+同类推荐
+4	点击"立即咨询"	演示销售线索收集
+5	点击"查看API"	展示API能力（仅支持API产品）
+6	点击同类产品卡片	跳转到对应产品详情
+演示话术（直接可用）
+text
+"我们有15款产品，从外贸拓客到AI安全合规，每一款都已经跑通。"
+
+[点击V6.0卡片]
+
+"这是V6.0 AI安全治理平台——全球唯一覆盖人格塑造→智能决策→供应链→运行时→国标的全链路AI安全平台。
+上市集团正在用，你可以看到5层防护、8个核心算法、7个合规维度。"
+
+[滚动到底部]
+
+"如果安全不是你的首要痛点，底部还有6个同类产品可以选。"
+
+[点击"立即咨询"]
+
+"你留下联系方式，我们安排专属顾问对接。"
+本回答由 AI 生成，内容仅供参考，请仔细甄

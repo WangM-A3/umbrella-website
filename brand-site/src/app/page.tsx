@@ -1,4 +1,4 @@
-// app/page.tsx
+﻿// app/page.tsx
 'use client';
 
 import { useEffect, useRef, useState } from "react";
@@ -42,6 +42,8 @@ export default function Home() {
         <div className="hidden md:flex gap-8 text-sm text-gray-400">
           <a href="#work" className="hover:text-white transition">Work</a>
           <a href="#projects" className="hover:text-white transition">Projects</a>
+          <a href="/platform.html" className="hover:text-cyan-400 transition">智能体平台</a>
+          <a href="/solutions.html" className="hover:text-cyan-400 transition">解决方案</a>
           <a href="#contact" className="hover:text-white transition">Contact</a>
         </div>
         <button className="px-5 py-2 rounded-full border border-cyan-400/30 text-sm hover:bg-cyan-400/10 hover:border-cyan-400/60 transition-all duration-300">
