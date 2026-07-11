@@ -482,60 +482,8 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
         </div>
       </section>
 
-      {/* 预约专家 */}
-      <section className="max-w-6xl mx-auto px-8 py-16 border-t border-white/5">
-        <div className="max-w-lg mx-auto">
-          <div className="text-center mb-8">
-            <span className="text-[#00f0ff] text-sm tracking-widest">BOOKING</span>
-            <h3 className="text-2xl font-bold mt-2">预约专家咨询</h3>
-            <p className="text-gray-400 text-sm mt-1">填写信息，2小时内获取专属AI方案</p>
-          </div>
-          <div className="glass rounded-2xl p-6">
-            <input type="text" placeholder="姓名 *" value={bookingForm.name} onChange={(e) => setBookingForm({...bookingForm, name: e.target.value})}
-              className="w-full p-3 mb-3 bg-black/40 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#00f0ff] text-sm" />
-            <input type="text" placeholder="公司名称 *" value={bookingForm.company} onChange={(e) => setBookingForm({...bookingForm, company: e.target.value})}
-              className="w-full p-3 mb-3 bg-black/40 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#00f0ff] text-sm" />
-            <input type="text" placeholder="电话 / 微信 *" value={bookingForm.phone} onChange={(e) => setBookingForm({...bookingForm, phone: e.target.value})}
-              className="w-full p-3 mb-3 bg-black/40 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#00f0ff] text-sm" />
-            <select value={bookingForm.product} onChange={(e) => setBookingForm({...bookingForm, product: e.target.value})}
-              className="w-full p-3 mb-4 bg-black/40 border border-white/10 rounded-xl text-gray-400 focus:outline-none focus:border-[#00f0ff] text-sm">
-              <option value="">感兴趣的产品（选填）</option>
-              {heroProducts.map(p => <option key={p.id} value={p.name}>{p.icon} {p.name}</option>)}
-            </select>
-            <button onClick={() => { if (!bookingForm.name || !bookingForm.phone) { setBookingStatus("请填写姓名和电话"); return; } setBookingStatus("✅ 已收到！2小时内联系您"); setTimeout(() => setBookingStatus(""), 3000); }}
-              className="w-full py-3 bg-gradient-to-r from-[#00f0ff] to-[#7b2fbe] text-black font-semibold rounded-xl hover:shadow-xl hover:shadow-[#00f0ff]/20 transition-all text-sm">
-              预约专家咨询 →
-            </button>
-            {bookingStatus && <p className={"text-sm text-center mt-3 " + (bookingStatus.includes("✅") ? "text-green-400" : "text-red-400")}>{bookingStatus}</p>}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="max-w-6xl mx-auto px-8 py-16 border-t border-white/5">
-        <div className="max-w-2xl mx-auto">
-          <div className="text-center mb-8">
-            <span className="text-[#00f0ff] text-sm tracking-widest">FAQ</span>
-            <h3 className="text-2xl font-bold mt-2">常见问题</h3>
-          </div>
-          <div className="space-y-2">
-            {faqs.map((faq, i) => (
-              <div key={i} className="glass rounded-xl overflow-hidden">
-                <button onClick={() => setFaqOpen(faqOpen === i ? null : i)} className="w-full p-4 flex items-center justify-between text-left cursor-pointer">
-                  <span className="text-sm font-medium text-white">{faq.q}</span>
-                  <span className={"text-gray-500 transition-transform duration-200 " + (faqOpen === i ? "rotate-180" : "")}>▼</span>
-                </button>
-                <div className={"overflow-hidden transition-all duration-300 " + (faqOpen === i ? "max-h-40" : "max-h-0")}>
-                  <p className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">{faq.a}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 预约专家 */}
-      <section className="max-w-6xl mx-auto px-8 py-16 border-t border-white/5">
+      {/* 预约专家 - id for smooth scroll */}
+      <section id="booking-form" className="max-w-6xl mx-auto px-8 py-16 border-t border-white/5">
         <div className="max-w-lg mx-auto">
           <div className="text-center mb-8">
             <span className="text-[#00f0ff] text-sm tracking-widest">BOOKING</span>
