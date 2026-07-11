@@ -383,7 +383,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
         <div className="flex flex-wrap justify-center gap-6 text-xs text-gray-500 mb-4">
           <span>📱 微信：13336021626</span>
           <span>📢 公众号：海和汇</span>
-          <span>📧 邮箱：contact@nexus.ai</span>
+          <span>📧 邮箱：577726281@qq.com</span>
         </div>
         <div className="text-xs text-gray-600">
           © 2026 NEXUS · AI转型，只看结果
