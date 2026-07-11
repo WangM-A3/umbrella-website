@@ -307,7 +307,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredProducts.map((p) => {
-            const meta = productMeta[p.id] || { roi: "", tags: [], testimonial: "" };
+             const meta = (productMeta as any)[p.id] || { roi: "", tags: [], testimonial: "" };
             return (
             <a key={p.id} href={"/product_detail.html?id=" + p.id}
               className="glass rounded-xl p-5 hover:neon-border transition-all duration-300 group block no-underline">
