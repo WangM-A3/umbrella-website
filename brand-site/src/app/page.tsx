@@ -320,7 +320,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
                   </div>
                     <p className="text-xs text-gray-500 mt-1 leading-relaxed line-clamp-2 md:line-clamp-none">{p.desc}</p>
                     {meta.roi && <p className="text-xs text-green-400 mt-1.5 font-medium">💰 {meta.roi}</p>}
-                    {meta.tags.length > 0 && <div className="flex flex-wrap gap-1 mt-1.5">{meta.tags.map(t => <span key={t} className="text-[10px] px-2 py-0.5 bg-white/5 rounded-full text-gray-500">{t}</span>)}</div>}
+                    {meta.tags.length > 0 && <div className="flex flex-wrap gap-1 mt-1.5">{meta.tags.map((t: string) => <span key={t} className="text-[10px] px-2 py-0.5 bg-white/5 rounded-full text-gray-500">{t}</span>)}</div>}
                     {meta.testimonial && <p className="text-[11px] text-gray-600 italic mt-1">"{meta.testimonial}"</p>}
                     <div className="flex items-center justify-between mt-2">
                       <span className="text-[11px] text-[#00f0ff] font-medium">{p.price}</span>
