@@ -19,7 +19,36 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
    { id: "compliance-mw", icon: "📵", name: "合规中间件", desc: "FDA 510(k)等监管合规 · 静态分析 · WASM", price: "¥20-80万/年", cat: "合规安全" },
    { id: "crossborder-cmpl", icon: "🌪", name: "跨境数据合规", desc: "GDPR · CCPA · 跨境数据流动管控", price: "¥10-40万/年", cat: "合规安全" },
    { id: "ai-solution-gen", icon: "📫", name: "AI Solution Gen", desc: "5个标准Agent · 全链路方案自动生成", price: "¥3-10万/次", cat: "行业方案" },
-   { id: "scifi-select", icon: "🚌", name: "科幻IP选品", desc: "Reddit挖掘 → AI创意分析 → 供应链匹配", price: "¥2-5万/月", cat: "内容创意" },
+  { id: "scifi-select", icon: "🚌", name: "科幻IP选品", desc: "Reddit挖掘 → AI创意分析 → 供应链匹配", price: "¥2-5万/月", cat: "内容创意" },
+];
+ 
+ const productMeta /*: Record<string, {roi:string, tags:string[], testimonial:string}>*/ = {
+   "trade-engine": { roi: "ROI 1:5 · 3天上线", tags: ["精准获客","市场分析","询盘转化"], testimonial: "线索量提升300%" },
+   "skills-api": { roi: "即插即用 · 零迁移成本", tags: ["API集成","快速部署"], testimonial: "3天完成系统对接" },
+   "v6-security": { roi: "满足AIP国标 · 审计级安全", tags: ["安全合规","国标认证","风险防控"], testimonial: "通过等保三级认证" },
+   "boss-ip": { roi: "15分钟出片 · 内容产出10x", tags: ["IP打造","短视频","内容营销"], testimonial: "内容产出速度提升10倍" },
+   "platform-kernel": { roi: "统一编排 · 复用率80%", tags: ["平台底座","Agent编排","SaaS"], testimonial: "开发效率提升60%" },
+   "workbuddy": { roi: "办公效率提升40%", tags: ["办公自动化","远程办公","企业AI"], testimonial: "内部沟通效率提升40%" },
+   "ai-os": { roi: "ROI 1:8 · L1-L5全覆盖", tags: ["AI战略","ROI量化","转型规划"], testimonial: "3周完成AI诊断" },
+   "short-drama": { roi: "成本降低90%", tags: ["短视频","MCN","批量制作"], testimonial: "单条成本从5万降到2000" },
+   "compliance-mw": { roi: "合规成本降低60%", tags: ["监管合规","医疗","FDA"], testimonial: "通过FDA 510(k)审查" },
+   "crossborder-cmpl": { roi: "覆盖30+国家", tags: ["GDPR","数据合规","出海"], testimonial: "欧盟数据保护官推荐" },
+   "ai-solution-gen": { roi: "1周出完整方案", tags: ["方案生成","AI咨询","ROI测算"], testimonial: "方案输出效率提升5倍" },
+   "scifi-select": { roi: "选品成功率85%", tags: ["数据挖掘","趋势预测","选品"], testimonial: "准确发现爆款IP" },
+ };
+ 
+ const industries = ["跨境电商", "智能制造", "品牌零售", "金融科技", "医疗健康", "教育培训"];
+ 
+ const testimonials = [
+   { text: "通过NEXUS的AI方案，我们的外贸线索量翻了3倍", author: "某跨境企业CTO" },
+   { text: "部署WorkBuddy后，内部沟通效率提升40%", author: "某制造厂CIO" },
+   { text: "AI短剧制作让我们的内容产出速度提升10倍", author: "某MCN机构创始人" },
+ ];
+ 
+ const faqs = [
+   { q: "按结果付费具体怎么执行？", a: "我们与客户共同设定可量化的KPI目标（如线索量、ROI等），达成目标后收取服务费，未达成不收费。" },
+   { q: "部署一个AI智能体需要多久？", a: "标准场景3周内完成部署和验证，复杂场景根据需求定制，一般在1-2个月。" },
+   { q: "数据安全如何保障？", a: "支持私有化部署，数据不出企业内网，通过AIP国标和GDPR等多项合规认证。" },
  ];
  
  const productCategories = ["外贸核心","合规安全","内容创意","行业方案","平台基础设施","企业AI辅助"];
@@ -117,6 +146,19 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
 
   const currentTab = tabData[activeTab];
   const [isOnline] = useState(true);
+  const [testimonialIdx, setTestimonialIdx] = useState(0);
+  const [activeCategory, setActiveCategory] = useState("全部");
+  const [faqOpen, setFaqOpen] = useState<number | null>(null);
+  const [bookingForm, setBookingForm] = useState({ name: "", company: "", phone: "", product: "" });
+  const [bookingStatus, setBookingStatus] = useState("");
+  
+  useEffect(() => {
+    const timer = setInterval(() => setTestimonialIdx((i) => (i + 1) % testimonials.length), 3000);
+    return () => clearInterval(timer);
+  }, []);
+  
+  const filteredProducts = activeCategory === "全部" ? heroProducts : heroProducts.filter(p => p.cat === activeCategory);
+  const allCategories = ["全部", ...new Set(heroProducts.map(p => p.cat))];
   const totalClients = 2847 + liveData;
   const totalCalls = Math.floor((142 + liveData) * 1.7);
   const todayActive = Math.floor(liveData / 2) + 47;
@@ -180,6 +222,28 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
             <span>✓ 无效果不计费</span>
             <span>✓ 15款可运营产品</span>
           </div>
+          {/* Industry tags */}
+          <div className="flex flex-wrap gap-2 mt-6">
+            <span className="text-xs text-gray-600 mr-1 self-center">已服务客户来自</span>
+            {industries.map((ind) => (
+              <span key={ind} className="px-3 py-1 text-xs border border-white/10 rounded-full text-gray-500 hover:border-[#00f0ff] hover:text-[#00f0ff] transition cursor-default">{ind}</span>
+            ))}
+          </div>
+          {/* Testimonial carousel */}
+          <div className="mt-6 glass rounded-xl p-4 max-w-lg relative overflow-hidden">
+            <div className="flex items-start gap-3">
+              <span className="text-[#00f0ff] text-lg leading-none mt-0.5">"</span>
+              <div className="flex-1 min-h-[48px]">
+                <p className="text-sm text-gray-400 leading-relaxed transition-opacity duration-500">{testimonials[testimonialIdx].text}</p>
+                <p className="text-xs text-gray-600 mt-1">—— {testimonials[testimonialIdx].author}</p>
+              </div>
+            </div>
+            <div className="flex gap-1.5 mt-2 justify-center">
+              {testimonials.map((_, i) => (
+                <button key={i} onClick={() => setTestimonialIdx(i)} className={"w-1.5 h-1.5 rounded-full transition-all " + (i === testimonialIdx ? "bg-[#00f0ff] w-4" : "bg-gray-700")} />
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -226,15 +290,25 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
         </div>
       </section>
 
-      {/* Products - 链接到 product_detail.html */}
+      {/* Products */}
       <section id="products" className="max-w-6xl mx-auto px-8 py-20 border-t border-white/5">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <span className="text-[#00f0ff] text-sm tracking-widest">PRODUCTS</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2">AI产品家族</h2>
           <p className="text-gray-400 mt-2">点击任意产品查看详细介绍 + 操作流程</p>
         </div>
+        {/* Category filter */}
+        <div className="flex flex-wrap justify-center gap-2 mb-8">
+          {allCategories.map((cat) => (
+            <button key={cat} onClick={() => setActiveCategory(cat)}
+              className={"px-5 py-2 rounded-full text-xs font-medium transition-all cursor-pointer " + (activeCategory === cat ? "bg-gradient-to-r from-[#00f0ff] to-[#7b2fbe] text-black" : "border border-white/10 text-gray-500 hover:border-white/30")}
+            >{cat}</button>
+          ))}
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {heroProducts.map((p) => (
+          {filteredProducts.map((p) => {
+            const meta = productMeta[p.id] || { roi: "", tags: [], testimonial: "" };
+            return (
             <a key={p.id} href={"/product_detail.html?id=" + p.id}
               className="glass rounded-xl p-5 hover:neon-border transition-all duration-300 group block no-underline">
               <div className="flex items-start gap-3">
@@ -244,15 +318,19 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
                     <h4 className="font-semibold text-white text-sm">{p.name}</h4>
                     <span className="text-[10px] text-gray-500 bg-white/5 px-2 py-0.5 rounded-full whitespace-nowrap">{p.cat}</span>
                   </div>
-                  <p className="text-xs text-gray-500 mt-1 leading-relaxed line-clamp-2">{p.desc}</p>
-                  <div className="flex items-center justify-between mt-2">
-                    <span className="text-[11px] text-[#00f0ff] font-medium">{p.price}</span>
-                    <span className="text-[10px] text-gray-600 group-hover:text-[#00f0ff] transition">查看详情 →</span>
+                    <p className="text-xs text-gray-500 mt-1 leading-relaxed line-clamp-2 md:line-clamp-none">{p.desc}</p>
+                    {meta.roi && <p className="text-xs text-green-400 mt-1.5 font-medium">💰 {meta.roi}</p>}
+                    {meta.tags.length > 0 && <div className="flex flex-wrap gap-1 mt-1.5">{meta.tags.map(t => <span key={t} className="text-[10px] px-2 py-0.5 bg-white/5 rounded-full text-gray-500">{t}</span>)}</div>}
+                    {meta.testimonial && <p className="text-[11px] text-gray-600 italic mt-1">"{meta.testimonial}"</p>}
+                    <div className="flex items-center justify-between mt-2">
+                      <span className="text-[11px] text-[#00f0ff] font-medium">{p.price}</span>
+                      <span className="text-[10px] text-gray-600 group-hover:text-[#00f0ff] transition">查看详情 →</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </a>
-          ))}
+              </a>
+            );
+          })}
         </div>
         <div className="text-center mt-8">
           <a href="/solutions.html" className="text-sm text-[#00f0ff] hover:underline inline-flex items-center gap-1">
@@ -337,8 +415,144 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
         </div>
       </section>
 
-      {/* 运营平台 CTA */}
+      {/* 预约专家 */}
       <section className="max-w-6xl mx-auto px-8 py-16 border-t border-white/5">
+        <div className="max-w-lg mx-auto">
+          <div className="text-center mb-8">
+            <span className="text-[#00f0ff] text-sm tracking-widest">BOOKING</span>
+            <h3 className="text-2xl font-bold mt-2">预约专家咨询</h3>
+            <p className="text-gray-400 text-sm mt-1">填写信息，2小时内获取专属AI方案</p>
+          </div>
+          <div className="glass rounded-2xl p-6">
+            <input type="text" placeholder="姓名 *" value={bookingForm.name} onChange={(e) => setBookingForm({...bookingForm, name: e.target.value})}
+              className="w-full p-3 mb-3 bg-black/40 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#00f0ff] text-sm" />
+            <input type="text" placeholder="公司名称 *" value={bookingForm.company} onChange={(e) => setBookingForm({...bookingForm, company: e.target.value})}
+              className="w-full p-3 mb-3 bg-black/40 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#00f0ff] text-sm" />
+            <input type="text" placeholder="电话 / 微信 *" value={bookingForm.phone} onChange={(e) => setBookingForm({...bookingForm, phone: e.target.value})}
+              className="w-full p-3 mb-3 bg-black/40 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#00f0ff] text-sm" />
+            <select value={bookingForm.product} onChange={(e) => setBookingForm({...bookingForm, product: e.target.value})}
+              className="w-full p-3 mb-4 bg-black/40 border border-white/10 rounded-xl text-gray-400 focus:outline-none focus:border-[#00f0ff] text-sm">
+              <option value="">感兴趣的产品（选填）</option>
+              {heroProducts.map(p => <option key={p.id} value={p.name}>{p.icon} {p.name}</option>)}
+            </select>
+            <button onClick={() => { if (!bookingForm.name || !bookingForm.phone) { setBookingStatus("请填写姓名和电话"); return; } setBookingStatus("✅ 已收到！2小时内联系您"); setTimeout(() => setBookingStatus(""), 3000); }}
+              className="w-full py-3 bg-gradient-to-r from-[#00f0ff] to-[#7b2fbe] text-black font-semibold rounded-xl hover:shadow-xl hover:shadow-[#00f0ff]/20 transition-all text-sm">
+              预约专家咨询 →
+            </button>
+            {bookingStatus && <p className={"text-sm text-center mt-3 " + (bookingStatus.includes("✅") ? "text-green-400" : "text-red-400")}>{bookingStatus}</p>}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="max-w-6xl mx-auto px-8 py-16 border-t border-white/5">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-8">
+            <span className="text-[#00f0ff] text-sm tracking-widest">FAQ</span>
+            <h3 className="text-2xl font-bold mt-2">常见问题</h3>
+          </div>
+          <div className="space-y-2">
+            {faqs.map((faq, i) => (
+              <div key={i} className="glass rounded-xl overflow-hidden">
+                <button onClick={() => setFaqOpen(faqOpen === i ? null : i)} className="w-full p-4 flex items-center justify-between text-left cursor-pointer">
+                  <span className="text-sm font-medium text-white">{faq.q}</span>
+                  <span className={"text-gray-500 transition-transform duration-200 " + (faqOpen === i ? "rotate-180" : "")}>▼</span>
+                </button>
+                <div className={"overflow-hidden transition-all duration-300 " + (faqOpen === i ? "max-h-40" : "max-h-0")}>
+                  <p className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">{faq.a}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 预约专家 */}
+      <section className="max-w-6xl mx-auto px-8 py-16 border-t border-white/5">
+        <div className="max-w-lg mx-auto">
+          <div className="text-center mb-8">
+            <span className="text-[#00f0ff] text-sm tracking-widest">BOOKING</span>
+            <h3 className="text-2xl font-bold mt-2">预约专家咨询</h3>
+            <p className="text-gray-400 text-sm mt-1">填写信息，2小时内获取专属AI方案</p>
+          </div>
+          <div className="glass rounded-2xl p-6">
+            <input type="text" placeholder="姓名 *" value={bookingForm.name} onChange={(e) => setBookingForm({...bookingForm, name: e.target.value})}
+              className="w-full p-3 mb-3 bg-black/40 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#00f0ff] text-sm" />
+            <input type="text" placeholder="公司名称 *" value={bookingForm.company} onChange={(e) => setBookingForm({...bookingForm, company: e.target.value})}
+              className="w-full p-3 mb-3 bg-black/40 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#00f0ff] text-sm" />
+            <input type="text" placeholder="电话 / 微信 *" value={bookingForm.phone} onChange={(e) => setBookingForm({...bookingForm, phone: e.target.value})}
+              className="w-full p-3 mb-3 bg-black/40 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#00f0ff] text-sm" />
+            <select value={bookingForm.product} onChange={(e) => setBookingForm({...bookingForm, product: e.target.value})}
+              className="w-full p-3 mb-4 bg-black/40 border border-white/10 rounded-xl text-gray-400 focus:outline-none focus:border-[#00f0ff] text-sm">
+              <option value="">感兴趣的产品（选填）</option>
+              {heroProducts.map(p => <option key={p.id} value={p.name}>{p.icon} {p.name}</option>)}
+            </select>
+            <button onClick={() => { if (!bookingForm.name || !bookingForm.phone) { setBookingStatus("请填写姓名和电话"); return; } setBookingStatus("✅ 已收到！2小时内联系您"); setTimeout(() => setBookingStatus(""), 3000); }}
+              className="w-full py-3 bg-gradient-to-r from-[#00f0ff] to-[#7b2fbe] text-black font-semibold rounded-xl hover:shadow-xl hover:shadow-[#00f0ff]/20 transition-all text-sm">
+              预约专家咨询 →
+            </button>
+            {bookingStatus && <p className={"text-sm text-center mt-3 " + (bookingStatus.includes("✅") ? "text-green-400" : "text-red-400")}>{bookingStatus}</p>}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="max-w-6xl mx-auto px-8 py-16 border-t border-white/5">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-8">
+            <span className="text-[#00f0ff] text-sm tracking-widest">FAQ</span>
+            <h3 className="text-2xl font-bold mt-2">常见问题</h3>
+          </div>
+          <div className="space-y-2">
+            {faqs.map((faq, i) => (
+              <div key={i} className="glass rounded-xl overflow-hidden">
+                <button onClick={() => setFaqOpen(faqOpen === i ? null : i)} className="w-full p-4 flex items-center justify-between text-left cursor-pointer">
+                  <span className="text-sm font-medium text-white">{faq.q}</span>
+                  <span className={"text-gray-500 transition-transform duration-200 " + (faqOpen === i ? "rotate-180" : "")}>▼</span>
+                </button>
+                <div className={"overflow-hidden transition-all duration-300 " + (faqOpen === i ? "max-h-40" : "max-h-0")}>
+                  <p className="px-4 pb-4 text-sm text-gray-400 leading-relaxed">{faq.a}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 运营平台 CTA + 预览 */}
+      <section className="max-w-6xl mx-auto px-8 py-20 border-t border-white/5">
+        <div className="text-center mb-8">
+          <span className="text-[#00f0ff] text-sm tracking-widest">PLATFORM</span>
+          <h2 className="text-3xl md:text-4xl font-bold mt-2">运营管理平台</h2>
+          <p className="text-gray-400 mt-2">实时监控 · 智能决策 · 数据驱动</p>
+        </div>
+        {/* Feature preview cards */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+          <div className="glass rounded-xl p-4 text-center">
+            <div className="text-2xl mb-1">📊</div>
+            <div className="text-xs font-semibold text-white">实时数据看板</div>
+            <div className="text-[10px] text-gray-500 mt-1">今日询盘 23 · 响应率 31%</div>
+            <div className="flex justify-center gap-2 mt-2 text-[10px]"><span className="text-green-400">↑12%</span><span className="text-gray-600">转化</span></div>
+          </div>
+          <div className="glass rounded-xl p-4 text-center">
+            <div className="text-2xl mb-1">🤖</div>
+            <div className="text-xs font-semibold text-white">Agent 状态</div>
+            <div className="text-[10px] text-gray-500 mt-1">15个智能体运行中</div>
+            <div className="flex items-center justify-center gap-1 mt-2"><span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span><span className="text-[10px] text-green-400">0 异常</span></div>
+          </div>
+          <div className="glass rounded-xl p-4 text-center">
+            <div className="text-2xl mb-1">📈</div>
+            <div className="text-xs font-semibold text-white">巡检历史</div>
+            <div className="text-[10px] text-gray-500 mt-1">近7天 · 12次巡检</div>
+            <div className="flex justify-center gap-1 mt-2 text-[10px]"><span className="text-green-400">■■</span><span className="text-gray-600">■</span><span className="text-yellow-400">■</span><span className="text-green-400">■■</span><span className="text-green-400">■</span></div>
+          </div>
+          <div className="glass rounded-xl p-4 text-center">
+            <div className="text-2xl mb-1">⚡</div>
+            <div className="text-xs font-semibold text-white">快捷操作</div>
+            <div className="text-[10px] text-gray-500 mt-1">批量更新 · 导出报告</div>
+            <div className="flex justify-center gap-2 mt-2"><span className="text-[10px] px-2 py-0.5 bg-white/5 rounded text-gray-500">更新</span><span className="text-[10px] px-2 py-0.5 bg-white/5 rounded text-gray-500">导出</span></div>
+          </div>
+        </div>
         <a href="/platform.html" className="block glass-strong rounded-2xl p-8 md:p-10 text-center hover:neon-border transition-all duration-300 no-underline">
           <div className="text-4xl mb-3">🔄</div>
           <h3 className="text-2xl font-bold text-white">TradeV6 运营管理平台</h3>

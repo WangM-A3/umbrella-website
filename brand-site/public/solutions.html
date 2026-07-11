@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI服务平台 · 统一入口</title>
+    <title>AI鏈嶅姟骞冲彴 路 缁熶竴鍏ュ彛</title>
     <style>
-        /* ===== 全局重置 ===== */
+        /* ===== 鍏ㄥ眬閲嶇疆 ===== */
         * {
             margin: 0;
             padding: 0;
@@ -19,7 +19,7 @@
             min-height: 100vh;
         }
 
-        /* ===== 顶部导航 ===== */
+        /* ===== 椤堕儴瀵艰埅 ===== */
         .navbar {
             padding: 14px 32px;
             display: flex;
@@ -123,14 +123,14 @@
             color: rgba(255, 255, 255, 0.6);
         }
 
-        /* ===== 主内容区 ===== */
+        /* ===== 涓诲唴瀹瑰尯 ===== */
         .main-content {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px 24px 60px;
         }
 
-        /* ===== 产品网格 ===== */
+        /* ===== 浜у搧缃戞牸 ===== */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -237,7 +237,7 @@
             color: #00f0ff;
         }
 
-        /* ===== 诊断视图 ===== */
+        /* ===== 璇婃柇瑙嗗浘 ===== */
         .diagnosis-view {
             display: none;
             max-width: 640px;
@@ -396,7 +396,7 @@
             color: #00f0ff;
         }
 
-        /* ===== 详情视图 ===== */
+        /* ===== 璇︽儏瑙嗗浘 ===== */
         .detail-view {
             display: none;
         }
@@ -405,7 +405,7 @@
             display: block;
         }
 
-        /* ===== 渠道合作 ===== */
+        /* ===== 娓犻亾鍚堜綔 ===== */
         .channel-view {
             display: none;
             max-width: 720px;
@@ -492,7 +492,7 @@
             background: rgba(0, 240, 255, 0.08);
         }
 
-        /* ===== 底部 ===== */
+        /* ===== 搴曢儴 ===== */
         .footer {
             text-align: center;
             padding: 20px;
@@ -502,7 +502,7 @@
             margin-top: 20px;
         }
 
-        /* ===== 响应式 ===== */
+        /* ===== 鍝嶅簲寮?===== */
         @media (max-width: 640px) {
             .navbar {
                 padding: 10px 16px;
@@ -560,34 +560,34 @@
 </head>
 <body>
 
-    <!-- ===== 导航 ===== -->
+    <!-- ===== 瀵艰埅 ===== -->
     <nav class="navbar">
-        <div class="logo" onclick="showView('matrix')">AI服务平台 <span>· 统一入口</span></div>
+        <div class="logo" onclick="showView('matrix')">AI鏈嶅姟骞冲彴 <span>路 缁熶竴鍏ュ彛</span></div>
         <div class="nav-center">
-            <button class="nav-tab active" data-view="matrix" onclick="showView('matrix')">📦 产品矩阵</button>
-            <button class="nav-tab" data-view="diagnosis" onclick="showView('diagnosis')">🎯 3步诊断</button>
-            <button class="nav-tab" data-view="channel" onclick="showView('channel')">🤝 渠道合作</button>
+            <button class="nav-tab active" data-view="matrix" onclick="showView('matrix')">馃摝 浜у搧鐭╅樀</button>
+            <button class="nav-tab" data-view="diagnosis" onclick="showView('diagnosis')">馃幆 3姝ヨ瘖鏂?/button>
+            <button class="nav-tab" data-view="channel" onclick="showView('channel')">馃 娓犻亾鍚堜綔</button>
         </div>
         <div class="nav-right">
-            <span class="cmp-badge" id="cmpBadge" onclick="showCompare()">对比(0/3)</span>
-            <span class="stat-btn" onclick="showStats()">📊 统计</span>
-            <span><strong>15</strong>款 · <strong>4</strong>API · $0.20</span>
+            <span class="cmp-badge" id="cmpBadge" onclick="showCompare()">瀵规瘮(0/3)</span>
+            <span class="stat-btn" onclick="showStats()">馃搳 缁熻</span>
+            <span><strong>15</strong>娆?路 <strong>4</strong>API 路 $0.20</span>
         </div>
     </nav>
 
-    <!-- ===== 主内容 ===== -->
+    <!-- ===== 涓诲唴瀹?===== -->
     <div class="main-content">
 
-        <!-- ====== 产品矩阵视图 ====== -->
+        <!-- ====== 浜у搧鐭╅樀瑙嗗浘 ====== -->
         <div id="matrixView" class="product-grid">
-            <!-- JS 渲染 -->
+            <!-- JS 娓叉煋 -->
         </div>
 
-        <!-- ====== 诊断视图 ====== -->
+        <!-- ====== 璇婃柇瑙嗗浘 ====== -->
         <div id="diagnosisView" class="diagnosis-view">
             <div class="hero">
-                <h2>找到你的 AI 起点</h2>
-                <p>3个问题，从15款产品中精准匹配最适合你的方案</p>
+                <h2>鎵惧埌浣犵殑 AI 璧风偣</h2>
+                <p>3涓棶棰橈紝浠?5娆句骇鍝佷腑绮惧噯鍖归厤鏈€閫傚悎浣犵殑鏂规</p>
             </div>
             <div class="quiz-card" id="quizCard">
                 <div class="step-dots" id="stepDots">
@@ -596,44 +596,44 @@
                     <span class="step-dot"></span>
                 </div>
                 <div id="quizArea">
-                    <div class="q-text" id="qText">目前最想用AI解决什么问题？</div>
-                    <div class="q-hint" id="qHint">选你最关心的</div>
+                    <div class="q-text" id="qText">鐩墠鏈€鎯崇敤AI瑙ｅ喅浠€涔堥棶棰橈紵</div>
+                    <div class="q-hint" id="qHint">閫変綘鏈€鍏冲績鐨?/div>
                     <div class="q-options" id="qOptions"></div>
-                    <button class="btn-primary" id="nextBtn" disabled onclick="nextStep()">下一步 →</button>
-                    <button class="btn-secondary" id="resetBtn" style="display:none;" onclick="resetQuiz()">← 重新选择</button>
+                    <button class="btn-primary" id="nextBtn" disabled onclick="nextStep()">涓嬩竴姝?鈫?/button>
+                    <button class="btn-secondary" id="resetBtn" style="display:none;" onclick="resetQuiz()">鈫?閲嶆柊閫夋嫨</button>
                 </div>
                 <div id="quizResult" style="display:none;"></div>
             </div>
         </div>
 
-        <!-- ====== 详情视图 ====== -->
+        <!-- ====== 璇︽儏瑙嗗浘 ====== -->
         <div id="detailView" class="detail-view">
-            <!-- JS 渲染 -->
+            <!-- JS 娓叉煋 -->
         </div>
 
-        <!-- ====== 渠道合作视图 ====== -->
+        <!-- ====== 娓犻亾鍚堜綔瑙嗗浘 ====== -->
         <div id="channelView" class="channel-view">
-            <h2>🤝 渠道合作计划</h2>
-            <p class="sub">把我们的产品嵌入你的服务，共同服务企业客户</p>
+            <h2>馃 娓犻亾鍚堜綔璁″垝</h2>
+            <p class="sub">鎶婃垜浠殑浜у搧宓屽叆浣犵殑鏈嶅姟锛屽叡鍚屾湇鍔′紒涓氬鎴?/p>
             <div class="channel-tiers">
-                <div class="tier-item"><div class="rate">15-25%</div><div class="label">SaaS/企服平台</div></div>
+                <div class="tier-item"><div class="rate">15-25%</div><div class="label">SaaS/浼佹湇骞冲彴</div></div>
                 <div class="tier-item"><div class="rate">20-30%</div><div class="label">Agency</div></div>
-                <div class="tier-item"><div class="rate">25-35%</div><div class="label">SI/咨询公司</div></div>
+                <div class="tier-item"><div class="rate">25-35%</div><div class="label">SI/鍜ㄨ鍏徃</div></div>
             </div>
             <div class="channel-form">
-                <input type="text" id="chCompany" placeholder="公司名称 *">
-                <input type="text" id="chContact" placeholder="联系人 *">
-                <input type="text" id="chPhone" placeholder="联系电话 *">
-                <input type="email" id="chEmail" placeholder="邮箱 *">
+                <input type="text" id="chCompany" placeholder="鍏徃鍚嶇О *">
+                <input type="text" id="chContact" placeholder="鑱旂郴浜?*">
+                <input type="text" id="chPhone" placeholder="鑱旂郴鐢佃瘽 *">
+                <input type="email" id="chEmail" placeholder="閭 *">
                 <select id="chType">
-                    <option value="SI">行业SI / 咨询公司</option>
-                    <option value="SaaS">SaaS / 企服平台</option>
-                    <option value="Agency">Agency / 营销服务商</option>
-                    <option value="Other">其他</option>
+                    <option value="SI">琛屼笟SI / 鍜ㄨ鍏徃</option>
+                    <option value="SaaS">SaaS / 浼佹湇骞冲彴</option>
+                    <option value="Agency">Agency / 钀ラ攢鏈嶅姟鍟?/option>
+                    <option value="Other">鍏朵粬</option>
                 </select>
-                <button class="btn-submit" onclick="submitChannel()">提交申请</button>
+                <button class="btn-submit" onclick="submitChannel()">鎻愪氦鐢宠</button>
                 <div id="chStatus" style="text-align:center;font-size:13px;color:rgba(255,255,255,0.2);margin-top:8px;">
-                    提交后2个工作日内联系
+                    鎻愪氦鍚?涓伐浣滄棩鍐呰仈绯?
                 </div>
             </div>
         </div>
@@ -641,358 +641,358 @@
     </div>
 
     <footer class="footer">
-        © 2026 AI服务平台 · 15款产品 · 4个Agent API · 11个端点
+        漏 2026 AI鏈嶅姟骞冲彴 路 15娆句骇鍝?路 4涓狝gent API 路 11涓鐐?
     </footer>
 
     <script>
         // =============================================================
-        //  产品数据（15款）
+        //  浜у搧鏁版嵁锛?5娆撅級
         // =============================================================
         const PRODUCTS = [{
             id: 'trade-engine',
-            icon: '🚢',
-            category: '外贸核心',
+            icon: '馃殺',
+            category: '澶栬锤鏍稿績',
             name: 'Trade Engine',
-            desc: '全链路AI外贸决策OS · 13个全球市场',
-            price: '¥50-500万/年',
-            tags: ['外贸', '飞轮', '自动化'],
+            desc: '鍏ㄩ摼璺疉I澶栬锤鍐崇瓥OS 路 13涓叏鐞冨競鍦?,
+            price: '楼50-500涓?骞?,
+            tags: ['澶栬锤', '椋炶疆', '鑷姩鍖?],
             hasApi: true,
             metrics: [
-                { number: '13', label: '全球市场' },
-                { number: '6', label: '飞轮模块' },
-                { number: '24/7', label: '自动巡检' },
-                { number: '$0.20', label: '日成本上限' }
+                { number: '13', label: '鍏ㄧ悆甯傚満' },
+                { number: '6', label: '椋炶疆妯″潡' },
+                { number: '24/7', label: '鑷姩宸℃' },
+                { number: '$0.20', label: '鏃ユ垚鏈笂闄? }
             ],
             capabilities: [
-                { title: 'config · 配置层', desc: '多币种+多语言+合规ISO' },
-                { title: 'buyer_memory · 买家记忆', desc: '历史交互沉淀，越用越精准' },
-                { title: 'template_store · 模板库', desc: 'A/B测试最优模板自动入库' },
-                { title: 'ab_test_scheduler · 测试调度', desc: '自动编排A/B测试' },
-                { title: 'risk_controller · 风控', desc: '虚假买家识别+置信度过滤' },
-                { title: 'orchestrator · 编排器', desc: 'patrol→触达→学习→进化' }
+                { title: 'config 路 閰嶇疆灞?, desc: '澶氬竵绉?澶氳瑷€+鍚堣ISO' },
+                { title: 'buyer_memory 路 涔板璁板繂', desc: '鍘嗗彶浜や簰娌夋穩锛岃秺鐢ㄨ秺绮惧噯' },
+                { title: 'template_store 路 妯℃澘搴?, desc: 'A/B娴嬭瘯鏈€浼樻ā鏉胯嚜鍔ㄥ叆搴? },
+                { title: 'ab_test_scheduler 路 娴嬭瘯璋冨害', desc: '鑷姩缂栨帓A/B娴嬭瘯' },
+                { title: 'risk_controller 路 椋庢帶', desc: '铏氬亣涔板璇嗗埆+缃俊搴﹁繃婊? },
+                { title: 'orchestrator 路 缂栨帓鍣?, desc: 'patrol鈫掕Е杈锯啋瀛︿範鈫掕繘鍖? }
             ],
-            scenario: '外贸企业客户开发，从获客到成交全链路AI决策'
+            scenario: '澶栬锤浼佷笟瀹㈡埛寮€鍙戯紝浠庤幏瀹㈠埌鎴愪氦鍏ㄩ摼璺疉I鍐崇瓥'
         }, {
             id: 'skills-api',
-            icon: '⚡',
-            category: '外贸核心',
+            icon: '鈿?,
+            category: '澶栬锤鏍稿績',
             name: 'Agent Skills API',
-            desc: '4个独立AI能力 · REST即插即用',
-            price: '按需·API调用',
-            tags: ['API', 'Agent', '即插即用'],
+            desc: '4涓嫭绔婣I鑳藉姏 路 REST鍗虫彃鍗崇敤',
+            price: '鎸夐渶路API璋冪敤',
+            tags: ['API', 'Agent', '鍗虫彃鍗崇敤'],
             hasApi: true,
             metrics: [
-                { number: '4', label: '独立Skill' },
-                { number: '11', label: 'API端点' },
-                { number: '3', label: 'LLM供应商' },
-                { number: 'Mock', label: '降级策略' }
+                { number: '4', label: '鐙珛Skill' },
+                { number: '11', label: 'API绔偣' },
+                { number: '3', label: 'LLM渚涘簲鍟? },
+                { number: 'Mock', label: '闄嶇骇绛栫暐' }
             ],
             capabilities: [
-                { title: 'prospector · 拓客引擎', desc: 'ICP匹配 → 多源信号扫描 → 买家评分' },
-                { title: 'analyzer · 分析引擎', desc: 'GBM评分 + 行为序列，预测成交概率' },
-                { title: 'outreach · 触达引擎', desc: '多通道触达优化 + 动态跟进树' },
-                { title: 'content · 内容引擎', desc: '多格式本地化流水线 · 多平台适配' }
+                { title: 'prospector 路 鎷撳寮曟搸', desc: 'ICP鍖归厤 鈫?澶氭簮淇″彿鎵弿 鈫?涔板璇勫垎' },
+                { title: 'analyzer 路 鍒嗘瀽寮曟搸', desc: 'GBM璇勫垎 + 琛屼负搴忓垪锛岄娴嬫垚浜ゆ鐜? },
+                { title: 'outreach 路 瑙﹁揪寮曟搸', desc: '澶氶€氶亾瑙﹁揪浼樺寲 + 鍔ㄦ€佽窡杩涙爲' },
+                { title: 'content 路 鍐呭寮曟搸', desc: '澶氭牸寮忔湰鍦板寲娴佹按绾?路 澶氬钩鍙伴€傞厤' }
             ],
-            scenario: '技术团队快速集成AI能力到自有系统'
+            scenario: '鎶€鏈洟闃熷揩閫熼泦鎴怉I鑳藉姏鍒拌嚜鏈夌郴缁?
         }, {
             id: 'v6-security',
-            icon: '🛡️',
-            category: '合规安全',
-            name: 'V6.0 AI安全治理',
-            desc: '8大算法5层防御 · 人格塑造 · AIP国标',
-            price: '¥30-300万/年',
-            tags: ['安全', '合规', '全链路'],
+            icon: '馃洝锔?,
+            category: '鍚堣瀹夊叏',
+            name: 'V6.0 AI瀹夊叏娌荤悊',
+            desc: '8澶х畻娉?灞傞槻寰?路 浜烘牸濉戦€?路 AIP鍥芥爣',
+            price: '楼30-300涓?骞?,
+            tags: ['瀹夊叏', '鍚堣', '鍏ㄩ摼璺?],
             hasApi: false,
             metrics: [
-                { number: '5', label: '防护层' },
-                { number: '8', label: '核心算法' },
-                { number: '7', label: '合规维度' },
-                { number: '私有化', label: '部署方式' }
+                { number: '5', label: '闃叉姢灞? },
+                { number: '8', label: '鏍稿績绠楁硶' },
+                { number: '7', label: '鍚堣缁村害' },
+                { number: '绉佹湁鍖?, label: '閮ㄧ讲鏂瑰紡' }
             ],
             capabilities: [
-                { title: '人格塑造层', desc: 'OpenAI好人格RL + Anthropic宪法对齐' },
-                { title: '智能决策层', desc: 'TRIAD三路决策 + AgentTrust自进化' },
-                { title: '供应链防线', desc: 'AI-SBOM + 投毒检测 + MCP准入' },
-                { title: '运行时防线', desc: 'MCP网关 + AEBA + BraveGuard' },
-                { title: '国标合规防线', desc: 'AIP 7部分全栈合规' }
+                { title: '浜烘牸濉戦€犲眰', desc: 'OpenAI濂戒汉鏍糝L + Anthropic瀹硶瀵归綈' },
+                { title: '鏅鸿兘鍐崇瓥灞?, desc: 'TRIAD涓夎矾鍐崇瓥 + AgentTrust鑷繘鍖? },
+                { title: '渚涘簲閾鹃槻绾?, desc: 'AI-SBOM + 鎶曟瘨妫€娴?+ MCP鍑嗗叆' },
+                { title: '杩愯鏃堕槻绾?, desc: 'MCP缃戝叧 + AEBA + BraveGuard' },
+                { title: '鍥芥爣鍚堣闃茬嚎', desc: 'AIP 7閮ㄥ垎鍏ㄦ爤鍚堣' }
             ],
-            scenario: '上市集团/金融机构/大模型公司AI安全合规'
+            scenario: '涓婂競闆嗗洟/閲戣瀺鏈烘瀯/澶фā鍨嬪叕鍙窤I瀹夊叏鍚堣'
         }, {
             id: 'boss-ip',
-            icon: '🎬',
-            category: '内容创意',
+            icon: '馃幀',
+            category: '鍐呭鍒涙剰',
             name: 'BOSS IP Factory',
-            desc: '15分钟录制AI出视频 · 多平台发布',
-            price: '¥10-30万/年',
-            tags: ['IP', '短视频', '自动化'],
+            desc: '15鍒嗛挓褰曞埗AI鍑鸿棰?路 澶氬钩鍙板彂甯?,
+            price: '楼10-30涓?骞?,
+            tags: ['IP', '鐭棰?, '鑷姩鍖?],
             hasApi: false,
             metrics: [
-                { number: '15min', label: '录制时长' },
-                { number: '3', label: '平台同步' },
-                { number: 'AI', label: '脚本生成' },
-                { number: '自动', label: '线索追踪' }
+                { number: '15min', label: '褰曞埗鏃堕暱' },
+                { number: '3', label: '骞冲彴鍚屾' },
+                { number: 'AI', label: '鑴氭湰鐢熸垚' },
+                { number: '鑷姩', label: '绾跨储杩借釜' }
             ],
             capabilities: [
-                { title: 'AI转写', desc: '15分钟语音自动转写，智能分段' },
-                { title: 'AI脚本生成', desc: '情感分析 + 黄金句提取' },
-                { title: 'AI视频合成', desc: '自动剪辑 + 配音 + 字幕' },
-                { title: '多平台发布', desc: '抖音 · 视频号 · 小红书' },
-                { title: '线索收集', desc: '评论区 + 私信自动汇总' }
+                { title: 'AI杞啓', desc: '15鍒嗛挓璇煶鑷姩杞啓锛屾櫤鑳藉垎娈? },
+                { title: 'AI鑴氭湰鐢熸垚', desc: '鎯呮劅鍒嗘瀽 + 榛勯噾鍙ユ彁鍙? },
+                { title: 'AI瑙嗛鍚堟垚', desc: '鑷姩鍓緫 + 閰嶉煶 + 瀛楀箷' },
+                { title: '澶氬钩鍙板彂甯?, desc: '鎶栭煶 路 瑙嗛鍙?路 灏忕孩涔? },
+                { title: '绾跨储鏀堕泦', desc: '璇勮鍖?+ 绉佷俊鑷姩姹囨€? }
             ],
-            scenario: '企业创始人/高管打造个人IP'
+            scenario: '浼佷笟鍒涘浜?楂樼鎵撻€犱釜浜篒P'
         }, {
             id: 'ai-os',
-            icon: '🧠',
-            category: '行业方案',
+            icon: '馃',
+            category: '琛屼笟鏂规',
             name: 'AI-OS',
-            desc: '5层决策闭环 · L1-L5全链路 · ROI量化',
-            price: '¥5-500万',
-            tags: ['诊断', 'ROI', '合规闸门'],
+            desc: '5灞傚喅绛栭棴鐜?路 L1-L5鍏ㄩ摼璺?路 ROI閲忓寲',
+            price: '楼5-500涓?,
+            tags: ['璇婃柇', 'ROI', '鍚堣闂搁棬'],
             hasApi: false,
             metrics: [
-                { number: '5', label: '决策层' },
-                { number: 'L1-L5', label: '全链路' },
-                { number: 'ROI', label: '量化引擎' },
-                { number: '¥5-500万', label: '弹性定价' }
+                { number: '5', label: '鍐崇瓥灞? },
+                { number: 'L1-L5', label: '鍏ㄩ摼璺? },
+                { number: 'ROI', label: '閲忓寲寮曟搸' },
+                { number: '楼5-500涓?, label: '寮规€у畾浠? }
             ],
             capabilities: [
-                { title: 'L1 适配度诊断', desc: '10分钟问卷 + 四维雷达图' },
-                { title: 'L2 场景规划', desc: 'AI场景落地路径图 + ROI排序' },
-                { title: 'L3 合规闸门', desc: '合规闸门仪表盘 + 审计追踪' },
-                { title: 'L4 ROI量化', desc: 'ROI仪表盘 + Token价值量化' },
-                { title: 'L5 飞轮防御', desc: '数据飞轮 + 范式飞轮' }
+                { title: 'L1 閫傞厤搴﹁瘖鏂?, desc: '10鍒嗛挓闂嵎 + 鍥涚淮闆疯揪鍥? },
+                { title: 'L2 鍦烘櫙瑙勫垝', desc: 'AI鍦烘櫙钀藉湴璺緞鍥?+ ROI鎺掑簭' },
+                { title: 'L3 鍚堣闂搁棬', desc: '鍚堣闂搁棬浠〃鐩?+ 瀹¤杩借釜' },
+                { title: 'L4 ROI閲忓寲', desc: 'ROI浠〃鐩?+ Token浠峰€奸噺鍖? },
+                { title: 'L5 椋炶疆闃插尽', desc: '鏁版嵁椋炶疆 + 鑼冨紡椋炶疆' }
             ],
-            scenario: '企业AI战略规划，回答"AI怎么用、花多少钱、赚多少"'
+            scenario: '浼佷笟AI鎴樼暐瑙勫垝锛屽洖绛?AI鎬庝箞鐢ㄣ€佽姳澶氬皯閽便€佽禋澶氬皯"'
         }, {
             id: 'enterprise-gateway',
-            icon: '🔀',
-            category: '平台基础设施',
+            icon: '馃攢',
+            category: '骞冲彴鍩虹璁炬柦',
             name: 'Enterprise Gateway',
-            desc: '有状态网关+算力套利 · Spot节省70%',
-            price: '¥30-150万/年',
-            tags: ['网关', '算力', '安全'],
+            desc: '鏈夌姸鎬佺綉鍏?绠楀姏濂楀埄 路 Spot鑺傜渷70%',
+            price: '楼30-150涓?骞?,
+            tags: ['缃戝叧', '绠楀姏', '瀹夊叏'],
             hasApi: false,
             metrics: [
-                { number: '70%', label: 'Spot节省' },
-                { number: '14', label: 'PII脱敏模式' },
-                { number: 'GitOps', label: '交付方式' },
-                { number: '零信任', label: '安全架构' }
+                { number: '70%', label: 'Spot鑺傜渷' },
+                { number: '14', label: 'PII鑴辨晱妯″紡' },
+                { number: 'GitOps', label: '浜や粯鏂瑰紡' },
+                { number: '闆朵俊浠?, label: '瀹夊叏鏋舵瀯' }
             ],
             capabilities: [
-                { title: '版本化状态机', desc: 'StateVersion链 + Delta Diff，Token节省40-70%' },
-                { title: 'DAG执行器', desc: '拓扑排序 + 并行执行 + 幂等校验' },
-                { title: '算力套利', desc: 'On-Demand保底 + Spot弹性(70%权重)' },
-                { title: '零信任安全', desc: 'JWT + mTLS + PII脱敏 + eBPF审计' },
-                { title: 'GitOps交付', desc: 'Terraform → ArgoCD → Prometheus' }
+                { title: '鐗堟湰鍖栫姸鎬佹満', desc: 'StateVersion閾?+ Delta Diff锛孴oken鑺傜渷40-70%' },
+                { title: 'DAG鎵ц鍣?, desc: '鎷撴墤鎺掑簭 + 骞惰鎵ц + 骞傜瓑鏍￠獙' },
+                { title: '绠楀姏濂楀埄', desc: 'On-Demand淇濆簳 + Spot寮规€?70%鏉冮噸)' },
+                { title: '闆朵俊浠诲畨鍏?, desc: 'JWT + mTLS + PII鑴辨晱 + eBPF瀹¤' },
+                { title: 'GitOps浜や粯', desc: 'Terraform 鈫?ArgoCD 鈫?Prometheus' }
             ],
-            scenario: '大模型公司/有大量AI调用的企业'
+            scenario: '澶фā鍨嬪叕鍙?鏈夊ぇ閲廇I璋冪敤鐨勪紒涓?
         }, {
             id: 'taini-cloud',
-            icon: '☁️',
-            category: '企业AI辅助',
-            name: '苔米云驾驶舱',
-            desc: '6大模块AI赋能 · MOS运营官 · 智能预警',
-            price: '¥5-30万/年',
-            tags: ['中小企业', '运营', 'BI'],
+            icon: '鈽侊笍',
+            category: '浼佷笟AI杈呭姪',
+            name: '鑻旂背浜戦┚椹惰埍',
+            desc: '6澶фā鍧桝I璧嬭兘 路 MOS杩愯惀瀹?路 鏅鸿兘棰勮',
+            price: '楼5-30涓?骞?,
+            tags: ['涓皬浼佷笟', '杩愯惀', 'BI'],
             hasApi: false,
             metrics: [
-                { number: '6', label: 'AI模块' },
-                { number: 'MOS', label: '数字运营官' },
-                { number: '智能', label: '预警系统' },
-                { number: 'SaaS', label: '开箱即用' }
+                { number: '6', label: 'AI妯″潡' },
+                { number: 'MOS', label: '鏁板瓧杩愯惀瀹? },
+                { number: '鏅鸿兘', label: '棰勮绯荤粺' },
+                { number: 'SaaS', label: '寮€绠卞嵆鐢? }
             ],
             capabilities: [
-                { title: 'MOS数字运营官', desc: 'AI经营问数 · 诊断报告 · 智能预警' },
-                { title: '经营目标管理', desc: '目标达成预测 · 沙盘推演' },
-                { title: '数字分析系统', desc: '自然语言查数 · 根因分析' },
-                { title: '执行效能管理', desc: '智能派单 · 延期预警' },
-                { title: '组织效能管理', desc: '组织健康度 · 高潜识别' },
-                { title: '流程管理', desc: '智能路由 · 风险检测' }
+                { title: 'MOS鏁板瓧杩愯惀瀹?, desc: 'AI缁忚惀闂暟 路 璇婃柇鎶ュ憡 路 鏅鸿兘棰勮' },
+                { title: '缁忚惀鐩爣绠＄悊', desc: '鐩爣杈炬垚棰勬祴 路 娌欑洏鎺ㄦ紨' },
+                { title: '鏁板瓧鍒嗘瀽绯荤粺', desc: '鑷劧璇█鏌ユ暟 路 鏍瑰洜鍒嗘瀽' },
+                { title: '鎵ц鏁堣兘绠＄悊', desc: '鏅鸿兘娲惧崟 路 寤舵湡棰勮' },
+                { title: '缁勭粐鏁堣兘绠＄悊', desc: '缁勭粐鍋ュ悍搴?路 楂樻綔璇嗗埆' },
+                { title: '娴佺▼绠＄悊', desc: '鏅鸿兘璺敱 路 椋庨櫓妫€娴? }
             ],
-            scenario: '中小企业用AI运营大脑'
+            scenario: '涓皬浼佷笟鐢ˋI杩愯惀澶ц剳'
         }, {
             id: 'platform-kernel',
-            icon: '⚙️',
-            category: '平台基础设施',
+            icon: '鈿欙笍',
+            category: '骞冲彴鍩虹璁炬柦',
             name: 'Platform Kernel',
-            desc: 'Agent编排+本体+模板 · 语义层 · 结果计价',
-            price: '¥50-200万/年',
-            tags: ['编排', '语义', 'SaaS'],
+            desc: 'Agent缂栨帓+鏈綋+妯℃澘 路 璇箟灞?路 缁撴灉璁′环',
+            price: '楼50-200涓?骞?,
+            tags: ['缂栨帓', '璇箟', 'SaaS'],
             hasApi: true,
             metrics: [
-                { number: '统一', label: '编排层' },
-                { number: '共享', label: '语义层' },
-                { number: '资产', label: '模板市场' },
-                { number: '结果', label: '计价引擎' }
+                { number: '缁熶竴', label: '缂栨帓灞? },
+                { number: '鍏变韩', label: '璇箟灞? },
+                { number: '璧勪骇', label: '妯℃澘甯傚満' },
+                { number: '缁撴灉', label: '璁′环寮曟搸' }
             ],
             capabilities: [
-                { title: 'orchestrator · 编排器', desc: 'Planner→Executor→Reviewer→Publisher' },
-                { title: 'ontology · 共享语义层', desc: '跨域语义一致，消除数据孤岛' },
-                { title: 'template-store · 模板资产', desc: '交付物复用，不再重复造轮子' },
-                { title: 'outcome-tracker · 结果计价', desc: '从工时计费到结果计费' },
-                { title: 'api-gateway · 统一入口', desc: '多产品线统一网关' }
+                { title: 'orchestrator 路 缂栨帓鍣?, desc: 'Planner鈫扙xecutor鈫扲eviewer鈫扨ublisher' },
+                { title: 'ontology 路 鍏变韩璇箟灞?, desc: '璺ㄥ煙璇箟涓€鑷达紝娑堥櫎鏁版嵁瀛ゅ矝' },
+                { title: 'template-store 路 妯℃澘璧勪骇', desc: '浜や粯鐗╁鐢紝涓嶅啀閲嶅閫犺疆瀛? },
+                { title: 'outcome-tracker 路 缁撴灉璁′环', desc: '浠庡伐鏃惰璐瑰埌缁撴灉璁¤垂' },
+                { title: 'api-gateway 路 缁熶竴鍏ュ彛', desc: '澶氫骇鍝佺嚎缁熶竴缃戝叧' }
             ],
-            scenario: '多产品线企业的AI统一编排底座'
+            scenario: '澶氫骇鍝佺嚎浼佷笟鐨凙I缁熶竴缂栨帓搴曞骇'
         }, {
             id: 'workbuddy',
-            icon: '💼',
-            category: '企业AI辅助',
+            icon: '馃捈',
+            category: '浼佷笟AI杈呭姪',
             name: 'WorkBuddy',
-            desc: '企业AI办公助手 · 文件操作 · 远程操控',
-            price: '¥3-15万/年',
-            tags: ['办公', '自动化', '腾讯'],
+            desc: '浼佷笟AI鍔炲叕鍔╂墜 路 鏂囦欢鎿嶄綔 路 杩滅▼鎿嶆帶',
+            price: '楼3-15涓?骞?,
+            tags: ['鍔炲叕', '鑷姩鍖?, '鑵捐'],
             hasApi: false,
             metrics: [
-                { number: '90%+', label: '文件整理提升' },
-                { number: '85%+', label: 'PPT制作提升' },
-                { number: '远程', label: '手机操控PC' },
-                { number: 'MCP', label: '协议扩展' }
+                { number: '90%+', label: '鏂囦欢鏁寸悊鎻愬崌' },
+                { number: '85%+', label: 'PPT鍒朵綔鎻愬崌' },
+                { number: '杩滅▼', label: '鎵嬫満鎿嶆帶PC' },
+                { number: 'MCP', label: '鍗忚鎵╁睍' }
             ],
             capabilities: [
-                { title: '本地文件操作', desc: '直接读写Excel/Word/PPT/PDF' },
-                { title: '手机远程操控PC', desc: '在外也能调度电脑干活' },
-                { title: 'MCP协议+Skills', desc: '零代码自定义扩展' },
-                { title: '企业版统一入口', desc: '数字员工 + 企业知识 + 任务交付' }
+                { title: '鏈湴鏂囦欢鎿嶄綔', desc: '鐩存帴璇诲啓Excel/Word/PPT/PDF' },
+                { title: '鎵嬫満杩滅▼鎿嶆帶PC', desc: '鍦ㄥ涔熻兘璋冨害鐢佃剳骞叉椿' },
+                { title: 'MCP鍗忚+Skills', desc: '闆朵唬鐮佽嚜瀹氫箟鎵╁睍' },
+                { title: '浼佷笟鐗堢粺涓€鍏ュ彛', desc: '鏁板瓧鍛樺伐 + 浼佷笟鐭ヨ瘑 + 浠诲姟浜や粯' }
             ],
-            scenario: '企业办公自动化，让每个员工拥有AI助手'
+            scenario: '浼佷笟鍔炲叕鑷姩鍖栵紝璁╂瘡涓憳宸ユ嫢鏈堿I鍔╂墜'
         }, {
             id: 'short-drama',
-            icon: '🎭',
-            category: '内容创意',
-            name: 'AI短剧制作',
-            desc: 'AI驱动的短剧全流程 · 剧本→场景→成片',
-            price: '¥3-20万/项目',
-            tags: ['短剧', 'AI制作', '视频'],
+            icon: '馃幁',
+            category: '鍐呭鍒涙剰',
+            name: 'AI鐭墽鍒朵綔',
+            desc: 'AI椹卞姩鐨勭煭鍓у叏娴佺▼ 路 鍓ф湰鈫掑満鏅啋鎴愮墖',
+            price: '楼3-20涓?椤圭洰',
+            tags: ['鐭墽', 'AI鍒朵綔', '瑙嗛'],
             hasApi: false,
             metrics: [
-                { number: 'AI', label: '剧本生成' },
-                { number: 'AI', label: '场景生成' },
-                { number: 'AI', label: '镜头编排' },
-                { number: '全流程', label: '制作链路' }
+                { number: 'AI', label: '鍓ф湰鐢熸垚' },
+                { number: 'AI', label: '鍦烘櫙鐢熸垚' },
+                { number: 'AI', label: '闀滃ご缂栨帓' },
+                { number: '鍏ㄦ祦绋?, label: '鍒朵綔閾捐矾' }
             ],
             capabilities: [
-                { title: '剧本生成', desc: 'AI分析故事结构，自动生成完整剧本' },
-                { title: '场景生成', desc: '根据剧本自动生成分场景描述' },
-                { title: '镜头编排', desc: '智能镜头规划，视觉化故事板' },
-                { title: '成片输出', desc: '一站式输出可播放的短剧视频' }
+                { title: '鍓ф湰鐢熸垚', desc: 'AI鍒嗘瀽鏁呬簨缁撴瀯锛岃嚜鍔ㄧ敓鎴愬畬鏁村墽鏈? },
+                { title: '鍦烘櫙鐢熸垚', desc: '鏍规嵁鍓ф湰鑷姩鐢熸垚鍒嗗満鏅弿杩? },
+                { title: '闀滃ご缂栨帓', desc: '鏅鸿兘闀滃ご瑙勫垝锛岃瑙夊寲鏁呬簨鏉? },
+                { title: '鎴愮墖杈撳嚭', desc: '涓€绔欏紡杈撳嚭鍙挱鏀剧殑鐭墽瑙嗛' }
             ],
-            scenario: '品牌营销团队/影视制作公司'
+            scenario: '鍝佺墝钀ラ攢鍥㈤槦/褰辫鍒朵綔鍏徃'
         }, {
             id: 'scifi-select',
-            icon: '🚀',
-            category: '内容创意',
-            name: '科幻IP选品',
-            desc: 'Reddit挖掘 → AI创意分析 → 供应链匹配',
-            price: '¥2-5万/月',
-            tags: ['IP', '选品', '数据挖掘'],
+            icon: '馃殌',
+            category: '鍐呭鍒涙剰',
+            name: '绉戝够IP閫夊搧',
+            desc: 'Reddit鎸栨帢 鈫?AI鍒涙剰鍒嗘瀽 鈫?渚涘簲閾惧尮閰?,
+            price: '楼2-5涓?鏈?,
+            tags: ['IP', '閫夊搧', '鏁版嵁鎸栨帢'],
             hasApi: false,
             metrics: [
-                { number: 'Reddit', label: '数据源' },
-                { number: 'AI', label: '创意分析' },
-                { number: '1688', label: '供应链匹配' },
-                { number: '看板', label: '决策展示' }
+                { number: 'Reddit', label: '鏁版嵁婧? },
+                { number: 'AI', label: '鍒涙剰鍒嗘瀽' },
+                { number: '1688', label: '渚涘簲閾惧尮閰? },
+                { number: '鐪嬫澘', label: '鍐崇瓥灞曠ず' }
             ],
             capabilities: [
-                { title: 'Reddit采集', desc: '从科幻社区挖掘高潜力产品创意' },
-                { title: 'AI分析', desc: 'OpenAI + 规则引擎，筛选高价值IP' },
-                { title: '供应链搜索', desc: '1688/淘宝自动匹配供应商' },
-                { title: '邮件告警', desc: '高潜力IP自动推送通知' },
-                { title: 'Streamlit看板', desc: '可视化决策面板' }
+                { title: 'Reddit閲囬泦', desc: '浠庣骞荤ぞ鍖烘寲鎺橀珮娼滃姏浜у搧鍒涙剰' },
+                { title: 'AI鍒嗘瀽', desc: 'OpenAI + 瑙勫垯寮曟搸锛岀瓫閫夐珮浠峰€糏P' },
+                { title: '渚涘簲閾炬悳绱?, desc: '1688/娣樺疂鑷姩鍖归厤渚涘簲鍟? },
+                { title: '閭欢鍛婅', desc: '楂樻綔鍔汭P鑷姩鎺ㄩ€侀€氱煡' },
+                { title: 'Streamlit鐪嬫澘', desc: '鍙鍖栧喅绛栭潰鏉? }
             ],
-            scenario: '产品经理/品牌方/创业者，从社区挖掘爆款'
+            scenario: '浜у搧缁忕悊/鍝佺墝鏂?鍒涗笟鑰咃紝浠庣ぞ鍖烘寲鎺樼垎娆?
         }, {
             id: 'ai-solution-gen',
-            icon: '📄',
-            category: '行业方案',
+            icon: '馃搫',
+            category: '琛屼笟鏂规',
             name: 'AI Solution Gen',
-            desc: '5个标准Agent · 全链路方案自动生成',
-            price: '¥3-10万/次',
-            tags: ['方案生成', 'AI', 'ROI'],
+            desc: '5涓爣鍑咥gent 路 鍏ㄩ摼璺柟妗堣嚜鍔ㄧ敓鎴?,
+            price: '楼3-10涓?娆?,
+            tags: ['鏂规鐢熸垚', 'AI', 'ROI'],
             hasApi: true,
             metrics: [
-                { number: '5', label: '标准Agent' },
-                { number: 'MD+PPT', label: '双输出' },
-                { number: '716%', label: '最高ROI' },
-                { number: '全链路', label: '方案覆盖' }
+                { number: '5', label: '鏍囧噯Agent' },
+                { number: 'MD+PPT', label: '鍙岃緭鍑? },
+                { number: '716%', label: '鏈€楂楻OI' },
+                { number: '鍏ㄩ摼璺?, label: '鏂规瑕嗙洊' }
             ],
             capabilities: [
-                { title: '产品研发Agent', desc: 'ROI 300万/年·产品创新加速' },
-                { title: '采购供应Agent', desc: 'ROI 200万/年·供应链优化' },
-                { title: '生产制造Agent', desc: 'ROI 400万/年·智能制造' },
-                { title: '销售出口Agent', desc: 'ROI 500万/年·出海增长' },
-                { title: '售后服务Agent', desc: 'ROI 150万/年·客户留存' }
+                { title: '浜у搧鐮斿彂Agent', desc: 'ROI 300涓?骞绰蜂骇鍝佸垱鏂板姞閫? },
+                { title: '閲囪喘渚涘簲Agent', desc: 'ROI 200涓?骞绰蜂緵搴旈摼浼樺寲' },
+                { title: '鐢熶骇鍒堕€燗gent', desc: 'ROI 400涓?骞绰锋櫤鑳藉埗閫? },
+                { title: '閿€鍞嚭鍙gent', desc: 'ROI 500涓?骞绰峰嚭娴峰闀? },
+                { title: '鍞悗鏈嶅姟Agent', desc: 'ROI 150涓?骞绰峰鎴风暀瀛? }
             ],
-            scenario: '企业AI战略规划，一周出完整方案文档+PPT'
+            scenario: '浼佷笟AI鎴樼暐瑙勫垝锛屼竴鍛ㄥ嚭瀹屾暣鏂规鏂囨。+PPT'
         }, {
             id: 'compliance-mw',
-            icon: '📋',
-            category: '合规安全',
-            name: '合规中间件',
-            desc: 'FDA 510(k)等监管合规 · 静态分析 · WASM',
-            price: '¥20-80万/年',
-            tags: ['合规', '医疗', '监管'],
+            icon: '馃搵',
+            category: '鍚堣瀹夊叏',
+            name: '鍚堣涓棿浠?,
+            desc: 'FDA 510(k)绛夌洃绠″悎瑙?路 闈欐€佸垎鏋?路 轻量级引擎',
+            price: '楼20-80涓?骞?,
+            tags: ['鍚堣', '鍖荤枟', '鐩戠'],
             hasApi: false,
             metrics: [
                 { number: 'FDA', label: '510(k)' },
-                { number: 'WASM', label: '运行时' },
-                { number: 'DSL', label: '合规定义' },
-                { number: 'OCI', label: '镜像仓库' }
+                { number: '轻量级引擎', label: '杩愯鏃? },
+                { number: 'DSL', label: '鍚堣瀹氫箟' },
+                { number: 'OCI', label: '闀滃儚浠撳簱' }
             ],
             capabilities: [
-                { title: 'DSL · 合规定义', desc: '声明式合规规则，可编程治理' },
-                { title: '静态分析器', desc: '代码扫描 + 合规漏洞检测' },
-                { title: 'WASM运行时', desc: '轻量级合规执行环境' },
-                { title: 'WASM网关', desc: '合规请求路由 + 策略执行' },
-                { title: 'FBS仲裁器', desc: '合规冲突裁决 + 自动修复' }
+                { title: 'DSL 路 鍚堣瀹氫箟', desc: '澹版槑寮忓悎瑙勮鍒欙紝鍙紪绋嬫不鐞? },
+                { title: '闈欐€佸垎鏋愬櫒', desc: '浠ｇ爜鎵弿 + 鍚堣婕忔礊妫€娴? },
+                { title: '轻量级引擎杩愯鏃?, desc: '杞婚噺绾у悎瑙勬墽琛岀幆澧? },
+                { title: '轻量级引擎缃戝叧', desc: '鍚堣璇锋眰璺敱 + 绛栫暐鎵ц' },
+                { title: 'FBS浠茶鍣?, desc: '鍚堣鍐茬獊瑁佸喅 + 鑷姩淇' }
             ],
-            scenario: '医疗器械厂商/受监管行业'
+            scenario: '鍖荤枟鍣ㄦ鍘傚晢/鍙楃洃绠¤涓?
         }, {
             id: 'crossborder-cmpl',
-            icon: '🌐',
-            category: '合规安全',
-            name: '跨境数据合规',
-            desc: 'GDPR · CCPA · 跨境数据流动管控',
-            price: '¥10-40万/年',
-            tags: ['跨境', 'GDPR', 'CCPA'],
+            icon: '馃寪',
+            category: '鍚堣瀹夊叏',
+            name: '璺ㄥ鏁版嵁鍚堣',
+            desc: 'GDPR 路 CCPA 路 璺ㄥ鏁版嵁娴佸姩绠℃帶',
+            price: '楼10-40涓?骞?,
+            tags: ['璺ㄥ', 'GDPR', 'CCPA'],
             hasApi: false,
             metrics: [
-                { number: 'GDPR', label: '欧盟合规' },
-                { number: 'CCPA', label: '加州合规' },
-                { number: '跨境', label: '数据流动' },
-                { number: '审计', label: '追踪' }
+                { number: 'GDPR', label: '娆х洘鍚堣' },
+                { number: 'CCPA', label: '鍔犲窞鍚堣' },
+                { number: '璺ㄥ', label: '鏁版嵁娴佸姩' },
+                { number: '瀹¤', label: '杩借釜' }
             ],
             capabilities: [
-                { title: 'GDPR合规', desc: '数据主体权利管理 + 同意管理' },
-                { title: 'CCPA合规', desc: '消费者权利响应 + 不出售请求' },
-                { title: '跨境数据流动', desc: '数据出境风险评估' },
-                { title: '审计追踪', desc: '全链路数据流转审计' }
+                { title: 'GDPR鍚堣', desc: '鏁版嵁涓讳綋鏉冨埄绠＄悊 + 鍚屾剰绠＄悊' },
+                { title: 'CCPA鍚堣', desc: '娑堣垂鑰呮潈鍒╁搷搴?+ 涓嶅嚭鍞姹? },
+                { title: '璺ㄥ鏁版嵁娴佸姩', desc: '鏁版嵁鍑哄椋庨櫓璇勪及' },
+                { title: '瀹¤杩借釜', desc: '鍏ㄩ摼璺暟鎹祦杞璁? }
             ],
-            scenario: '出海企业/跨境电商'
+            scenario: '鍑烘捣浼佷笟/璺ㄥ鐢靛晢'
         }, {
             id: 'moe-video',
-            icon: '📺',
-            category: '内容创意',
+            icon: '馃摵',
+            category: '鍐呭鍒涙剰',
             name: 'MOE Video Platform',
-            desc: '基于MoE架构的视频平台',
-            price: '按需定价',
-            tags: ['视频', 'MoE', '架构'],
+            desc: '鍩轰簬MoE鏋舵瀯鐨勮棰戝钩鍙?,
+            price: '鎸夐渶瀹氫环',
+            tags: ['瑙嗛', 'MoE', '鏋舵瀯'],
             hasApi: false,
             metrics: [
-                { number: 'MoE', label: '架构' },
-                { number: 'Vite', label: '前端' },
-                { number: 'TS', label: '语言' },
-                { number: '按需', label: '定价' }
+                { number: 'MoE', label: '鏋舵瀯' },
+                { number: 'Vite', label: '鍓嶇' },
+                { number: 'TS', label: '璇█' },
+                { number: '鎸夐渶', label: '瀹氫环' }
             ],
             capabilities: [
-                { title: 'MoE混合专家架构', desc: '多专家模型协同' },
-                { title: 'Vite前端', desc: '极速开发体验' },
-                { title: 'TypeScript', desc: '类型安全，可维护性高' }
+                { title: 'MoE娣峰悎涓撳鏋舵瀯', desc: '澶氫笓瀹舵ā鍨嬪崗鍚? },
+                { title: 'Vite鍓嶇', desc: '鏋侀€熷紑鍙戜綋楠? },
+                { title: 'TypeScript', desc: '绫诲瀷瀹夊叏锛屽彲缁存姢鎬ч珮' }
             ],
-            scenario: '视频平台/内容团队'
+            scenario: '瑙嗛骞冲彴/鍐呭鍥㈤槦'
         }];
 
         // =============================================================
-        //  状态管理
+        //  鐘舵€佺鐞?
         // =============================================================
         let currentView = 'matrix';
         let currentStep = 0;
@@ -1000,18 +1000,18 @@
         let compareList = [];
 
         // =============================================================
-        //  视图切换
+        //  瑙嗗浘鍒囨崲
         // =============================================================
         function showView(view) {
             currentView = view;
 
-            // 隐藏所有视图
+            // 闅愯棌鎵€鏈夎鍥?
             document.getElementById('matrixView').style.display = 'none';
             document.getElementById('diagnosisView').classList.remove('active');
             document.getElementById('detailView').classList.remove('active');
             document.getElementById('channelView').classList.remove('active');
 
-            // 显示目标视图
+            // 鏄剧ず鐩爣瑙嗗浘
             if (view === 'matrix') {
                 document.getElementById('matrixView').style.display = 'grid';
             } else if (view === 'diagnosis') {
@@ -1022,14 +1022,14 @@
                 document.getElementById('channelView').classList.add('active');
             }
 
-            // 更新导航Tab
+            // 鏇存柊瀵艰埅Tab
             document.querySelectorAll('.nav-tab').forEach(tab => {
                 tab.classList.toggle('active', tab.dataset.view === view);
             });
         }
 
         // =============================================================
-        //  产品矩阵渲染
+        //  浜у搧鐭╅樀娓叉煋
         // =============================================================
         function renderProducts() {
             const grid = document.getElementById('matrixView');
@@ -1049,12 +1049,12 @@
                     <div class="price">${p.price}</div>
                     <div class="tags">${p.tags.map(t => `<span>#${t}</span>`).join('')}</div>
                     <button class="cmp-btn ${isCmp ? 'active' : ''}" onclick="event.stopPropagation();toggleCompare('${p.id}')">
-                        ${isCmp ? '✅' : '➕'}
+                        ${isCmp ? '鉁? : '鉃?}
                     </button>
                 `;
 
                 card.addEventListener('click', function() {
-                    showDetail(p.id);
+                    window.location.href='/product_detail.html?id=' + p.id;
                 });
 
                 grid.appendChild(card);
@@ -1064,7 +1064,7 @@
         }
 
         // =============================================================
-        //  详情视图
+        //  璇︽儏瑙嗗浘
         // =============================================================
         function showDetail(id) {
             const p = PRODUCTS.find(prod => prod.id === id);
@@ -1074,7 +1074,7 @@
 
             const container = document.getElementById('detailView');
 
-            // 记录访问统计
+            // 璁板綍璁块棶缁熻
             recordVisit(id);
 
             const related = PRODUCTS.filter(prod => prod.id !== p.id).slice(0, 6);
@@ -1082,7 +1082,7 @@
             container.innerHTML = `
                 <div style="margin-bottom:20px;">
                     <button class="btn-secondary" onclick="showView('matrix')" style="border:none;color:#00f0ff;padding:6px 0;">
-                        ← 返回产品矩阵
+                        鈫?杩斿洖浜у搧鐭╅樀
                     </button>
                 </div>
                 <div class="product-header" style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:4px;">
@@ -1098,9 +1098,9 @@
                 <div style="font-size:15px;color:rgba(255,255,255,0.35);margin-bottom:20px;">${p.desc}</div>
 
                 <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px;">
-                    <button class="btn-primary" onclick="alert('📞 已记录咨询意向，销售将2小时内联系您')">立即咨询</button>
-                    ${p.hasApi ? `<button class="btn-primary" style="background:rgba(123,47,190,0.2);color:#b388ff;" onclick="alert('🔗 API文档: /api/v1/products/${p.id}')">API测试</button>` : ''}
-                    <button class="btn-secondary" onclick="showView('matrix')">← 返回</button>
+                    <button class="btn-primary" onclick="alert('馃摓 宸茶褰曞挩璇㈡剰鍚戯紝閿€鍞皢2灏忔椂鍐呰仈绯绘偍')">绔嬪嵆鍜ㄨ</button>
+                    ${p.hasApi ? `<button class="btn-primary" style="background:rgba(123,47,190,0.2);color:#b388ff;" onclick="alert('馃敆 API鏂囨。: /api/v1/products/${p.id}')">API娴嬭瘯</button>` : ''}
+                    <button class="btn-secondary" onclick="showView('matrix')">鈫?杩斿洖</button>
                 </div>
 
                 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);border-radius:14px;padding:20px 24px;margin-bottom:28px;">
@@ -1112,22 +1112,22 @@
                     `).join('')}
                 </div>
 
-                <div style="font-size:16px;font-weight:600;margin-bottom:10px;">核心能力 <span style="color:rgba(255,255,255,0.15);font-weight:400;font-size:13px;">（${p.capabilities.length}项）</span></div>
+                <div style="font-size:16px;font-weight:600;margin-bottom:10px;">鏍稿績鑳藉姏 <span style="color:rgba(255,255,255,0.15);font-weight:400;font-size:13px;">锛?{p.capabilities.length}椤癸級</span></div>
                 <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:24px;">
                     ${p.capabilities.map(c => `
                         <div style="padding:10px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);border-radius:8px;">
-                            <div style="font-weight:500;font-size:14px;">▸ ${c.title}</div>
+                            <div style="font-weight:500;font-size:14px;">鈻?${c.title}</div>
                             <div style="font-size:13px;color:rgba(255,255,255,0.3);">${c.desc}</div>
                         </div>
                     `).join('')}
                 </div>
 
-                <div style="font-size:16px;font-weight:600;margin-bottom:6px;">💡 使用场景</div>
+                <div style="font-size:16px;font-weight:600;margin-bottom:6px;">馃挕 浣跨敤鍦烘櫙</div>
                 <div style="padding:12px 18px;background:rgba(0,240,255,0.03);border:1px solid rgba(0,240,255,0.06);border-radius:10px;margin-bottom:28px;">
                     <span style="font-size:14px;color:rgba(255,255,255,0.5);"><strong style="color:#00f0ff;">${p.scenario}</strong></span>
                 </div>
 
-                <div style="font-size:16px;font-weight:600;margin-bottom:10px;">其他产品推荐</div>
+                <div style="font-size:16px;font-weight:600;margin-bottom:10px;">鍏朵粬浜у搧鎺ㄨ崘</div>
                 <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;">
                     ${related.map(r => `
                         <div style="padding:12px 14px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);border-radius:10px;cursor:pointer;text-align:center;transition:all 0.3s;" onclick="showDetail('${r.id}')" onmouseover="this.style.borderColor='rgba(0,240,255,0.15)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.04)'">
@@ -1141,7 +1141,7 @@
         }
 
         // =============================================================
-        //  产品对比
+        //  浜у搧瀵规瘮
         // =============================================================
         function toggleCompare(id) {
             const idx = compareList.indexOf(id);
@@ -1150,7 +1150,7 @@
             } else if (compareList.length < 3) {
                 compareList.push(id);
             } else {
-                alert('最多对比3个产品');
+                alert('鏈€澶氬姣?涓骇鍝?);
                 return;
             }
             renderProducts();
@@ -1159,20 +1159,20 @@
 
         function updateCmpBadge() {
             const badge = document.getElementById('cmpBadge');
-            badge.textContent = `对比(${compareList.length}/3)`;
+            badge.textContent = `瀵规瘮(${compareList.length}/3)`;
         }
 
         function showCompare() {
             if (compareList.length < 2) {
-                alert('请至少选择2个产品进行对比（点击产品卡片右下角的 ➕）');
+                alert('璇疯嚦灏戦€夋嫨2涓骇鍝佽繘琛屽姣旓紙鐐瑰嚮浜у搧鍗＄墖鍙充笅瑙掔殑 鉃曪級');
                 return;
             }
             const products = compareList.map(id => PRODUCTS.find(p => p.id === id));
-            alert('📊 对比产品:\n' + products.map(p => `${p.icon} ${p.name} | ${p.price} | ${p.category}`).join('\n\n'));
+            alert('馃搳 瀵规瘮浜у搧:\n' + products.map(p => `${p.icon} ${p.name} | ${p.price} | ${p.category}`).join('\n\n'));
         }
 
         // =============================================================
-        //  访问统计
+        //  璁块棶缁熻
         // =============================================================
         function recordVisit(id) {
             const stats = JSON.parse(localStorage.getItem('ai_stats') || '[]');
@@ -1196,43 +1196,43 @@
             const sorted = Object.entries(productCount).sort((a, b) => b[1] - a[1]);
             const top = sorted.slice(0, 5).map(([id, count]) => {
                 const p = PRODUCTS.find(prod => prod.id === id);
-                return `${p ? p.icon + ' ' + p.name : id}: ${count}次`;
+                return `${p ? p.icon + ' ' + p.name : id}: ${count}娆;
             }).join('\n');
 
-            alert(`📊 访问统计\n\n今日访问: ${todayCount}次\n本周访问: ${weekCount}次\n总访问: ${stats.length}次\n\n🏆 热门排行:\n${top || '暂无数据'}`);
+            alert(`馃搳 璁块棶缁熻\n\n浠婃棩璁块棶: ${todayCount}娆n鏈懆璁块棶: ${weekCount}娆n鎬昏闂? ${stats.length}娆n\n馃弳 鐑棬鎺掕:\n${top || '鏆傛棤鏁版嵁'}`);
         }
 
         // =============================================================
-        //  3步诊断问卷
+        //  3姝ヨ瘖鏂棶鍗?
         // =============================================================
         const QUIZ = [{
             id: 'pain',
-            text: '目前最想用AI解决什么问题？',
-            hint: '选你最关心的',
+            text: '鐩墠鏈€鎯崇敤AI瑙ｅ喅浠€涔堥棶棰橈紵',
+            hint: '閫変綘鏈€鍏冲績鐨?,
             options: [
-                { label: '🔍 找客户太难了', value: 'prospecting' },
-                { label: '🎬 做内容太慢了', value: 'content' },
-                { label: '💼 办公效率太低', value: 'productivity' },
-                { label: '🧠 不知道怎么落地', value: 'strategy' },
-                { label: '🛡️ 担心AI合规风险', value: 'compliance' }
+                { label: '馃攳 鎵惧鎴峰お闅句簡', value: 'prospecting' },
+                { label: '馃幀 鍋氬唴瀹瑰お鎱簡', value: 'content' },
+                { label: '馃捈 鍔炲叕鏁堢巼澶綆', value: 'productivity' },
+                { label: '馃 涓嶇煡閬撴€庝箞钀藉湴', value: 'strategy' },
+                { label: '馃洝锔?鎷呭績AI鍚堣椋庨櫓', value: 'compliance' }
             ]
         }, {
             id: 'scale',
-            text: '你们企业的年营收规模？',
-            hint: '选一个最接近的区间',
+            text: '浣犱滑浼佷笟鐨勫勾钀ユ敹瑙勬ā锛?,
+            hint: '閫変竴涓渶鎺ヨ繎鐨勫尯闂?,
             options: [
-                { label: '< 5,000万', value: 'startup' },
-                { label: '5,000万-5亿', value: 'scale' },
-                { label: '> 5亿', value: 'enterprise' }
+                { label: '< 5,000涓?, value: 'startup' },
+                { label: '5,000涓?5浜?, value: 'scale' },
+                { label: '> 5浜?, value: 'enterprise' }
             ]
         }, {
             id: 'speed',
-            text: '你希望多久看到效果？',
-            hint: '这会影响我们推荐的产品类型',
+            text: '浣犲笇鏈涘涔呯湅鍒版晥鏋滐紵',
+            hint: '杩欎細褰卞搷鎴戜滑鎺ㄨ崘鐨勪骇鍝佺被鍨?,
             options: [
-                { label: '⚡ 1周内', value: 'immediate' },
-                { label: '📈 1个月', value: 'month' },
-                { label: '🏗️ 3个月+', value: 'long' }
+                { label: '鈿?1鍛ㄥ唴', value: 'immediate' },
+                { label: '馃搱 1涓湀', value: 'month' },
+                { label: '馃彈锔?3涓湀+', value: 'long' }
             ]
         }];
 
@@ -1260,7 +1260,7 @@
                 container.appendChild(div);
             });
 
-            // 恢复已选
+            // 鎭㈠宸查€?
             if (quizAnswers[q.id]) {
                 document.querySelectorAll('.q-option').forEach(el => {
                     if (el.dataset.value === quizAnswers[q.id]) {
@@ -1278,7 +1278,7 @@
                 if (i < step) dot.classList.add('done');
             });
 
-            document.getElementById('nextBtn').textContent = step === QUIZ.length - 1 ? '🎯 为我推荐方案' : '下一步 →';
+            document.getElementById('nextBtn').textContent = step === QUIZ.length - 1 ? '馃幆 涓烘垜鎺ㄨ崘鏂规' : '涓嬩竴姝?鈫?;
             document.getElementById('resetBtn').style.display = step === 0 ? 'none' : 'inline-block';
             document.getElementById('quizResult').style.display = 'none';
             document.getElementById('quizArea').style.display = 'block';
@@ -1301,7 +1301,7 @@
             const scale = quizAnswers.scale || '';
             const speed = quizAnswers.speed || '';
 
-            // 简单映射
+            // 绠€鍗曟槧灏?
             let recommendations = [];
             if (pain === 'prospecting') {
                 recommendations = ['trade-engine', 'skills-api'];
@@ -1324,9 +1324,9 @@
             result.style.display = 'block';
             result.innerHTML = `
                 <div style="text-align:center;padding:10px 0;">
-                    <div style="font-size:40px;">🎯</div>
-                    <div style="font-size:22px;font-weight:700;margin:6px 0;">你的专属方案</div>
-                    <div style="color:rgba(255,255,255,0.3);font-size:14px;">基于你的回答，推荐以下产品</div>
+                    <div style="font-size:40px;">馃幆</div>
+                    <div style="font-size:22px;font-weight:700;margin:6px 0;">浣犵殑涓撳睘鏂规</div>
+                    <div style="color:rgba(255,255,255,0.3);font-size:14px;">鍩轰簬浣犵殑鍥炵瓟锛屾帹鑽愪互涓嬩骇鍝?/div>
                 </div>
                 ${recs.map(p => `
                     <div style="padding:14px 18px;background:rgba(0,240,255,0.04);border:1px solid rgba(0,240,255,0.08);border-radius:10px;margin-bottom:8px;cursor:pointer;" onclick="showDetail('${p.id}')">
@@ -1337,7 +1337,7 @@
                         <div style="font-size:13px;color:rgba(255,255,255,0.3);">${p.desc}</div>
                     </div>
                 `).join('')}
-                <button class="btn-secondary" onclick="resetQuiz()" style="margin-top:12px;">← 重新选择</button>
+                <button class="btn-secondary" onclick="resetQuiz()" style="margin-top:12px;">鈫?閲嶆柊閫夋嫨</button>
             `;
         }
 
@@ -1348,7 +1348,7 @@
         }
 
         // =============================================================
-        //  渠道合作
+        //  娓犻亾鍚堜綔
         // =============================================================
         function submitChannel() {
             const company = document.getElementById('chCompany').value.trim();
@@ -1357,28 +1357,28 @@
             const email = document.getElementById('chEmail').value.trim();
 
             if (!company || !contact || !phone || !email) {
-                document.getElementById('chStatus').textContent = '⚠️ 请填写完整信息';
+                document.getElementById('chStatus').textContent = '鈿狅笍 璇峰～鍐欏畬鏁翠俊鎭?;
                 document.getElementById('chStatus').style.color = '#ff6b6b';
                 return;
             }
 
-            document.getElementById('chStatus').textContent = '✅ 已提交，2个工作日内联系您';
+            document.getElementById('chStatus').textContent = '鉁?宸叉彁浜わ紝2涓伐浣滄棩鍐呰仈绯绘偍';
             document.getElementById('chStatus').style.color = '#00f0ff';
 
-            // 简化存储
+            // 绠€鍖栧瓨鍌?
             const apps = JSON.parse(localStorage.getItem('ai_channel_apps') || '[]');
             apps.push({ company, contact, phone, email, time: new Date().toISOString() });
             localStorage.setItem('ai_channel_apps', JSON.stringify(apps));
 
             ['chCompany', 'chContact', 'chPhone', 'chEmail'].forEach(id => document.getElementById(id).value = '');
             setTimeout(() => {
-                document.getElementById('chStatus').textContent = '提交后2个工作日内联系';
+                document.getElementById('chStatus').textContent = '鎻愪氦鍚?涓伐浣滄棩鍐呰仈绯?;
                 document.getElementById('chStatus').style.color = 'rgba(255,255,255,0.2)';
             }, 4000);
         }
 
         // =============================================================
-        //  初始化
+        //  鍒濆鍖?
         // =============================================================
         renderProducts();
         renderQuiz(0);
@@ -1387,20 +1387,3 @@
 
 </body>
 </html>
-整合后的统一入口
-视图	触发方式	内容
-产品矩阵	默认/点击「产品矩阵」Tab	15款产品网格，点击卡片→详情页
-3步诊断	点击「3步诊断」Tab	痛点→规模→时效→推荐产品→跳转详情
-产品详情	点击任意产品卡片	指标+能力+场景+同类推荐
-渠道合作	点击「渠道合作」Tab	分润梯度展示+在线申请表单
-使用方式
-bash
-# 直接打开 index.html
-# 默认显示产品矩阵（15款产品网格）
-
-# 切换视图：
-# - 点击「3步诊断」→ 诊断问卷
-# - 点击「渠道合作」→ 渠道申请页面
-# - 点击任意产品卡片 → 产品详情页（保留导航）
-一句话总结
-三个页面整合为一个统一入口 index.html。顶部导航切换视图，产品矩阵和3步诊断均可跳转详情页——三个文件变一个，功能不丢，演示更流畅。
