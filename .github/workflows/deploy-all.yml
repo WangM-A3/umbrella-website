@@ -1,0 +1,31 @@
+ name: 全量部署（所有站点）
+ on:
+   workflow_dispatch:
+ jobs:
+   deploy-brand:
+     uses: ./.github/workflows/deploy-brand.yml
+     secrets: inherit
+   deploy-demo:
+     uses: ./.github/workflows/deploy-demo.yml
+     secrets: inherit
+   deploy-platform:
+     uses: ./.github/workflows/deploy-platform.yml
+     secrets: inherit
+   health-check:
+     needs:
+       - deploy-brand
+       - deploy-demo
+       - deploy-platform
+     runs-on: ubuntu-latest
+     steps:
+       - name: 批量健康检查
+         run: |
+           sites=("silicon-army.cn" "taini.silicon-army.cn" "app.silicon-army.cn")
+           for site in "${sites[@]}"; do
+             status=$(curl -o /dev/null -s -w "%{http_code}" "https://$site")
+             if [ "$status" -eq 200 ]; then
+               echo "✅ $site 正常"
+             else
+               echo "❌ $site 异常 (HTTP $status)"
+             fi
+           done

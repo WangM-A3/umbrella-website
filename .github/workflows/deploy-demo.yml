@@ -1,0 +1,28 @@
+ name: 部署演示站
+ on:
+   push:
+     branches: [main, master]
+     paths:
+       - "taini_ai/**"
+   workflow_dispatch:
+   workflow_call:
+ permissions:
+   contents: read
+   pages: write
+   id-token: write
+ concurrency:
+   group: pages-demo
+   cancel-in-progress: true
+ jobs:
+   deploy:
+     runs-on: ubuntu-latest
+     steps:
+       - uses: actions/checkout@v4
+       - name: Setup Pages
+         uses: actions/configure-pages@v4
+       - name: Upload artifact
+         uses: actions/upload-pages-artifact@v3
+         with:
+           path: taini_ai
+       - name: Deploy to GitHub Pages
+         uses: actions/deploy-pages@v4
