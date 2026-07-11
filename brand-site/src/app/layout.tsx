@@ -2,7 +2,6 @@
 import { Geist, Geist_Mono, Orbitron } from "next/font/google";
 import { ThemeProvider } from "@/context/ThemeContext";
 import "./globals.css";
-import CustomCursor from "@/components/CustomCursor";
 
 const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
@@ -21,7 +20,6 @@ export default function RootLayout({
   return (
     <html lang="zh-CN" className={`${geistSans.variable} ${geistMono.variable} ${orbitron.variable} dark`} suppressHydrationWarning>
       <body className="antialiased">
-        <CustomCursor />
         {/* Google Analytics */}
 
         {/* Schema.org: Organization + WebSite */}
