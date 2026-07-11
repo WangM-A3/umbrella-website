@@ -149,8 +149,24 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
   const [testimonialIdx, setTestimonialIdx] = useState(0);
   const [activeCategory, setActiveCategory] = useState("全部");
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
-  const [bookingForm, setBookingForm] = useState({ name: "", company: "", phone: "", product: "" });
   const [bookingStatus, setBookingStatus] = useState("");
+  const bookingNameRef = useRef<HTMLInputElement>(null);
+  const bookingCompanyRef = useRef<HTMLInputElement>(null);
+  const bookingPhoneRef = useRef<HTMLInputElement>(null);
+  const bookingProductRef = useRef<HTMLSelectElement>(null);
+  
+  const handleBookingSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const name = bookingNameRef.current?.value?.trim() || "";
+    const phone = bookingPhoneRef.current?.value?.trim() || "";
+    if (!name || !phone) { setBookingStatus("请填写姓名和电话"); return; }
+    setBookingStatus("✅ 已收到！2小时内联系您");
+    setTimeout(() => setBookingStatus(""), 3000);
+    if (bookingNameRef.current) bookingNameRef.current.value = "";
+    if (bookingCompanyRef.current) bookingCompanyRef.current.value = "";
+    if (bookingPhoneRef.current) bookingPhoneRef.current.value = "";
+    if (bookingProductRef.current) bookingProductRef.current.value = "";
+  };
   
   useEffect(() => {
     const timer = setInterval(() => setTestimonialIdx((i) => (i + 1) % testimonials.length), 3000);
@@ -490,24 +506,24 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
             <h3 className="text-2xl font-bold mt-2">预约专家咨询</h3>
             <p className="text-gray-400 text-sm mt-1">填写信息，2小时内获取专属AI方案</p>
           </div>
-          <div className="glass rounded-2xl p-6">
-            <input type="text" placeholder="姓名 *" value={bookingForm.name} onChange={(e) => setBookingForm({...bookingForm, name: e.target.value})}
+          <form onSubmit={handleBookingSubmit} className="glass rounded-2xl p-6">
+            <input ref={bookingNameRef} type="text" placeholder="姓名 *" defaultValue=""
               className="w-full p-3 mb-3 bg-black/40 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#00f0ff] text-sm" />
-            <input type="text" placeholder="公司名称 *" value={bookingForm.company} onChange={(e) => setBookingForm({...bookingForm, company: e.target.value})}
+            <input ref={bookingCompanyRef} type="text" placeholder="公司名称 *" defaultValue=""
               className="w-full p-3 mb-3 bg-black/40 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#00f0ff] text-sm" />
-            <input type="text" placeholder="电话 / 微信 *" value={bookingForm.phone} onChange={(e) => setBookingForm({...bookingForm, phone: e.target.value})}
+            <input ref={bookingPhoneRef} type="text" placeholder="电话 / 微信 *" defaultValue=""
               className="w-full p-3 mb-3 bg-black/40 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#00f0ff] text-sm" />
-            <select value={bookingForm.product} onChange={(e) => setBookingForm({...bookingForm, product: e.target.value})}
+            <select ref={bookingProductRef} defaultValue=""
               className="w-full p-3 mb-4 bg-black/40 border border-white/10 rounded-xl text-gray-400 focus:outline-none focus:border-[#00f0ff] text-sm">
               <option value="">感兴趣的产品（选填）</option>
               {heroProducts.map(p => <option key={p.id} value={p.name}>{p.icon} {p.name}</option>)}
             </select>
-            <button onClick={() => { if (!bookingForm.name || !bookingForm.phone) { setBookingStatus("请填写姓名和电话"); return; } setBookingStatus("✅ 已收到！2小时内联系您"); setTimeout(() => setBookingStatus(""), 3000); }}
+            <button type="submit"
               className="w-full py-3 bg-gradient-to-r from-[#00f0ff] to-[#7b2fbe] text-black font-semibold rounded-xl hover:shadow-xl hover:shadow-[#00f0ff]/20 transition-all text-sm">
               预约专家咨询 →
             </button>
             {bookingStatus && <p className={"text-sm text-center mt-3 " + (bookingStatus.includes("✅") ? "text-green-400" : "text-red-400")}>{bookingStatus}</p>}
-          </div>
+          </form>
         </div>
       </section>
 
@@ -542,32 +558,32 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
           <p className="text-gray-400 mt-2">实时监控 · 智能决策 · 数据驱动</p>
         </div>
         {/* Feature preview cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
-          <div className="glass rounded-xl p-4 text-center">
+        <a href="/platform.html" className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8 no-underline">
+          <div className="glass rounded-xl p-4 text-center hover:neon-border transition-all">
             <div className="text-2xl mb-1">📊</div>
             <div className="text-xs font-semibold text-white">实时数据看板</div>
             <div className="text-[10px] text-gray-500 mt-1">今日询盘 23 · 响应率 31%</div>
             <div className="flex justify-center gap-2 mt-2 text-[10px]"><span className="text-green-400">↑12%</span><span className="text-gray-600">转化</span></div>
           </div>
-          <div className="glass rounded-xl p-4 text-center">
+          <div className="glass rounded-xl p-4 text-center hover:neon-border transition-all">
             <div className="text-2xl mb-1">🤖</div>
             <div className="text-xs font-semibold text-white">Agent 状态</div>
             <div className="text-[10px] text-gray-500 mt-1">15个智能体运行中</div>
             <div className="flex items-center justify-center gap-1 mt-2"><span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span><span className="text-[10px] text-green-400">0 异常</span></div>
           </div>
-          <div className="glass rounded-xl p-4 text-center">
+          <div className="glass rounded-xl p-4 text-center hover:neon-border transition-all">
             <div className="text-2xl mb-1">📈</div>
             <div className="text-xs font-semibold text-white">巡检历史</div>
             <div className="text-[10px] text-gray-500 mt-1">近7天 · 12次巡检</div>
             <div className="flex justify-center gap-1 mt-2 text-[10px]"><span className="text-green-400">■■</span><span className="text-gray-600">■</span><span className="text-yellow-400">■</span><span className="text-green-400">■■</span><span className="text-green-400">■</span></div>
           </div>
-          <div className="glass rounded-xl p-4 text-center">
+          <div className="glass rounded-xl p-4 text-center hover:neon-border transition-all">
             <div className="text-2xl mb-1">⚡</div>
             <div className="text-xs font-semibold text-white">快捷操作</div>
             <div className="text-[10px] text-gray-500 mt-1">批量更新 · 导出报告</div>
             <div className="flex justify-center gap-2 mt-2"><span className="text-[10px] px-2 py-0.5 bg-white/5 rounded text-gray-500">更新</span><span className="text-[10px] px-2 py-0.5 bg-white/5 rounded text-gray-500">导出</span></div>
           </div>
-        </div>
+        </a>
         <a href="/platform.html" className="block glass-strong rounded-2xl p-8 md:p-10 text-center hover:neon-border transition-all duration-300 no-underline">
           <div className="text-4xl mb-3">🔄</div>
           <h3 className="text-2xl font-bold text-white">TradeV6 运营管理平台</h3>
