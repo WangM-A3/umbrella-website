@@ -415,6 +415,73 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
         </div>
       </section>
 
+      {/* GEO 健康度检测 */}
+      <section className="max-w-6xl mx-auto px-8 py-20 border-t border-white/5" id="geo">
+        <div className="text-center mb-10">
+          <span className="text-[#00f0ff] text-sm tracking-widest">GEO</span>
+          <h2 className="text-3xl md:text-4xl font-bold mt-2">品牌AI可见度检测</h2>
+          <p className="text-gray-400 mt-2">覆盖海内外10+ AI平台 · 模拟品牌提及率</p>
+        </div>
+        {/* 平台网格 */}
+        <div className="max-w-lg mx-auto mb-8">
+          <h3 className="text-sm font-semibold text-gray-300 mb-3 flex items-center gap-2"><span className="w-1 h-4 bg-[#00f0ff] rounded-full inline-block"></span>🇨🇳 国内AI平台</h3>
+          <div className="grid grid-cols-3 gap-2">
+            <div className="glass rounded-lg p-3 text-center"><div className="text-xs text-gray-500">豆包</div><div className="text-[10px] mt-1 text-green-400">✓ 可识别</div></div>
+            <div className="glass rounded-lg p-3 text-center"><div className="text-xs text-gray-500">DeepSeek</div><div className="text-[10px] mt-1 text-green-400">✓ 可识别</div></div>
+            <div className="glass rounded-lg p-3 text-center"><div className="text-xs text-gray-500">Kimi</div><div className="text-[10px] mt-1 text-yellow-400">○ 待优化</div></div>
+            <div className="glass rounded-lg p-3 text-center"><div className="text-xs text-gray-500">元宝</div><div className="text-[10px] mt-1 text-yellow-400">○ 待优化</div></div>
+            <div className="glass rounded-lg p-3 text-center"><div className="text-xs text-gray-500">通义千问</div><div className="text-[10px] mt-1 text-green-400">✓ 可识别</div></div>
+            <div className="glass rounded-lg p-3 text-center"><div className="text-xs text-gray-500">文心一言</div><div className="text-[10px] mt-1 text-gray-600">— 待检测</div></div>
+          </div>
+        </div>
+        <div className="max-w-lg mx-auto mb-8">
+          <h3 className="text-sm font-semibold text-gray-300 mb-3 flex items-center gap-2"><span className="w-1 h-4 bg-[#7b2fbe] rounded-full inline-block"></span>🌍 海外AI平台</h3>
+          <div className="grid grid-cols-3 gap-2">
+            <div className="glass rounded-lg p-3 text-center"><div className="text-xs text-gray-500">ChatGPT</div><div className="text-[10px] mt-1 text-yellow-400">○ 待优化</div></div>
+            <div className="glass rounded-lg p-3 text-center"><div className="text-xs text-gray-500">Perplexity</div><div className="text-[10px] mt-1 text-green-400">✓ 已引用</div></div>
+            <div className="glass rounded-lg p-3 text-center"><div className="text-xs text-gray-500">Gemini</div><div className="text-[10px] mt-1 text-gray-600">— 待检测</div></div>
+          </div>
+        </div>
+        {/* 检测项 */}
+        <div className="max-w-2xl mx-auto">
+          <h3 className="text-sm font-semibold text-gray-300 mb-4 flex items-center gap-2"><span className="w-1 h-4 bg-green-400 rounded-full inline-block"></span>GEO健康检测清单</h3>
+          <div className="glass rounded-2xl p-5">
+            <div className="space-y-2">
+              {[
+                ["AI是否能准确回答「NEXUS是做什么的？」", "通过"],
+                ["AI描述中是否包含核心优势关键词", "通过"],
+                ["AI是否引用了官网链接", "通过"],
+                ["AI回答「服务价格范围」是否准确", "待优化"],
+                ["AI能否提供具体使用场景推荐", "待优化"],
+                ["跨平台品牌信息是否一致", "通过"],
+                ["FAQ内容是否被AI提取", "待优化"],
+                ["海外平台英文描述是否准确", "待优化"],
+              ].map((item, i) => {
+                const status = item[1];
+                const cls = status === "通过" ? "text-green-400" : "text-yellow-400";
+                const icon = status === "通过" ? "✓" : "○";
+                return (
+                  <div key={i} className="flex items-center justify-between py-2 border-b border-white/5 last:border-0">
+                    <span className="text-xs text-gray-400">{item[0]}</span>
+                    <span className={"text-[11px] font-medium whitespace-nowrap ml-3 " + cls}>{icon} {status}</span>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="mt-5 pt-4 border-t border-white/5 flex items-center justify-between">
+              <span className="text-sm text-gray-400">综合评分</span>
+              <div className="flex items-center gap-3">
+                <div className="w-24 h-2 bg-white/10 rounded-full overflow-hidden"><div className="h-full w-[62%] bg-gradient-to-r from-[#00f0ff] to-[#7b2fbe] rounded-full"></div></div>
+                <span className="text-lg font-bold text-white">62</span><span className="text-xs text-gray-600">/100</span>
+              </div>
+            </div>
+          </div>
+          <div className="mt-4 text-center">
+            <a href="/platform.html" className="text-xs text-gray-500 hover:text-[#00f0ff] transition">查看完整GEO优化报告 →</a>
+          </div>
+        </div>
+      </section>
+
       {/* 预约专家 */}
       <section className="max-w-6xl mx-auto px-8 py-16 border-t border-white/5">
         <div className="max-w-lg mx-auto">
