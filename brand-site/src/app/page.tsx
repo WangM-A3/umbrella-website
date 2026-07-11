@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 
 const ParticleBackground = dynamic(() => import("@/components/ParticleBackground"), { ssr: false });
 
- const products = [
+
  const heroProducts = [
    { id: "trade-engine", icon: "🌍", name: "Trade Engine", desc: "全链路AI外贸决策OS · 13个全球市场 · 每日巡检", price: "¥50-500万/年", cat: "外贸核心" },
    { id: "skills-api", icon: "⚡", name: "Agent Skills API", desc: "4个独立AI能力 · REST即插即用 · LLM桥接", price: "按需·API调用", cat: "外贸核心" },
@@ -427,4 +427,3 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
     </div>
   );
 }
- const products = [
