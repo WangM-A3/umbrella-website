@@ -7,31 +7,22 @@ import dynamic from "next/dynamic";
 const ParticleBackground = dynamic(() => import("@/components/ParticleBackground"), { ssr: false });
 
  const products = [
-   { cat: "拓客", items: [
-     { name: "Prospector", desc: "AI主动拓客引擎，多源信号识别高意向买家", badge: "T1" },
-     { name: "Trade Radar", desc: "全球贸易数据挖掘，发现潜在采购商", badge: "T1" },
-     { name: "Bid Monitor", desc: "采购招标自动监控，每天推送新商机", badge: "T1" },
-     { name: "Market Research", desc: "跨市场调研分析，输出准入策略报告", badge: "T2" },
-   ]},
-   { cat: "分析", items: [
-     { name: "Analyzer", desc: "买家意愿评分+竞品威胁检测，Pipeline预测", badge: "T1" },
-     { name: "Trade Data", desc: "进出口数据可视化，趋势研判", badge: "T2" },
-     { name: "Supply Chain", desc: "供应链风险评估，供应商推荐", badge: "T2" },
-     { name: "Compliance", desc: "HS编码归类+关税政策+出口合规审查", badge: "T2" },
-   ]},
-   { cat: "触达", items: [
-     { name: "Outreach", desc: "多渠道自动跟进，自适应时间窗口策略", badge: "T1" },
-     { name: "Voice Agent", desc: "AI语音外呼，情感识别+A/B/C/D分级", badge: "T1" },
-     { name: "Content Engine", desc: "多语言Listing生成+广告文案", badge: "T2" },
-     { name: "Email Campaign", desc: "SMTP/API双通道，智能模板A/B测试", badge: "T1" },
-   ]},
-   { cat: "运营", items: [
-     { name: "A/B Test", desc: "模板对比实验，自动计算统计显著性", badge: "T1" },
-     { name: "Buyer Memory", desc: "买家跨周期记忆，不再冷启动", badge: "T1" },
-     { name: "Template Store", desc: "模板注册表+Wilson Score自动排名", badge: "T2" },
-     { name: "Risk Control", desc: "反滥用风控+代理检测+隐写追踪", badge: "T2" },
-   ]},
+ const heroProducts = [
+   { id: "trade-engine", icon: "🌍", name: "Trade Engine", desc: "全链路AI外贸决策OS · 13个全球市场 · 每日巡检", price: "¥50-500万/年", cat: "外贸核心" },
+   { id: "skills-api", icon: "⚡", name: "Agent Skills API", desc: "4个独立AI能力 · REST即插即用 · LLM桥接", price: "按需·API调用", cat: "外贸核心" },
+   { id: "v6-security", icon: "🛡️", name: "V6.0 AI 安全治理平台", desc: "8大算法×5层防御 · 人格塑造 · AIP国标", price: "¥30-300万/年", cat: "合规安全" },
+   { id: "boss-ip", icon: "🎬", name: "BOSS IP Factory", desc: "15分钟录制AI出视频 · 多平台发布 · 线索追踪", price: "¥10-30万/年", cat: "内容创意" },
+   { id: "platform-kernel", icon: "⚙️", name: "Platform Kernel", desc: "Agent编排+本体+模板 · 语义层 · 结果计价", price: "¥50-200万/年", cat: "平台基础设施" },
+   { id: "workbuddy", icon: "💈", name: "WorkBuddy", desc: "企业AI办公助手 · 文件操作 · 远程操控PC", price: "¥3-15万/年", cat: "企业AI辅助" },
+   { id: "ai-os", icon: "🏥", name: "AI-OS", desc: "5层决策闭环 · L1-L5全链路 · ROI量化", price: "¥5-500万", cat: "行业方案" },
+   { id: "short-drama", icon: "🎯", name: "AI短剧制作", desc: "AI驱动的短剧全流程 · 剧本→场景→成片", price: "¥3-20万/项目", cat: "内容创意" },
+   { id: "compliance-mw", icon: "📵", name: "合规中间件", desc: "FDA 510(k)等监管合规 · 静态分析 · WASM", price: "¥20-80万/年", cat: "合规安全" },
+   { id: "crossborder-cmpl", icon: "🌪", name: "跨境数据合规", desc: "GDPR · CCPA · 跨境数据流动管控", price: "¥10-40万/年", cat: "合规安全" },
+   { id: "ai-solution-gen", icon: "📫", name: "AI Solution Gen", desc: "5个标准Agent · 全链路方案自动生成", price: "¥3-10万/次", cat: "行业方案" },
+   { id: "scifi-select", icon: "🚌", name: "科幻IP选品", desc: "Reddit挖掘 → AI创意分析 → 供应链匹配", price: "¥2-5万/月", cat: "内容创意" },
  ];
+ 
+ const productCategories = ["外贸核心","合规安全","内容创意","行业方案","平台基础设施","企业AI辅助"];
 
  const cases = [
    { client: "浙江某五金工具厂", product: "Prospector + Analyzer", result: "3个月获取27个有效询盘，签约2个北美经销商", roi: "8x" },
@@ -138,10 +129,10 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
       <nav className="flex justify-between items-center px-8 py-5 border-b border-white/5 max-w-6xl mx-auto">
         <div className="text-xl font-bold tracking-tight">NEXUS</div>
         <div className="flex items-center gap-6 text-sm text-gray-400">
-          <button onClick={() => scrollTo("products")} className="hover:text-white transition text-sm cursor-pointer">Products</button>
-          <button onClick={() => scrollTo("cases")} className="hover:text-white transition text-sm cursor-pointer">Work</button>
-          <button onClick={() => scrollTo("process")} className="hover:text-white transition text-sm cursor-pointer">Process</button>
-          <button onClick={() => scrollTo("pricing")} className="hover:text-white transition text-sm cursor-pointer">Pricing</button>
+          <a href="/solutions.html" className="hover:text-white transition text-sm cursor-pointer">产品矩阵</a>
+          <a href="/platform.html" className="hover:text-white transition text-sm cursor-pointer">运营平台</a>
+          <button onClick={() => scrollTo("cases")} className="hover:text-white transition text-sm cursor-pointer">案例</button>
+          <button onClick={() => scrollTo("pricing")} className="hover:text-white transition text-sm cursor-pointer">定价</button>
           <button onClick={() => setShowForm(true)} className="px-4 py-2 border border-white/20 rounded-full text-white hover:bg-white/10 transition">
             Let&apos;s Talk
           </button>
@@ -178,9 +169,9 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
             <button onClick={() => setShowForm(true)} className="px-8 py-3.5 bg-gradient-to-r from-[#00f0ff] to-[#7b2fbe] text-black font-semibold rounded-full hover:shadow-xl hover:shadow-[#00f0ff]/20 transition-all flex items-center gap-2">
               获取AI落地方案 →
             </button>
-            <button onClick={() => scrollTo("products")} className="px-8 py-3.5 border border-white/15 rounded-full hover:bg-white/5 transition text-gray-300 flex items-center gap-2 cursor-pointer">
-              🔍 浏览AI产品
-            </button>
+            <a href="/solutions.html" className="px-8 py-3.5 border border-white/15 rounded-full hover:bg-white/5 transition text-gray-300 flex items-center gap-2 cursor-pointer">
+              🔍 浏览15款AI产品
+            </a>
           </div>
 
           {/* Trust badges */}
@@ -235,32 +226,39 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
         </div>
       </section>
 
-      {/* Products */}
+      {/* Products - 链接到 product_detail.html */}
       <section id="products" className="max-w-6xl mx-auto px-8 py-20 border-t border-white/5">
         <div className="text-center mb-12">
           <span className="text-[#00f0ff] text-sm tracking-widest">PRODUCTS</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-2">AI产品矩阵</h2>
-          <p className="text-gray-400 mt-2">16款可运营产品，覆盖外贸全链路</p>
+          <h2 className="text-3xl md:text-4xl font-bold mt-2">AI产品家族</h2>
+          <p className="text-gray-400 mt-2">点击任意产品查看详细介绍 + 操作流程</p>
         </div>
-        {products.map((group, gi) => (
-          <div key={gi} className="mb-10">
-            <h3 className="text-lg font-semibold text-gray-300 mb-4 flex items-center gap-2">
-              <span className="w-1 h-5 bg-[#00f0ff] rounded-full inline-block"></span>
-              {group.cat}
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {group.items.map((p, pi) => (
-                <div key={pi} className="glass rounded-xl p-5 hover:neon-border transition-all duration-300 group">
-                  <div className="flex items-start justify-between mb-2">
-                    <h4 className="font-semibold text-white">{p.name}</h4>
-                    <span className={"text-[10px] px-2 py-0.5 rounded-full " + (p.badge==="T1" ? "bg-[#00f0ff]/20 text-[#00f0ff]" : "bg-gray-500/20 text-gray-400")}>{p.badge}</span>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {heroProducts.map((p) => (
+            <a key={p.id} href={"/product_detail.html?id=" + p.id}
+              className="glass rounded-xl p-5 hover:neon-border transition-all duration-300 group block no-underline">
+              <div className="flex items-start gap-3">
+                <span className="text-2xl">{p.icon}</span>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-semibold text-white text-sm">{p.name}</h4>
+                    <span className="text-[10px] text-gray-500 bg-white/5 px-2 py-0.5 rounded-full whitespace-nowrap">{p.cat}</span>
                   </div>
-                  <p className="text-xs text-gray-500 leading-relaxed">{p.desc}</p>
+                  <p className="text-xs text-gray-500 mt-1 leading-relaxed line-clamp-2">{p.desc}</p>
+                  <div className="flex items-center justify-between mt-2">
+                    <span className="text-[11px] text-[#00f0ff] font-medium">{p.price}</span>
+                    <span className="text-[10px] text-gray-600 group-hover:text-[#00f0ff] transition">查看详情 →</span>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        ))}
+              </div>
+            </a>
+          ))}
+        </div>
+        <div className="text-center mt-8">
+          <a href="/solutions.html" className="text-sm text-[#00f0ff] hover:underline inline-flex items-center gap-1">
+            查看全部 15 款产品矩阵 + 3步诊断 →
+          </a>
+        </div>
       </section>
 
       {/* Case Studies */}
@@ -339,6 +337,18 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
         </div>
       </section>
 
+      {/* 运营平台 CTA */}
+      <section className="max-w-6xl mx-auto px-8 py-16 border-t border-white/5">
+        <a href="/platform.html" className="block glass-strong rounded-2xl p-8 md:p-10 text-center hover:neon-border transition-all duration-300 no-underline">
+          <div className="text-4xl mb-3">🔄</div>
+          <h3 className="text-2xl font-bold text-white">TradeV6 运营管理平台</h3>
+          <p className="text-gray-400 text-sm mt-2 max-w-lg mx-auto">买家管理 · 模板排名 · Agent状态 · 巡检历史 · 实时WebSocket看板</p>
+          <span className="inline-block mt-4 px-6 py-2.5 bg-gradient-to-r from-[#00f0ff] to-[#7b2fbe] text-black rounded-full font-medium text-sm">
+            进入运营平台 →
+          </span>
+        </a>
+      </section>
+
       {/* Contact */}
       <section className="max-w-6xl mx-auto px-8 py-16 border-t border-white/5">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
@@ -356,16 +366,28 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
             <button onClick={() => setShowForm(true)} className="px-6 py-3 bg-[#00f0ff] text-black rounded-full font-medium hover:shadow-lg hover:shadow-[#00f0ff]/20 transition-all">
               💬 立即沟通
             </button>
-            <a href="mailto:contact@nexus.ai" className="px-6 py-3 border border-white/15 rounded-full hover:bg-white/5 transition text-gray-300">
-              📧 邮件联系
-            </a>
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-2 text-sm text-gray-400">
+                <span>📱 微信：<strong className="text-gray-200">13336021626</strong></span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-gray-400">
+                <span>📢 公众号：<strong className="text-gray-200">海和汇</strong></span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="max-w-6xl mx-auto px-8 py-6 border-t border-white/5 text-center text-xs text-gray-600">
-        © 2026 NEXUS · AI转型，只看结果
+      <footer className="max-w-6xl mx-auto px-8 py-8 border-t border-white/5 text-center">
+        <div className="flex flex-wrap justify-center gap-6 text-xs text-gray-500 mb-4">
+          <span>📱 微信：13336021626</span>
+          <span>📢 公众号：海和汇</span>
+          <span>📧 邮箱：contact@nexus.ai</span>
+        </div>
+        <div className="text-xs text-gray-600">
+          © 2026 NEXUS · AI转型，只看结果
+        </div>
       </footer>
 
       {/* Form modal */}
@@ -405,3 +427,4 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
     </div>
   );
 }
+ const products = [
