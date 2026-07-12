@@ -45,8 +45,27 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
    { text: "AI短剧制作让我们的内容产出速度提升10倍", author: "某MCN机构创始人" },
  ];
  
+ const diagnoseQuestions = [
+   { id: "pain", text: "目前最想用AI解决什么问题？", options: [
+     { label: "🎯 获客太难", value: "prospect", match: ["trade-engine","skills-api","boss-ip"] },
+     { label: "🛡️ 合规压力大", value: "compliance", match: ["v6-security","compliance-mw","crossborder-cmpl"] },
+     { label: "🎬 内容生产慢", value: "content", match: ["boss-ip","short-drama","scifi-select"] },
+     { label: "⚡ 效率待提升", value: "efficiency", match: ["platform-kernel","workbuddy","ai-os"] },
+   ]},
+   { id: "scale", text: "企业规模？", options: [
+     { label: "🌱 初创（<50人）", value: "startup", match: ["skills-api","workbuddy","ai-solution-gen"] },
+     { label: "📈 成长（50-500人）", value: "scale", match: ["trade-engine","boss-ip","platform-kernel"] },
+     { label: "🏢 集团（>500人）", value: "enterprise", match: ["v6-security","platform-kernel","compliance-mw"] },
+   ]},
+   { id: "speed", text: "希望多久看到效果？", options: [
+     { label: "⚡ 1周内", value: "fast", match: ["skills-api","workbuddy","ai-solution-gen"] },
+     { label: "📅 1个月内", value: "medium", match: ["trade-engine","boss-ip","short-drama"] },
+     { label: "🎯 3个月+", value: "long", match: ["v6-security","platform-kernel","compliance-mw"] },
+   ]},
+ ];
+ 
  const faqs = [
-   { q: "按结果付费具体怎么执行？", a: "我们与客户共同设定可量化的KPI目标（如线索量、ROI等），达成目标后收取服务费，未达成不收费。" },
+  { q: "按结果付费具体怎么执行？", a: "我们与客户共同设定可量化的KPI目标（如线索量、ROI等），达成目标后收取服务费，未达成不收费。" },
    { q: "部署一个AI智能体需要多久？", a: "标准场景3周内完成部署和验证，复杂场景根据需求定制，一般在1-2个月。" },
    { q: "数据安全如何保障？", a: "支持私有化部署，数据不出企业内网，通过AIP国标和GDPR等多项合规认证。" },
  ];
@@ -150,6 +169,11 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
   const [activeCategory, setActiveCategory] = useState("全部");
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
   const [bookingStatus, setBookingStatus] = useState("");
+  const [diagnoseOpen, setDiagnoseOpen] = useState(false);
+  const [diagnoseStep, setDiagnoseStep] = useState(0);
+  const [diagnoseAnswers, setDiagnoseAnswers] = useState<Record<string, string>>({});
+  const [compareList, setCompareList] = useState<string[]>([]);
+  const [showCompare, setShowCompare] = useState(false);
   const bookingNameRef = useRef<HTMLInputElement>(null);
   const bookingCompanyRef = useRef<HTMLInputElement>(null);
   const bookingPhoneRef = useRef<HTMLInputElement>(null);
@@ -167,7 +191,33 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
     if (bookingPhoneRef.current) bookingPhoneRef.current.value = "";
     if (bookingProductRef.current) bookingProductRef.current.value = "";
   };
+  const toggleCompare = (id: string) => {
+    setCompareList((prev) => {
+      if (prev.includes(id)) return prev.filter((x) => x !== id);
+      if (prev.length >= 3) return prev;
+      return [...prev, id];
+    });
+  };
   
+  const getMatchedProducts = () => {
+    const scores: Record<string, number> = {};
+    Object.values(diagnoseAnswers).forEach((ans) => {
+      const q = diagnoseQuestions.find((q) => q.options.some((o) => o.value === ans));
+      const opt = q?.options.find((o) => o.value === ans);
+      opt?.match.forEach((id) => { scores[id] = (scores[id] || 0) + 1; });
+    });
+    return heroProducts.filter((p) => scores[p.id]).sort((a, b) => (scores[b.id] || 0) - (scores[a.id] || 0)).slice(0, 3);
+  };
+  
+  const calcROI = (teamSize: number, leads: number, conversion: number) => {
+    const annualValue = leads * 12 * conversion * 50000;
+    const improvedLeads = leads * 3.2;
+    const improvedValue = improvedLeads * 12 * (conversion * 1.4) * 50000;
+    const cost = teamSize <= 20 ? 1198800 : teamSize <= 100 ? 598800 : 1198800;
+    const roi = ((improvedValue - annualValue - cost) / cost) * 100;
+    return { current: annualValue, projected: improvedValue, roi: Math.round(roi), cost };
+  };
+ 
   useEffect(() => {
     const timer = setInterval(() => setTestimonialIdx((i) => (i + 1) % testimonials.length), 3000);
     return () => clearInterval(timer);
@@ -189,8 +239,10 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
         <div className="flex items-center gap-6 text-sm text-gray-400">
           <a href="/solutions.html" className="hover:text-white transition text-sm cursor-pointer">产品矩阵</a>
           <a href="/platform.html" className="hover:text-white transition text-sm cursor-pointer">运营平台</a>
-          <button onClick={() => scrollTo("cases")} className="hover:text-white transition text-sm cursor-pointer">案例</button>
           <button onClick={() => scrollTo("pricing")} className="hover:text-white transition text-sm cursor-pointer">定价</button>
+          <button onClick={() => { setDiagnoseOpen(true); setDiagnoseStep(0); setDiagnoseAnswers({}); }} className="hover:text-[#00f0ff] transition text-sm cursor-pointer">🎯 AI诊断</button>
+          <button onClick={() => scrollTo("geo")} className="hover:text-[#00f0ff] transition text-sm cursor-pointer">🌐 GEO</button>
+          <button onClick={() => scrollTo("roi")} className="hover:text-white transition text-sm cursor-pointer">ROI计算</button>
           <button onClick={() => setShowForm(true)} className="px-4 py-2 border border-white/20 rounded-full text-white hover:bg-white/10 transition">
             Let&apos;s Talk
           </button>
@@ -224,8 +276,11 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
 
           {/* CTA buttons */}
           <div className="flex flex-wrap gap-4 mt-8">
-            <button onClick={() => setShowForm(true)} className="px-8 py-3.5 bg-gradient-to-r from-[#00f0ff] to-[#7b2fbe] text-black font-semibold rounded-full hover:shadow-xl hover:shadow-[#00f0ff]/20 transition-all flex items-center gap-2">
+            <button onClick={() => setShowForm(true)} className="px-6 py-3 bg-gradient-to-r from-[#00f0ff] to-[#7b2fbe] text-black font-semibold rounded-full hover:shadow-xl hover:shadow-[#00f0ff]/20 transition-all flex items-center gap-2 text-sm">
               获取AI落地方案 →
+            </button>
+            <button onClick={() => { setDiagnoseOpen(true); setDiagnoseStep(0); setDiagnoseAnswers({}); }} className="px-6 py-3 border border-white/15 rounded-full hover:bg-white/5 transition text-gray-300 flex items-center gap-2 text-sm">
+              🎯 3步找到适合你的AI产品
             </button>
             <a href="/solutions.html" className="px-8 py-3.5 border border-white/15 rounded-full hover:bg-white/5 transition text-gray-300 flex items-center gap-2 cursor-pointer">
               🔍 浏览15款AI产品
@@ -431,7 +486,52 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
         </div>
       </section>
 
-      {/* GEO 健康度检测 */}
+      {/* ROI计算器 */}
+      <section className="max-w-6xl mx-auto px-8 py-20 border-t border-white/5" id="roi">
+        <div className="text-center mb-10">
+          <span className="text-[#00f0ff] text-sm tracking-widest">ROI</span>
+          <h2 className="text-3xl md:text-4xl font-bold mt-2">ROI计算器</h2>
+          <p className="text-gray-400 mt-2">输入你的业务数据，看看NEXUS能带来多少增长</p>
+        </div>
+        <div className="max-w-2xl mx-auto glass rounded-2xl p-6 md:p-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div>
+              <label className="text-xs text-gray-500 mb-1 block">团队人数</label>
+              <input type="number" id="roi-team" defaultValue="10" className="w-full p-3 bg-black/40 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-[#00f0ff]" />
+            </div>
+            <div>
+              <label className="text-xs text-gray-500 mb-1 block">月均线索量</label>
+              <input type="number" id="roi-leads" defaultValue="200" className="w-full p-3 bg-black/40 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-[#00f0ff]" />
+            </div>
+            <div>
+              <label className="text-xs text-gray-500 mb-1 block">平均转化率(%)</label>
+              <input type="number" id="roi-conv" defaultValue="5" step="0.1" className="w-full p-3 bg-black/40 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-[#00f0ff]" />
+            </div>
+          </div>
+          <button onClick={() => {
+            const team = parseInt((document.getElementById("roi-team") as HTMLInputElement)?.value || "10");
+            const leads = parseInt((document.getElementById("roi-leads") as HTMLInputElement)?.value || "200");
+            const conv = parseFloat((document.getElementById("roi-conv") as HTMLInputElement)?.value || "5");
+            const r = calcROI(team, leads, conv / 100);
+            document.getElementById("roi-result")!.innerHTML = `
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-center">
+                <div class="bg-white/5 rounded-xl p-3"><div class="text-xs text-gray-500">当前年营收</div><div class="text-lg font-bold text-white mt-1">¥${(r.current/10000).toFixed(0)}万</div></div>
+                <div class="bg-white/5 rounded-xl p-3"><div class="text-xs text-gray-500">使用后预估</div><div class="text-lg font-bold text-[#00f0ff] mt-1">¥${(r.projected/10000).toFixed(0)}万</div></div>
+                <div class="bg-white/5 rounded-xl p-3"><div class="text-xs text-gray-500">NEXUS年费</div><div class="text-lg font-bold text-white mt-1">¥${(r.cost/10000).toFixed(0)}万</div></div>
+                <div class="bg-white/5 rounded-xl p-3"><div class="text-xs text-gray-500">预计ROI</div><div class="text-lg font-bold text-green-400 mt-1">${r.roi}%</div></div>
+              </div>
+              <div class="mt-4 p-3 bg-green-400/10 border border-green-400/20 rounded-xl text-center">
+                <span class="text-sm text-green-400 font-medium">预估年增收 ¥${((r.projected - r.current) / 10000).toFixed(0)}万 · ROI ${r.roi}%</span>
+              </div>
+            `;
+          }} className="w-full py-3 bg-gradient-to-r from-[#00f0ff] to-[#7b2fbe] text-black font-semibold rounded-xl hover:shadow-xl transition text-sm cursor-pointer">
+            计算ROI →
+          </button>
+          <div id="roi-result" className="mt-6"></div>
+        </div>
+      </section>
+
+      {/* GEO 健康度检测 + 自测工具 */}
       <section className="max-w-6xl mx-auto px-8 py-20 border-t border-white/5" id="geo">
         <div className="text-center mb-10">
           <span className="text-[#00f0ff] text-sm tracking-widest">GEO</span>
@@ -492,8 +592,70 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
               </div>
             </div>
           </div>
-          <div className="mt-4 text-center">
-            <a href="/platform.html" className="text-xs text-gray-500 hover:text-[#00f0ff] transition">查看完整GEO优化报告 →</a>
+         <div className="mt-4 text-center">
+           <a href="/platform.html" className="text-xs text-gray-500 hover:text-[#00f0ff] transition">查看完整GEO优化报告 →</a>
+         </div>
+          {/* GEO自测入口 */}
+          <div className="mt-8 text-center">
+            <button onClick={() => {
+              const g = document.getElementById("geo-quiz");
+              if (g) { g.style.display = g.style.display === "none" ? "block" : "none"; }
+            }} className="px-6 py-2.5 border border-[#00f0ff]/30 rounded-full text-[#00f0ff] text-sm hover:bg-[#00f0ff]/10 transition cursor-pointer">
+              🧪 开始GEO自测
+            </button>
+          </div>
+          <div id="geo-quiz" style={{display: "none"}} className="max-w-lg mx-auto mt-6 glass rounded-2xl p-6">
+            <p className="text-sm text-gray-300 mb-4">5个问题，评估你的品牌AI可见度</p>
+            <div className="space-y-3">
+              <div><label className="text-xs text-gray-500">你的品牌名称 *</label>
+                <input id="geo-name" type="text" defaultValue="" className="w-full p-2.5 mt-1 bg-black/40 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-[#00f0ff]" /></div>
+              <div>
+                <label className="text-xs text-gray-500 block mb-1">你的网站是否有SSL/HTTPS？</label>
+                <select id="geo-ssl" className="w-full p-2.5 bg-black/40 border border-white/10 rounded-xl text-gray-300 text-sm focus:outline-none focus:border-[#00f0ff]"><option value="yes">✅ 是</option><option value="no">❌ 否</option></select>
+              </div>
+              <div>
+                <label className="text-xs text-gray-500 block mb-1">网站是否有FAQ或问答模块？</label>
+                <select id="geo-faq" className="w-full p-2.5 bg-black/40 border border-white/10 rounded-xl text-gray-300 text-sm focus:outline-none focus:border-[#00f0ff]"><option value="yes">✅ 有</option><option value="no">❌ 没有</option></select>
+              </div>
+              <div>
+                <label className="text-xs text-gray-500 block mb-1">是否定期更新内容（博客/案例）？</label>
+                <select id="geo-content" className="w-full p-2.5 bg-black/40 border border-white/10 rounded-xl text-gray-300 text-sm focus:outline-none focus:border-[#00f0ff]"><option value="yes">✅ 定期更新</option><option value="sometimes">🔄 偶尔更新</option><option value="no">❌ 没有</option></select>
+              </div>
+              <div>
+                <label className="text-xs text-gray-500 block mb-1">已布局哪些AI平台？（可估算）</label>
+                <select id="geo-platform" className="w-full p-2.5 bg-black/40 border border-white/10 rounded-xl text-gray-300 text-sm focus:outline-none focus:border-[#00f0ff]">
+                  <option value="all">🌍 海内外3+平台</option><option value="domestic">🇨🇳 仅国内平台</option><option value="overseas">🌐 仅海外平台</option><option value="none">❌ 尚未开始</option>
+                </select>
+              </div>
+              <button onClick={() => {
+                const name = (document.getElementById("geo-name") as HTMLInputElement)?.value;
+                if (!name) { alert("请输入品牌名称"); return; }
+                let score = 0;
+                const ssl = (document.getElementById("geo-ssl") as HTMLSelectElement)?.value;
+                const faq = (document.getElementById("geo-faq") as HTMLSelectElement)?.value;
+                const content = (document.getElementById("geo-content") as HTMLSelectElement)?.value;
+                const platform = (document.getElementById("geo-platform") as HTMLSelectElement)?.value;
+                if (ssl === "yes") score += 25;
+                if (faq === "yes") score += 25;
+                if (content === "yes") score += 25; else if (content === "sometimes") score += 10;
+                if (platform === "all") score += 25; else if (platform === "domestic" || platform === "overseas") score += 15;
+                const level = score >= 80 ? "优秀" : score >= 50 ? "良好" : "需提升";
+                const color = score >= 80 ? "text-green-400" : score >= 50 ? "text-yellow-400" : "text-red-400";
+                document.getElementById("geo-result")!.innerHTML = `
+                  <div class="mt-4 pt-4 border-t border-white/10 text-center">
+                    <div class="text-sm text-gray-500">${name} · GEO可见度评分</div>
+                    <div class="text-4xl font-bold ${color} mt-2">${score}/100</div>
+                    <div class="text-sm ${color} mt-1 font-medium">${level}</div>
+                    <div class="text-xs text-gray-500 mt-3 leading-relaxed">
+                      ${score < 50 ? "建议从SSL部署+FAQ模块开始，优先覆盖2-3个AI平台" : score < 80 ? "基础不错，建议持续更新内容+扩展海外平台覆盖" : "你的品牌AI可见度较高，建议保持更新频率并监测引用趋势"}
+                    </div>
+                  </div>
+                `;
+              }} className="w-full py-2.5 bg-gradient-to-r from-[#00f0ff] to-[#7b2fbe] text-black font-semibold rounded-xl hover:shadow-xl transition text-sm cursor-pointer mt-2">
+                开始检测 →
+              </button>
+              <div id="geo-result"></div>
+            </div>
           </div>
         </div>
       </section>
@@ -672,3 +834,129 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
     </div>
   );
 }
+      </section>
+
+      {/* 3步诊断 Modal */}
+      {diagnoseOpen && (
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-[#1a1a2e]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-8 max-w-lg w-full relative">
+            <button onClick={() => { setDiagnoseOpen(false); setDiagnoseStep(0); setDiagnoseAnswers({}); }} className="absolute top-4 right-4 text-gray-500 hover:text-white transition text-lg">✕</button>
+            <h3 className="text-2xl font-bold mb-1">3步找到你的AI产品</h3>
+            <p className="text-gray-400 text-sm mb-6">3个问题，精准匹配最适合你的方案</p>
+            {diagnoseStep < 3 ? (
+              <>
+                <div className="flex gap-2 mb-6">
+                  {diagnoseQuestions.map((_, i) => (
+                    <div key={i} className={"h-1 flex-1 rounded-full transition-all " + (i <= diagnoseStep ? "bg-gradient-to-r from-[#00f0ff] to-[#7b2fbe]" : "bg-white/10")} />
+                  ))}
+                </div>
+                <p className="text-lg font-semibold mb-1">{diagnoseQuestions[diagnoseStep].text}</p>
+                <div className="space-y-2 mb-6">
+                  {diagnoseQuestions[diagnoseStep].options.map((opt) => {
+                    const selected = diagnoseAnswers[diagnoseQuestions[diagnoseStep].id] === opt.value;
+                    return (
+                      <button key={opt.value} onClick={() => setDiagnoseAnswers((a) => ({ ...a, [diagnoseQuestions[diagnoseStep].id]: opt.value }))}
+                        className={"w-full p-3 rounded-xl text-sm text-left transition-all cursor-pointer " + (selected ? "bg-gradient-to-r from-[#00f0ff]/20 to-[#7b2fbe]/20 border border-[#00f0ff]/30" : "bg-white/5 border border-white/10 hover:border-white/30")}>
+                        {opt.label}
+                      </button>
+                    );
+                  })}
+                </div>
+                <div className="flex gap-3">
+                  {diagnoseStep > 0 && <button onClick={() => setDiagnoseStep((s) => s - 1)} className="flex-1 py-3 border border-white/15 rounded-xl text-gray-400 hover:bg-white/5 transition cursor-pointer text-sm">上一步</button>}
+                  <button onClick={() => { if (diagnoseAnswers[diagnoseQuestions[diagnoseStep].id]) setDiagnoseStep((s) => s + 1); }} disabled={!diagnoseAnswers[diagnoseQuestions[diagnoseStep].id]}
+                    className={"flex-1 py-3 rounded-xl font-medium transition text-sm cursor-pointer " + (diagnoseAnswers[diagnoseQuestions[diagnoseStep].id] ? "bg-gradient-to-r from-[#00f0ff] to-[#7b2fbe] text-black" : "bg-white/10 text-gray-600")}>下一步 →</button>
+                </div>
+              </>
+            ) : (
+              <div>
+                <div className="text-center mb-6">
+                  <div className="text-4xl mb-2">🎯</div>
+                  <p className="text-gray-400 text-sm">根据你的回答，为你推荐以下方案</p>
+                </div>
+                {getMatchedProducts().map((p) => (
+                  <a key={p.id} href={"/product_detail.html?id=" + p.id} className="block glass rounded-xl p-4 mb-3 hover:neon-border transition-all no-underline">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">{p.icon}</span>
+                      <div className="flex-1">
+                        <div className="font-semibold text-white text-sm">{p.name}</div>
+                        <div className="text-xs text-gray-500 mt-0.5">{p.desc}</div>
+                        <div className="text-xs text-[#00f0ff] mt-1">{p.price}</div>
+                      </div>
+                    </div>
+                  </a>
+                ))}
+                <button onClick={() => { setDiagnoseOpen(false); setShowForm(true); }} className="w-full mt-4 py-3 bg-gradient-to-r from-[#00f0ff] to-[#7b2fbe] text-black font-semibold rounded-xl hover:shadow-xl transition text-sm cursor-pointer">
+                  预约专家咨询 →
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+        {/* 产品对比栏 */}
+        {compareList.length > 0 && (
+          <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#0a0e27]/95 backdrop-blur-xl border-t border-white/10 p-3">
+            <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
+              <div className="flex gap-2 flex-wrap">
+                {compareList.map((id) => {
+                  const p = heroProducts.find((x) => x.id === id);
+                  return p ? <span key={id} className="text-xs px-3 py-1 bg-white/10 rounded-full text-white">{p.icon} {p.name} <button onClick={() => toggleCompare(id)} className="ml-1 text-gray-500 hover:text-white">✕</button></span> : null;
+                })}
+              </div>
+              <div className="flex gap-2 shrink-0">
+                <button onClick={() => setCompareList([])} className="px-3 py-1.5 border border-white/15 rounded-lg text-xs text-gray-400 hover:bg-white/5 cursor-pointer">清空</button>
+                {compareList.length >= 2 && (
+                  <button onClick={() => setShowCompare(true)} className="px-4 py-1.5 bg-gradient-to-r from-[#00f0ff] to-[#7b2fbe] text-black rounded-lg text-xs font-semibold cursor-pointer">对比 {compareList.length} 款产品</button>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* 产品对比 Modal */}
+        {showCompare && compareList.length >= 2 && (
+          <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+            <div className="bg-[#1a1a2e]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-6 max-w-4xl w-full relative max-h-[85vh] overflow-auto">
+              <button onClick={() => setShowCompare(false)} className="absolute top-4 right-4 text-gray-500 hover:text-white transition text-lg">✕</button>
+              <h3 className="text-xl font-bold mb-6">产品对比</h3>
+              <div className="overflow-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-white/10">
+                      <th className="text-left py-3 pr-4 text-gray-500 font-medium w-28">对比项</th>
+                      {compareList.map((id) => {
+                        const p = heroProducts.find((x) => x.id === id);
+                        return <th key={id} className="text-left py-3 px-3 font-semibold text-white">{p?.icon} {p?.name}</th>;
+                      })}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[["价格", "price"], ["分类", "cat"], ["描述", "desc"]].map(([label, key]) => (
+                      <tr key={key} className="border-b border-white/5">
+                        <td className="py-3 pr-4 text-gray-500 text-xs">{label}</td>
+                        {compareList.map((id) => {
+                          const p = heroProducts.find((x) => x.id === id);
+                          return <td key={id} className="py-3 px-3 text-gray-300 text-xs">{p?.[key as keyof typeof p]?.toString() || "-"}</td>;
+                        })}
+                      </tr>
+                    ))}
+                    <tr className="border-b border-white/5">
+                      <td className="py-3 pr-4 text-gray-500 text-xs">ROI</td>
+                      {compareList.map((id) => {
+                        const m = productMeta[id];
+                        return <td key={id} className="py-3 px-3 text-green-400 text-xs font-medium">{m?.roi || "-"}</td>;
+                      })}
+                    </tr>
+                    <tr>
+                      <td className="py-3 pr-4 text-gray-500 text-xs">操作</td>
+                      {compareList.map((id) => (
+                        <td key={id} className="py-3 px-3"><a href={"/product_detail.html?id=" + id} className="text-[#00f0ff] text-xs hover:underline">查看详情 →</a></td>
+                      ))}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        )}
