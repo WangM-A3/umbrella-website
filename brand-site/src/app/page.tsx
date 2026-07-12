@@ -834,7 +834,6 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
     </div>
   );
 }
-      </section>
 
       {/* 3步诊断 Modal */}
       {diagnoseOpen && (
