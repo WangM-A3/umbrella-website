@@ -273,7 +273,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
             <span>📊 今日活跃 <strong className="text-[#00f0ff] text-lg">{todayActive}</strong> 家</span>
             <span className="flex items-center gap-1.5">
               <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-              <span className="text-gray-500 text-xs">实时</span><div class="bg-white/5 text-gray-600 text-[10px] px-1.5 py-0.5 rounded ml-1 inline-block">demo</div>
+              <span className="text-gray-500 text-xs">实时</span><div className="bg-white/5 text-gray-600 text-[10px] px-1.5 py-0.5 rounded ml-1 inline-block">demo</div>
             </span>
           </div>
 
@@ -807,7 +807,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
           <span>📱 微信：13336021626</span>
           <span>📢 公众号：海和汇</span>
           <span>📧 邮箱：577726281@qq.com</span>
-          <a href="/privacy.html" class="hover:text-gray-400 transition">📄 隐私政策</a>
+          <a href="/privacy.html" className="hover:text-gray-400 transition">📄 隐私政策</a>
         </div>
         <div className="text-xs text-gray-600">
           © 2026 NEXUS · AI转型，只看结果
