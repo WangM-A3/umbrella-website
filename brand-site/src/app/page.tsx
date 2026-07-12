@@ -831,9 +831,6 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
           </div>
         </div>
       )}
-    </div>
-  );
-}
 
       {/* 3步诊断 Modal */}
       {diagnoseOpen && (
@@ -959,3 +956,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
             </div>
           </div>
         )}
+
+    </div>
+  );
+}
