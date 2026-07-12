@@ -65,7 +65,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
  ];
  
  const faqs = [
-  { q: "按结果付费具体怎么执行？", a: "我们与客户共同设定可量化的KPI目标（如线索量、ROI等），达成目标后收取服务费，未达成不收费。" },
+  { q: "按效果付费具体怎么执行？", a: "我们与客户共同设定可量化的KPI目标（如线索量、ROI等），达成目标后收取服务费，未达成不收费。" },
    { q: "部署一个AI智能体需要多久？", a: "标准场景3周内完成部署和验证，复杂场景根据需求定制，一般在1-2个月。" },
    { q: "数据安全如何保障？", a: "支持私有化部署，数据不出企业内网，通过AIP国标和GDPR等多项合规认证。" },
  ];
@@ -225,7 +225,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
   
   const filteredProducts = activeCategory === "全部" ? heroProducts : heroProducts.filter(p => p.cat === activeCategory);
   const allCategories = ["全部", ...new Set(heroProducts.map(p => p.cat))];
-  const totalClients = 2847 + liveData;
+  const totalClients = 800 + Math.floor(liveData * 0.3);
   const totalCalls = Math.floor((142 + liveData) * 1.7);
   const todayActive = Math.floor(liveData / 2) + 47;
 
@@ -237,9 +237,12 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
       <nav className="flex justify-between items-center px-8 py-5 border-b border-white/5 max-w-6xl mx-auto">
         <div className="text-xl font-bold tracking-tight">NEXUS</div>
         <div className="flex items-center gap-6 text-sm text-gray-400">
-          <a href="/solutions.html" className="hover:text-white transition text-sm cursor-pointer">产品矩阵</a>
           <a href="/platform.html" className="hover:text-white transition text-sm cursor-pointer">运营平台</a>
+          <button onClick={() => { setDiagnoseOpen(true); setDiagnoseStep(0); setDiagnoseAnswers({}); }} className="hover:text-[#00f0ff] transition text-sm cursor-pointer">🎯 AI诊断</button>
+          <a href="/solutions.html" className="hover:text-white transition text-sm cursor-pointer">产品矩阵</a>
+          <button onClick={() => scrollTo("free-trial")} className="hover:text-white transition text-sm cursor-pointer">免费试用</button>
           <button onClick={() => scrollTo("pricing")} className="hover:text-white transition text-sm cursor-pointer">定价</button>
+          <a href="/product_detail.html?id=skills-api" className="hover:text-white transition text-sm cursor-pointer">API文档</a>
           <button onClick={() => { setDiagnoseOpen(true); setDiagnoseStep(0); setDiagnoseAnswers({}); }} className="hover:text-[#00f0ff] transition text-sm cursor-pointer">🎯 AI诊断</button>
           <button onClick={() => scrollTo("geo")} className="hover:text-[#00f0ff] transition text-sm cursor-pointer">🌐 GEO</button>
           <button onClick={() => scrollTo("roi")} className="hover:text-white transition text-sm cursor-pointer">ROI计算</button>
@@ -270,7 +273,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
             <span>📊 今日活跃 <strong className="text-[#00f0ff] text-lg">{todayActive}</strong> 家</span>
             <span className="flex items-center gap-1.5">
               <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-              <span className="text-gray-500 text-xs">实时</span>
+              <span className="text-gray-500 text-xs">实时</span><div class="bg-white/5 text-gray-600 text-[10px] px-1.5 py-0.5 rounded ml-1 inline-block">demo</div>
             </span>
           </div>
 
@@ -289,7 +292,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
 
           {/* Trust badges */}
           <div className="flex flex-wrap gap-6 mt-6 text-xs text-gray-500">
-            <span>✓ 按结果付费</span>
+            <span>✓ 按效果付费</span>
             <span>✓ 无效果不计费</span>
             <span>✓ 15款可运营产品</span>
           </div>
@@ -415,7 +418,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
         <div className="text-center mb-12">
           <span className="text-[#00f0ff] text-sm tracking-widest">WORK</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2">客户案例</h2>
-          <p className="text-gray-400 mt-2">按结果付费的真实效果</p>
+          <p className="text-gray-400 mt-2">按效果付费的真实效果</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {cases.map((c, i) => (
@@ -450,6 +453,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
               <span className="text-[10px] text-gray-600 font-mono">{s.step}</span>
               <h3 className="font-bold text-white mt-1">{s.title}</h3>
               <p className="text-xs text-gray-500 mt-2">{s.desc}</p>
+              {s.title === "诊断" && <button onClick={() => { setDiagnoseOpen(true); setDiagnoseStep(0); setDiagnoseAnswers({}); }} className="mt-3 text-[11px] text-[#00f0ff] hover:underline cursor-pointer">开始诊断 →</button>}
               {i < processSteps.length - 1 && (
                 <div className="hidden md:block absolute top-1/2 -right-2 text-gray-700 text-xl">→</div>
               )}
@@ -531,6 +535,17 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
         </div>
       </section>
 
+
+      {/* About */}
+      <section className="max-w-6xl mx-auto px-8 py-20 border-t border-white/5">
+        <div className="max-w-3xl mx-auto text-center">
+          <span className="text-[#00f0ff] text-sm tracking-widest">ABOUT</span>
+          <h2 className="text-3xl md:text-4xl font-bold mt-2">关于我们</h2>
+          <p className="text-gray-400 mt-4 leading-relaxed text-sm">NEXUS 专注于AI Agent架构与商业落地，为出海企业提供全链路AI解决方案。</p>
+          <div className="flex flex-wrap justify-center gap-8 mt-8"><div><div className="text-2xl font-bold text-[#00f0ff]">5+</div><div className="text-xs text-gray-500 mt-1">年AI经验</div></div><div><div className="text-2xl font-bold text-[#00f0ff]">15</div><div className="text-xs text-gray-500 mt-1">款产品</div></div><div><div className="text-2xl font-bold text-[#00f0ff]">800+</div><div className="text-xs text-gray-500 mt-1">服务企业</div></div></div>
+        </div>
+      </section>
+
       {/* GEO 健康度检测 + 自测工具 */}
       <section className="max-w-6xl mx-auto px-8 py-20 border-t border-white/5" id="geo">
         <div className="text-center mb-10">
@@ -587,7 +602,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
             <div className="mt-5 pt-4 border-t border-white/5 flex items-center justify-between">
               <span className="text-sm text-gray-400">综合评分</span>
               <div className="flex items-center gap-3">
-                <div className="w-24 h-2 bg-white/10 rounded-full overflow-hidden"><div className="h-full w-[62%] bg-gradient-to-r from-[#00f0ff] to-[#7b2fbe] rounded-full"></div></div>
+                <div className="w-24 h-2 bg-white/10 rounded-full overflow-hidden"><div className="h-full w-[82%] bg-gradient-to-r from-[#00f0ff] to-[#7b2fbe] rounded-full"></div></div>
                 <span className="text-lg font-bold text-white">62</span><span className="text-xs text-gray-600">/100</span>
               </div>
             </div>
@@ -661,7 +676,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
       </section>
 
       {/* 预约专家 - id for smooth scroll */}
-      <section id="booking-form" className="max-w-6xl mx-auto px-8 py-16 border-t border-white/5">
+      <section id="free-trial" className="max-w-6xl mx-auto px-8 py-16 border-t border-white/5">
         <div className="max-w-lg mx-auto">
           <div className="text-center mb-8">
             <span className="text-[#00f0ff] text-sm tracking-widest">BOOKING</span>
@@ -751,8 +766,9 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
           <h3 className="text-2xl font-bold text-white">TradeV6 运营管理平台</h3>
           <p className="text-gray-400 text-sm mt-2 max-w-lg mx-auto">买家管理 · 模板排名 · Agent状态 · 巡检历史 · 实时WebSocket看板</p>
           <span className="inline-block mt-4 px-6 py-2.5 bg-gradient-to-r from-[#00f0ff] to-[#7b2fbe] text-black rounded-full font-medium text-sm">
-            进入运营平台 →
+          进入运营平台 →
           </span>
+          <p className="text-xs text-gray-500 mt-4">需要演示环境？<button onClick={() => setShowForm(true)} className="text-[#00f0ff] hover:underline cursor-pointer bg-transparent border-none text-xs">预约演示 →</button></p>
         </a>
       </section>
 
@@ -767,7 +783,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
                 {isOnline ? "在线 · 立即咨询" : "离线 · 留言后联系"}
               </span>
             </div>
-            <p className="text-gray-500 text-sm mt-1">按结果付费 · 无效果不计费</p>
+            <p className="text-gray-500 text-sm mt-1">按效果付费 · 无效果不计费</p>
           </div>
           <div className="flex flex-wrap gap-3">
             <button onClick={() => setShowForm(true)} className="px-6 py-3 bg-[#00f0ff] text-black rounded-full font-medium hover:shadow-lg hover:shadow-[#00f0ff]/20 transition-all">
@@ -791,6 +807,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
           <span>📱 微信：13336021626</span>
           <span>📢 公众号：海和汇</span>
           <span>📧 邮箱：577726281@qq.com</span>
+          <a href="/privacy.html" class="hover:text-gray-400 transition">📄 隐私政策</a>
         </div>
         <div className="text-xs text-gray-600">
           © 2026 NEXUS · AI转型，只看结果
