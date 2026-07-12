@@ -940,7 +940,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
                     <tr className="border-b border-white/5">
                       <td className="py-3 pr-4 text-gray-500 text-xs">ROI</td>
                       {compareList.map((id) => {
-                        const m = productMeta[id];
+                        const m = (productMeta as any)[id];
                         return <td key={id} className="py-3 px-3 text-green-400 text-xs font-medium">{m?.roi || "-"}</td>;
                       })}
                     </tr>
