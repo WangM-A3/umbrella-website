@@ -225,9 +225,9 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
   
   const filteredProducts = activeCategory === "全部" ? heroProducts : heroProducts.filter(p => p.cat === activeCategory);
   const allCategories = ["全部", ...new Set(heroProducts.map(p => p.cat))];
-  const totalClients = 800 + Math.floor(liveData * 0.3);
-  const totalCalls = Math.floor((142 + liveData) * 1.7);
-  const todayActive = Math.floor(liveData / 2) + 47;
+  const totalClients = 2849 + Math.floor(liveData * 0.05);
+  const totalCalls = 244 + Math.floor(liveData * 0.02);
+  const todayActive = 48 + Math.floor(liveData * 0.1);
 
   return (
     <div className="min-h-screen bg-[#0a0e27] text-white font-sans">
@@ -542,7 +542,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
           <span className="text-[#00f0ff] text-sm tracking-widest">ABOUT</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2">关于我们</h2>
           <p className="text-gray-400 mt-4 leading-relaxed text-sm">NEXUS 专注于AI Agent架构与商业落地，为出海企业提供全链路AI解决方案。</p>
-          <div className="flex flex-wrap justify-center gap-8 mt-8"><div><div className="text-2xl font-bold text-[#00f0ff]">5+</div><div className="text-xs text-gray-500 mt-1">年AI经验</div></div><div><div className="text-2xl font-bold text-[#00f0ff]">15</div><div className="text-xs text-gray-500 mt-1">款产品</div></div><div><div className="text-2xl font-bold text-[#00f0ff]">800+</div><div className="text-xs text-gray-500 mt-1">服务企业</div></div></div>
+          <div className="flex flex-wrap justify-center gap-8 mt-8"><div><div className="text-2xl font-bold text-[#00f0ff]">5+</div><div className="text-xs text-gray-500 mt-1">年AI经验</div></div><div><div className="text-2xl font-bold text-[#00f0ff]">15</div><div className="text-xs text-gray-500 mt-1">款产品</div></div><div><div className="text-2xl font-bold text-[#00f0ff]">2849</div><div className="text-xs text-gray-500 mt-1">服务企业</div></div></div>
         </div>
       </section>
 
