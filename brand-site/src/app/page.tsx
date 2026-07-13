@@ -20,6 +20,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
    { id: "crossborder-cmpl", icon: "🌪", name: "跨境数据合规", desc: "GDPR · CCPA · 跨境数据流动管控", price: "¥10-40万/年", cat: "合规安全" },
    { id: "ai-solution-gen", icon: "📫", name: "AI Solution Gen", desc: "5个标准Agent · 全链路方案自动生成", price: "¥3-10万/次", cat: "行业方案" },
   { id: "scifi-select", icon: "🚌", name: "科幻IP选品", desc: "Reddit挖掘 → AI创意分析 → 供应链匹配", price: "¥2-5万/月", cat: "内容创意" },
+  { id: "bid-compliance", icon: "📋", name: "招标AI检测", desc: "响应发改委195号文 · 招标文件合规性自动检测 · AI+规则双引擎", price: "按需定价", cat: "合规安全" },
 ];
  
  const productMeta /*: Record<string, {roi:string, tags:string[], testimonial:string}>*/ = {
@@ -34,10 +35,11 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
    "compliance-mw": { roi: "合规成本降低60%", tags: ["监管合规","医疗","FDA"], testimonial: "通过FDA 510(k)审查" },
    "crossborder-cmpl": { roi: "覆盖30+国家", tags: ["GDPR","数据合规","出海"], testimonial: "欧盟数据保护官推荐" },
    "ai-solution-gen": { roi: "1周出完整方案", tags: ["方案生成","AI咨询","ROI测算"], testimonial: "方案输出效率提升5倍" },
-   "scifi-select": { roi: "选品成功率85%", tags: ["数据挖掘","趋势预测","选品"], testimonial: "准确发现爆款IP" },
- };
+  "scifi-select": { roi: "选品成功率85%", tags: ["数据挖掘","趋势预测","选品"], testimonial: "准确发现爆款IP" },
+  "bid-compliance": { roi: "3分钟出报告 · 覆盖5大维度", tags: ["招标","合规","AI检测"], testimonial: "检测准确率92%" },
+};
  
- const industries = ["跨境电商", "智能制造", "品牌零售", "金融科技", "医疗健康", "教育培训"];
+  const industries = ["跨境电商", "智能制造", "品牌零售", "金融科技", "医疗健康", "教育培训"];
  
  const testimonials = [
    { text: "通过NEXUS的AI方案，我们的外贸线索量翻了3倍", author: "某跨境企业CTO" },
@@ -240,9 +242,10 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
           <a href="/platform.html" className="hover:text-white transition text-sm cursor-pointer">运营平台</a>
           <button onClick={() => { setDiagnoseOpen(true); setDiagnoseStep(0); setDiagnoseAnswers({}); }} className="hover:text-[#00f0ff] transition text-sm cursor-pointer">🎯 AI诊断</button>
           <a href="/solutions.html" className="hover:text-white transition text-sm cursor-pointer">产品矩阵</a>
-          <button onClick={() => scrollTo("free-trial")} className="hover:text-white transition text-sm cursor-pointer">免费试用</button>
-          <button onClick={() => scrollTo("pricing")} className="hover:text-white transition text-sm cursor-pointer">定价</button>
-          <a href="/product_detail.html?id=skills-api" className="hover:text-white transition text-sm cursor-pointer">API文档</a>
+         <button onClick={() => scrollTo("free-trial")} className="hover:text-white transition text-sm cursor-pointer">免费试用</button>
+         <button onClick={() => scrollTo("pricing")} className="hover:text-white transition text-sm cursor-pointer">定价</button>
+          <a href="/bid-check.html" className="hover:text-[#00f0ff] transition text-sm cursor-pointer">📋 招标检测</a>
+         <a href="/product_detail.html?id=skills-api" className="hover:text-white transition text-sm cursor-pointer">API文档</a>
           <button onClick={() => { setDiagnoseOpen(true); setDiagnoseStep(0); setDiagnoseAnswers({}); }} className="hover:text-[#00f0ff] transition text-sm cursor-pointer">🎯 AI诊断</button>
           <button onClick={() => scrollTo("geo")} className="hover:text-[#00f0ff] transition text-sm cursor-pointer">🌐 GEO</button>
           <button onClick={() => scrollTo("roi")} className="hover:text-white transition text-sm cursor-pointer">ROI计算</button>
