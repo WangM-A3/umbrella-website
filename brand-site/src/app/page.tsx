@@ -246,7 +246,6 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
          <button onClick={() => scrollTo("pricing")} className="hover:text-white transition text-sm cursor-pointer">定价</button>
           <a href="/bid-check.html" className="hover:text-[#00f0ff] transition text-sm cursor-pointer">📋 招标检测</a>
          <a href="/product_detail.html?id=skills-api" className="hover:text-white transition text-sm cursor-pointer">API文档</a>
-          <button onClick={() => { setDiagnoseOpen(true); setDiagnoseStep(0); setDiagnoseAnswers({}); }} className="hover:text-[#00f0ff] transition text-sm cursor-pointer">🎯 AI诊断</button>
           <button onClick={() => scrollTo("geo")} className="hover:text-[#00f0ff] transition text-sm cursor-pointer">🌐 GEO</button>
           <button onClick={() => scrollTo("roi")} className="hover:text-white transition text-sm cursor-pointer">ROI计算</button>
           <button onClick={() => setShowForm(true)} className="px-4 py-2 border border-white/20 rounded-full text-white hover:bg-white/10 transition">
