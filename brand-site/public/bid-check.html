@@ -1,160 +1,348 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>NEXUS · 招标AI检测</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0a1a;color:#e0e0ff;font-family:-apple-system,PingFang SC,Microsoft YaHei,sans-serif;min-height:100vh}
-.navbar{padding:14px 32px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.06);background:rgba(10,10,26,.9);backdrop-filter:blur(12px);flex-wrap:wrap;gap:10px}
-.logo{font-size:20px;font-weight:700;background:linear-gradient(135deg,#00f0ff,#7b2fbe);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.logo a{text-decoration:none;color:inherit}
-.nav-links{display:flex;gap:16px;align-items:center}
-.nav-links a{color:rgba(255,255,255,.4);text-decoration:none;font-size:14px;transition:color .2s}
-.nav-links a:hover{color:#00f0ff}
-.wrapper{max-width:960px;margin:0 auto;padding:30px 24px 60px}
-.hero{text-align:center;padding:20px 0 28px}
-.hero h1{font-size:32px;font-weight:700;background:linear-gradient(135deg,#00f0ff,#7b2fbe);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:rgba(255,255,255,.3);margin-top:6px;font-size:14px}
-.dims{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:16px 0 24px}
-.dim{background:rgba(0,255,255,.06);border:1px solid rgba(0,255,255,.1);border-radius:20px;padding:4px 14px;font-size:11px;color:#00f0ff}
-.card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:14px;padding:24px;margin-bottom:16px}
-.card h3{font-size:15px;font-weight:600;margin-bottom:8px}
-textarea{width:100%;min-height:180px;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.08);border-radius:10px;color:#e0e0ff;padding:14px;font-size:13px;font-family:inherit;resize:vertical;line-height:1.6}
-textarea:focus{outline:none;border-color:rgba(0,240,255,.3)}
-.btn{padding:10px 28px;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:all .3s}
-.btn-primary{background:linear-gradient(135deg,#00f0ff,#7b2fbe);color:#0a0a1a}
-.btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(0,240,255,.15)}
-.btn-secondary{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.5)}
-.btn-secondary:hover{border-color:rgba(0,240,255,.2)}
-.results{margin-top:16px}
-.result-item{padding:14px 18px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:10px;margin-bottom:8px;transition:all .2s}
-.result-item:hover{background:rgba(255,255,255,.04);border-color:rgba(0,240,255,.08)}
-.level-high{border-left:3px solid #ff4757}
-.level-mid{border-left:3px solid #ffa502}
-.level-low{border-left:3px solid #2ed573}
-.r-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px}
-.r-cat{font-size:11px;padding:2px 10px;border-radius:10px;background:rgba(0,240,255,.06);color:#00f0ff}
-.r-level{font-size:11px;padding:2px 10px;border-radius:10px;font-weight:600}
-.r-level.high{background:rgba(255,71,87,.12);color:#ff4757}
-.r-level.mid{background:rgba(255,165,2,.12);color:#ffa502}
-.r-level.low{background:rgba(46,213,115,.12);color:#2ed573}
-.r-desc{font-size:13px;margin-top:4px}
-.r-detail{font-size:12px;color:rgba(255,255,255,.3);margin-top:4px;line-height:1.5}
-.r-legal{font-size:11px;color:rgba(0,240,255,.4);margin-top:4px;font-style:italic}
-.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
-.s-item{background:rgba(255,255,255,.03);border-radius:10px;padding:14px;text-align:center}
-.s-num{font-size:28px;font-weight:700}
-.s-label{font-size:11px;color:rgba(255,255,255,.3);margin-top:2px}
-.ok-state{text-align:center;padding:40px 20px;color:rgba(255,255,255,.2)}
-.ok-state .icon{font-size:48px;margin-bottom:8px}
-.spinner{display:none;text-align:center;padding:20px}
-.spinner.active{display:block}
-.spinner .ring{width:32px;height:32px;border:3px solid rgba(0,240,255,.1);border-top:3px solid #00f0ff;border-radius:50%;animation:s .8s linear infinite;margin:0 auto}
-@keyframes s{to{transform:rotate(360deg)}}
-@media(max-width:640px){.navbar{padding:12px 16px}.wrapper{padding:16px}.summary{grid-template-columns:repeat(2,1fr)}.hero h1{font-size:24px}}
-</style></head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS · 招标AI工具箱</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a1a;
+            --bg-secondary: #12122a;
+            --bg-card: #1a1a3e;
+            --bg-card-hover: #222260;
+            --accent: #00ffff;
+            --accent-dim: #00aaaa;
+            --accent-glow: rgba(0, 255, 255, 0.15);
+            --text-primary: #e0e0ff;
+            --text-secondary: #8888aa;
+            --text-muted: #555577;
+            --border: #2a2a55;
+            --success: #00ff88;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 导航 */
+        .navbar-nexus {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 32px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .navbar-nexus .logo { display: flex; align-items: center; gap: 12px; }
+        .navbar-nexus .logo-icon {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dim));
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
+            font-weight: 900; font-size: 18px; color: var(--bg-primary);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+        .navbar-nexus .logo-text { font-size: 18px; font-weight: 700; letter-spacing: 1px; }
+        .navbar-nexus .logo-text .accent { color: var(--accent); }
+        .navbar-nexus .logo-text .sub { color: var(--text-secondary); font-weight: 400; font-size: 14px; }
+        .nav-links { display: flex; gap: 8px; }
+        .nav-link {
+            color: var(--text-secondary); text-decoration: none; font-size: 14px;
+            padding: 6px 16px; border-radius: 8px; transition: all 0.3s;
+        }
+        .nav-link:hover { color: var(--accent); background: var(--bg-card); }
+        .nav-link.active { color: var(--accent); background: var(--bg-card); }
+
+        /* 主内容 */
+        .main-container {
+            flex: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 24px 80px;
+            width: 100%;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: var(--accent-glow);
+            border: 1px solid var(--accent-dim);
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+        .hero h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--accent), #66ddff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* 功能卡片 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px 32px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .feature-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent-dim);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 40px var(--accent-glow);
+        }
+        .feature-card:hover::before { opacity: 1; }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .feature-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        .feature-title .accent { color: var(--accent); }
+        .feature-desc {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+        .feature-points {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 24px;
+        }
+        .feature-points li {
+            padding: 6px 0;
+            font-size: 13px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .feature-points li::before {
+            content: '▸';
+            color: var(--accent-dim);
+        }
+        .feature-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .feature-card:hover .feature-cta {
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* 特性条 */
+        .features-bar {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            padding: 24px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 48px;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        .feature-item .dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        /* 统计 */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        .stat-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* 页脚 */
+        .footer {
+            text-align: center;
+            padding: 32px;
+            color: var(--text-muted);
+            font-size: 12px;
+            border-top: 1px solid var(--border);
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .feature-grid { grid-template-columns: 1fr; }
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .hero h1 { font-size: 30px; }
+            .main-container { padding: 32px 16px 60px; }
+        }
+    </style>
+</head>
 <body>
-<nav class="navbar"><div class="logo"><a href="/">NEXUS</a></div><div class="nav-links"><a href="/">首页</a><a href="/solutions.html">产品</a><a href="/platform.html">平台</a><a href="/" style="color:#00f0ff;">招标检测</a></div></nav>
-<div class="wrapper">
-<div class="hero"><h1>📋 招标文件合规检测</h1><p>客户端本地检测 · 不上传任何数据 · 响应发改委195号文</p>
-<div class="dims"><span class="dim">排斥限制竞争</span><span class="dim">违法违规条款</span><span class="dim">评标办法合规</span><span class="dim">错敏词检测</span><span class="dim">保证金/工期/付款</span></div></div>
 
-<div class="card"><h3>粘贴招标文件内容</h3>
-<textarea id="bidText" placeholder="在此粘贴招标文件原文（支持纯文本，建议粘贴完整文件内容）"></textarea>
-<div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
-<button class="btn btn-primary" onclick="runCheck()">🔍 开始检测</button>
-<button class="btn btn-secondary" onclick="document.getElementById('bidText').value='';document.getElementById('results').innerHTML=''">清除</button>
-</div></div>
+<!-- 导航 -->
+<nav class="navbar-nexus">
+    <div class="logo">
+        <div class="logo-icon">N</div>
+        <div class="logo-text">
+            <span class="accent">NEXUS</span> · 招标AI工具箱
+            <br><span class="sub">AI-Powered Tender Document Toolkit</span>
+        </div>
+    </div>
+    <div class="nav-links">
+        <a href="/" class="nav-link active">首页</a>
+        <a href="/check" class="nav-link">合规检测</a>
+        <a href="/bid" class="nav-link">投标生成</a>
+    </div>
+</nav>
 
-<div class="spinner" id="spinner"><div class="ring"></div><p style="font-size:13px;color:rgba(255,255,255,.3);margin-top:8px">正在分析...</p></div>
+<!-- 主内容 -->
+<div class="main-container">
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero-badge">🤖 AI驱动 · 大语言模型 + 规则引擎</div>
+        <h1>招标全流程AI工具箱</h1>
+        <p>从招标文件合规检测到投标文件智能生成，NEXUS为您提供一站式招投标AI解决方案。基于大语言模型深度理解招标文件，自动识别合规风险、提取需求要点、生成专业投标文件。</p>
+    </div>
 
-<div id="results"></div>
+    <!-- 特性条 -->
+    <div class="features-bar">
+        <div class="feature-item"><span class="dot"></span> AI深度分析</div>
+        <div class="feature-item"><span class="dot"></span> 规则引擎检测</div>
+        <div class="feature-item"><span class="dot"></span> 一键生成标书</div>
+        <div class="feature-item"><span class="dot"></span> 佐证材料管理</div>
+        <div class="feature-item"><span class="dot"></span> 多格式支持</div>
+    </div>
 
-<footer style="text-align:center;padding:20px;color:rgba(255,255,255,.06);font-size:12px;border-top:1px solid rgba(255,255,255,.03);margin-top:40px">NEXUS · 招标AI检测 · 结果仅供参考</footer>
+    <!-- 功能卡片 -->
+    <div class="feature-grid">
+        <!-- 合规检测 -->
+        <a href="/check" class="feature-card">
+            <div class="feature-icon">🔍</div>
+            <div class="feature-title">招标文件<span class="accent">合规检测</span></div>
+            <div class="feature-desc">基于AI大模型 + 规则引擎，对招标文件开展合规性、合理性、错敏词等多维度检测，自动识别违法违规和排斥限制竞争等问题。</div>
+            <ul class="feature-points">
+                <li>排斥限制竞争检测（地域/规模/品牌歧视）</li>
+                <li>违法违规条款识别（规避招标/串通投标）</li>
+                <li>评标办法合规性分析</li>
+                <li>保证金/工期/付款条件数值检测</li>
+                <li>错敏词与政治表述检查</li>
+                <li>一键生成PDF检测报告</li>
+            </ul>
+            <span class="feature-cta">开始检测 →</span>
+        </a>
+
+        <!-- 投标生成 -->
+        <a href="/bid" class="feature-card">
+            <div class="feature-icon">📝</div>
+            <div class="feature-title">AI<span class="accent">投标文件生成</span></div>
+            <div class="feature-desc">上传招标文件，AI自动解析需求并生成专业投标文件初稿。支持佐证材料管理，自动匹配材料清单，生成包含附件清单的完整标书。</div>
+            <ul class="feature-points">
+                <li>AI解析招标要求（资质/技术/商务/评分）</li>
+                <li>自动提取佐证材料清单</li>
+                <li>企业信息表单填写</li>
+                <li>多格式材料上传（文档/图片/视频）</li>
+                <li>技术方案逐条响应招标要求</li>
+                <li>生成标准格式.docx投标文件</li>
+            </ul>
+            <span class="feature-cta">开始生成 →</span>
+        </a>
+    </div>
+
+    <!-- 统计 -->
+    <div class="stats">
+        <div class="stat-item">
+            <div class="stat-value">2</div>
+            <div class="stat-label">核心功能</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">5+</div>
+            <div class="stat-label">检测维度</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">10</div>
+            <div class="stat-label">标书章节</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">4</div>
+            <div class="stat-label">材料格式</div>
+        </div>
+    </div>
 </div>
 
-<script>
-// ===== 规则引擎（从 rules.py 移植到 JavaScript）=====
-const EXCLUSION_PATTERNS = [
-  [/(?:投标人|供应商|中标人).{0,10}(?:须|应|必须|要求).{0,5}(?:本地|本省|本市|本市注册|本地注册|本地企业)/gi, '存在地域歧视条款，要求投标人为本地企业','《招标投标法实施条例》第三十二条第六项','删除地域限制要求','高'],
-  [/(?:仅限|优先考虑|优先选择).{0,5}(?:本地|本省|本市|本区).{0,5}(?:企业|供应商|公司|单位)/gi, '存在地域歧视条款，优先选择本地企业','《招标投标法》第五条','删除地域优先条款','高'],
-  [/(?:注册资本|注册资金).{0,5}(?:不低于|不少于|≥|大于|超过).{0,5}(\d+(?:\.\d+)?)\s*(?:万|亿元)/gi, '设置注册资本门槛，涉嫌规模歧视','《政府采购法实施条例》第十七条','删除注册资本要求','高'],
-  [/(?:营业收入|年营业额|年销售额).{0,5}(?:不低于|不少于|≥|大于|超过).{0,5}(\d+(?:\.\d+)?)\s*(?:万|亿元)/gi, '设置营业收入门槛，涉嫌规模歧视','《政府采购法实施条例》第十七条','删除营业收入要求','高'],
-  [/(?:须|应|必须|要求).{0,10}(?:采用|使用|选用|配备).{0,5}(?:指定品牌|特定品牌)/gi, '存在指定品牌条款，限制竞争','《招标投标法实施条例》第三十二条第三项','改为开放式技术要求','高'],
-  [/(?:投标保证金|履约保证金|保证金).{0,5}(?:必须|须|应).{0,5}(?:现金|银行转账|电汇).{0,10}(?:形式|方式)/gi, '限定保证金缴纳方式','《招标投标法实施条例》第二十六条','接受多种担保形式','中'],
-];
-const ILLEGAL_PATTERNS = [
-  [/(?:肢解|拆分|化整为零).{0,5}(?:项目|工程|采购|招标)/gi, '存在肢解项目规避招标表述','《招标投标法》第四条','不得将必须招标的项目肢解','高'],
-  [/(?:围标|串标|陪标|串通投标|事先约定)/gi, '存在串通投标相关表述','《招标投标法》第三十二条','删除相关表述','高'],
-  [/(?:评标|评审|打分).{0,10}(?:倾向|偏向|照顾|优先).{0,5}(?:特定|某|部分).{0,5}(?:投标人|供应商|企业)/gi, '评标条款存在倾向性表述','《招标投标法实施条例》第四十九条','评标标准应客观公正','高'],
-  [/(?:允许|可以|可).{0,5}(?:整体|全部).{0,5}(?:分包|转包)/gi, '允许整体分包/转包，违反法律规定','《招标投标法》第四十八条','禁止整体转包','高'],
-];
+<!-- 页脚 -->
+<div class="footer">
+    <p>NEXUS · 招标AI工具箱 | 基于规则引擎 + AI大语言模型 | 检测结果仅供参考，生成的投标文件为初稿，请人工审核后使用</p>
+</div>
 
-function checkDeposit(text) {
-  var r = [];
-  var m = text.match(/(?:投标保证金|投标担保).{0,20}?(\d+(?:\.\d+)?)\s*%/gi);
-  if (m) { r.push({level:'高',cat:'其他风险',desc:'投标保证金比例超过法定上限2%',legal:'《招标投标法实施条例》第二十六条',sug:'降至2%以内'}); }
-  m = text.match(/(?:履约保证金|履约担保).{0,20}?(\d+(?:\.\d+)?)\s*%/gi);
-  if (m) { r.push({level:'高',cat:'其他风险',desc:'履约保证金比例超过法定上限10%',legal:'《招标投标法实施条例》第五十八条',sug:'降至10%以内'}); }
-  return r;
-}
-function checkPeriod(text) {
-  var r = [];
-  var m = text.match(/(?:工期|施工工期|交货期).{0,10}?(\d+)\s*(?:个)?(?:天|日|日历天)/gi);
-  if (m) { r.push({level:'中',cat:'其他风险',desc:'工期过短可能不合理',legal:'《建设工程质量管理条例》',sug:'建议根据工程规模合理确定工期'}); }
-  return r;
-}
-function checkEval(text) {
-  var r = [];
-  var m = text.match(/(?:价格分|报价分).{0,20}?(\d+(?:\.\d+)?)\s*(?:分|%)/gi);
-  if (m) { r.push({level:'中',cat:'评标办法合规性',desc:'价格分占比可能过低',legal:'《评标委员会和评标方法暂行规定》第二十九条',sug:'建议提高价格分权重至30分以上'}); }
-  return r;
-}
-function checkSensitive(text) {
-  var r = [];
-  var words = {'国家主席':'使用完整称谓','总书记':'使用完整称谓','一带一路战略':'应为"一带一路倡议"','按装':'应为"安装"','帐户':'应为"账户"','登陆':'应为"登录"','签定':'应为"签订"'};
-  for (var w in words) { if (text.indexOf(w) > -1) { r.push({level:'低',cat:'错敏词检测',desc:'检测到"'+w+'" '+words[w],legal:'《通用规范汉字表》',sug:'修改为正确表述'}); } }
-  return r;
-}
-
-function runRules(text) {
-  var all = [];
-  EXCLUSION_PATTERNS.forEach(function(p) { var m; while ((m = p[0].exec(text)) !== null) { all.push({level:p[4],cat:'排斥限制竞争',desc:p[1],legal:p[2],sug:p[3],orig:m[0]}); } });
-  ILLEGAL_PATTERNS.forEach(function(p) { var m; while ((m = p[0].exec(text)) !== null) { all.push({level:p[4],cat:'违法违规条款',desc:p[1],legal:p[2],sug:p[3],orig:m[0]}); } });
-  all = all.concat(checkDeposit(text)).concat(checkPeriod(text)).concat(checkEval(text)).concat(checkSensitive(text));
-  var seen={}; return all.filter(function(i){var k=i.desc+i.orig.slice(0,20);if(seen[k])return false;seen[k]=true;return true});
-}
-
-function runCheck() {
-  var text = document.getElementById('bidText').value.trim();
-  if (!text || text.length < 50) { alert('请至少输入50字以上的招标文件内容'); return; }
-  document.getElementById('spinner').classList.add('active');
-  document.getElementById('results').innerHTML = '';
-  
-  setTimeout(function() {
-    document.getElementById('spinner').classList.remove('active');
-    var items = runRules(text);
-    var high = items.filter(function(i){return i.level==='高'}).length;
-    var mid = items.filter(function(i){return i.level==='中'}).length;
-    var low = items.filter(function(i){return i.level==='低'}).length;
-    
-    var h = '<div class="summary"><div class="s-item"><div class="s-num" style="color:#ff4757">'+high+'</div><div class="s-label">高风险</div></div>';
-    h += '<div class="s-item"><div class="s-num" style="color:#ffa502">'+mid+'</div><div class="s-label">中风险</div></div>';
-    h += '<div class="s-item"><div class="s-num" style="color:#2ed573">'+low+'</div><div class="s-label">低风险</div></div>';
-    h += '<div class="s-item"><div class="s-num" style="color:#00f0ff">'+(items.length)+'</div><div class="s-label">总计</div></div></div>';
-    
-    if (items.length === 0) {
-      h += '<div class="ok-state"><div class="icon">✅</div><div style="font-size:16px;color:rgba(255,255,255,.5)">未发现合规问题</div><div style="font-size:13px;color:rgba(255,255,255,.2);margin-top:4px">AI检测结果仅供参考，建议结合人工审查</div></div>';
-    } else {
-      items.forEach(function(it){
-        var lvlClass = it.level === '高' ? 'high' : it.level === '中' ? 'mid' : 'low';
-        h += '<div class="result-item level-'+lvlClass+'"><div class="r-head"><span class="r-cat">'+it.cat+'</span><span class="r-level '+lvlClass+'">'+it.level+'</span></div>';
-        h += '<div class="r-desc">'+it.desc+'</div>';
-        if (it.orig) h += '<div class="r-detail">原文：…'+it.orig.slice(0,60)+'…</div>';
-        h += '<div class="r-detail">建议：'+it.sug+'</div><div class="r-legal">依据：'+it.legal+'</div></div>';
-      });
-    }
-    document.getElementById('results').innerHTML = h;
-  }, 300);
-}
-</script>
-</body></html>
+</body>
+</html>
