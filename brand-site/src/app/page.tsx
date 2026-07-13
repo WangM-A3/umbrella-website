@@ -813,7 +813,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
           <a href="/privacy.html" className="hover:text-gray-400 transition">📄 隐私政策</a>
         </div>
         <div className="text-xs text-gray-600">
-          © 2026 NEXUS · AI转型，只看结果
+          © 2026 NEXUS · 杭州云旅科技 · 按效果付费
         </div>
       </footer>
 
