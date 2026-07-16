@@ -176,6 +176,14 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
   const [diagnoseAnswers, setDiagnoseAnswers] = useState<Record<string, string>>({});
   const [compareList, setCompareList] = useState<string[]>([]);
   const [showCompare, setShowCompare] = useState(false);
+  const [selectedBadge, setSelectedBadge] = useState<string | null>(null);
+  const badgeDetails: Record<string, {desc: string, detail: string}> = {
+    "AIP国标": { desc: "AI安全治理平台认证", detail: "通过国家AI安全治理标准（AIP）认证，确保平台在数据安全、算法透明、隐私保护等方面符合国家级规范。" },
+    "等保三级": { desc: "国家信息安全等级保护", detail: "通过国家信息安全等级保护三级认证，平台具备完善的网络安全防护体系，适用于政府、金融等高安全要求行业。" },
+    "GDPR/CCPA": { desc: "欧盟/加州数据合规", detail: "符合GDPR（通用数据保护条例）和CCPA（加州消费者隐私法案）要求，保障跨境数据处理合规性。" },
+    "FDA 510(k)": { desc: "医疗器械合规中间件", detail: "遵循FDA 510(k)医疗器械上市前通知要求，为医疗AI产品提供合规性检测与文档生成服务。" },
+    "国家高新技术企业": { desc: "国家级科技企业认定", detail: "获得国家高新技术企业认定，享受税收优惠与政策支持，体现企业在AI技术领域的创新能力。" },
+  };
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const toggleMenu = (menu: string) => setOpenMenu(openMenu === menu ? null : menu);
   const closeAllMenus = () => setOpenMenu(null);
@@ -1068,29 +1076,29 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
         <div className="max-w-6xl mx-auto px-8">
           <h3 className="text-center text-sm text-gray-500 mb-8 tracking-widest">资质与认证</h3>
           <div className="flex flex-wrap justify-center gap-8">
-            <div className="text-center group cursor-help">
-              <div className="text-2xl mb-1">&#x1F6E1;&#xFE0F;</div>
-              <div className="text-sm font-medium text-white">AIP国标</div>
+            <div className="text-center group cursor-pointer" onClick={() => setSelectedBadge("AIP国标")}>
+              <div className="text-2xl mb-1 transition-transform group-hover:scale-110">&#x1F6E1;&#xFE0F;</div>
+              <div className="text-sm font-medium text-white group-hover:text-[#00f0ff] transition-colors">AIP国标</div>
               <div className="text-xs text-gray-500 hidden group-hover:block">AI安全治理平台认证</div>
             </div>
-            <div className="text-center group cursor-help">
-              <div className="text-2xl mb-1">&#x1F512;</div>
-              <div className="text-sm font-medium text-white">等保三级</div>
+            <div className="text-center group cursor-pointer" onClick={() => setSelectedBadge("等保三级")}>
+              <div className="text-2xl mb-1 transition-transform group-hover:scale-110">&#x1F512;</div>
+              <div className="text-sm font-medium text-white group-hover:text-[#00f0ff] transition-colors">等保三级</div>
               <div className="text-xs text-gray-500 hidden group-hover:block">国家信息安全等级保护</div>
             </div>
-            <div className="text-center group cursor-help">
-              <div className="text-2xl mb-1">&#x1F30D;</div>
-              <div className="text-sm font-medium text-white">GDPR/CCPA</div>
+            <div className="text-center group cursor-pointer" onClick={() => setSelectedBadge("GDPR/CCPA")}>
+              <div className="text-2xl mb-1 transition-transform group-hover:scale-110">&#x1F30D;</div>
+              <div className="text-sm font-medium text-white group-hover:text-[#00f0ff] transition-colors">GDPR/CCPA</div>
               <div className="text-xs text-gray-500 hidden group-hover:block">欧盟/加州数据合规</div>
             </div>
-            <div className="text-center group cursor-help">
-              <div className="text-2xl mb-1">&#x1F52C;</div>
-              <div className="text-sm font-medium text-white">FDA 510(k)</div>
+            <div className="text-center group cursor-pointer" onClick={() => setSelectedBadge("FDA 510(k)")}>
+              <div className="text-2xl mb-1 transition-transform group-hover:scale-110">&#x1F52C;</div>
+              <div className="text-sm font-medium text-white group-hover:text-[#00f0ff] transition-colors">FDA 510(k)</div>
               <div className="text-xs text-gray-500 hidden group-hover:block">医疗器械合规中间件</div>
             </div>
-            <div className="text-center group cursor-help">
-              <div className="text-2xl mb-1">&#x1F3E2;</div>
-              <div className="text-sm font-medium text-white">国家高新技术企业</div>
+            <div className="text-center group cursor-pointer" onClick={() => setSelectedBadge("国家高新技术企业")}>
+              <div className="text-2xl mb-1 transition-transform group-hover:scale-110">&#x1F3E2;</div>
+              <div className="text-sm font-medium text-white group-hover:text-[#00f0ff] transition-colors">国家高新技术企业</div>
               <div className="text-xs text-gray-500 hidden group-hover:block">国家级科技企业认定</div>
             </div>
           </div>
@@ -1106,22 +1114,36 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
             我们倡议：AI项目应以结果为导向，未达目标不收费。这是对客户负责，也是对行业健康的承诺。
           </p>
           <div className="flex flex-wrap justify-center gap-6 text-sm">
-            <div className="glass rounded-xl px-6 py-4">
-              <div className="text-[#00f0ff] font-bold">L1-L5</div>
-              <div className="text-gray-500">AI成熟度模型</div>
-            </div>
-            <div className="glass rounded-xl px-6 py-4">
-              <div className="text-[#00f0ff] font-bold">2849+</div>
-              <div className="text-gray-500">已服务企业</div>
-            </div>
-            <div className="glass rounded-xl px-6 py-4">
-              <div className="text-[#00f0ff] font-bold">15款</div>
-              <div className="text-gray-500">可运营产品</div>
-            </div>
+            <a href="/diagnose" className="glass rounded-xl px-6 py-4 block hover:neon-border transition-all group no-underline">
+              <div className="text-[#00f0ff] font-bold group-hover:text-white transition-colors">L1-L5</div>
+              <div className="text-gray-500 group-hover:text-gray-300 transition-colors">AI成熟度模型</div>
+            </a>
+            <a href="/cases" className="glass rounded-xl px-6 py-4 block hover:neon-border transition-all group no-underline">
+              <div className="text-[#00f0ff] font-bold group-hover:text-white transition-colors">2849+</div>
+              <div className="text-gray-500 group-hover:text-gray-300 transition-colors">已服务企业</div>
+            </a>
+            <a href="/products" className="glass rounded-xl px-6 py-4 block hover:neon-border transition-all group no-underline">
+              <div className="text-[#00f0ff] font-bold group-hover:text-white transition-colors">15款</div>
+              <div className="text-gray-500 group-hover:text-gray-300 transition-colors">可运营产品</div>
+            </a>
           </div>
-          <a href="/whitepapers" className="inline-block mt-8 text-[#00f0ff] hover:underline">下载《企业AI落地白皮书》 &#x2192;</a>
+          <button onClick={() => setShowForm(true)} className="inline-block mt-8 text-[#00f0ff] hover:underline cursor-pointer bg-transparent border-none">下载《企业AI落地白皮书》 &#x2192;</button>
         </div>
       </section>
+
+      {/* Badge detail modal */}
+      {selectedBadge && badgeDetails[selectedBadge] && (
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={() => setSelectedBadge(null)}>
+          <div className="bg-[#1a1a2e]/95 backdrop-blur-xl border border-[#00f0ff]/30 rounded-2xl p-8 max-w-md w-full relative" onClick={(e) => e.stopPropagation()}>
+            <button onClick={() => setSelectedBadge(null)} className="absolute top-4 right-4 text-gray-500 hover:text-white transition text-lg">&#x2715;</button>
+            <div className="text-4xl mb-4">{badgeDetails[selectedBadge]?.icon || "&#x1F3C6;"}</div>
+            <h3 className="text-2xl font-bold mb-2">{selectedBadge}</h3>
+            <p className="text-sm text-[#00f0ff] mb-4">{badgeDetails[selectedBadge]?.desc}</p>
+            <p className="text-gray-300 text-sm leading-relaxed">{badgeDetails[selectedBadge]?.detail}</p>
+            <button onClick={() => { setSelectedBadge(null); setShowForm(true); }} className="mt-6 w-full py-2.5 bg-gradient-to-r from-[#00f0ff] to-[#7b2fbe] text-black font-semibold rounded-xl hover:shadow-xl transition-all text-sm">对此认证感兴趣？立即咨询</button>
+          </div>
+        </div>
+      )}
 
       {/* Form modal */}
       {showForm && (
