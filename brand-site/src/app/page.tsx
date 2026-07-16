@@ -176,6 +176,33 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
   const [diagnoseAnswers, setDiagnoseAnswers] = useState<Record<string, string>>({});
   const [compareList, setCompareList] = useState<string[]>([]);
   const [showCompare, setShowCompare] = useState(false);
+  const executionSteps = [
+    { icon: "🤖", title: "AI开始分析", desc: "接收客户需求，启动智能分析引擎", duration: 1000 },
+    { icon: "🔍", title: "搜索引擎查询", desc: "查找行业同类方案，分析最佳实践", duration: 1500 },
+    { icon: "📊", title: "数据分析", desc: "对比行业基准数据，识别痛点与机会", duration: 1200 },
+    { icon: "📝", title: "方案生成", desc: "根据分析结果，定制AI落地方案", duration: 1000 },
+    { icon: "✅", title: "方案完成", desc: "生成优化报告，输出推荐方案", duration: 800 },
+  ];
+  const [executionStep, setExecutionStep] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const executionTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const prevStepRef = useRef(0);
+
+  // DualPanel auto-play timer: restart whenever executionStep changes externally or on mount
+  useEffect(() => {
+    if (!isPlaying || executionStep >= executionSteps.length) {
+      if (executionStep >= executionSteps.length) setIsPlaying(false);
+      return;
+    }
+    executionTimerRef.current = setTimeout(() => {
+      setExecutionStep((prev) => prev + 1);
+    }, executionSteps[executionStep].duration);
+    return () => { if (executionTimerRef.current) clearTimeout(executionTimerRef.current); };
+  }, [executionStep, isPlaying]);
+
+  // Reset dualpanel when diagnose button is clicked
+  const startDiagnose = () => { setDiagnoseOpen(true); setDiagnoseStep(0); setDiagnoseAnswers({}); };
+  const startExecution = () => { setExecutionStep(0); setIsPlaying(true); };
   const bookingNameRef = useRef<HTMLInputElement>(null);
   const bookingCompanyRef = useRef<HTMLInputElement>(null);
   const bookingPhoneRef = useRef<HTMLInputElement>(null);
@@ -326,8 +353,11 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
             <button onClick={() => setShowForm(true)} className="px-6 py-3 bg-gradient-to-r from-[#00f0ff] to-[#7b2fbe] text-black font-semibold rounded-full hover:shadow-xl hover:shadow-[#00f0ff]/20 transition-all flex items-center gap-2 text-sm">
               获取AI落地方案 →
             </button>
+            <a href="/product_detail.html?id=skills-api" className="px-6 py-3 border border-white/15 rounded-full hover:bg-white/5 transition text-gray-300 flex items-center gap-2 cursor-pointer">
+              ⚡ 体验API/Skills
+            </a>
             <button onClick={() => { setDiagnoseOpen(true); setDiagnoseStep(0); setDiagnoseAnswers({}); }} className="px-6 py-3 border border-white/15 rounded-full hover:bg-white/5 transition text-gray-300 flex items-center gap-2 text-sm">
-              🎯 3步找到适合你的AI产品
+              🎯 3步AI诊断
             </button>
             <a href="/solutions.html" className="px-8 py-3.5 border border-white/15 rounded-full hover:bg-white/5 transition text-gray-300 flex items-center gap-2 cursor-pointer">
               🔍 浏览15款AI产品
@@ -446,6 +476,130 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
               <span className="text-[10px] px-2 py-1 bg-white/5 rounded text-gray-500">引擎优化</span>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* DualPanel: Transparent Operation Display */}
+      <section className="max-w-6xl mx-auto px-8 py-20 border-t border-white/5">
+        <div className="text-center mb-12">
+          <span className="text-[#00f0ff] text-sm tracking-widest">DEMO</span>
+          <h2 className="text-3xl md:text-4xl font-bold mt-2">透明化操作展示</h2>
+          <p className="text-gray-400 mt-2">模拟Manus AI风格：左侧对话 · 右侧实时操作回放</p>
+        </div>
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* Left Panel: Chat */}
+          <div className="glass rounded-2xl p-6 relative overflow-hidden" style={{minHeight: 340}}>
+            <div className="flex items-center gap-2 mb-4 border-b border-white/5 pb-3">
+              <span className="w-3 h-3 rounded-full bg-red-400/50"></span>
+              <span className="w-3 h-3 rounded-full bg-yellow-400/50"></span>
+              <span className="w-3 h-3 rounded-full bg-green-400/50"></span>
+              <span className="text-xs text-gray-500 ml-2">客户对话模拟</span>
+            </div>
+            <div className="space-y-3 min-h-[260px]">
+              <div className="flex justify-end">
+                <div className="bg-[#00f0ff]/10 border border-[#00f0ff]/20 rounded-2xl rounded-br-sm px-4 py-2 max-w-[80%]">
+                  <p className="text-sm text-gray-200">我需要优化外贸获客效率，有什么方案？</p>
+                </div>
+              </div>
+              {(executionStep >= 0) && (
+                <div className="flex justify-start">
+                  <div className="bg-white/5 border border-white/10 rounded-2xl rounded-bl-sm px-4 py-2 max-w-[80%]">
+                    <p className="text-sm text-gray-400">好的，我来分析您的业务场景...</p>
+                  </div>
+                </div>
+              )}
+              {(executionStep >= 1) && (
+                <div className="flex justify-start">
+                  <div className="bg-white/5 border border-white/10 rounded-2xl rounded-bl-sm px-4 py-2 max-w-[80%]">
+                    <p className="text-sm text-gray-400">正在搜索行业最佳实践...发现3个适配方案</p>
+                  </div>
+                </div>
+              )}
+              {(executionStep >= 3) && (
+                <div className="flex justify-start">
+                  <div className="bg-white/5 border border-white/10 rounded-2xl rounded-bl-sm px-4 py-2 max-w-[80%]">
+                    <p className="text-sm text-gray-400">建议方案：AI精准拓客系统，预计ROI 1:8</p>
+                  </div>
+                </div>
+              )}
+            </div>
+            <div className="mt-3 flex gap-2">
+              <input type="text" placeholder="输入需求..." className="flex-1 px-3 py-1.5 bg-white/5 rounded-lg border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#00f0ff]" />
+              <button className="px-3 py-1.5 bg-[#00f0ff]/20 text-[#00f0ff] rounded-lg text-sm">发送</button>
+            </div>
+          </div>
+
+          {/* Right Panel: Execution Timeline */}
+          <div className="glass rounded-2xl p-6" style={{minHeight: 340}}>
+            <div className="flex items-center justify-between mb-4 border-b border-white/5 pb-3">
+              <span className="text-xs text-gray-500">AI执行过程</span>
+              <div className="flex gap-2">
+                <button onClick={startExecution} className="px-3 py-1 text-xs bg-white/5 rounded-lg hover:bg-white/10 transition-colors cursor-pointer">🔄 重播</button>
+              </div>
+            </div>
+            <div className="space-y-2 min-h-[260px]">
+              {executionSteps.map((step, i) => (
+                <div key={i} className={"flex items-start gap-3 p-3 rounded-xl transition-all duration-300 " + (i === executionStep ? "bg-[#00f0ff]/5 border border-[#00f0ff]/20" : i < executionStep ? "bg-white/5" : "opacity-30")}>
+                  <span className={"text-lg mt-0.5 " + (i <= executionStep ? "" : "grayscale")}>{step.icon}</span>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <span className={"text-sm font-medium " + (i === executionStep ? "text-[#00f0ff]" : "text-white")}>{step.title}</span>
+                      {i === executionStep && <span className="w-1.5 h-1.5 bg-[#00f0ff] rounded-full animate-pulse"></span>}
+                      {i < executionStep && <span className="text-[10px] text-green-400">✓</span>}
+                    </div>
+                    <p className={"text-xs mt-0.5 " + (i <= executionStep ? "text-gray-400" : "text-gray-600")}>{step.desc}</p>
+                  </div>
+                </div>
+              ))}
+              {executionStep >= executionSteps.length && (
+                <div className="text-center pt-4">
+                  <span className="text-green-400 text-sm font-medium">✅ 方案生成完成</span>
+                  <button onClick={startExecution} className="block mx-auto mt-2 text-xs text-[#00f0ff] hover:underline cursor-pointer">重新模拟</button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* LiveDashboard */}
+      <section className="max-w-6xl mx-auto px-8 py-20 border-t border-white/5">
+        <div className="text-center mb-12">
+          <span className="text-[#00f0ff] text-sm tracking-widest">LIVE</span>
+          <h2 className="text-3xl md:text-4xl font-bold mt-2">NEXUS平台实时状态</h2>
+          <p className="text-gray-400 mt-2">今日API调用 · 活跃Agent · 实时询盘</p>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div className="glass rounded-xl p-4 text-center">
+            <div className="text-2xl font-bold text-[#00f0ff]">{totalCalls}k</div>
+            <div className="text-sm text-gray-500">今日API调用</div>
+            <div className="text-[10px] text-green-400 mt-1">+15% vs 昨日</div>
+          </div>
+          <div className="glass rounded-xl p-4 text-center">
+            <div className="text-2xl font-bold text-green-400">{Math.floor(todayActive * 0.3)}/15</div>
+            <div className="text-sm text-gray-500">活跃Agent</div>
+            <div className="text-[10px] text-gray-500 mt-1">在线</div>
+          </div>
+          <div className="glass rounded-xl p-4 text-center">
+            <div className="text-2xl font-bold text-yellow-400">{todayActive + Math.floor(liveData * 0.5)}</div>
+            <div className="text-sm text-gray-500">今日询盘</div>
+            <div className="text-[10px] text-green-400 mt-1">+实时</div>
+          </div>
+          <div className="glass rounded-xl p-4 text-center">
+            <div className="text-2xl font-bold text-red-400">0</div>
+            <div className="text-sm text-gray-500">告警</div>
+            <div className="text-[10px] text-green-400 mt-1">正常运行</div>
+          </div>
+        </div>
+        <div className="glass rounded-xl p-4">
+          <h4 className="text-sm text-gray-500 mb-3">最近活动</h4>
+          <div className="space-y-1 text-sm">
+            <div className="flex gap-4 text-gray-400 border-b border-white/5 py-1"><span className="text-[#00f0ff]">刚刚</span><span>Trade Engine 完成一轮巡检</span></div>
+            <div className="flex gap-4 text-gray-400 border-b border-white/5 py-1"><span className="text-[#00f0ff]">2分钟前</span><span>AI诊断完成 - 某跨境企业</span></div>
+            <div className="flex gap-4 text-gray-400 border-b border-white/5 py-1"><span className="text-[#00f0ff]">5分钟前</span><span>WorkBuddy 新合约部署</span></div>
+            <div className="flex gap-4 text-gray-400 border-b border-white/5 py-1"><span className="text-[#00f0ff]">12分钟前</span><span>智能体巡检完成，0异常</span></div>
+          </div>
+          <a href="/platform.html" className="block mt-4 text-center text-[#00f0ff] text-sm hover:underline">进入运营管理平台 →</a>
         </div>
       </section>
 
@@ -873,6 +1027,12 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
           <div className="flex flex-wrap gap-3">
             <button onClick={() => setShowForm(true)} className="px-6 py-3 bg-[#00f0ff] text-black rounded-full font-medium hover:shadow-lg hover:shadow-[#00f0ff]/20 transition-all">
               按结果付费 · 立即咨询
+            </button>
+            <a href="/product_detail.html?id=skills-api" className="px-5 py-3 border border-white/15 rounded-full text-gray-400 hover:text-white hover:border-white/30 transition-all text-sm cursor-pointer no-underline">
+              ⚡ 体验API/Skills
+            </a>
+            <button onClick={() => scrollTo("geo")} className="px-5 py-3 border border-white/15 rounded-full text-gray-400 hover:text-white hover:border-white/30 transition-all text-sm cursor-pointer">
+              🌐 GEO检测
             </button>
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2 text-sm text-gray-400">
