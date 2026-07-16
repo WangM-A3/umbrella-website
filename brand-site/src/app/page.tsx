@@ -673,7 +673,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {cases.map((c, i) => (
-            <div key={i} className="glass-strong rounded-2xl p-6 md:p-8 hover:neon-border transition-all duration-300">
+            <a key={i} href="/cases" className="block glass-strong rounded-2xl p-6 md:p-8 hover:neon-border transition-all duration-300 no-underline">
               <div className="flex items-start justify-between mb-4">
                 <div>
                   <h3 className="font-bold text-white">{c.client}</h3>
@@ -685,7 +685,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
                 </div>
               </div>
               <p className="text-sm text-gray-400 leading-relaxed">{c.result}</p>
-            </div>
+            </a>
           ))}
         </div>
       </section>
@@ -1040,7 +1040,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
             <a href="#contact" onClick={(e) => { e.preventDefault(); setShowForm(true); }} className="px-6 py-3 bg-[#00f0ff] text-black rounded-full font-medium hover:shadow-lg hover:shadow-[#00f0ff]/20 transition-all cursor-pointer inline-block">
               按结果付费 · 立即咨询
             </a>
-            <a href="/product_detail.html?id=skills-api" className="px-5 py-3 border border-white/15 rounded-full text-gray-400 hover:text-white hover:border-white/30 transition-all text-sm cursor-pointer no-underline">
+            <a href="/playground" className="px-5 py-3 border border-white/15 rounded-full text-gray-400 hover:text-white hover:border-white/30 transition-all text-sm cursor-pointer no-underline">
               ⚡ 体验API/Skills
             </a>
             <a href="/geo" onClick={(e) => { e.preventDefault(); scrollTo("geo"); }} className="px-5 py-3 border border-white/15 rounded-full text-gray-400 hover:text-white hover:border-white/30 transition-all text-sm cursor-pointer inline-block no-underline">
