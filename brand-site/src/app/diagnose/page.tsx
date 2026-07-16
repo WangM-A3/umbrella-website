@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-const STEPS = [
+const STEPS: { id: string; question: string; options: { value: string; label: string; icon?: string }[] }[] = [
   { id: 'pain', question: '您目前最想解决的问题是？', options: [
     { value: 'lead', label: '获客难', icon: '🎯' },
     { value: 'compliance', label: '合规压力大', icon: '🛡️' },
