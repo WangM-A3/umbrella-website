@@ -1,6 +1,13 @@
-﻿"use client";
+﻿export function generateStaticParams() {
+  return [
+    { slug: "hardware-tools" },
+    { slug: "yiwu-trader" },
+    { slug: "brand-retail" },
+  ];
+}
 
-import { notFound, useParams } from "next/navigation";
+
+import { notFound } from "next/navigation";
 
 const caseData = {
   "hardware-tools": {
@@ -50,10 +57,8 @@ const caseData = {
   }
 };
 
-export default function CaseDetailPage() {
-  const params = useParams();
-  const slug = params?.slug as string;
-  const data = caseData[slug as keyof typeof caseData];
+export default function CaseDetailPage({ params }: { params: { slug: string } }) {
+  const slug = params.slug as string;  const data = caseData[slug as keyof typeof caseData];
 
   if (!data) return notFound();
 
