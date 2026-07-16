@@ -176,6 +176,9 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
   const [diagnoseAnswers, setDiagnoseAnswers] = useState<Record<string, string>>({});
   const [compareList, setCompareList] = useState<string[]>([]);
   const [showCompare, setShowCompare] = useState(false);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const toggleMenu = (menu: string) => setOpenMenu(openMenu === menu ? null : menu);
+  const closeAllMenus = () => setOpenMenu(null);
   const executionSteps = [
     { icon: "🤖", title: "AI开始分析", desc: "接收客户需求，启动智能分析引擎", duration: 1000 },
     { icon: "🔍", title: "搜索引擎查询", desc: "查找行业同类方案，分析最佳实践", duration: 1500 },
@@ -269,42 +272,42 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
         {/* Main Navigation */}
         <div className="hidden md:flex items-center gap-5 text-sm text-gray-400">
           {/* Solutions Dropdown */}
-          <div className="relative group">
-            <button className="hover:text-white transition-colors flex items-center gap-1 cursor-pointer">
+          <div className="relative">
+            <button onClick={() => toggleMenu("solutions")} className="hover:text-white transition-colors flex items-center gap-1 cursor-pointer">
               解决方案 <span className="text-[10px]">&#9660;</span>
             </button>
-            <div className="absolute top-full left-0 mt-2 w-56 bg-[#1a1a3e]/95 backdrop-blur-xl border border-white/10 rounded-xl p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto shadow-xl z-50">
-              <a href="/solutions.html" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">外贸增长方案</a>
-              <a href="/solutions.html" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">品牌流量方案</a>
-              <a href="/solutions.html" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">企业智能化方案</a>
-              <a href="/solutions.html" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">合规与安全方案</a>
+            <div className={"absolute top-full left-0 mt-2 w-56 bg-[#1a1a3e]/95 backdrop-blur-xl border border-white/10 rounded-xl p-2 transition-all duration-200 shadow-xl z-50 " + (openMenu === "solutions" ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none")}>
+              <a href="/solutions.html" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">外贸增长方案</a>
+              <a href="/solutions.html" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">品牌流量方案</a>
+              <a href="/solutions.html" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">企业智能化方案</a>
+              <a href="/solutions.html" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">合规与安全方案</a>
             </div>
           </div>
           
           {/* Products Dropdown */}
-          <div className="relative group">
-            <button className="hover:text-white transition-colors flex items-center gap-1 cursor-pointer">
+          <div className="relative">
+            <button onClick={() => toggleMenu("products")} className="hover:text-white transition-colors flex items-center gap-1 cursor-pointer">
               产品 <span className="text-[10px]">&#9660;</span>
             </button>
-            <div className="absolute top-full left-0 mt-2 w-64 bg-[#1a1a3e]/95 backdrop-blur-xl border border-white/10 rounded-xl p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto shadow-xl z-50">
-              <a href="/products" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">AI产品家族（15款）</a>
-              <a href="/product_detail.html?id=skills-api" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">API文档与集成</a>
-              <a href="/platform.html" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">运营管理平台</a>
-              <a href="/bid-check.html" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">📋 招标AI检测</a>
+            <div className={"absolute top-full left-0 mt-2 w-64 bg-[#1a1a3e]/95 backdrop-blur-xl border border-white/10 rounded-xl p-2 transition-all duration-200 shadow-xl z-50 " + (openMenu === "products" ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none")}>
+              <a href="/products" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">AI产品家族（15款）</a>
+              <a href="/product_detail.html?id=skills-api" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">API文档与集成</a>
+              <a href="/platform.html" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">运营管理平台</a>
+              <a href="/bid-check.html" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">📋 招标AI检测</a>
             </div>
           </div>
           
           <a href="/cases" className="hover:text-white transition-colors">客户案例</a>
           
           {/* Resources Dropdown */}
-          <div className="relative group">
-            <button className="hover:text-white transition-colors flex items-center gap-1 cursor-pointer">
+          <div className="relative">
+            <button onClick={() => toggleMenu("resources")} className="hover:text-white transition-colors flex items-center gap-1 cursor-pointer">
               资源中心 <span className="text-[10px]">&#9660;</span>
             </button>
-            <div className="absolute top-full left-0 mt-2 w-56 bg-[#1a1a3e]/95 backdrop-blur-xl border border-white/10 rounded-xl p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto shadow-xl z-50">
-              <a href="/roi-calculator" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">ROI计算器</a>
-              <a href="/geo" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">GEO品牌检测</a>
-              <a href="/diagnose" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">AI智能诊断</a>
+            <div className={"absolute top-full left-0 mt-2 w-56 bg-[#1a1a3e]/95 backdrop-blur-xl border border-white/10 rounded-xl p-2 transition-all duration-200 shadow-xl z-50 " + (openMenu === "resources" ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none")}>
+              <a href="/roi-calculator" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">ROI计算器</a>
+              <a href="/geo" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">GEO品牌检测</a>
+              <a href="/diagnose" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">AI智能诊断</a>
             </div>
           </div>
           
@@ -322,6 +325,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
           <button className="md:hidden text-white text-xl cursor-pointer">&#9776;</button>
         </div>
       </nav>
+      {openMenu && <div className="fixed inset-0 z-40" onClick={closeAllMenus}></div>}
 
       {/* Hero */}
       <section className="max-w-6xl mx-auto px-8 py-16 md:py-24">
