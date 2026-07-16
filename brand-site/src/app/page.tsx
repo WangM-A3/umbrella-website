@@ -315,6 +315,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
             <div className={"absolute top-full left-0 mt-2 w-56 bg-[#1a1a3e]/95 backdrop-blur-xl border border-white/10 rounded-xl p-2 transition-all duration-200 shadow-xl z-50 " + (openMenu === "resources" ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none")}>
               <a href="/roi-calculator" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">ROI计算器</a>
               <a href="/geo" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">GEO品牌检测</a>
+              <a href="#contact" onClick={(e) => { e.preventDefault(); closeAllMenus(); setShowForm(true); }} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">📄 行业白皮书</a>
               <a href="/diagnose" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">AI智能诊断</a>
             </div>
           </div>
