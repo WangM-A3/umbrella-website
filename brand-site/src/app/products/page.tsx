@@ -1,4 +1,5 @@
-﻿import Link from 'next/link';
+﻿'use client';
+import Link from 'next/link';
 
 const products = [
   { id: 'trade-engine', name: 'Trade Engine', category: '外贸核心', price: '¥50-500万/年', desc: '全链路AI外贸决策OS' },
