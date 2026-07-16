@@ -287,7 +287,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
               产品 <span className="text-[10px]">&#9660;</span>
             </button>
             <div className="absolute top-full left-0 mt-2 w-64 bg-[#1a1a3e]/95 backdrop-blur-xl border border-white/10 rounded-xl p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto shadow-xl z-50">
-              <a href="/solutions.html" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">AI产品家族（15款）</a>
+              <a href="/products" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">AI产品家族（15款）</a>
               <a href="/product_detail.html?id=skills-api" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">API文档与集成</a>
               <a href="/platform.html" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">运营管理平台</a>
               <a href="/bid-check.html" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">📋 招标AI检测</a>
@@ -302,9 +302,9 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
               资源中心 <span className="text-[10px]">&#9660;</span>
             </button>
             <div className="absolute top-full left-0 mt-2 w-56 bg-[#1a1a3e]/95 backdrop-blur-xl border border-white/10 rounded-xl p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto shadow-xl z-50">
-              <button onClick={() => scrollTo("roi")} className="block w-full text-left px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors cursor-pointer">ROI计算器</button>
-              <button onClick={() => scrollTo("geo")} className="block w-full text-left px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors cursor-pointer">GEO品牌检测</button>
-              <button onClick={() => { setDiagnoseOpen(true); setDiagnoseStep(0); setDiagnoseAnswers({}); }} className="block w-full text-left px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors cursor-pointer">AI智能诊断</button>
+              <a href="/roi-calculator" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">ROI计算器</a>
+              <a href="/geo" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">GEO品牌检测</a>
+              <a href="/diagnose" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">AI智能诊断</a>
             </div>
           </div>
           
