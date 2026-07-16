@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
@@ -108,7 +108,7 @@ export default function ParticleBackground() {
 
   return (
     <div className="fixed inset-0 z-0" style={{ pointerEvents: "none" }}>
-      <Canvas
+      <Canvas style={{ pointerEvents: "none" as any }}
         camera={{ position: [0, 0, 12], fov: 60, near: 0.1, far: 100 }}
         dpr={[0.5, 1.5]}
         gl={{ antialias: false, powerPreference: "high-performance", alpha: true, stencil: false }}
