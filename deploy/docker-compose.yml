@@ -1,0 +1,14 @@
+﻿services:
+  api:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile
+    ports:
+      - "8088:8088"
+    environment:
+      - SMTP_HOST=smtp.qq.com
+      - SMTP_PORT=465
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASS=${SMTP_PASS}
+      - NOTIFY_EMAIL=${NOTIFY_EMAIL}
+    restart: unless-stopped
