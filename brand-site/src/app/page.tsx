@@ -360,9 +360,9 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
             <a href="/product_detail.html?id=skills-api" className="px-6 py-3 border border-white/15 rounded-full hover:bg-white/5 transition text-gray-300 flex items-center gap-2 cursor-pointer">
               ⚡ 体验API/Skills
             </a>
-            <button onClick={() => { setDiagnoseOpen(true); setDiagnoseStep(0); setDiagnoseAnswers({}); }} className="px-6 py-3 border border-white/15 rounded-full hover:bg-white/5 transition text-gray-300 flex items-center gap-2 text-sm">
+            <a href="/diagnose" onClick={(e) => { e.preventDefault(); setDiagnoseOpen(true); setDiagnoseStep(0); setDiagnoseAnswers({}); }} className="px-6 py-3 border border-white/15 rounded-full hover:bg-white/5 transition text-gray-300 flex items-center gap-2 text-sm cursor-pointer">
               🎯 3步AI诊断
-            </button>
+            </a>
             <a href="/solutions.html" className="px-8 py-3.5 border border-white/15 rounded-full hover:bg-white/5 transition text-gray-300 flex items-center gap-2 cursor-pointer">
               🔍 浏览15款AI产品
             </a>
