@@ -366,13 +366,13 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
             <a href="#contact" onClick={(e) => { e.preventDefault(); setShowForm(true); }} className="px-6 py-3 bg-gradient-to-r from-[#00f0ff] to-[#7b2fbe] text-black font-semibold rounded-full hover:shadow-xl hover:shadow-[#00f0ff]/20 transition-all flex items-center gap-2 text-sm cursor-pointer">
               获取AI落地方案 →
             </a>
-            <a href="/product_detail.html?id=skills-api" className="px-6 py-3 border border-white/15 rounded-full hover:bg-white/5 transition text-gray-300 flex items-center gap-2 cursor-pointer">
+            <a href="/playground" className="px-6 py-3 border border-white/15 rounded-full hover:bg-white/5 transition text-gray-300 flex items-center gap-2 cursor-pointer">
               ⚡ 体验API/Skills
             </a>
             <a href="/diagnose" onClick={(e) => { e.preventDefault(); setDiagnoseOpen(true); setDiagnoseStep(0); setDiagnoseAnswers({}); }} className="px-6 py-3 border border-white/15 rounded-full hover:bg-white/5 transition text-gray-300 flex items-center gap-2 text-sm cursor-pointer">
               🎯 3步AI诊断
             </a>
-            <a href="/solutions.html" className="px-8 py-3.5 border border-white/15 rounded-full hover:bg-white/5 transition text-gray-300 flex items-center gap-2 cursor-pointer">
+            <a href="/products" className="px-8 py-3.5 border border-white/15 rounded-full hover:bg-white/5 transition text-gray-300 flex items-center gap-2 cursor-pointer">
               🔍 浏览15款AI产品
             </a>
           </div>
