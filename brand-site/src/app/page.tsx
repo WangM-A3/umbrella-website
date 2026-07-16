@@ -327,9 +327,9 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
           <span className="hidden md:inline text-xs text-[#00f0ff] border border-[#00f0ff]/30 px-3 py-1 rounded-full">
             按结果付费
           </span>
-          <button onClick={() => setShowForm(true)} className="bg-[#00f0ff] text-black px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#00f0ff]/80 transition-colors cursor-pointer">
+          <a href="#contact" onClick={(e) => { e.preventDefault(); setShowForm(true); }} className="bg-[#00f0ff] text-black px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#00f0ff]/80 transition-colors cursor-pointer inline-block">
             立即咨询
-          </button>
+          </a>
           <button className="md:hidden text-white text-xl cursor-pointer">&#9776;</button>
         </div>
       </nav>
@@ -1037,15 +1037,15 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
             <p className="text-gray-500 text-sm mt-1">按结果付费 · 无效果不计费 · 全链路落地交付</p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <button onClick={() => setShowForm(true)} className="px-6 py-3 bg-[#00f0ff] text-black rounded-full font-medium hover:shadow-lg hover:shadow-[#00f0ff]/20 transition-all">
+            <a href="#contact" onClick={(e) => { e.preventDefault(); setShowForm(true); }} className="px-6 py-3 bg-[#00f0ff] text-black rounded-full font-medium hover:shadow-lg hover:shadow-[#00f0ff]/20 transition-all cursor-pointer inline-block">
               按结果付费 · 立即咨询
-            </button>
+            </a>
             <a href="/product_detail.html?id=skills-api" className="px-5 py-3 border border-white/15 rounded-full text-gray-400 hover:text-white hover:border-white/30 transition-all text-sm cursor-pointer no-underline">
               ⚡ 体验API/Skills
             </a>
-            <button onClick={() => scrollTo("geo")} className="px-5 py-3 border border-white/15 rounded-full text-gray-400 hover:text-white hover:border-white/30 transition-all text-sm cursor-pointer">
+            <a href="/geo" onClick={(e) => { e.preventDefault(); scrollTo("geo"); }} className="px-5 py-3 border border-white/15 rounded-full text-gray-400 hover:text-white hover:border-white/30 transition-all text-sm cursor-pointer inline-block no-underline">
               🌐 GEO检测
-            </button>
+            </a>
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2 text-sm text-gray-400">
                 <span>📱 微信：<strong className="text-gray-200">13336021626</strong></span>
