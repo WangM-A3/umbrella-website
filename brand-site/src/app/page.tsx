@@ -285,10 +285,10 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
               解决方案 <span className="text-[10px]">&#9660;</span>
             </button>
             <div className={"absolute top-full left-0 mt-2 w-56 bg-[#1a1a3e]/95 backdrop-blur-xl border border-white/10 rounded-xl p-2 transition-all duration-200 shadow-xl z-50 " + (openMenu === "solutions" ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none")}>
-              <a href="/solutions.html" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">外贸增长方案</a>
+              <a href="/product_detail.html?id=trade-engine" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">外贸增长方案</a>
               <a href="/solutions.html" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">品牌流量方案</a>
-              <a href="/solutions.html" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">企业智能化方案</a>
-              <a href="/solutions.html" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">合规与安全方案</a>
+              <a href="/product_detail.html?id=ai-os" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">企业智能化方案</a>
+              <a href="/product_detail.html?id=v6-security" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">合规与安全方案</a>
             </div>
           </div>
           
