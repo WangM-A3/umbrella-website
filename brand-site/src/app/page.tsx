@@ -236,21 +236,63 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
       <ScrollAnimation />
       <ParticleBackground />
       {/* Nav */}
-      <nav className="flex justify-between items-center px-8 py-5 border-b border-white/5 max-w-6xl mx-auto">
-        <div className="text-xl font-bold tracking-tight">NEXUS</div>
-        <div className="flex items-center gap-6 text-sm text-gray-400">
-          <a href="/platform.html" className="hover:text-white transition text-sm cursor-pointer">运营平台</a>
-          <button onClick={() => { setDiagnoseOpen(true); setDiagnoseStep(0); setDiagnoseAnswers({}); }} className="hover:text-[#00f0ff] transition text-sm cursor-pointer">🎯 AI诊断</button>
-          <a href="/solutions.html" className="hover:text-white transition text-sm cursor-pointer">产品矩阵</a>
-         <button onClick={() => scrollTo("free-trial")} className="hover:text-white transition text-sm cursor-pointer">免费试用</button>
-         <button onClick={() => scrollTo("pricing")} className="hover:text-white transition text-sm cursor-pointer">定价</button>
-          <a href="/bid-check.html" className="hover:text-[#00f0ff] transition text-sm cursor-pointer">📋 招标检测</a>
-         <a href="/product_detail.html?id=skills-api" className="hover:text-white transition text-sm cursor-pointer">API文档</a>
-          <button onClick={() => scrollTo("geo")} className="hover:text-[#00f0ff] transition text-sm cursor-pointer">🌐 GEO</button>
-          <button onClick={() => scrollTo("roi")} className="hover:text-white transition text-sm cursor-pointer">ROI计算</button>
-          <button onClick={() => setShowForm(true)} className="px-4 py-2 border border-white/20 rounded-full text-white hover:bg-white/10 transition">
-            Let&apos;s Talk
+      <nav className="flex justify-between items-center px-8 py-4 border-b border-white/5 max-w-6xl mx-auto">
+        <a href="/" className="text-xl font-bold tracking-tight">NEXUS</a>
+        
+        {/* Main Navigation */}
+        <div className="hidden md:flex items-center gap-5 text-sm text-gray-400">
+          {/* Solutions Dropdown */}
+          <div className="relative group">
+            <button className="hover:text-white transition-colors flex items-center gap-1 cursor-pointer">
+              解决方案 <span className="text-[10px]">&#9660;</span>
+            </button>
+            <div className="absolute top-full left-0 mt-2 w-56 bg-[#1a1a3e]/95 backdrop-blur-xl border border-white/10 rounded-xl p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto shadow-xl z-50">
+              <a href="/solutions.html" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">外贸增长方案</a>
+              <a href="/solutions.html" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">品牌流量方案</a>
+              <a href="/solutions.html" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">企业智能化方案</a>
+              <a href="/solutions.html" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">合规与安全方案</a>
+            </div>
+          </div>
+          
+          {/* Products Dropdown */}
+          <div className="relative group">
+            <button className="hover:text-white transition-colors flex items-center gap-1 cursor-pointer">
+              产品 <span className="text-[10px]">&#9660;</span>
+            </button>
+            <div className="absolute top-full left-0 mt-2 w-64 bg-[#1a1a3e]/95 backdrop-blur-xl border border-white/10 rounded-xl p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto shadow-xl z-50">
+              <a href="/solutions.html" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">AI产品家族（15款）</a>
+              <a href="/product_detail.html?id=skills-api" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">API文档与集成</a>
+              <a href="/platform.html" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">运营管理平台</a>
+              <a href="/bid-check.html" className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">📋 招标AI检测</a>
+            </div>
+          </div>
+          
+          <a href="/cases" className="hover:text-white transition-colors">客户案例</a>
+          
+          {/* Resources Dropdown */}
+          <div className="relative group">
+            <button className="hover:text-white transition-colors flex items-center gap-1 cursor-pointer">
+              资源中心 <span className="text-[10px]">&#9660;</span>
+            </button>
+            <div className="absolute top-full left-0 mt-2 w-56 bg-[#1a1a3e]/95 backdrop-blur-xl border border-white/10 rounded-xl p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto shadow-xl z-50">
+              <button onClick={() => scrollTo("roi")} className="block w-full text-left px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors cursor-pointer">ROI计算器</button>
+              <button onClick={() => scrollTo("geo")} className="block w-full text-left px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors cursor-pointer">GEO品牌检测</button>
+              <button onClick={() => { setDiagnoseOpen(true); setDiagnoseStep(0); setDiagnoseAnswers({}); }} className="block w-full text-left px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors cursor-pointer">AI智能诊断</button>
+            </div>
+          </div>
+          
+          <button onClick={() => scrollTo("pricing")} className="hover:text-white transition-colors cursor-pointer">定价</button>
+        </div>
+        
+        {/* Right CTA */}
+        <div className="flex items-center gap-4">
+          <span className="hidden md:inline text-xs text-[#00f0ff] border border-[#00f0ff]/30 px-3 py-1 rounded-full">
+            按结果付费
+          </span>
+          <button onClick={() => setShowForm(true)} className="bg-[#00f0ff] text-black px-4 py-2 rounded-lg text-sm font-medium hover:bg-[#00f0ff]/80 transition-colors cursor-pointer">
+            立即咨询
           </button>
+          <button className="md:hidden text-white text-xl cursor-pointer">&#9776;</button>
         </div>
       </nav>
 
@@ -856,6 +898,66 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
           © 2026 NEXUS · 杭州云旅科技 · 按效果付费
         </div>
       </footer>
+
+      {/* TrustBadges */}
+      <section className="border-t border-white/5 py-16">
+        <div className="max-w-6xl mx-auto px-8">
+          <h3 className="text-center text-sm text-gray-500 mb-8 tracking-widest">资质与认证</h3>
+          <div className="flex flex-wrap justify-center gap-8">
+            <div className="text-center group cursor-help">
+              <div className="text-2xl mb-1">&#x1F6E1;&#xFE0F;</div>
+              <div className="text-sm font-medium text-white">AIP国标</div>
+              <div className="text-xs text-gray-500 hidden group-hover:block">AI安全治理平台认证</div>
+            </div>
+            <div className="text-center group cursor-help">
+              <div className="text-2xl mb-1">&#x1F512;</div>
+              <div className="text-sm font-medium text-white">等保三级</div>
+              <div className="text-xs text-gray-500 hidden group-hover:block">国家信息安全等级保护</div>
+            </div>
+            <div className="text-center group cursor-help">
+              <div className="text-2xl mb-1">&#x1F30D;</div>
+              <div className="text-sm font-medium text-white">GDPR/CCPA</div>
+              <div className="text-xs text-gray-500 hidden group-hover:block">欧盟/加州数据合规</div>
+            </div>
+            <div className="text-center group cursor-help">
+              <div className="text-2xl mb-1">&#x1F52C;</div>
+              <div className="text-sm font-medium text-white">FDA 510(k)</div>
+              <div className="text-xs text-gray-500 hidden group-hover:block">医疗器械合规中间件</div>
+            </div>
+            <div className="text-center group cursor-help">
+              <div className="text-2xl mb-1">&#x1F3E2;</div>
+              <div className="text-sm font-medium text-white">国家高新技术企业</div>
+              <div className="text-xs text-gray-500 hidden group-hover:block">国家级科技企业认定</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* AI Standard */}
+      <section className="py-20 border-t border-white/5">
+        <div className="max-w-4xl mx-auto px-8 text-center">
+          <span className="text-[#00f0ff] text-sm tracking-widest">NEXUS STANDARD</span>
+          <h2 className="text-3xl font-bold mt-2 mb-6">AI落地必须&#x300C;按结果付费&#x300D;</h2>
+          <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
+            我们倡议：AI项目应以结果为导向，未达目标不收费。这是对客户负责，也是对行业健康的承诺。
+          </p>
+          <div className="flex flex-wrap justify-center gap-6 text-sm">
+            <div className="glass rounded-xl px-6 py-4">
+              <div className="text-[#00f0ff] font-bold">L1-L5</div>
+              <div className="text-gray-500">AI成熟度模型</div>
+            </div>
+            <div className="glass rounded-xl px-6 py-4">
+              <div className="text-[#00f0ff] font-bold">2849+</div>
+              <div className="text-gray-500">已服务企业</div>
+            </div>
+            <div className="glass rounded-xl px-6 py-4">
+              <div className="text-[#00f0ff] font-bold">15款</div>
+              <div className="text-gray-500">可运营产品</div>
+            </div>
+          </div>
+          <a href="/whitepapers" className="inline-block mt-8 text-[#00f0ff] hover:underline">下载《企业AI落地白皮书》 &#x2192;</a>
+        </div>
+      </section>
 
       {/* Form modal */}
       {showForm && (
