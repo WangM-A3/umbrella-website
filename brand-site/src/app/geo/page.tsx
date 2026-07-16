@@ -3,12 +3,12 @@ import { useState } from 'react';
 
 export default function GEOPage() {
   const [brand, setBrand] = useState('');
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 
   const checkGEO = async () => {
     setLoading(true);
-    await new Promise(r => setTimeout(r, 1500));
+    await new Promise((r: any) => setTimeout(r, 1500));
     setResult({
       score: 72,
       platforms: [
@@ -39,7 +39,7 @@ export default function GEOPage() {
           <div className="text-6xl font-bold text-[#00f0ff] mb-2">{result.score}/100</div>
           <p className="text-gray-400">综合可见度评分</p>
         </div>
-        <div className="grid md:grid-cols-2 gap-4">{result.platforms.map(p => (
+        <div className="grid md:grid-cols-2 gap-4">{result.platforms.map((p: any) => (
           <div key={p.name} className="glass rounded-xl p-4 flex items-center justify-between border border-white/5">
             <span className="font-medium">{p.name}</span>
             <span className={"px-3 py-1 rounded-full text-xs " + (p.status === 'recognized' ? 'bg-green-400/20 text-green-400' : p.status === 'optimizing' ? 'bg-yellow-400/20 text-yellow-400' : 'bg-gray-500/20 text-gray-400')}>

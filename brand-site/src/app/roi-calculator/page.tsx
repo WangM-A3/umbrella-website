@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 export default function ROICalculatorPage() {
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState<any>(null);
   const calculate = async () => {
     await new Promise(r => setTimeout(r, 1000));
     setResult({ roi: '8.5x', paybackMonths: '2.3', revenueIncrease: '340', costReduction: '60' });

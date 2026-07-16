@@ -23,11 +23,11 @@ const STEPS = [
 
 export default function DiagnosePage() {
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState({});
-  const [result, setResult] = useState(null);
+  const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 
-  const handleSelect = (stepId, value) => {
+  const handleSelect = (stepId: string, value: string) => {
     setAnswers({ ...answers, [stepId]: value });
     if (step < STEPS.length - 1) { setStep(step + 1); }
     else { generateResult(); }
@@ -35,7 +35,7 @@ export default function DiagnosePage() {
 
   const generateResult = async () => {
     setLoading(true);
-    await new Promise(r => setTimeout(r, 1500));
+    await new Promise((r: any) => setTimeout(r, 1500));
     setResult({ recommendations: [
       { name: 'Trade Engine 外贸引擎', match: 95, reason: '外贸获客最佳方案' },
       { name: 'Agent Skills API', match: 88, reason: '自动化客户开发' },
@@ -71,7 +71,7 @@ export default function DiagnosePage() {
         <div className="glass rounded-2xl p-8 border border-[#00f0ff]/30">
           <div className="text-center mb-8"><span className="text-4xl">🎉</span><h2 className="text-2xl font-bold mt-2">您的专属方案已生成</h2></div>
           <div className="space-y-4">
-            {result.recommendations.map((rec, i) => (
+            {result.recommendations.map((rec: any, i: number) => (
               <div key={i} className="flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5">
                 <div><div className="font-medium text-white">{rec.name}</div><div className="text-sm text-gray-400">{rec.reason}</div></div>
                 <div className="text-[#00f0ff] font-bold">{rec.match}%</div>

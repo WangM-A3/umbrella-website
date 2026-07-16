@@ -10,13 +10,13 @@ const SKILLS = [
 
 export default function PlaygroundPage() {
   const [selectedSkill, setSelectedSkill] = useState('prospector');
-  const [params, setParams] = useState({});
-  const [response, setResponse] = useState(null);
+  const [params, setParams] = useState<Record<string, string>>({});
+  const [response, setResponse] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 
   const handleSend = async () => {
     setLoading(true);
-    await new Promise(r => setTimeout(r, 1200));
+    await new Promise((r: any) => setTimeout(r, 1200));
     setResponse({ status: 'success', result: { leads: [{ company: 'XX科技', score: 92 }, { company: 'YY制造', score: 85 }, { company: 'ZZ贸易', score: 78 }], total: 47 } });
     setLoading(false);
   };
@@ -36,7 +36,7 @@ export default function PlaygroundPage() {
         <div className="md:col-span-2 space-y-4">
           <div className="glass rounded-2xl p-6 border border-white/10">
             <h3 className="text-sm text-gray-500 mb-4">请求参数</h3>
-            {SKILLS.find(s => s.id === selectedSkill)?.fields.map(f => (
+            {SKILLS.find(s => s.id === selectedSkill)?.fields.map((f: string) => (
               <input key={f} type="text" placeholder={f} onChange={e => setParams({...params, [f]: e.target.value})}
                 className="w-full mb-2 px-4 py-2 bg-white/5 rounded-lg border border-white/10 text-white placeholder-gray-500 focus:border-[#00f0ff] outline-none" />
             ))}
