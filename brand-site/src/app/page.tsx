@@ -859,7 +859,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
             </div>
           </div>
          <div className="mt-4 text-center">
-           <a href="/platform.html" className="text-xs text-gray-500 hover:text-[#00f0ff] transition">查看完整GEO优化报告 →</a>
+           <a href="/geo" className="text-xs text-gray-500 hover:text-[#00f0ff] transition">查看完整GEO优化报告 →</a>
          </div>
           {/* GEO自测入口 */}
           <div className="mt-8 text-center">
