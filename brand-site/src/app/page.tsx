@@ -366,6 +366,47 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
         </div>
       </section>
 
+      {/* Services */}
+      <section className="max-w-6xl mx-auto px-8 py-20 border-t border-white/5">
+        <div className="text-center mb-12">
+          <span className="text-[#00f0ff] text-sm tracking-widest">SERVICES</span>
+          <h2 className="text-3xl md:text-4xl font-bold mt-2">全链路AI落地服务</h2>
+          <p className="text-gray-400 mt-2">从渠道采购到外贸拓客，从算力配套到智能体搭建</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="glass rounded-2xl p-8 hover:neon-border transition-all duration-300 group">
+            <span className="text-4xl mb-4 block">📡</span>
+            <h3 className="text-lg font-bold text-white mb-3">AI渠道 & 品牌流量</h3>
+            <p className="text-sm text-gray-400 leading-relaxed">火山引擎 · 豆包 · OpenAI 等主流AI平台官方代理，撬动品牌曝光与流量增长，帮助企业在AI生态中建立品牌认知。</p>
+            <div className="mt-4 flex gap-2">
+              <span className="text-[10px] px-2 py-1 bg-white/5 rounded text-gray-500">火山引擎</span>
+              <span className="text-[10px] px-2 py-1 bg-white/5 rounded text-gray-500">豆包</span>
+              <span className="text-[10px] px-2 py-1 bg-white/5 rounded text-gray-500">OpenAI</span>
+            </div>
+          </div>
+          <div className="glass rounded-2xl p-8 hover:neon-border transition-all duration-300 group">
+            <span className="text-4xl mb-4 block">🌍</span>
+            <h3 className="text-lg font-bold text-white mb-3">外贸获客 & 智能体搭建</h3>
+            <p className="text-sm text-gray-400 leading-relaxed">百雀AI一站式外贸拓客解决方案，WorkBuddy企业智能体私有化部署，从线索挖掘到成交转化全链路AI赋能。</p>
+            <div className="mt-4 flex gap-2">
+              <span className="text-[10px] px-2 py-1 bg-white/5 rounded text-gray-500">百雀AI</span>
+              <span className="text-[10px] px-2 py-1 bg-white/5 rounded text-gray-500">WorkBuddy</span>
+              <span className="text-[10px] px-2 py-1 bg-white/5 rounded text-gray-500">智能体团队</span>
+            </div>
+          </div>
+          <div className="glass rounded-2xl p-8 hover:neon-border transition-all duration-300 group">
+            <span className="text-4xl mb-4 block">💻</span>
+            <h3 className="text-lg font-bold text-white mb-3">数字化咨询 & 算力配套</h3>
+            <p className="text-sm text-gray-400 leading-relaxed">企业AI数字化全案咨询 · OPC孵化园算力平台 · AI大模型引擎优化，为企业AI转型提供从战略到算力的完整支撑。</p>
+            <div className="mt-4 flex gap-2">
+              <span className="text-[10px] px-2 py-1 bg-white/5 rounded text-gray-500">全案咨询</span>
+              <span className="text-[10px] px-2 py-1 bg-white/5 rounded text-gray-500">算力平台</span>
+              <span className="text-[10px] px-2 py-1 bg-white/5 rounded text-gray-500">引擎优化</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Products */}
       <section id="products" className="max-w-6xl mx-auto px-8 py-20 border-t border-white/5">
         <div className="text-center mb-8">
@@ -778,18 +819,18 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
       <section className="max-w-6xl mx-auto px-8 py-16 border-t border-white/5">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div>
-            <h3 className="text-2xl font-bold">合作洽谈</h3>
+            <h3 className="text-2xl font-bold">准备好AI转型了吗？</h3>
             <div className="flex items-center gap-3 mt-2">
               <span className="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></span>
               <span className="text-sm text-gray-400">
                 {isOnline ? "在线 · 立即咨询" : "离线 · 留言后联系"}
               </span>
             </div>
-            <p className="text-gray-500 text-sm mt-1">按效果付费 · 无效果不计费</p>
+            <p className="text-gray-500 text-sm mt-1">按结果付费 · 无效果不计费 · 全链路落地交付</p>
           </div>
           <div className="flex flex-wrap gap-3">
             <button onClick={() => setShowForm(true)} className="px-6 py-3 bg-[#00f0ff] text-black rounded-full font-medium hover:shadow-lg hover:shadow-[#00f0ff]/20 transition-all">
-              💬 立即沟通
+              按结果付费 · 立即咨询
             </button>
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2 text-sm text-gray-400">
