@@ -13,7 +13,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
    { id: "v6-security", icon: "🛡️", name: "V6.0 AI 安全治理平台", desc: "8大算法×5层防御 · 人格塑造 · AIP国标", price: "¥30-300万/年", cat: "合规安全" },
    { id: "boss-ip", icon: "🎬", name: "BOSS IP Factory", desc: "15分钟录制AI出视频 · 多平台发布 · 线索追踪", price: "¥10-30万/年", cat: "内容创意" },
    { id: "platform-kernel", icon: "⚙️", name: "Platform Kernel", desc: "Agent编排+本体+模板 · 语义层 · 结果计价", price: "¥50-200万/年", cat: "平台基础设施" },
-   { id: "workbuddy", icon: "💈", name: "WorkBuddy", desc: "企业AI办公助手 · 文件操作 · 远程操控PC", price: "¥3-15万/年", cat: "企业AI辅助" },
+   { id: "workbuddy", icon: "💈", name: "WorkBuddy", desc: "企业AI办公助手 · 智能报价 · 远程操控PC · 录制自动化", price: "¥3-15万/年", cat: "企业AI辅助" },
    { id: "ai-os", icon: "🏥", name: "AI-OS", desc: "5层决策闭环 · L1-L5全链路 · ROI量化", price: "¥5-500万", cat: "行业方案" },
    { id: "short-drama", icon: "🎯", name: "AI短剧制作", desc: "AI驱动的短剧全流程 · 剧本→场景→成片", price: "¥3-20万/项目", cat: "内容创意" },
    { id: "compliance-mw", icon: "📵", name: "合规中间件", desc: "FDA 510(k)等监管合规 · 静态分析 · WASM", price: "¥20-80万/年", cat: "合规安全" },
@@ -29,7 +29,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
    "v6-security": { roi: "满足AIP国标 · 审计级安全", tags: ["安全合规","国标认证","风险防控"], testimonial: "通过等保三级认证" },
    "boss-ip": { roi: "15分钟出片 · 内容产出10x", tags: ["IP打造","短视频","内容营销"], testimonial: "内容产出速度提升10倍" },
    "platform-kernel": { roi: "统一编排 · 复用率80%", tags: ["平台底座","Agent编排","SaaS"], testimonial: "开发效率提升60%" },
-   "workbuddy": { roi: "办公效率提升40%", tags: ["办公自动化","远程办公","企业AI"], testimonial: "内部沟通效率提升40%" },
+   "workbuddy": { roi: "办公效率提升40% · 报价3分钟", tags: ["办公自动化","智能报价","远程办公","企业AI"], testimonial: "3分钟生成多语种合规报价" },
    "ai-os": { roi: "ROI 1:8 · L1-L5全覆盖", tags: ["AI战略","ROI量化","转型规划"], testimonial: "3周完成AI诊断" },
    "short-drama": { roi: "成本降低90%", tags: ["短视频","MCN","批量制作"], testimonial: "单条成本从5万降到2000" },
    "compliance-mw": { roi: "合规成本降低60%", tags: ["监管合规","医疗","FDA"], testimonial: "通过FDA 510(k)审查" },
@@ -357,7 +357,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
             <span>📊 今日活跃 <strong className="text-[#00f0ff] text-lg">{todayActive}</strong> 家</span>
             <span className="flex items-center gap-1.5">
               <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-              <span className="text-gray-500 text-xs">实时</span><div className="bg-white/5 text-gray-600 text-[10px] px-1.5 py-0.5 rounded ml-1 inline-block">demo</div>
+              <span className="text-gray-500 text-xs">实时</span><span className="ml-2 px-2 py-0.5 rounded-full text-[9px] bg-[#00f0ff]/10 border border-[#00f0ff]/20 text-[#00f0ff] whitespace-nowrap">🤖 自主决策 33%</span><div className="bg-white/5 text-gray-600 text-[10px] px-1.5 py-0.5 rounded ml-1 inline-block">demo</div>
             </span>
           </div>
 
@@ -497,86 +497,46 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
         <div className="text-center mb-12">
           <span className="text-[#00f0ff] text-sm tracking-widest">DEMO</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2">透明化操作展示</h2>
-          <p className="text-gray-400 mt-2">模拟Manus AI风格：左侧对话 · 右侧实时操作回放</p>
+          <p className="text-gray-400 mt-2">AI自主工作演示：上传产品目录 → 3分钟生成多语种合规报价</p>
         </div>
         <div className="grid md:grid-cols-2 gap-6">
-          {/* Left Panel: Chat */}
-          <div className="glass rounded-2xl p-6 relative overflow-hidden" style={{minHeight: 340}}>
-            <div className="flex items-center gap-2 mb-4 border-b border-white/5 pb-3">
-              <span className="w-3 h-3 rounded-full bg-red-400/50"></span>
-              <span className="w-3 h-3 rounded-full bg-yellow-400/50"></span>
-              <span className="w-3 h-3 rounded-full bg-green-400/50"></span>
-              <span className="text-xs text-gray-500 ml-2">客户对话模拟</span>
-            </div>
-            <div className="space-y-3 min-h-[260px]">
-              <div className="flex justify-end">
-                <div className="bg-[#00f0ff]/10 border border-[#00f0ff]/20 rounded-2xl rounded-br-sm px-4 py-2 max-w-[80%]">
-                  <p className="text-sm text-gray-200">我需要优化外贸获客效率，有什么方案？</p>
-                </div>
-              </div>
-              {(executionStep >= 0) && (
-                <div className="flex justify-start">
-                  <div className="bg-white/5 border border-white/10 rounded-2xl rounded-bl-sm px-4 py-2 max-w-[80%]">
-                    <p className="text-sm text-gray-400">好的，我来分析您的业务场景...</p>
-                  </div>
-                </div>
-              )}
-              {(executionStep >= 1) && (
-                <div className="flex justify-start">
-                  <div className="bg-white/5 border border-white/10 rounded-2xl rounded-bl-sm px-4 py-2 max-w-[80%]">
-                    <p className="text-sm text-gray-400">正在搜索行业最佳实践...发现3个适配方案</p>
-                  </div>
-                </div>
-              )}
-              {(executionStep >= 3) && (
-                <div className="flex justify-start">
-                  <div className="bg-white/5 border border-white/10 rounded-2xl rounded-bl-sm px-4 py-2 max-w-[80%]">
-                    <p className="text-sm text-gray-400">建议方案：AI精准拓客系统，预计ROI 1:8</p>
-                  </div>
-                </div>
-              )}
-            </div>
-            <div className="mt-3 flex gap-2">
-              <input type="text" placeholder="输入需求..." className="flex-1 px-3 py-1.5 bg-white/5 rounded-lg border border-white/10 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#00f0ff]" />
-              <button className="px-3 py-1.5 bg-[#00f0ff]/20 text-[#00f0ff] rounded-lg text-sm">发送</button>
-            </div>
+          <div className="glass rounded-2xl p-8 flex flex-col items-center justify-center text-center" style={{minHeight: 320}}>
+            <div className="text-5xl mb-4">🎬</div>
+            <h3 className="text-xl font-bold text-white mb-2">完整演示视频</h3>
+            <p className="text-gray-400 text-sm mb-2 max-w-sm">从上传产品目录到AI自动决策语言、翻译、合规检查、生成报价，全程不到3分钟。</p>
+            <a href="/playground" className="mt-4 px-6 py-3 bg-gradient-to-r from-[#00f0ff] to-[#7b2fbe] text-black font-semibold rounded-full hover:shadow-xl transition-all text-sm flex items-center gap-2 cursor-pointer no-underline">
+              <span>🎬 观看AI自主工作演示</span>
+            </a>
+            <p className="text-xs text-gray-600 mt-3">需要演示环境？<button onClick={() => setShowForm(true)} className="text-[#00f0ff] hover:underline cursor-pointer bg-transparent border-none text-xs">预约演示 →</button></p>
           </div>
-
-          {/* Right Panel: Execution Timeline */}
-          <div className="glass rounded-2xl p-6" style={{minHeight: 340}}>
-            <div className="flex items-center justify-between mb-4 border-b border-white/5 pb-3">
-              <span className="text-xs text-gray-500">AI执行过程</span>
-              <div className="flex gap-2">
-                <button onClick={startExecution} className="px-3 py-1 text-xs bg-white/5 rounded-lg hover:bg-white/10 transition-colors cursor-pointer">🔄 重播</button>
+          <div className="glass rounded-2xl p-8">
+            <div className="text-center">
+              <div className="text-3xl mb-3">⚡</div>
+              <h3 className="text-lg font-bold text-white mb-3">快速体验 Quote Assistant</h3>
+              <p className="text-sm text-gray-400 mb-4">输入产品信息 → 模拟AI多语种报价生成</p>
+              <div className="space-y-2 mb-4">
+                <div className="flex items-center gap-2 text-xs text-gray-500 bg-white/5 rounded-lg px-3 py-2">
+                  <span className="w-2 h-2 bg-gray-600 rounded-full"></span>
+                  <span>智能折叠伞 3.0 | USD $12.50 FOB</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-gray-500 bg-white/5 rounded-lg px-3 py-2">
+                  <span className="w-2 h-2 bg-gray-600 rounded-full"></span>
+                  <span>190T 春亚纺 | 55cm*8K | 防风骨架</span>
+                </div>
               </div>
-            </div>
-            <div className="space-y-2 min-h-[260px]">
-              {executionSteps.map((step, i) => (
-                <div key={i} className={"flex items-start gap-3 p-3 rounded-xl transition-all duration-300 " + (i === executionStep ? "bg-[#00f0ff]/5 border border-[#00f0ff]/20" : i < executionStep ? "bg-white/5" : "opacity-30")}>
-                  <span className={"text-lg mt-0.5 " + (i <= executionStep ? "" : "grayscale")}>{step.icon}</span>
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between">
-                      <span className={"text-sm font-medium " + (i === executionStep ? "text-[#00f0ff]" : "text-white")}>{step.title}</span>
-                      {i === executionStep && <span className="w-1.5 h-1.5 bg-[#00f0ff] rounded-full animate-pulse"></span>}
-                      {i < executionStep && <span className="text-[10px] text-green-400">✓</span>}
-                    </div>
-                    <p className={"text-xs mt-0.5 " + (i <= executionStep ? "text-gray-400" : "text-gray-600")}>{step.desc}</p>
-                  </div>
-                </div>
-              ))}
-              {executionStep >= executionSteps.length && (
-                <div className="text-center pt-4">
-                  <span className="text-green-400 text-sm font-medium">✅ 方案生成完成</span>
-                  <button onClick={startExecution} className="block mx-auto mt-2 text-xs text-[#00f0ff] hover:underline cursor-pointer">重新模拟</button>
-                </div>
-              )}
+              <button className="px-5 py-2.5 bg-white/10 rounded-full text-sm text-gray-300 hover:bg-white/20 transition cursor-pointer">
+                🚀 模拟生成报价
+              </button>
+              <div className="mt-4 grid grid-cols-3 gap-2">
+                <div className="bg-white/5 rounded-lg p-2"><div className="text-[10px] text-gray-500">🇩🇪 DE</div><div className="text-[10px] text-gray-400 mt-0.5">✓ CE</div></div>
+                <div className="bg-white/5 rounded-lg p-2"><div className="text-[10px] text-gray-500">🇬🇧 EN</div><div className="text-[10px] text-gray-400 mt-0.5">✓ FDA</div></div>
+                <div className="bg-white/5 rounded-lg p-2"><div className="text-[10px] text-gray-500">🇫🇷 FR</div><div className="text-[10px] text-gray-400 mt-0.5">✓ RGPD</div></div>
+              </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* LiveDashboard */}
-      <section className="max-w-6xl mx-auto px-8 py-20 border-t border-white/5">
+<section className="max-w-6xl mx-auto px-8 py-20 border-t border-white/5">
         <div className="text-center mb-12">
           <span className="text-[#00f0ff] text-sm tracking-widest">LIVE</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2">NEXUS平台实时状态</h2>
