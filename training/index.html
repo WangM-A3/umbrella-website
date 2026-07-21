@@ -59,7 +59,7 @@ body{font-family:-apple-system,'Segoe UI','PingFang SC','Microsoft YaHei',sans-s
 <div class="header">
   <i data-lucide="graduation-cap" style="width:20px;height:20px;color:#1a73e8"></i>
   <h1>百雀智能 · 培训实操沙箱</h1>
-  <span class="badge">学员端 v1.0</span>
+  <span class="badge">学员端 v1.0<a href="/ai-tutor" target="_blank" style="padding:4px 12px;border-radius:12px;border:none;background:linear-gradient(135deg,#00f0ff,#7b2fbe);color:#000;font-size:11px;font-weight:600;cursor:pointer;text-decoration:none;margin-left:8px">AI 助教</a></span>
   <div class="student-info">
     <i data-lucide="user" style="width:14px;height:14px"></i>
     <input id="studentName" placeholder="输入姓名" value="学员" onchange="saveName()">
@@ -127,7 +127,7 @@ function renderCourses() {
     COURSES.map(c => {
       const done = c.modules.filter(m => progress[c.id+'_'+m.id]).length;
       return '<div class="course-item' + (currentCourse===c.id?' active':'') + '" onclick="selectCourse(\''+c.id+'\')">' +
-        '<span>' + c.name + '</span><span class="count">' + done + '/' + c.modules.length + '</span></div>';
+        '<span>' + c.name + '<a href="/ai-tutor" target="_blank" style="padding:4px 12px;border-radius:12px;border:none;background:linear-gradient(135deg,#00f0ff,#7b2fbe);color:#000;font-size:11px;font-weight:600;cursor:pointer;text-decoration:none;margin-left:8px">AI 助教</a></span><span class="count">' + done + '/' + c.modules.length + '<a href="/ai-tutor" target="_blank" style="padding:4px 12px;border-radius:12px;border:none;background:linear-gradient(135deg,#00f0ff,#7b2fbe);color:#000;font-size:11px;font-weight:600;cursor:pointer;text-decoration:none;margin-left:8px">AI 助教</a></span></div>';
     }).join('');
   lucide.createIcons();
 }
@@ -256,5 +256,6 @@ lucide.createIcons();
 </script>
 </body>
 </html>
+
 
 
