@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>百雀智能 · 培训实操沙箱</title>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f0f2f5;color:#1a1a2e}
+.app{max-width:1100px;margin:0 auto;padding:16px}
+.header{display:flex;align-items:center;gap:12px;padding:12px 20px;background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:16px;flex-wrap:wrap}
+.header h1{font-size:16px;font-weight:600;flex:1}
+.badge{font-size:11px;padding:2px 10px;background:#e8f0fe;color:#1967d2;border-radius:10px}
+.student-info{display:flex;align-items:center;gap:8px;font-size:12px;color:#5f6368}
+.student-info input{padding:4px 8px;border:1px solid #dadce0;border-radius:4px;font-size:12px;width:120px}
+.row{display:flex;gap:16px;flex-wrap:wrap}
+.sidebar{width:240px;flex-shrink:0}
+.main{flex:1;min-width:0}
+.course-list,.module-list{background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);padding:12px;margin-bottom:16px}
+.course-list h3,.module-list h3,.exercise-panel h3{font-size:13px;font-weight:600;margin-bottom:8px;color:#5f6368}
+.course-item{padding:8px 10px;margin-bottom:4px;border-radius:6px;cursor:pointer;font-size:13px;display:flex;justify-content:space-between;align-items:center;transition:all .15s}
+.course-item:hover{background:#f8f9fa}
+.course-item.active{background:#e8f0fe;color:#1a73e8;font-weight:500}
+.course-item .count{font-size:11px;background:#e8eaed;padding:1px 6px;border-radius:8px;color:#5f6368}
+.course-item.active .count{background:#c6dafc;color:#1a73e8}
+.module-item{padding:8px 10px;margin-bottom:3px;border-radius:6px;cursor:pointer;font-size:13px;transition:all .15s}
+.module-item:hover{background:#f8f9fa}
+.module-item.active{background:#e8f0fe;color:#1a73e8;font-weight:500}
+.module-item.done{color:#34a853}
+.module-item.done::after{content:" ✓";font-size:12px}
+.exercise-panel{background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);padding:20px;min-height:300px}
+.exercise-panel h3{font-size:15px;font-weight:600;color:#202124;margin-bottom:12px}
+.exercise-desc{font-size:13px;color:#3c4043;line-height:1.6;margin-bottom:16px;padding:12px;background:#f8f9fa;border-radius:6px}
+.data-box{padding:12px;background:#f8f9fa;border-radius:6px;margin-bottom:16px;font-size:12px;max-height:200px;overflow-y:auto}
+.data-box pre{white-space:pre-wrap;font-size:12px;font-family:monospace}
+.action-area{margin-bottom:16px}
+.action-area textarea{width:100%;padding:10px;border:1px solid #dadce0;border-radius:6px;font-size:13px;font-family:inherit;resize:vertical;min-height:100px}
+.action-area textarea:focus{outline:none;border-color:#1a73e8}
+.btn-group{display:flex;gap:8px;flex-wrap:wrap}
+.btn{padding:8px 16px;border:1px solid #dadce0;border-radius:6px;background:#fff;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .15s}
+.btn:hover{background:#f8f9fa}
+.btn-primary{background:#1a73e8;color:#fff;border-color:#1a73e8}
+.btn-primary:hover{background:#1557b0}
+.btn-success{background:#34a853;color:#fff;border-color:#34a853}
+.btn-success:hover{background:#2d9249}
+.feedback{padding:12px;border-radius:6px;margin-top:12px;font-size:13px;display:none}
+.feedback.show{display:block}
+.feedback.success{background:#e6f4ea;color:#137333;border:1px solid #ceead6}
+.feedback.info{background:#e8f0fe;color:#1967d2;border:1px solid #d2e3fc}
+.feedback.warning{background:#fef7e0;color:#e37400;border:1px solid #fcefc7}
+.progress-bar{height:4px;background:#e8eaed;border-radius:2px;overflow:hidden;margin:8px 0}
+.progress-fill{height:100%;background:#1a73e8;border-radius:2px;transition:width .3s}
+@media(max-width:768px){.sidebar{width:100%}}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="header">
+  <i data-lucide="graduation-cap" style="width:20px;height:20px;color:#1a73e8"></i>
+  <h1>百雀智能 · 培训实操沙箱</h1>
+  <span class="badge">学员端 v1.0</span>
+  <div class="student-info">
+    <i data-lucide="user" style="width:14px;height:14px"></i>
+    <input id="studentName" placeholder="输入姓名" value="学员" onchange="saveName()">
+  </div>
+</div>
+
+<div class="row">
+  <div class="sidebar">
+    <div class="course-list" id="courseList"></div>
+    <div class="module-list" id="moduleList">
+      <h3>选择课程查看模块</h3>
+      <div style="font-size:12px;color:#5f6368;padding:8px">请从左侧选择课程</div>
+    </div>
+    <div class="module-list">
+      <h3>学习进度</h3>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+      <div style="font-size:12px;color:#5f6368" id="progressText">0 / 0 练习完成</div>
+    </div>
+  </div>
+  <div class="main">
+    <div class="exercise-panel" id="exercisePanel">
+      <h3>欢迎来到培训实操沙箱</h3>
+      <div class="exercise-desc">
+        <p>请从左侧选择一个课程和练习模块，开始动手实操。</p>
+        <p style="margin-top:8px">每个模块包含：</p>
+        <ul style="margin-top:4px;padding-left:20px">
+          <li>任务描述和操作步骤</li>
+          <li>模拟业务数据（可直接使用）</li>
+          <li>输入区域（记录你的答案）</li>
+          <li>提交验证（系统自动记录进度）</li>
+        </ul>
+        <p style="margin-top:8px;color:#5f6368">当前支持：A1选品/A2外贸员/A3巡检/C1安全检测 等模块实操</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+const STORAGE_KEY = 'training_portal_progress';
+const NAME_KEY = 'training_portal_name';
+
+const COURSES = [
+  {id:'a1',name:'A1 AI驱动跨境电商全链路增长',modules:[{id:'selection',name:'选品练习',desc:'使用AI工具搜索5个潜力单品，填写选品报告',task:'请搜索家居品类选品数据，完成以下任务：\n1. 选出5个潜力单品\n2. 填写每个单品的需求热度、竞争强度、利润测算\n3. 给出差异化建议'},{id:'listing',name:'Listing优化',desc:'优化产品标题和五点描述',task:'给定一款瑜伽裤产品，请用AI优化标题和描述，要求：\n1. 嵌入核心关键词\n2. 突出差异化卖点\n3. 符合美国消费者阅读习惯'},{id:'reviews',name:'差评分析',desc:'分析差评数据，提取TOP3痛点',task:'分析下方的5条差评数据，完成：\n1. 自动分类（质量/物流/尺码/客服）\n2. 提取TOP3高频关键词\n3. 给出产品改进建议'},{id:'diagnosis',name:'店铺诊断',desc:'基于模拟数据完成店铺诊断报告',task:'分析SunPower Home Store的店铺数据，完成：\n1. 诊断TOP3问题\n2. 给出优化建议\n3. 输出下周行动清单'}]},
+  {id:'a2',name:'A2 百雀智能产品实操工作坊',modules:[{id:'trader',name:'AI外贸员',desc:'搜索全球买家并生成建联方案',task:'使用AI搜索功能，完成：\n1. 设置搜索关键词（至少3组）\n2. 筛选10个高匹配买家\n3. 选择3个生成建联方案'},{id:'operator',name:'AI运营员',desc:'配置SEO优化和广告投放',task:'完成以下任务：\n1. SEO优化（应用至少3条建议）\n2. 广告投放（配置1条广告活动）\n3. 线索筛选（设置自动过滤规则）'},{id:'inquiry',name:'AI背调员',desc:'分析买家背调报告',task:'从搜索结果中选择3个买家，完成：\n1. 公司背调\n2. 信用评估\n3. 跟进优先级判断'}]},
+  {id:'a3',name:'A3 平台日常运营',modules:[{id:'patrol',name:'巡检配置',desc:'配置每日自动巡检',task:'配置自动巡检规则：\n1. 设置巡检时间\n2. 添加巡检范围\n3. 设置通知方式\n4. 成本控制设定'},{id:'buyer_mgmt',name:'买家管理',desc:'管理买家列表和分组',task:'完成买家管理操作：\n1. 查看买家列表\n2. 添加备注\n3. 创建自定义分组'}]},
+  {id:'c1',name:'C1 AI安全治理与合规实操',modules:[{id:'aeba',name:'AEBA检测',desc:'识别并处理安全告警',task:'查看下方告警列表，判断每条告警：\n1. 是否为真实威胁\n2. 应该如何处理\n3. 选择1条详细说明'},{id:'triad',name:'TRIAD决策',desc:'配置三路决策防御策略',task:'配置TRIAD策略：\n1. 设置路1规则\n2. 设置路2阈值\n3. 模拟测试决策流程'}]}
+];
+
+let currentCourse = null;
+let currentModule = null;
+let progress = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+
+function saveName() {
+  localStorage.setItem(NAME_KEY, document.getElementById('studentName').value);
+}
+
+// Init
+const savedName = localStorage.getItem(NAME_KEY);
+if (savedName) document.getElementById('studentName').value = savedName;
+
+function renderCourses() {
+  const el = document.getElementById('courseList');
+  el.innerHTML = '<h3><i data-lucide="book-open" style="width:14px;height:14px;display:inline;margin-right:4px"></i>课程列表</h3>' +
+    COURSES.map(c => {
+      const done = c.modules.filter(m => progress[c.id+'_'+m.id]).length;
+      return '<div class="course-item' + (currentCourse===c.id?' active':'') + '" onclick="selectCourse(\''+c.id+'\')">' +
+        '<span>' + c.name + '</span><span class="count">' + done + '/' + c.modules.length + '</span></div>';
+    }).join('');
+  lucide.createIcons();
+}
+
+function selectCourse(id) {
+  currentCourse = id;
+  currentModule = null;
+  renderCourses();
+  renderModules();
+  document.getElementById('exercisePanel').innerHTML =
+    '<h3>' + COURSES.find(c=>c.id===id).name + '</h3>' +
+    '<div class="exercise-desc">请从右侧选择一个练习模块开始实操</div>';
+}
+
+function renderModules() {
+  const el = document.getElementById('moduleList');
+  if (!currentCourse) {
+    el.innerHTML = '<h3>选择课程查看模块</h3><div style="font-size:12px;color:#5f6368;padding:8px">请从左侧选择课程</div>';
+    return;
+  }
+  const course = COURSES.find(c => c.id === currentCourse);
+  el.innerHTML = '<h3>' + course.name + '</h3>' +
+    course.modules.map(m => {
+      const done = progress[currentCourse+'_'+m.id];
+      return '<div class="module-item' + (currentModule===m.id?' active':'') + (done?' done':'') + '" onclick="selectModule(\''+m.id+'\')">' + m.name + '</div>';
+    }).join('');
+}
+
+function selectModule(id) {
+  currentModule = id;
+  renderModules();
+  const course = COURSES.find(c => c.id === currentCourse);
+  const mod = course.modules.find(m => m.id === id);
+  showExercise(mod);
+}
+
+function showExercise(mod) {
+  const panel = document.getElementById('exercisePanel');
+  const cid = currentCourse;
+  const data = getSimulatedData(cid, mod.id);
+
+  panel.innerHTML = '<h3>' + mod.name + '</h3>' +
+    '<div class="exercise-desc">' + mod.desc + '<br><br><strong>任务要求：</strong><br>' + mod.task.replace(/\n/g,'<br>') + '</div>' +
+    (data ? '<div class="data-box"><pre>' + JSON.stringify(data, null, 2) + '</pre></div>' : '') +
+    '<div class="action-area"><textarea id="answerInput" placeholder="在此输入你的答案..."></textarea></div>' +
+    '<div class="btn-group">' +
+    '<button class="btn btn-primary" onclick="submitExercise()"><i data-lucide="send" style="width:14px;height:14px"></i> 提交答案</button>' +
+    '<button class="btn" onclick="clearAnswer()"><i data-lucide="rotate-ccw" style="width:14px;height:14px"></i> 清空</button>' +
+    '</div>' +
+    '<div class="feedback" id="feedback"></div>';
+
+  // Restore saved answer
+  const key = cid+'_'+mod.id;
+  const saved = progress[key];
+  if (saved && saved.answer) {
+    document.getElementById('answerInput').value = saved.answer;
+    showFeedback('success', '你之前已完成此练习。<br>上次提交：' + saved.time);
+  }
+  lucide.createIcons();
+}
+
+function getSimulatedData(cid, mod) {
+  const data = {
+    'a1_selection': [{category:'可折叠洗衣篮',search_vol:89000,growth:'+35%',competition:1200,avg_price:'$18.99',profit:35},
+      {category:'智能垃圾桶',search_vol:45000,growth:'+52%',competition:850,avg_price:'$49.99',profit:42},
+      {category:'磁吸收纳架',search_vol:67000,growth:'+28%',competition:2300,avg_price:'$15.99',profit:40},
+      {category:'台面旋转收纳盘',search_vol:28000,growth:'+45%',competition:650,avg_price:'$12.99',profit:45},
+      {category:'抽屉分隔板',search_vol:38000,growth:'+30%',competition:1100,avg_price:'$14.99',profit:42}],
+    'a1_reviews': [{product:'LED灯带',rating:1,text:'买了不到两周就不亮了。联系客服也没人回。'},{product:'手机支架',rating:2,text:'夹不住手机，稍微碰一下就掉了。'},{product:'园艺工具',rating:1,text:'手柄太细了，用起来很费力。'},{product:'瑜伽垫',rating:2,text:'味道特别大，放阳台一周还有味道。'},{product:'可折叠洗衣篮',rating:3,text:'只够装两件外套，比想象中小很多。'}],
+    'a1_diagnosis': {store:'SunPower Home Store',monthly_revenue:38500,visitors:1280,conversion:2.8,return_rate:8.2,acos:32,top_skus:[{sku:'FOLD-BSKT-01',name:'可折叠洗衣篮',sales:1250,rating:4.5},{sku:'LED-STRIP-01',name:'LED灯带',sales:380,rating:3.8,return_rate:9.2},{sku:'CABLE-ORG-01',name:'数据线收纳',sales:180,rating:3.5,return_rate:15}]},
+    'a2_trader': [{company:'SolarMax Inc.',country:'美国',score:92,category:'太阳能板'},{company:'GreenEnergy Solutions',country:'美国',score:88,category:'太阳能系统'},{company:'EcoHome Distributors',country:'美国',score:85,category:'家居收纳'},{company:'EuroLiving GmbH',country:'德国',score:82,category:'家居用品'},{company:'TechMart Asia',country:'泰国',score:78,category:'电子配件'}],
+    'c1_aeba': [{time:'02:33:15',type:'异常文件操作',level:'紧急',source:'dev-01',desc:'连续15次rm -rf操作'},{time:'09:22:18',type:'数据出境',level:'严重',source:'user-01',desc:'客户数据被粘贴到ChatGPT公共版'},{time:'10:00:00',type:'配置漂移',level:'警告',source:'cursor-agent',desc:'.cursorrules被修改'},{time:'13:15:00',type:'异常Git推送',level:'严重',source:'dev-05',desc:'代码推送到非授权仓库'}]
+  };
+  return data[cid+'_'+mod] || null;
+}
+
+function submitExercise() {
+  const answer = document.getElementById('answerInput').value.trim();
+  if (!answer) { showFeedback('warning','请先输入你的答案再提交'); return; }
+
+  const key = currentCourse+'_'+currentModule;
+  const now = new Date().toLocaleString('zh-CN');
+  progress[key] = {answer:answer,time:now};
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+
+  // Try server submit
+  fetch('/api/training/submit', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({
+      course_id: currentCourse,
+      module: currentModule,
+      student_id: document.getElementById('studentName').value || 'guest',
+      answer: {text: answer}
+    })
+  }).catch(() => {});
+
+  showFeedback('success','提交成功！' + '<br>时间：' + now + '<br>已完成练习数：' + Object.keys(progress).length);
+  renderCourses();
+  renderModules();
+  updateProgress();
+}
+
+function clearAnswer() {
+  document.getElementById('answerInput').value = '';
+  document.getElementById('feedback').className = 'feedback';
+}
+
+function showFeedback(type, msg) {
+  const el = document.getElementById('feedback');
+  el.className = 'feedback show ' + type;
+  el.innerHTML = msg;
+}
+
+function updateProgress() {
+  const total = COURSES.reduce((sum,c) => sum + c.modules.length, 0);
+  const done = Object.keys(progress).length;
+  document.getElementById('progressFill').style.width = (done/total*100) + '%';
+  document.getElementById('progressText').textContent = done + ' / ' + total + ' \u7ec3\u4e60\u5b8c\u6210';
+}
+
+// Init
+renderCourses();
+updateProgress();
+lucide.createIcons();
+</script>
+</body>
+</html>
+
+
