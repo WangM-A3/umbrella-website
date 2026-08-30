@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>免费 AI 可见度体检 · 云旅科技集团</title>
+<link rel="alternate" type="text/plain" href="/llms.txt">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Service","name":"AI Native 咨询与 AI 可见度体检","provider":{"@type":"Organization","name":"云旅科技集团","url":"https://www.silicon-army.cn"},"description":"免费 AI 可见度体检（0-100 分）：AI 引用率/内容可引性/可爬性/权威性四维评分 + 16 项 AI Native 成熟度自测 + 三硬标准差距清单，30 分钟出报告。","areaServed":"CN","offers":{"@type":"Offer","price":"0","priceCurrency":"CNY","description":"首轮免费体检名额"}}
+</script>
+<style>
+  :root { --bg:#0a0e1f; --card:#131a38; --card2:#1b2148; --cyan:#00e5ff; --purple:#8b5cf6; --pink:#ff4d9d; --green:#34d399; --yellow:#fbbf24; --text:#e8ecf8; --text2:#a6b0d6; --muted:#6b7aa8; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Microsoft YaHei','PingFang SC',sans-serif; background:var(--bg); color:var(--text); line-height:1.7; }
+  .lang-bar { text-align:right; padding:10px 24px; font-size:12px; border-bottom:1px solid #1b2148; }
+  .lang-bar a { color:var(--cyan); text-decoration:none; margin-left:14px; }
+  .lang-bar a:hover { text-decoration:underline; }
+  .hero { text-align:center; padding:60px 20px 40px; background:linear-gradient(180deg,#0a0e1f,#10122e 60%,#1d1040); }
+  .hero .brand { display:inline-block; font-size:12px; color:var(--cyan); border:1px solid var(--cyan); padding:5px 18px; border-radius:20px; }
+  .hero h1 { font-size:38px; font-weight:900; margin:20px 0 10px; max-width:820px; margin-left:auto; margin-right:auto; }
+  .hero h1 span { background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .hero p { color:var(--text2); font-size:15px; max-width:650px; margin:0 auto; }
+  .container { max-width:900px; margin:0 auto; padding:24px; }
+  .proof { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; margin:32px 0; }
+  .proof-item { background:var(--card); border-radius:12px; padding:18px; text-align:center; }
+  .proof-item .n { font-size:30px; font-weight:900; color:var(--cyan); }
+  .proof-item .t { font-size:11px; color:var(--muted); margin-top:4px; }
+  .form { background:var(--card2); border:1px solid var(--cyan); border-radius:16px; padding:32px; margin:36px 0; }
+  .form h3 { color:var(--cyan); font-size:20px; margin-bottom:6px; text-align:center; }
+  .form p { text-align:center; color:var(--text2); font-size:13px; margin-bottom:20px; }
+  .form input { width:100%; padding:12px 16px; margin:8px 0; border-radius:8px; border:1px solid #2a3160; background:var(--card); color:var(--text); font-size:14px; }
+  .form input:focus { outline:none; border-color:var(--cyan); }
+  .form button { width:100%; padding:14px; margin-top:12px; border-radius:8px; border:none; background:linear-gradient(90deg,var(--cyan),var(--purple)); color:#fff; font-size:16px; font-weight:700; cursor:pointer; }
+  .form button:hover { filter:brightness(1.15); }
+  .form button:disabled { opacity:.6; cursor:wait; }
+  .form .note { text-align:center; color:var(--muted); font-size:11px; margin-top:12px; }
+  #formMsg { display:none; text-align:center; padding:14px; border-radius:8px; margin-top:14px; font-size:13px; }
+  #formMsg.ok { display:block; background:rgba(52,211,153,.12); border:1px solid var(--green); color:var(--green); }
+  #formMsg.err { display:block; background:rgba(255,77,157,.12); border:1px solid var(--pink); color:var(--pink); }
+  .offers { margin:36px 0; }
+  .offers h2 { font-size:22px; margin-bottom:16px; border-left:4px solid var(--cyan); padding-left:12px; }
+  .offer-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; }
+  .offer { background:var(--card); border:1px solid #2a3160; border-radius:14px; padding:20px; }
+  .offer h3 { font-size:16px; margin-bottom:8px; }
+  .offer .price { font-size:22px; font-weight:900; color:var(--cyan); margin-bottom:10px; }
+  .offer ul { list-style:none; padding:0; }
+  .offer li { padding:5px 0; border-bottom:1px dashed #2a3160; font-size:12px; color:var(--text2); }
+  .offer li::before { content:"✓ "; color:var(--green); }
+  .footer { text-align:center; padding:24px; color:var(--muted); font-size:11px; }
+</style>
+</head>
+<body>
+
+<div class="lang-bar">
+  🌐 <a href="landing-en.html" title="English Landing Page">English / EN</a>
+  <a href="index.html" title="AI Native 发布中心">发布中心</a>
+</div>
+
+<div class="hero">
+  <div class="brand">云旅科技集团 · AI Native 咨询</div>
+  <h1>AI 不会淘汰企业，<span>AI Native 的企业会淘汰非 AI Native 的企业。</span></h1>
+  <p>2026 年，40% 的企业应用将嵌入 AI Agent（Gartner）；76% 的询盘决策发生在 AI 对话里。您的品牌，在 AI 的答案里吗？</p>
+</div>
+
+<div class="container">
+  <div class="proof">
+    <div class="proof-item"><div class="n">25</div><div class="t">AI 员工在册（真实案例）</div></div>
+    <div class="proof-item"><div class="n">132</div><div class="t">可调用 Skill</div></div>
+    <div class="proof-item"><div class="n">54</div><div class="t">全球信源每日自动蒸馏</div></div>
+    <div class="proof-item"><div class="n">90 天</div><div class="t">AI Native 改造交付周期</div></div>
+  </div>
+
+  <div class="form" id="claim">
+    <h3>免费 AI 可见度体检（前 10 位名额）</h3>
+    <p>看看您的品牌在 ChatGPT / 豆包 / DeepSeek 眼里存不存在 —— 0-100 分，30 分钟出报告，不签任何东西。</p>
+    <form id="leadForm" action="https://formsubmit.co/contact@yunlvtech.cn" method="POST">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_subject" value="[AI-Native Lead] 中文体检预约">
+      <input type="hidden" name="_next" value="https://www.silicon-army.cn/ai-native/landing-zh.html#thankyou">
+      <input type="text" name="name" placeholder="您的姓名" required>
+      <input type="email" name="email" placeholder="工作邮箱" required>
+      <input type="text" name="company" placeholder="公司 / 行业">
+      <input type="text" name="website" placeholder="公司官网地址">
+      <input type="hidden" name="_honey" value="" style="display:none">
+      <button type="submit" id="leadBtn">预约免费体检</button>
+      <div class="note">体检内容：AI 可见度评分 + 16 项成熟度自测 + 三硬标准差距清单。名额有限，先到先得。</div>
+    </form>
+    <div id="formMsg"></div>
+  </div>
+
+  <div class="offers">
+    <h2>AI Native 咨询服务</h2>
+    <div class="offer-grid">
+      <div class="offer">
+        <h3>AI Native 体检</h3>
+        <div class="price">¥9,999 <small>/ 次</small></div>
+        <ul><li>16 项成熟度报告</li><li>三硬标准差距清单</li><li>90 天行动框架</li></ul>
+      </div>
+      <div class="offer">
+        <h3>90 天 AI Native 改造</h3>
+        <div class="price">¥29.9 万起 <small>/ 项目</small></div>
+        <ul><li>数字员工上岗（10-15 角色）</li><li>数字员工开发规范</li><li>结果账本 + 三重保险</li><li>三层指挥链</li></ul>
+      </div>
+      <div class="offer">
+        <h3>年度陪跑</h3>
+        <div class="price">¥9.9 万 <small>/ 年</small></div>
+        <ul><li>季度复评</li><li>军团扩容支持</li><li>自进化引擎部署</li><li>月度绩效复盘</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    云旅科技集团 · AI Native 系列 ｜ 白皮书 + 体检 + 改造 ｜ © 2026
+  </div>
+</div>
+
+<script>
+/* ---- Lead pipeline: formsubmit.co + local inbox + UTM + optional webhook（与 landing-en 同管道）---- */
+(function () {
+  var form = document.getElementById('leadForm');
+  var msg = document.getElementById('formMsg');
+  var btn = document.getElementById('leadBtn');
+
+  // --- 配置：在此粘贴飞书/CRM Webhook URL 后启用推送（替代 formsubmit 为主管道）---
+  var LEAD_WEBHOOK = "";
+
+  function getParams() {
+    try {
+      var q = new URLSearchParams(location.search);
+      return { utm_source: q.get('utm_source') || '', utm_medium: q.get('utm_medium') || '', utm_campaign: q.get('utm_campaign') || '', ref: document.referrer || '' };
+    } catch (e) { return { utm_source: '', utm_medium: '', utm_campaign: '', ref: '' }; }
+  }
+
+  function saveLead(data) {
+    try {
+      var box = JSON.parse(localStorage.getItem('yunlv_lead_inbox') || '[]');
+      data.ts = new Date().toISOString();
+      data.page = location.pathname;
+      box.push(data);
+      localStorage.setItem('yunlv_lead_inbox', JSON.stringify(box));
+    } catch (e) {}
+  }
+
+  function pushWebhook(data) {
+    if (!LEAD_WEBHOOK) return Promise.resolve(false);
+    try {
+      return fetch(LEAD_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ msg_type: 'text', content: { text: '🔔 [AI-Native Lead 中文]\n姓名: ' + data.name + '\n邮箱: ' + data.email + '\n公司: ' + data.company + '\n官网: ' + data.website + '\nUTM: ' + (data.utm_source || '-') + ' / ' + (data.utm_medium || '-') + ' / ' + (data.utm_campaign || '-') + '\n页面: ' + data.page + '\n时间: ' + data.ts } })
+      }).then(function (r) { return r.ok; }).catch(function () { return false; });
+    } catch (e) { return Promise.resolve(false); }
+  }
+
+  function track(event, data) {
+    try { if (window.dataLayer) window.dataLayer.push({ event: event, ...data }); } catch (e) {}
+    try { if (window.gtag) window.gtag('event', event, data); } catch (e) {}
+  }
+
+  form.addEventListener('submit', function (e) {
+    var name = form.name.value.trim();
+    var email = form.email.value.trim();
+    if (!name || !email) { e.preventDefault(); showMsg('请填写姓名和工作邮箱。', 'err'); return; }
+    var params = getParams();
+    var lead = { name: name, email: email, company: form.company.value.trim(), website: form.website.value.trim(), utm_source: params.utm_source, utm_medium: params.utm_medium, utm_campaign: params.utm_campaign, ref: params.ref };
+    saveLead(lead);
+    track('lead_submit', { email: email, company: lead.company, utm_source: lead.utm_source, utm_medium: lead.utm_medium, utm_campaign: lead.utm_campaign });
+    btn.disabled = true; btn.textContent = '提交中...';
+    if (LEAD_WEBHOOK) {
+      e.preventDefault();
+      pushWebhook(lead).then(function (ok) {
+        showMsg(ok ? '已收到预约，团队将在 24 小时内联系您。' : '表单暂时不可用，请直接邮件 contact@yunlvtech.cn，我们 24 小时内回复。', ok ? 'ok' : 'err');
+        btn.disabled = false; btn.textContent = '预约免费体检';
+      });
+    } else {
+      showMsg('已收到预约，团队将在 24 小时内联系您。', 'ok');
+    }
+  });
+
+  function showMsg(text, kind) { msg.className = kind; msg.textContent = text; }
+})();
+</script>
+
+</body>
+</html>

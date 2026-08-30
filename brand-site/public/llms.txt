@@ -1,0 +1,25 @@
+# Yunlv Tech Group (云旅科技集团) — AI Native Series
+
+> 云旅科技集团：AI Native 咨询 · AI 可见度体检 · 90 天 AI Native 改造 · 数字员工军团 · 自进化引擎（Yunlv Evolve OS）。
+> AI 不会淘汰企业，AI Native 的企业会淘汰非 AI Native 的企业。三硬标准 · 五级成熟度 · 10 大先进模式 · 25 人 AI 员工军团真实案例。
+
+## 主站
+
+- [首页 / 硅基军团产品矩阵](https://www.silicon-army.cn/): 外贸 AI 决策 OS、Agent Skills API、V6 安全治理、BOSS IP Factory、Platform Kernel、WorkBuddy、AI-OS、AI 短剧等 15 款产品，按结果付费。中文。
+
+## AI Native 发布中心（/ai-native/）
+
+- [AI Native 发布中心（中文导航）](https://www.silicon-army.cn/ai-native/): 白皮书 + 演示台 + Skill 市场 + 咨询定价统一入口。
+- [中国企业 AI Native 白皮书](https://www.silicon-army.cn/ai-native/whitepaper.html): 三硬标准（AI 员工>人类 / AI 创造≥30%收入 / 能力90% Skill 化）、五级成熟度（L1-L5）、10 大先进模式（Anthropic/Claude Code/OpenAI/dsh-bridges）、25 人 AI 员工军团与何田县域样板案例。免费领取全文。
+- [免费 AI 可见度体检（中文预约）](https://www.silicon-army.cn/ai-native/landing-zh.html): 0-100 分体检：AI 引用率/内容可引性/可爬性/权威性四维 + 16 项成熟度自测 + 三硬标准差距清单，30 分钟出报告。服务定价：体检 ¥9,999/次（首轮免费名额）、90 天改造 ¥29.9 万起、年度陪跑 ¥9.9 万/年。
+- [Free AI Visibility Assessment (EN)](https://www.silicon-army.cn/ai-native/landing-en.html): English version of the assessment landing page.
+- [AI 员工军团作战演示台 v4](https://www.silicon-army.cn/ai-native/demo.html): 25/25 AI 员工实时产出演示，含账本事件流。
+- [运营指挥舱（动态版）](https://www.silicon-army.cn/ai-native/command-center-dynamic.html): AI 员工军团实时运营数据。
+- [Skill 资产市场 MVP](https://www.silicon-army.cn/ai-native/market.html): 11 行业 skill 包 ¥299/月、通用能力包 ¥199/月、四档订阅。
+- [AI Native 咨询产品与定价](https://www.silicon-army.cn/ai-native/consulting.html): 体检/改造/陪跑产品明细。
+- [AI Employee Army Command Center (EN)](https://www.silicon-army.cn/ai-native/command-center-en.html): English command center.
+- [白皮书英文版 (Markdown)](https://www.silicon-army.cn/ai-native/whitepaper-en.md)
+
+## 联系
+
+- 线索/合作：contact@yunlvtech.cn（表单提交走 https://formsubmit.co/contact@yunlvtech.cn）
