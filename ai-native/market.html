@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>云旅 Skill 市场 · AI 员工即服务</title>
+<style>
+  :root {
+    --bg: #0a0e1f; --card: #131a38; --card2: #1b2148;
+    --cyan: #00e5ff; --purple: #8b5cf6; --pink: #ff4d9d;
+    --green: #34d399; --yellow: #fbbf24; --red: #ff4d6d;
+    --text: #fff; --text2: #a6b0d6; --muted: #6b7aa8;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Microsoft YaHei', sans-serif; background: var(--bg); color: var(--text); line-height:1.6; }
+  .hero { text-align:center; padding:60px 20px 40px; background: linear-gradient(180deg, #0a0e1f 0%, #131a38 100%); }
+  .hero h1 { font-size:42px; font-weight:800; margin-bottom:12px; }
+  .hero h1 span { background: linear-gradient(90deg, var(--cyan), var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .hero p { color: var(--text2); font-size:16px; }
+  .hero .badge { display:inline-block; margin-top:16px; padding:6px 18px; border:1px solid var(--cyan); border-radius:20px; color:var(--cyan); font-size:13px; }
+  .container { max-width:1200px; margin:0 auto; padding:20px; }
+  .section-title { font-size:24px; font-weight:700; margin:40px 0 20px; }
+  .section-title span { color: var(--cyan); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(340px, 1fr)); gap:20px; }
+  .card { background: var(--card); border:1px solid #2a3160; border-radius:14px; padding:22px; transition: all .2s; }
+  .card:hover { transform: translateY(-4px); border-color: var(--cyan); box-shadow: 0 8px 30px rgba(0,229,255,.1); }
+  .card .tag { display:inline-block; font-size:11px; padding:2px 10px; border-radius:10px; margin-bottom:10px; }
+  .card h3 { font-size:17px; margin-bottom:8px; }
+  .card .desc { color:var(--text2); font-size:13px; margin-bottom:14px; min-height:40px; }
+  .card .price { font-size:22px; font-weight:800; color: var(--cyan); }
+  .card .price small { font-size:12px; color:var(--muted); font-weight:400; }
+  .card .btn { display:inline-block; margin-top:12px; padding:8px 22px; background:linear-gradient(90deg, var(--cyan), var(--purple)); color:#fff; border-radius:8px; font-size:13px; text-decoration:none; }
+  .tier-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px; margin-bottom:30px; }
+  .tier { background: var(--card2); border:1px solid #2a3160; border-radius:14px; padding:22px; text-align:center; }
+  .tier.hot { border-color: var(--yellow); }
+  .tier h3 { font-size:18px; margin-bottom:6px; }
+  .tier .p { font-size:26px; font-weight:800; margin:10px 0; }
+  .tier ul { list-style:none; color:var(--text2); font-size:13px; text-align:left; padding:0 10px; }
+  .tier li { padding:4px 0; border-bottom:1px dashed #2a3160; }
+  .tier li::before { content:"✓ "; color:var(--green); }
+  .footer { text-align:center; padding:40px; color:var(--muted); font-size:13px; }
+  .note { color: var(--muted); font-size:12px; }
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="badge">Yunlv Skill Market · AI 员工即服务（EaaS）</div>
+  <h1>云旅 <span>Skill 市场</span></h1>
+  <p>别人卖软件，我们卖"会干活的 AI 能力"——每个 skill 都是一个可订阅、可复用、会进化的能力单元</p>
+</div>
+
+<div class="container">
+  <div class="section-title">⚡ 定价方案 <span>Pricing</span></div>
+  <div class="tier-grid">
+    <div class="tier">
+      <h3>免费版</h3>
+      <div class="p">¥0<span> / 月</span></div>
+      <ul>
+        <li>3 个通用 skill</li>
+        <li>社区支持</li>
+        <li>AI 可见度体检 1 次</li>
+      </ul>
+    </div>
+    <div class="tier hot">
+      <h3>成长版 ⭐</h3>
+      <div class="p">¥999<span> / 月</span></div>
+      <ul>
+        <li>任意 5 个行业 skill</li>
+        <li>每月 1 次能力升级</li>
+        <li>企微群交付</li>
+      </ul>
+    </div>
+    <div class="tier">
+      <h3>企业版</h3>
+      <div class="p">¥39,900<span> / 月</span></div>
+      <ul>
+        <li>全部 20+ skill</li>
+        <li>1 个定制 skill</li>
+        <li>专属数字员工</li>
+      </ul>
+    </div>
+    <div class="tier">
+      <h3>生态版</h3>
+      <div class="p">¥99,900<span> / 月</span></div>
+      <ul>
+        <li>全部 + 白标/渠道</li>
+        <li>AI 员工 10 个</li>
+        <li>开发者 API</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title">🏭 行业 Skill 包 <span>（每个 ¥299/月 · 全部带溯源 + 进化维护）</span></div>
+  <div class="grid">
+    <div class="card"><span class="tag" style="background:rgba(0,229,255,.15);color:var(--cyan)">外贸</span><h3>外贸拓客包</h3><div class="desc">ICP 画像 / 134 语言开发信 / 合规 / 触达节奏</div><div class="price">¥299<small>/月</small></div><a class="btn" href="#">订阅</a></div>
+    <div class="card"><span class="tag" style="background:rgba(139,92,246,.15);color:var(--purple)">制造</span><h3>制造业包</h3><div class="desc">报价 / 跟单 / 质检 / 供应链</div><div class="price">¥299<small>/月</small></div><a class="btn" href="#">订阅</a></div>
+    <div class="card"><span class="tag" style="background:rgba(255,77,157,.15);color:var(--pink)">连锁</span><h3>服务业包</h3><div class="desc">客服 / 私域 / 差评 / GEO 本地</div><div class="price">¥299<small>/月</small></div><a class="btn" href="#">订阅</a></div>
+    <div class="card"><span class="tag" style="background:rgba(52,211,153,.15);color:var(--green)">教育</span><h3>教育包</h3><div class="desc">招生 / 续费 / 答疑 / 内容</div><div class="price">¥299<small>/月</small></div><a class="btn" href="#">订阅</a></div>
+    <div class="card"><span class="tag" style="background:rgba(251,191,36,.15);color:var(--yellow)">医疗</span><h3>医疗包</h3><div class="desc">预约 / 回访 / 口碑 / 科普</div><div class="price">¥299<small>/月</small></div><a class="btn" href="#">订阅</a></div>
+    <div class="card"><span class="tag" style="background:rgba(0,229,255,.15);color:var(--cyan)">金融</span><h3>金融包</h3><div class="desc">客服 / 合规 / 投顾 / 风控</div><div class="price">¥299<small>/月</small></div><a class="btn" href="#">订阅</a></div>
+    <div class="card"><span class="tag" style="background:rgba(139,92,246,.15);color:var(--purple)">房产</span><h3>房产包</h3><div class="desc">获客 / 匹配 / 跟进 / 谈判</div><div class="price">¥299<small>/月</small></div><a class="btn" href="#">订阅</a></div>
+    <div class="card"><span class="tag" style="background:rgba(255,77,157,.15);color:var(--pink)">物流</span><h3>物流包</h3><div class="desc">报价 / 盯舱 / 预警 / 获客</div><div class="price">¥299<small>/月</small></div><a class="btn" href="#">订阅</a></div>
+    <div class="card"><span class="tag" style="background:rgba(52,211,153,.15);color:var(--green)">农业</span><h3>农业包</h3><div class="desc">采购对接 / 行情 / 农技</div><div class="price">¥299<small>/月</small></div><a class="btn" href="#">订阅</a></div>
+    <div class="card"><span class="tag" style="background:rgba(251,191,36,.15);color:var(--yellow)">电商</span><h3>电商包</h3><div class="desc">客服 / 内容 / 选品 / 投放</div><div class="price">¥299<small>/月</small></div><a class="btn" href="#">订阅</a></div>
+    <div class="card"><span class="tag" style="background:rgba(0,229,255,.15);color:var(--cyan)">餐饮</span><h3>餐饮包</h3><div class="desc">订座 / 差评 / 会员 / 备货</div><div class="price">¥299<small>/月</small></div><a class="btn" href="#">订阅</a></div>
+  </div>
+
+  <div class="section-title">🧠 通用能力包 <span>（每个 ¥199/月）</span></div>
+  <div class="grid">
+    <div class="card"><span class="tag" style="background:rgba(0,229,255,.15);color:var(--cyan)">GEO</span><h3>GEO 可见度包</h3><div class="desc">AI 引用率检测 / 优化，让 AI 推荐你</div><div class="price">¥199<small>/月</small></div><a class="btn" href="#">订阅</a></div>
+    <div class="card"><span class="tag" style="background:rgba(139,92,246,.15);color:var(--purple)">规范</span><h3>数字员工规范包</h3><div class="desc">Agent 开发规范，教客户建 AI 员工</div><div class="price">¥199<small>/月</small></div><a class="btn" href="#">订阅</a></div>
+    <div class="card"><span class="tag" style="background:rgba(255,77,157,.15);color:var(--pink)">体检</span><h3>AI Native 体检包</h3><div class="desc">16 项成熟度指标评估</div><div class="price">¥199<small>/月</small></div><a class="btn" href="#">订阅</a></div>
+    <div class="card"><span class="tag" style="background:rgba(52,211,153,.15);color:var(--green)">护栏</span><h3>合规护栏包</h3><div class="desc">白帽红线规则，交付即合规</div><div class="price">¥199<small>/月</small></div><a class="btn" href="#">订阅</a></div>
+  </div>
+
+  <div class="footer">
+    <p>云旅 Skill 市场 · 由 Yunlv Evolve OS 全球蒸馏驱动 · 60+ skill 每日自动进化</p>
+    <p class="note">每个 skill 带溯源（来源仓库）+ 三重保险（人工审批/成本熔断/全程审计）· 订阅后拉进企微群，一句话出结果</p>
+  </div>
+</div>
+</body>
+</html>
