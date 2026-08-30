@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect, useRef } from "react";
  import ScrollAnimation from "@/components/ScrollAnimation";
@@ -306,6 +306,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
           </div>
           
           <a href="/cases" className="hover:text-white transition-colors">客户案例</a>
+          <a href="/ai-native/" className="hover:text-[#00f0ff] transition-colors text-[#00f0ff] font-medium">✦ AI Native 资产</a>
           
           {/* Resources Dropdown */}
           <div className="relative">
@@ -374,6 +375,9 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
             </a>
             <a href="/products" className="px-8 py-3.5 border border-white/15 rounded-full hover:bg-white/5 transition text-gray-300 flex items-center gap-2 cursor-pointer">
               🔍 浏览15款AI产品
+            </a>
+            <a href="/ai-native/" className="px-6 py-3 bg-gradient-to-r from-[#7b2fbe] to-[#ff4d9d] text-white font-semibold rounded-full hover:shadow-xl hover:shadow-[#ff4d9d]/20 transition-all flex items-center gap-2 text-sm cursor-pointer">
+              🚀 AI Native 发布中心 →
             </a>
           </div>
 
