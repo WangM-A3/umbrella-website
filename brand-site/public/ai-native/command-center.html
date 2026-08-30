@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>云旅 AI 员工军团 · 运营指挥舱 v6（进化实时）</title>
+<style>
+  :root { --bg:#0a0e1f; --card:#131a38; --card2:#1b2148; --cyan:#00e5ff; --purple:#8b5cf6; --pink:#ff4d9d; --green:#34d399; --yellow:#fbbf24; --red:#ff4d6d; --text:#e8ecf8; --text2:#a6b0d6; --muted:#6b7aa8; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Microsoft YaHei',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+  .hero { text-align:center; padding:30px 20px 12px; }
+  .hero .brand { display:inline-block; font-size:11px; color:var(--cyan); border:1px solid var(--cyan); padding:4px 16px; border-radius:18px; }
+  .hero h1 { font-size:28px; font-weight:900; margin:10px 0 4px; }
+  .hero h1 span { background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .hero p { color:var(--text2); font-size:11px; }
+  .container { max-width:1080px; margin:0 auto; padding:12px; }
+  .live-badge { text-align:center; font-size:11px; color:var(--green); margin:6px 0 14px; padding:6px; border:1px solid var(--green); border-radius:8px; }
+  .grid4 { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; margin:14px 0; }
+  .kpi { background:var(--card); border:1px solid #2a3160; border-radius:11px; padding:14px; }
+  .kpi .l { font-size:10px; color:var(--muted); }
+  .kpi .v { font-size:24px; font-weight:900; margin:3px 0; }
+  .kpi .s { font-size:9px; color:var(--text2); }
+  .kpi.cyan .v { color:var(--cyan); } .kpi.green .v { color:var(--green); }
+  .kpi.purple .v { color:var(--purple); } .kpi.pink .v { color:var(--pink); }
+  .kpi.yellow .v { color:var(--yellow); }
+  .section { margin:20px 0; }
+  .section h2 { font-size:16px; margin-bottom:8px; border-left:4px solid var(--cyan); padding-left:10px; }
+  .panel { background:var(--card2); border:1px solid #2a3160; border-radius:11px; padding:14px; }
+  table { width:100%; border-collapse:collapse; font-size:11px; }
+  th { background:var(--card); color:var(--cyan); padding:7px; text-align:left; }
+  td { padding:6px 7px; border-bottom:1px solid #1b2148; color:var(--text2); }
+  .dist { display:flex; gap:8px; flex-wrap:wrap; }
+  .dist-item { background:var(--card); border:1px solid #2a3160; border-radius:8px; padding:8px 14px; text-align:center; }
+  .dist-item .n { font-size:20px; font-weight:900; }
+  .dist-item .t { font-size:9px; color:var(--muted); }
+  .footer { text-align:center; padding:16px; color:var(--muted); font-size:10px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="brand">云旅科技集团 · 运营指挥舱 v6</div>
+  <h1>AI 员工军团 <span>进化实时</span> 指挥舱</h1>
+  <p>进化系统 · 记忆 · 账本 · 产出 —— 实时数据，自进化中</p>
+</div>
+
+<div class="container">
+  <div class="live-badge">🔄 实时数据（2026-08-29 快照）：进化系统 88 资产 / 56 源 / 132 DSH skill —— 每日自动更新</div>
+
+  <div class="grid4">
+    <div class="kpi green"><div class="l">AI 员工</div><div class="v">25/25</div><div class="s">全员产出 · 28+ 交付物</div></div>
+    <div class="kpi cyan"><div class="l">DSH skill</div><div class="v">132</div><div class="s">yunlv-* 114 + AI 员工 25</div></div>
+    <div class="kpi purple"><div class="l">进化系统</div><div class="v">88 资产</div><div class="s">56 源每日蒸馏</div></div>
+    <div class="kpi pink"><div class="l">算法库</div><div class="v">88</div><div class="s">全部带溯源</div></div>
+  </div>
+
+  <div class="section">
+    <h2>🧬 进化系统 · 蒸馏资产分布（evolve-state.json）</h2>
+    <div class="panel">
+      <div class="dist">
+        <div class="dist-item"><div class="n" style="color:var(--cyan)">4</div><div class="t">official</div></div>
+        <div class="dist-item"><div class="n" style="color:var(--pink)">12</div><div class="t">competitor</div></div>
+        <div class="dist-item"><div class="n" style="color:var(--green)">31</div><div class="t">local</div></div>
+        <div class="dist-item"><div class="n" style="color:var(--purple)">16</div><div class="t">hub</div></div>
+        <div class="dist-item"><div class="n" style="color:var(--yellow)">25</div><div class="t">pattern</div></div>
+        <div class="dist-item"><div class="n" style="color:var(--text)">56</div><div class="t">监控源</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📒 结果账本 · 事件流（ledger.json）</h2>
+    <div class="panel" id="ledger"></div>
+  </div>
+
+  <div class="section">
+    <h2>🧠 业务记忆 · 13 条（memory.json）</h2>
+    <div class="panel" id="memory"></div>
+  </div>
+
+  <div class="section">
+    <h2>📊 触达模板 · Wilson Score（templates.json）</h2>
+    <div class="panel" id="tpl"></div>
+  </div>
+
+  <div class="footer">
+    云旅科技集团 · 运营指挥舱 v6 ｜ 实时数据驱动 ｜ 每日自动更新 ｜ © 2026
+  </div>
+</div>
+
+<script>
+const LEDGER = [
+  {ts:'08-29 22:47',emp:'YL-AI-001',ev:'geo_report',meta:'{score:26}'},
+  {ts:'08-29 22:47',emp:'YL-AI-004',ev:'lead_found',meta:'{confidence:0.92}'},
+  {ts:'08-29 22:47',emp:'YL-AI-004',ev:'lead_found',meta:'{confidence:0.48}'},
+  {ts:'08-29 22:53',emp:'YL-AI-002',ev:'content_pack',meta:'{items:5}'},
+  {ts:'08-29 22:53',emp:'YL-AI-003',ev:'intel_weekly',meta:'{competitors:7}'},
+  {ts:'08-29 22:53',emp:'YL-AI-006',ev:'training_support',meta:'{qa:4,graded:3}'},
+  {ts:'08-29 22:53',emp:'YL-AI-007',ev:'deployment_check',meta:'{accept:7,total:8}'},
+  {ts:'08-29 22:53',emp:'YL-AI-008',ev:'qa_inspection',meta:'{passed:6,total:6}'},
+];
+const MEMORY = [
+  {k:'buyer:BearingTech',v:'{pref:参数,market:de,conf:0.92}'},
+  {k:'buyer:Midwest',v:'{pref:认证,market:us,conf:0.87}'},
+  {k:'touch:BearingTech',v:'{sent:2,result:replied,winner:参数版}'},
+  {k:'lifecycle:BearingTech',v:'{stage:inquiry,renewal:2026-12}'},
+  {k:'geo:cceecexpo',v:'{baseline:26,p0:引用率0}'},
+  {k:'content:cceecexpo',v:'{items:5,llms:done,faq:4}'},
+  {k:'drama:waimao',v:'{script:外贸老板的一天,duration:15}'},
+  {k:'ads:ab',v:'{winner:结果开头,roi:1.75->2.0}'},
+  {k:'intel:competitors',v:'{monitored:7,top:dify}'},
+  {k:'ops:confidence',v:'{finding:置信度过滤有效,lead_rate:71%}'},
+  {k:'ops:geo_insight',v:'{finding:引用率是最大短板}'},
+  {k:'finance:ledger',v:'{events:8,cost:护栏内}'},
+  {k:'compliance:today',v:'{checked:11,violations:0}'},
+];
+const TPL = [
+  {n:'waimao_de',sent:200,rep:10,w:0.0274},
+  {n:'waimao_price',sent:200,rep:20,w:0.0657},
+];
+document.getElementById('ledger').innerHTML =
+  '<table><tr><th>时间</th><th>员工</th><th>事件</th><th>元数据</th></tr>' +
+  LEDGER.map(e=>`<tr><td>${e.ts}</td><td><b>${e.emp}</b></td><td>${e.ev}</td><td>${e.meta}</td></tr>`).join('') + '</table>';
+document.getElementById('memory').innerHTML =
+  '<table><tr><th>记忆键</th><th>内容</th></tr>' +
+  MEMORY.map(m=>`<tr><td><b>${m.k}</b></td><td>${m.v}</td></tr>`).join('') + '</table>';
+document.getElementById('tpl').innerHTML =
+  '<table><tr><th>模板</th><th>发送</th><th>回复</th><th>Wilson</th></tr>' +
+  TPL.map(t=>`<tr><td><b>${t.n}</b></td><td>${t.sent}</td><td>${t.rep}</td><td>${t.w}</td></tr>`).join('') + '</table>';
+</script>
+</body>
+</html>

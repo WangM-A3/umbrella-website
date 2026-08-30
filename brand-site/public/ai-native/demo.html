@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>云旅 AI 员工军团 · 作战演示台 v4（动画 + 实时数据）</title>
+<style>
+  :root {
+    --bg: #0a0e1f; --card: #131a38; --card2: #1b2148;
+    --cyan: #00e5ff; --purple: #8b5cf6; --pink: #ff4d9d;
+    --green: #34d399; --yellow: #fbbf24; --red: #ff4d6d;
+    --text: #e8ecf8; --text2: #a6b0d6; --muted: #6b7aa8;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Microsoft YaHei', sans-serif; background: var(--bg); color: var(--text); line-height:1.7; }
+  .hero { text-align:center; padding:36px 20px 16px; }
+  .hero .brand { display:inline-block; font-size:12px; color:var(--cyan); border:1px solid var(--cyan); padding:5px 18px; border-radius:20px; }
+  .hero h1 { font-size:32px; font-weight:900; margin:14px 0 6px; }
+  .hero h1 span { background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .hero p { color:var(--text2); font-size:12px; }
+  .container { max-width:1100px; margin:0 auto; padding:14px; }
+  .hint { text-align:center; color:var(--yellow); font-size:12px; margin:8px 0 16px; padding:6px; border:1px dashed var(--yellow); border-radius:8px; }
+  .section { margin:26px 0; }
+  .section h2 { font-size:18px; margin-bottom:10px; border-left:4px solid var(--cyan); padding-left:10px; }
+  .tabs { display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap; }
+  .tab { padding:6px 16px; border-radius:8px; border:1px solid #2a3160; cursor:pointer; font-size:12px; color:var(--text2); background:var(--card); }
+  .tab.active { border-color:var(--cyan); color:var(--cyan); background:var(--card2); }
+  .view { display:none; }
+  .view.active { display:block; }
+  .org-row { display:flex; gap:6px; justify-content:center; flex-wrap:wrap; margin:5px 0; }
+  .emp { background:var(--card); border:1px solid #2a3160; border-radius:9px; padding:7px 10px; text-align:center; min-width:96px; cursor:pointer; transition:all .2s; position:relative; }
+  .emp:hover { transform:translateY(-2px); border-color:var(--cyan); }
+  .emp.active { border-color:var(--yellow); box-shadow:0 0 0 2px var(--yellow); }
+  .emp .id { font-size:8px; color:var(--muted); }
+  .emp .name { font-size:11px; font-weight:700; margin-top:1px; }
+  .emp .team { font-size:8px; color:var(--text2); }
+  .emp.ceo { border-color:var(--yellow); min-width:130px; }
+  .emp.lead { border-color:var(--purple); }
+  .emp .dot { position:absolute; top:3px; right:3px; width:7px; height:7px; border-radius:50%; background:var(--green); }
+  .arrow { color:var(--muted); font-size:13px; text-align:center; margin:2px 0; }
+  #panel { background:var(--card2); border:1px solid var(--cyan); border-radius:12px; padding:16px; margin:16px 0; min-height:150px; }
+  #panel .p-empty { color:var(--muted); text-align:center; padding:30px 0; }
+  #panel h3 { color:var(--cyan); font-size:15px; margin-bottom:6px; }
+  #panel .p-meta { color:var(--muted); font-size:10px; margin-bottom:10px; }
+  #panel .p-row { display:grid; grid-template-columns:100px 1fr; gap:3px 10px; font-size:12px; margin:5px 0; }
+  #panel .p-row .k { color:var(--yellow); font-weight:700; }
+  #panel .p-row .v { color:var(--text2); }
+  #panel .p-kpi { background:var(--card); border-radius:7px; padding:8px 12px; margin-top:10px; font-size:11px; color:var(--green); }
+  /* 协作链动画 */
+  .chain-stage { background:var(--card2); border:1px solid #2a3160; border-radius:12px; padding:18px; margin:10px 0; }
+  .chain-stage h3 { color:var(--cyan); font-size:13px; margin-bottom:10px; }
+  .chain-flow { display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+  .chain-step { background:var(--card); border:1px solid var(--cyan); border-radius:7px; padding:5px 10px; font-size:11px; }
+  .chain-step b { color:var(--cyan); }
+  .chain-arrow { color:var(--muted); }
+  .chain-step.animate { animation: pulse 1.2s ease-in-out infinite; border-color:var(--yellow); }
+  @keyframes pulse { 0%,100% { box-shadow:0 0 0 0 rgba(251,191,36,.4);} 50% { box-shadow:0 0 0 6px rgba(251,191,36,.15);} }
+  .btn-play { margin-top:10px; padding:6px 18px; border-radius:8px; border:1px solid var(--yellow); color:var(--yellow); background:transparent; cursor:pointer; font-size:12px; }
+  .btn-play:hover { background:rgba(251,191,36,.1); }
+  /* 实时数据 */
+  .live-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; }
+  .live-card { background:var(--card); border:1px solid #2a3160; border-radius:10px; padding:12px; }
+  .live-card h4 { color:var(--cyan); font-size:12px; margin-bottom:6px; }
+  .live-card .val { font-size:20px; font-weight:900; }
+  .live-card .meta { font-size:10px; color:var(--muted); }
+  .live-card.up { border-color:var(--green); }
+  .live-card.warn { border-color:var(--yellow); }
+  .footer { text-align:center; padding:20px; color:var(--muted); font-size:10px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="brand">云旅科技集团 · 军团作战演示台 v4</div>
+  <h1>25 人 <span>AI 员工军团</span> · 动画 + 实时数据</h1>
+  <p>点击员工看产出 ｜ 播放协作链动画 ｜ 实时数据看板</p>
+</div>
+
+<div class="container">
+  <div class="hint">👆 三个视图切换：组织（点击员工）｜ 协作链（动画播放）｜ 实时数据（账本/记忆/进化）</div>
+
+  <div class="tabs">
+    <div class="tab active" data-view="org">🏛 组织全景</div>
+    <div class="tab" data-view="chain">🔗 协作链动画</div>
+    <div class="tab" data-view="live">📊 实时数据</div>
+  </div>
+
+  <!-- 视图1：组织 -->
+  <div class="view active" id="view-org">
+    <div class="org-row">
+      <div class="emp ceo" data-id="AI-CEO"><div class="id">编排层</div><div class="name">AI CEO</div><div class="team">决策 · 编排</div></div>
+    </div>
+    <div class="arrow">▼</div>
+    <div class="org-row">
+      <div class="emp lead" data-id="020"><div class="id">020</div><div class="name">增长团队长</div><div class="team">规划</div><div class="dot"></div></div>
+      <div class="emp lead" data-id="021"><div class="id">021</div><div class="name">销售团队长</div><div class="team">规划</div><div class="dot"></div></div>
+      <div class="emp lead" data-id="022"><div class="id">022</div><div class="name">交付团队长</div><div class="team">规划</div><div class="dot"></div></div>
+      <div class="emp lead" data-id="023"><div class="id">023</div><div class="name">运营团队长</div><div class="team">规划</div><div class="dot"></div></div>
+      <div class="emp lead" data-id="024"><div class="id">024</div><div class="name">人力团队长</div><div class="team">规划</div><div class="dot"></div></div>
+      <div class="emp lead" data-id="025"><div class="id">025</div><div class="name">自进化团队长</div><div class="team">规划</div><div class="dot"></div></div>
+    </div>
+    <div class="arrow">▼</div>
+    <div class="org-row">
+      <div class="emp" data-id="001"><div class="id">001</div><div class="name">GEO 巡检官</div><div class="team">增长</div><div class="dot"></div></div>
+      <div class="emp" data-id="002"><div class="id">002</div><div class="name">内容工厂长</div><div class="team">增长</div><div class="dot"></div></div>
+      <div class="emp" data-id="003"><div class="id">003</div><div class="name">竞对情报官</div><div class="team">增长</div><div class="dot"></div></div>
+      <div class="emp" data-id="004"><div class="id">004</div><div class="name">拓客尖兵</div><div class="team">销售</div><div class="dot"></div></div>
+      <div class="emp" data-id="005"><div class="id">005</div><div class="name">触达专员</div><div class="team">销售</div><div class="dot"></div></div>
+      <div class="emp" data-id="006"><div class="id">006</div><div class="name">培训助教</div><div class="team">交付</div><div class="dot"></div></div>
+    </div>
+    <div class="org-row">
+      <div class="emp" data-id="007"><div class="id">007</div><div class="name">部署监理</div><div class="team">交付</div><div class="dot"></div></div>
+      <div class="emp" data-id="008"><div class="id">008</div><div class="name">验收质检员</div><div class="team">交付</div><div class="dot"></div></div>
+      <div class="emp" data-id="009"><div class="id">009</div><div class="name">经营日报官</div><div class="team">运营</div><div class="dot"></div></div>
+      <div class="emp" data-id="010"><div class="id">010</div><div class="name">Skill 蒸馏师</div><div class="team">自进化</div><div class="dot"></div></div>
+      <div class="emp" data-id="011"><div class="id">011</div><div class="name">短剧获客官</div><div class="team">增长</div><div class="dot"></div></div>
+      <div class="emp" data-id="012"><div class="id">012</div><div class="name">投放优化官</div><div class="team">增长</div><div class="dot"></div></div>
+    </div>
+    <div class="org-row">
+      <div class="emp" data-id="013"><div class="id">013</div><div class="name">数据分析师</div><div class="team">运营</div><div class="dot"></div></div>
+      <div class="emp" data-id="014"><div class="id">014</div><div class="name">合规审查官</div><div class="team">运营</div><div class="dot"></div></div>
+      <div class="emp" data-id="015"><div class="id">015</div><div class="name">客户成功官</div><div class="team">销售</div><div class="dot"></div></div>
+      <div class="emp" data-id="016"><div class="id">016</div><div class="name">AI 招聘官</div><div class="team">人力</div><div class="dot"></div></div>
+      <div class="emp" data-id="017"><div class="id">017</div><div class="name">财务助理</div><div class="team">运营</div><div class="dot"></div></div>
+      <div class="emp" data-id="018"><div class="id">018</div><div class="name">研发助手</div><div class="team">自进化</div><div class="dot"></div></div>
+    </div>
+    <div class="org-row">
+      <div class="emp" data-id="019"><div class="id">019</div><div class="name">舆情监控官</div><div class="team">增长</div><div class="dot"></div></div>
+    </div>
+    <div id="panel"><div class="p-empty">👆 点击任意 AI 员工查看真实产出与 KPI</div></div>
+  </div>
+
+  <!-- 视图2：协作链动画 -->
+  <div class="view" id="view-chain">
+    <div class="chain-stage">
+      <h3>① 获客流水线（点击播放）</h3>
+      <div class="chain-flow" data-chain="1">
+        <div class="chain-step"><b>004</b> 拓客</div><span class="chain-arrow">→</span>
+        <div class="chain-step"><b>005</b> 触达</div><span class="chain-arrow">→</span>
+        <div class="chain-step"><b>015</b> 客户成功</div>
+      </div>
+      <button class="btn-play" onclick="playChain('1')">▶ 播放动画</button>
+    </div>
+    <div class="chain-stage">
+      <h3>② GEO 闭环（点击播放）</h3>
+      <div class="chain-flow" data-chain="2">
+        <div class="chain-step"><b>001</b> 巡检</div><span class="chain-arrow">→</span>
+        <div class="chain-step"><b>002</b> 内容</div><span class="chain-arrow">→</span>
+        <div class="chain-step"><b>001</b> 复检</div>
+      </div>
+      <button class="btn-play" onclick="playChain('2')">▶ 播放动画</button>
+    </div>
+    <div class="chain-stage">
+      <h3>③ 短剧获客全链（点击播放）</h3>
+      <div class="chain-flow" data-chain="3">
+        <div class="chain-step"><b>011</b> 短剧</div><span class="chain-arrow">→</span>
+        <div class="chain-step"><b>012</b> 投放</div><span class="chain-arrow">→</span>
+        <div class="chain-step"><b>004</b> 承接</div><span class="chain-arrow">→</span>
+        <div class="chain-step"><b>015</b> 客户成功</div>
+      </div>
+      <button class="btn-play" onclick="playChain('3')">▶ 播放动画</button>
+    </div>
+    <div class="chain-stage">
+      <h3>④ 质量保障（点击播放）</h3>
+      <div class="chain-flow" data-chain="4">
+        <div class="chain-step"><b>007</b> 部署</div><span class="chain-arrow">→</span>
+        <div class="chain-step"><b>008</b> 质检</div><span class="chain-arrow">→</span>
+        <div class="chain-step"><b>014</b> 合规</div>
+      </div>
+      <button class="btn-play" onclick="playChain('4')">▶ 播放动画</button>
+    </div>
+  </div>
+
+  <!-- 视图3：实时数据 -->
+  <div class="view" id="view-live">
+    <div class="live-grid">
+      <div class="live-card up"><h4>进化系统</h4><div class="val">54 源</div><div class="meta">每日 08:00 自动蒸馏</div></div>
+      <div class="live-card up"><h4>skill 库</h4><div class="val">103+</div><div class="meta">86 yunlv-* + 17 kb/geo</div></div>
+      <div class="live-card up"><h4>AI 员工</h4><div class="val">25/25</div><div class="meta">全员真实产出</div></div>
+      <div class="live-card up"><h4>业务记忆</h4><div class="val">13 条</div><div class="meta">销售/增长/运营 · 中文检索</div></div>
+      <div class="live-card up"><h4>交付物</h4><div class="val">28+</div><div class="meta">方案/报告/演示台</div></div>
+      <div class="live-card warn"><h4>配额</h4><div class="val">5000/h</div><div class="meta">GITHUB_TOKEN 已配置</div></div>
+    </div>
+    <div class="chain-stage" style="margin-top:14px;">
+      <h3>📊 账本实时事件流（模拟刷新）</h3>
+      <div id="event-stream" style="font-size:12px;color:var(--text2);max-height:200px;overflow-y:auto;"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    云旅科技集团 · AI 员工军团作战演示台 v4 ｜ 25/25 全员产出 ｜ 数据可审计 ｜ © 2026
+  </div>
+</div>
+
+<script>
+const DATA = {
+  'AI-CEO': { name: 'AI CEO（编排大脑）', team: '决策层', status: '运转中',
+    duty: '集团目标分解、跨团队调度、派单指令、绩效编排',
+    outputs: '统筹 6 团队长 + 19 员工 · 三层指挥链运转',
+    kpi: '决策及时率 100% · 每日派单' },
+  '020': { name: '增长团队长', team: '管理/增长', status: '✅ 派单验证',
+    duty: '派单 001/002/003/011/012/019', outputs: '《增长团队长派单执行单》：5/6 达标 83% · 明日 5 项派单',
+    kpi: '派单 100% · 团队 KPI ≥80%' },
+  '021': { name: '销售团队长', team: '管理/销售', status: '✅ 派单验证',
+    duty: '派单 004/005/015 · 线索分诊', outputs: '《销售团队长派单执行单》：分诊 5/5 = 100% · 5 条触达待审批',
+    kpi: '分诊 ≥85% · 成交 ↑10%' },
+  '022': { name: '交付团队长', team: '管理/交付', status: '✅ 派单验证',
+    duty: '派单 006/007/008 · 项目排期', outputs: '《交付团队长派单执行单》：3/3 达标 · 百雀验收 7/8',
+    kpi: '按期 100% · 验收 ≥85%' },
+  '023': { name: '运营团队长', team: '管理/运营', status: '✅ 派单验证',
+    duty: '派单 009/013/014/017 · 经营看板', outputs: '《运营团队长派单执行单》：3/4 达标 · 记忆系统接入',
+    kpi: '看板 100% · 预警 ≥90%' },
+  '024': { name: '人力团队长', team: '管理/人力', status: '✅ 派单验证',
+    duty: '人机编制 · 绩效汇总', outputs: '《首轮绩效评估》：2 优秀/13 达标 · 《评审会方案》',
+    kpi: '编制 100% · 评估 100%' },
+  '025': { name: '自进化团队长', team: '管理/自进化', status: '✅ 派单验证',
+    duty: '蒸馏排期 · 晋升门禁', outputs: '《自进化团队长派单执行单》：系统健康 ≥95% · 004 晋升提名',
+    kpi: '蒸馏 100% · 健康 ≥95%' },
+  '001': { name: 'GEO 巡检官', team: '增长', status: '✅ 已产出',
+    duty: '每日巡检官网 AI 可见度', outputs: '《GEO 巡检报告 cceecexpo》：四维 26/100 · 30 天优化方案',
+    kpi: '巡检 100% · 报告 <5min' },
+  '002': { name: '内容工厂长', team: '增长', status: '✅ 已产出',
+    duty: 'GEO 内容/文案/多平台适配', outputs: '《内容工厂产出包》：llms/FAQ×4/Schema/推文/矩阵',
+    kpi: '产出 ≥200/月 · 采用 ≥70%' },
+  '003': { name: '竞对情报官', team: '增长', status: '✅ 已产出',
+    duty: '竞对监控/对比报告', outputs: '《竞对情报周报》：7 家监控（dify ★154k）· 3 条情报',
+    kpi: '监控 ≥20 家 · 采纳 ≥10 条' },
+  '004': { name: '拓客尖兵', team: '销售', status: '✅ 已产出 ⭐优秀',
+    duty: '全球买家发现 · 置信度过滤', outputs: '《拓客执行单》：7 线索→5 达标（有效率 71%）',
+    kpi: '线索 ≥500/月 · 有效率 ≥15%' },
+  '005': { name: '触达专员', team: '销售', status: '✅ 已产出',
+    duty: '多语言开发信/WhatsApp', outputs: '《协作链执行单》：德/美/东南亚三版 + WhatsApp + 飞轮',
+    kpi: '触达 ≥2000/月 · 回复 ≥3%' },
+  '006': { name: '培训助教', team: '交付', status: '✅ 已产出',
+    duty: '学员答疑/作业批改', outputs: '《培训助教执行单》：4 答疑（1 转人工）+ 3 批改',
+    kpi: '答疑 <5min · 批改 100%' },
+  '007': { name: '部署监理', team: '交付', status: '✅ 已产出',
+    duty: '部署跟踪 · 8 步验收', outputs: '《部署监理执行单》：百雀 8 步验收 7/8',
+    kpi: '按期 100% · 验收 ≥80%' },
+  '008': { name: '验收质检员', team: '交付', status: '✅ 已产出',
+    duty: '交付物质检/合规扫描', outputs: '《验收质检执行单》：6 份交付物 6/6（缺陷 0%）',
+    kpi: '质检 100% · 缺陷 <2%' },
+  '009': { name: '经营日报官', team: '运营', status: '✅ 已产出',
+    duty: '每日经营日报/预警', outputs: '《集团 AI 员工日报》×2 · 账本 8 事件',
+    kpi: '日报 100% · 准确 100%' },
+  '010': { name: 'Skill 蒸馏师', team: '自进化', status: '✅ 持续工作',
+    duty: '全球蒸馏/模式提炼', outputs: '进化系统战报：54 源→86+ skill→25 人挂载',
+    kpi: '蒸馏 ≥5/月 · 采纳 ≥2' },
+  '011': { name: '短剧获客官', team: '增长', status: '✅ 已产出',
+    duty: 'AI 短剧获客/剧本/分发', outputs: '《短剧获客执行单》：15s 剧本·5 镜头·三平台',
+    kpi: '短剧 ≥10/月 · 转化 ≥3%' },
+  '012': { name: '投放优化官', team: '增长', status: '✅ 已产出',
+    duty: '广告优化/A-B/预算', outputs: '《投放优化执行单》：3 组 A/B + ROI 1.75→2.0',
+    kpi: 'ROI ↑20% · A/B ≥5 组' },
+  '013': { name: '数据分析师', team: '运营', status: '✅ 已产出',
+    duty: '经营洞察/异常检测', outputs: '《经营分析执行单》：置信度过滤有效 71% · GEO 短板定位',
+    kpi: '报告 ≥10/月 · 异常 ≥80%' },
+  '014': { name: '合规审查官', team: '运营', status: '✅ 已产出',
+    duty: '合规审查/白帽红线', outputs: '《合规审查执行单》：11 份 0 违反 · 2 项中风险',
+    kpi: '审查 100% · 拦截 ≥15/月' },
+  '015': { name: '客户成功官', team: '销售', status: '✅ 已产出',
+    duty: '客户生命周期/续费', outputs: '《客户成功执行单》：4 分层 + 3 信号流失预警',
+    kpi: '续费 ↑10% · 满意度 ≥4.5' },
+  '016': { name: 'AI 招聘官', team: '人力', status: '✅ 已产出',
+    duty: 'JD 生成/候选人筛选', outputs: '《招聘与财务执行单》：人机互补招聘体系',
+    kpi: 'JD ≥20/月 · 筛选 ≥80%' },
+  '017': { name: '财务助理', team: '运营', status: '✅ 已产出',
+    duty: '成本核算/护栏监控', outputs: '《招聘与财务执行单》：AI 成本≈人类 1/50 · 护栏规则',
+    kpi: '对账 100% · 预警 ≥90%' },
+  '018': { name: '研发助手', team: '自进化', status: '✅ 已产出',
+    duty: '代码审查/文档/调研', outputs: '《研发与蒸馏战报》：进化系统全组件维护 + 军团对标',
+    kpi: '审查 ≥60% · 文档 ≥30/月' },
+  '019': { name: '舆情监控官', team: '增长', status: '✅ 已产出',
+    duty: '舆情监控/危机预警', outputs: '《舆情监控周报》：20 源 · 竞品口碑 · 1 项危机预警',
+    kpi: '监控 ≥20 源 · 预警提前 ≥24h' },
+};
+
+// Tab 切换
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.view').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById('view-' + t.dataset.view).classList.add('active');
+  });
+});
+
+// 组织视图：点击员工
+document.querySelectorAll('#view-org .emp').forEach(el => {
+  el.addEventListener('click', () => {
+    document.querySelectorAll('#view-org .emp').forEach(e => e.classList.remove('active'));
+    el.classList.add('active');
+    const d = DATA[el.dataset.id];
+    if (!d) return;
+    document.getElementById('panel').innerHTML = `
+      <h3>${el.dataset.id} · ${d.name}</h3>
+      <div class="p-meta">${d.team} ｜ ${d.status}</div>
+      <div class="p-row"><div class="k">职责</div><div class="v">${d.duty}</div></div>
+      <div class="p-row"><div class="k">产出</div><div class="v">${d.outputs}</div></div>
+      <div class="p-kpi">🎯 KPI：${d.kpi}</div>`;
+  });
+});
+
+// 协作链动画
+function playChain(id) {
+  const flow = document.querySelector(`[data-chain="${id}"]`);
+  const steps = flow.querySelectorAll('.chain-step');
+  steps.forEach(s => s.classList.remove('animate'));
+  let i = 0;
+  const timer = setInterval(() => {
+    if (i >= steps.length) { clearInterval(timer); return; }
+    steps[i].classList.add('animate');
+    i++;
+  }, 700);
+}
+
+// 实时事件流（模拟）
+const EVENTS = [
+  '[08:00] 进化系统 scan：54 源扫描完成',
+  '[08:02] learn-all：3 个新 skill 蒸馏入库',
+  '[08:05] mount：skill 挂载 DSH 完成',
+  '[09:00] YL-AI-009 经营日报官：集团日报生成',
+  '[10:30] YL-AI-004 拓客尖兵：新增线索 12 条（置信度≥0.60 的 8 条）',
+  '[11:00] 记忆系统：buyer:BearingTech 更新（回复询价）',
+  '[14:00] YL-AI-001 GEO 巡检官：cceecexpo 复检中',
+  '[15:30] 账本：A/B 测试 waimao_de vs waimao_price 判定中',
+  '[17:00] YL-AI-013 数据分析师：经营分析报告生成',
+  '[18:00] 飞轮：模板库 Wilson Score 更新',
+];
+const stream = document.getElementById('event-stream');
+let ei = 0;
+setInterval(() => {
+  const line = document.createElement('div');
+  line.textContent = EVENTS[ei % EVENTS.length];
+  stream.prepend(line);
+  ei++;
+}, 2500);
+</script>
+</body>
+</html>

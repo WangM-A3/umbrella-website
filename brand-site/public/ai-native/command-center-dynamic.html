@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>云旅 AI 员工军团 · 运营指挥舱 v7（动态数据）</title>
+<style>
+  :root { --bg:#0a0e1f; --card:#131a38; --card2:#1b2148; --cyan:#00e5ff; --purple:#8b5cf6; --pink:#ff4d9d; --green:#34d399; --yellow:#fbbf24; --text:#e8ecf8; --text2:#a6b0d6; --muted:#6b7aa8; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Microsoft YaHei',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+  .hero { text-align:center; padding:30px 20px 12px; }
+  .hero .brand { display:inline-block; font-size:11px; color:var(--cyan); border:1px solid var(--cyan); padding:4px 16px; border-radius:18px; }
+  .hero h1 { font-size:28px; font-weight:900; margin:10px 0 4px; }
+  .hero h1 span { background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .hero p { color:var(--text2); font-size:11px; }
+  .container { max-width:1080px; margin:0 auto; padding:12px; }
+  .status { text-align:center; font-size:11px; margin:6px 0 14px; padding:6px; border-radius:8px; }
+  .status.loading { color:var(--yellow); border:1px dashed var(--yellow); }
+  .status.ok { color:var(--green); border:1px solid var(--green); }
+  .grid4 { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; margin:14px 0; }
+  .kpi { background:var(--card); border:1px solid #2a3160; border-radius:11px; padding:14px; }
+  .kpi .l { font-size:10px; color:var(--muted); }
+  .kpi .v { font-size:24px; font-weight:900; margin:3px 0; }
+  .kpi .s { font-size:9px; color:var(--text2); }
+  .kpi.cyan .v { color:var(--cyan); } .kpi.green .v { color:var(--green); }
+  .kpi.purple .v { color:var(--purple); } .kpi.pink .v { color:var(--pink); }
+  .section { margin:20px 0; }
+  .section h2 { font-size:16px; margin-bottom:8px; border-left:4px solid var(--cyan); padding-left:10px; }
+  .panel { background:var(--card2); border:1px solid #2a3160; border-radius:11px; padding:14px; }
+  table { width:100%; border-collapse:collapse; font-size:11px; }
+  th { background:var(--card); color:var(--cyan); padding:7px; text-align:left; }
+  td { padding:6px 7px; border-bottom:1px solid #1b2148; color:var(--text2); }
+  .footer { text-align:center; padding:16px; color:var(--muted); font-size:10px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="brand">云旅科技集团 · 运营指挥舱 v7</div>
+  <h1>AI 员工军团 <span>动态数据</span> 指挥舱</h1>
+  <p>从 command-data.json 动态加载 —— 数据更新，页面自动更新</p>
+</div>
+
+<div class="container">
+  <div id="status" class="status loading">🔄 正在加载真实数据...</div>
+
+  <div class="grid4" id="kpis"></div>
+
+  <div class="section">
+    <h2>🧬 进化系统 · 蒸馏资产分布</h2>
+    <div class="panel" id="dist"></div>
+  </div>
+  <div class="section">
+    <h2>📒 结果账本 · 事件流</h2>
+    <div class="panel" id="ledger"></div>
+  </div>
+  <div class="section">
+    <h2>🧠 业务记忆</h2>
+    <div class="panel" id="memory"></div>
+  </div>
+  <div class="section">
+    <h2>📊 触达模板 · Wilson Score</h2>
+    <div class="panel" id="tpl"></div>
+  </div>
+
+  <div class="footer">云旅科技集团 · 运营指挥舱 v7 ｜ 动态数据驱动 ｜ © 2026</div>
+</div>
+
+<script>
+async function load() {
+  const st = document.getElementById('status');
+  try {
+    const res = await fetch('command-data.json', {cache: 'no-store'});
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const d = await res.json();
+    st.className = 'status ok';
+    st.textContent = '✅ 已加载真实数据（command-data.json）· 数据更新时间：2026-08-29';
+
+    const evo = d.evolution || {};
+    document.getElementById('kpis').innerHTML = `
+      <div class="kpi green"><div class="l">AI 员工</div><div class="v">${evo.ai_employees || '?'}/25</div><div class="s">全员产出 · ${evo.deliverables || '?'} 交付物</div></div>
+      <div class="kpi cyan"><div class="l">DSH skill</div><div class="v">${evo.dsh_skills || '?'}</div><div class="s">yunlv-* ${evo.yunlv_skills || '?'}</div></div>
+      <div class="kpi purple"><div class="l">进化系统</div><div class="v">${evo.distilled || '?'} 资产</div><div class="s">${evo.sources || '?'} 源每日蒸馏</div></div>
+      <div class="kpi pink"><div class="l">算法库</div><div class="v">${evo.algorithm_assets || '?'}</div><div class="s">全部带溯源</div></div>`;
+
+    const kinds = evo.kinds || {};
+    const colorMap = {official:'var(--cyan)',competitor:'var(--pink)',local:'var(--green)',hub:'var(--purple)',pattern:'var(--yellow)'};
+    document.getElementById('dist').innerHTML =
+      '<div style="display:flex;gap:8px;flex-wrap:wrap">' +
+      Object.entries(kinds).map(([k,v]) => `<div style="background:var(--card);border-radius:8px;padding:8px 14px;text-align:center"><div style="font-size:20px;font-weight:900;color:${colorMap[k]||'#fff'}">${v}</div><div style="font-size:9px;color:var(--muted)">${k}</div></div>`).join('') +
+      `<div style="background:var(--card);border-radius:8px;padding:8px 14px;text-align:center"><div style="font-size:20px;font-weight:900">${evo.sources||'?'}</div><div style="font-size:9px;color:var(--muted)">监控源</div></div></div>`;
+
+    document.getElementById('ledger').innerHTML =
+      '<table><tr><th>时间</th><th>员工</th><th>事件</th><th>元数据</th></tr>' +
+      (d.ledger||[]).map(e=>`<tr><td>${e.ts}</td><td><b>${e.emp}</b></td><td>${e.event}</td><td>${JSON.stringify(e.meta)}</td></tr>`).join('') + '</table>';
+
+    document.getElementById('memory').innerHTML =
+      '<table><tr><th>记忆键</th><th>范围</th><th>内容</th></tr>' +
+      (d.memory||[]).map(m=>`<tr><td><b>${m.key}</b></td><td>${m.scope}</td><td>${JSON.stringify(m.value)}</td></tr>`).join('') + '</table>';
+
+    document.getElementById('tpl').innerHTML =
+      '<table><tr><th>模板</th><th>发送</th><th>回复</th><th>Wilson</th></tr>' +
+      (d.templates||[]).map(t=>`<tr><td><b>${t.name}</b></td><td>${t.sent}</td><td>${t.replied}</td><td>${t.wilson}</td></tr>`).join('') + '</table>';
+  } catch (e) {
+    st.className = 'status loading';
+    st.textContent = '⚠️ 加载失败：' + e.message + '（请通过 http 服务器访问，file:// 下 fetch 受限）';
+  }
+}
+load();
+</script>
+</body>
+</html>

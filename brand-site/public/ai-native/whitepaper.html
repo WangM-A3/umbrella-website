@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中国企业 AI Native 白皮书 · 云旅科技集团</title>
+<style>
+  :root {
+    --bg: #0a0e1f; --card: #131a38; --card2: #1b2148;
+    --cyan: #00e5ff; --purple: #8b5cf6; --pink: #ff4d9d;
+    --green: #34d399; --yellow: #fbbf24; --red: #ff4d6d;
+    --text: #e8ecf8; --text2: #a6b0d6; --muted: #6b7aa8;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; background: var(--bg); color: var(--text); line-height:1.8; }
+  .cover { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:60px 20px; background: linear-gradient(180deg, #0a0e1f 0%, #10122e 60%, #1d1040 100%); }
+  .cover .brand { font-size:13px; color:var(--cyan); border:1px solid var(--cyan); padding:6px 20px; border-radius:20px; letter-spacing:2px; }
+  .cover h1 { font-size:56px; font-weight:900; margin:28px 0 10px; line-height:1.2; }
+  .cover h1 .grad { background: linear-gradient(90deg, var(--cyan), var(--purple), var(--pink)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .cover .sub { color:var(--text2); font-size:18px; max-width:700px; margin:16px auto; }
+  .cover .tags { margin-top:28px; display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+  .cover .tag { font-size:12px; padding:6px 16px; border-radius:8px; border:1px solid #2a3160; color:var(--text2); }
+  .cover .tag.hot { border-color:var(--yellow); color:var(--yellow); }
+  .cover .publish { margin-top:40px; color:var(--muted); font-size:12px; }
+  .container { max-width:860px; margin:0 auto; padding:40px 24px 80px; }
+  h2 { font-size:26px; font-weight:800; margin:56px 0 20px; padding-bottom:10px; border-bottom:2px solid #2a3160; position:relative; }
+  h2::after { content:''; position:absolute; bottom:-2px; left:0; width:80px; height:2px; background:linear-gradient(90deg, var(--cyan), var(--purple)); }
+  h2 .no { color:var(--cyan); margin-right:10px; }
+  h3 { font-size:18px; font-weight:700; margin:28px 0 12px; color:var(--cyan); }
+  p { margin:12px 0; color:var(--text2); }
+  strong { color:var(--text); }
+  .quote { border-left:4px solid var(--cyan); background:var(--card); padding:16px 20px; margin:20px 0; border-radius:0 10px 10px 0; font-size:15px; }
+  .quote b { color:var(--cyan); }
+  table { width:100%; border-collapse:collapse; margin:20px 0; font-size:14px; }
+  th { background:var(--card2); color:var(--cyan); padding:10px 12px; text-align:left; font-weight:700; }
+  td { padding:10px 12px; border-bottom:1px solid #1b2148; color:var(--text2); }
+  tr:hover td { background:var(--card); }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:16px; margin:24px 0; }
+  .card { background:var(--card); border:1px solid #2a3160; border-radius:12px; padding:20px; }
+  .card h4 { color:var(--cyan); font-size:15px; margin-bottom:8px; }
+  .card p { font-size:13px; color:var(--text2); margin:0; }
+  .card .num { font-size:32px; font-weight:900; color:var(--yellow); }
+  .badge { display:inline-block; font-size:11px; padding:2px 10px; border-radius:10px; margin-right:6px; }
+  .b-cyan { background:rgba(0,229,255,.12); color:var(--cyan); }
+  .b-purple { background:rgba(139,92,246,.12); color:var(--purple); }
+  .b-pink { background:rgba(255,77,157,.12); color:var(--pink); }
+  .b-green { background:rgba(52,211,153,.12); color:var(--green); }
+  .b-yellow { background:rgba(251,191,36,.12); color:var(--yellow); }
+  .b-red { background:rgba(255,77,109,.12); color:var(--red); }
+  ul, ol { padding-left:24px; color:var(--text2); }
+  li { margin:8px 0; }
+  .cta { text-align:center; margin:60px 0 0; padding:40px; background:var(--card); border:1px solid var(--cyan); border-radius:16px; }
+  .cta h3 { font-size:22px; color:var(--text); margin-bottom:12px; }
+  .cta p { color:var(--text2); }
+  .cta .btn { display:inline-block; margin-top:16px; padding:12px 32px; background:linear-gradient(90deg,var(--cyan),var(--purple)); color:#fff; border-radius:8px; text-decoration:none; font-weight:700; }
+  .footer { text-align:center; padding:30px; color:var(--muted); font-size:12px; border-top:1px solid #1b2148; }
+  .toc { background:var(--card); border:1px solid #2a3160; border-radius:12px; padding:24px 32px; margin:30px 0; }
+  .toc h3 { margin-top:0; }
+  .toc a { color:var(--text2); text-decoration:none; display:block; padding:4px 0; font-size:14px; }
+  .toc a:hover { color:var(--cyan); }
+  .toc a .n { color:var(--cyan); margin-right:8px; }
+</style>
+</head>
+<body>
+
+<!-- 封面 -->
+<div class="cover">
+  <div class="brand">云旅科技集团 ｜ AI NATIVE SERIES</div>
+  <h1>中国企业 <span class="grad">AI Native</span><br>白皮书</h1>
+  <p class="sub">AI 不会淘汰企业，AI Native 的企业会淘汰非 AI Native 的企业。<br>三硬标准 · 五级成熟度 · 10 大先进模式 · 真实案例</p>
+  <div class="tags">
+    <span class="tag hot">三硬标准</span>
+    <span class="tag">五级成熟度</span>
+    <span class="tag">10 大模式</span>
+    <span class="tag">25 人 AI 军团</span>
+    <span class="tag">何田县域样板</span>
+  </div>
+  <p class="publish">云旅科技集团 ｜ 2026 ｜ 第 1 版</p>
+</div>
+
+<div class="container">
+
+  <!-- 目录 -->
+  <div class="toc">
+    <h3>目录</h3>
+    <a href="#c1"><span class="n">第一章</span> AI 时代的企业分水岭</a>
+    <a href="#c2"><span class="n">第二章</span> 什么是 AI Native 企业</a>
+    <a href="#c3"><span class="n">第三章</span> 顶尖 AI Native 的先进模式</a>
+    <a href="#c4"><span class="n">第四章</span> AI Native 成熟度体检方法论</a>
+    <a href="#c5"><span class="n">第五章</span> 中国企业 AI Native 实战案例</a>
+    <a href="#c6"><span class="n">第六章</span> AI Native 转型路径与避坑</a>
+    <a href="#c7"><span class="n">第七章</span> AI Native 生态与展望</a>
+  </div>
+
+  <!-- 第一章 -->
+  <h2 id="c1"><span class="no">第一章</span> AI 时代的企业分水岭</h2>
+  <h3>1.1 2026：AI 从"工具"变成"组织"</h3>
+  <div class="cards">
+    <div class="card"><span class="num">40%</span><h4>企业应用嵌入 AI Agent</h4><p>Gartner 2026 预测——你的同行采购的软件，自带"自动干活的员工"</p></div>
+    <div class="card"><span class="num">76%</span><h4>询盘决策发生在 AI 对话里</h4><p>客户问 AI"哪家供应商好"，AI 直接回答——你的官网可能根本没被看到</p></div>
+    <div class="card"><span class="num">13.6%</span><h4>年轻从业者工作面临 AI 取代</h4><p>花旗研究——不是 10 年后，是这一两年</p></div>
+  </div>
+  <h3>1.2 企业 AI 应用的三层形态</h3>
+  <table>
+    <tr><th>层级</th><th>形态</th><th>特征</th><th>典型企业</th></tr>
+    <tr><td><span class="badge b-cyan">L1</span></td><td>AI-Enhanced</td><td>AI 是员工的工具，人驱动流程</td><td>大多数企业</td></tr>
+    <tr><td><span class="badge b-purple">L2</span></td><td>AI-First</td><td>AI 嵌入核心流程，人机协作</td><td>头部科技公司</td></tr>
+    <tr><td><span class="badge b-pink">L3</span></td><td>AI-Native</td><td>AI 员工是组织的一部分，能力以 Skill/Agent 沉淀</td><td>OpenAI / Anthropic</td></tr>
+  </table>
+  <div class="quote"><b>核心论断：</b>AI 不会淘汰企业，AI Native 的企业会淘汰非 AI Native 的企业。</div>
+
+  <!-- 第二章 -->
+  <h2 id="c2"><span class="no">第二章</span> 什么是 AI Native 企业</h2>
+  <h3>2.2 三条硬标准（本白皮书首次提出）</h3>
+  <table>
+    <tr><th>标准</th><th>说明</th><th>判定方法</th></tr>
+    <tr><td><span class="badge b-cyan">标准一</span></td><td>AI 员工数量 &gt; 人类员工数量</td><td>数字员工花名册在册数</td></tr>
+    <tr><td><span class="badge b-purple">标准二</span></td><td>收入中 ≥30% 由 AI 员工直接创造</td><td>结果账本可审计归因</td></tr>
+    <tr><td><span class="badge b-pink">标准三</span></td><td>核心能力 90% Skill 资产化</td><td>核心流程可复用 skill 覆盖率</td></tr>
+  </table>
+  <h3>2.3 成熟度五级模型</h3>
+  <table>
+    <tr><th>等级</th><th>分数</th><th>名称</th><th>特征</th></tr>
+    <tr><td>L1</td><td>0-19</td><td>AI 观望者</td><td>用零星 AI 工具</td></tr>
+    <tr><td>L2</td><td>20-39</td><td>AI 尝鲜者</td><td>单点应用，无标准</td></tr>
+    <tr><td>L3</td><td>40-59</td><td>AI 采用者</td><td>流程 AI 化，人机协作</td></tr>
+    <tr><td>L4</td><td>60-79</td><td>AI 原生者</td><td>AI 员工在册有绩效，能力 Skill 化</td></tr>
+    <tr><td>L5</td><td>80-100</td><td>AI Native 集团</td><td>三硬标准全达标，生态化</td></tr>
+  </table>
+
+  <!-- 第三章 -->
+  <h2 id="c3"><span class="no">第三章</span> 顶尖 AI Native 的先进模式</h2>
+  <p>从 Anthropic skills / Claude Code / OpenAI Codex / dsh-bridges 等全球顶尖资产提炼 <strong>10 大先进模式</strong>——这是"世界一流"的共同基因。</p>
+  <table>
+    <tr><th>#</th><th>模式</th><th>来源</th><th>一句话</th></tr>
+    <tr><td>1</td><td>条件式行为调整</td><td>Claude Code</td><td>客户报什么症状，注入什么修复包</td></tr>
+    <tr><td>2</td><td>跨平台适配矩阵</td><td>Claude Code</td><td>同一能力按平台建映射表</td></tr>
+    <tr><td>3</td><td>反模板化设计</td><td>Anthropic Frontend</td><td>每个项目有设计签名</td></tr>
+    <tr><td>4</td><td>行为护栏规则系统</td><td>Anthropic Hookify</td><td>规则文件定义允许/警告/阻止</td></tr>
+    <tr><td>5</td><td>Agent 开发规范</td><td>Anthropic Agent Dev</td><td>触发条件 + 示例驱动 + 模型选择</td></tr>
+    <tr><td>6</td><td>协议适配器注册中心</td><td>dsh-bridges</td><td>异构资产统一接口，热插拔</td></tr>
+    <tr><td>7</td><td>语义路由与智能分发</td><td>dsh-bridges</td><td>按意图路由到最匹配 Agent</td></tr>
+    <tr><td>8</td><td>事件驱动状态同步</td><td>dsh-bridges</td><td>状态变更广播，多 Agent 一致</td></tr>
+    <tr><td>9</td><td>全链路可观测网关</td><td>dsh-bridges</td><td>trace_id 贯穿端到端</td></tr>
+    <tr><td>10</td><td>容错降级链</td><td>dsh-bridges</td><td>首选失效自动降级备用</td></tr>
+  </table>
+
+  <!-- 第四章 -->
+  <h2 id="c4"><span class="no">第四章</span> AI Native 成熟度体检方法论</h2>
+  <p>四维体检模型：<strong>AI 员工编制 / AI 收入创造 / 能力 Skill 化 / 组织 AI Native</strong>，共 16 项指标，10 分钟自测打分。</p>
+  <div class="quote"><b>使用方法：</b>企业自测 → 得出分数与等级 → 对照三硬标准差距 → 制定 90 天行动方案。配套《云旅 AI Native 成熟度体检表》16 项完整版。</div>
+
+  <!-- 第五章 -->
+  <h2 id="c5"><span class="no">第五章</span> 中国企业 AI Native 实战案例</h2>
+  <h3>5.1 案例一：25 人 AI 员工军团（组织 AI Native 实证）</h3>
+  <p><span class="badge b-cyan">三层指挥链</span><span class="badge b-purple">6 团队长</span><span class="badge b-pink">19 业务员工</span></p>
+  <p><strong>做法：</strong>AI CEO（决策）→ 6 团队长（规划）→ 19 业务员工（执行），工号/权限/KPI/三重保险/月度绩效。</p>
+  <p><strong>量化成果：</strong>25 人在册可调用、16 人真实产出 24 份交付物、6 团队长派单验证、销售分诊准确率 100%。</p>
+  <h3>5.2 案例二：自进化引擎 + 记忆系统</h3>
+  <p><strong>做法：</strong>Yunlv Evolve OS（54 全球源每日蒸馏）+ 三层记忆 + 结果账本 + A/B 判定。</p>
+  <p><strong>量化成果：</strong>103 skill 可调用、13 条业务记忆、账本自动统计。</p>
+  <h3>5.3 案例三：何田乡县域样板</h3>
+  <p><span class="badge b-green">双样板</span><span class="badge b-yellow">GEO 推荐</span><span class="badge b-red">新农人培训</span></p>
+  <p><strong>意义：</strong>全球第一个"县域 AI Native 样板"——政府认可、媒体可报道、模式可复制。</p>
+
+  <!-- 第六章 -->
+  <h2 id="c6"><span class="no">第六章</span> AI Native 转型路径与避坑</h2>
+  <h3>6.2 十大避坑清单</h3>
+  <ol>
+    <li><strong>撒胡椒面</strong>：什么都做，没一个做透 → 选样板单点爆破</li>
+    <li><strong>买工具不落地</strong>：账号一堆没人用 → 先培训后部署</li>
+    <li><strong>无账本算不清</strong>：AI 干了啥说不清 → 结果账本必建</li>
+    <li><strong>AI 裸奔无护栏</strong>：乱承诺/乱发 → 三重保险标配</li>
+    <li><strong>员工抵触</strong>：AI 抢饭碗心态 → 人机协作文化</li>
+    <li><strong>一次性借鉴</strong>：学完就停 → 自进化引擎持续吸收</li>
+    <li><strong>无记忆冷启动</strong>：AI 失忆 → 记忆系统落地</li>
+    <li><strong>无组织无层级</strong>：agent 一堆乱跑 → 三层指挥链</li>
+    <li><strong>无绩效无晋升</strong>：干好干坏一样 → 月度绩效评估</li>
+    <li><strong>只学不做</strong>：对标完就完 → 内化任务清单执行</li>
+  </ol>
+
+  <!-- 第七章 -->
+  <h2 id="c7"><span class="no">第七章</span> AI Native 生态与展望</h2>
+  <h3>7.1 AI 员工即服务（EaaS）</h3>
+  <div class="cards">
+    <div class="card"><h4>Skill 市场</h4><p>20+ skill 可订阅 · 行业包 ¥299/月 · 通用包 ¥199/月</p></div>
+    <div class="card"><h4>数字员工订阅</h4><p>按 AI 员工数 × 月费 · 免费/成长/企业/生态四档</p></div>
+    <div class="card"><h4>渠道生态</h4><p>白标/分销 15-35% 分润 · 开发者 MCP 开放</p></div>
+  </div>
+  <h3>7.4 结语</h3>
+  <div class="quote"><b>AI 不会淘汰企业，AI Native 的企业会淘汰非 AI Native 的企业。</b>云旅不是"要变成"AI Native，而是已经跑在前面——25 人军团、103 skill、54 源进化、记忆系统，全部真实运转。<br><br>中国企业不缺资源，缺的是"把自己变成 AI Native 组织"的决心。<b>云旅愿做这条路上的先行者与陪跑者。</b></div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <h3>免费领取 AI Native 三件套</h3>
+    <p>📋 成熟度体检表（16 项自测）｜ 📋 三硬标准差距清单 ｜ 📋 90 天行动方案</p>
+    <a class="btn" href="#">联系云旅 · 领取三件套</a>
+  </div>
+
+</div>
+
+<div class="footer">
+  云旅科技集团 · 中国企业 AI Native 白皮书 ｜ 核心案例均为云旅真实落地资产，数据可审计 ｜ © 2026
+</div>
+
+</body>
+</html>
