@@ -112,13 +112,30 @@
 </div>
 
 <script>
-/* ---- Lead pipeline: formsubmit.co + local lead inbox + tracking ---- */
+/* ---- Lead pipeline: formsubmit.co + local inbox + UTM + optional webhook ---- */
 (function () {
   var form = document.getElementById('leadForm');
   var msg = document.getElementById('formMsg');
   var btn = document.getElementById('leadBtn');
 
-  // local lead inbox (works as offline CRM snapshot; replace LEAD_WEBHOOK with your endpoint to push to Feishu/CRM)
+  // --- Configure: paste your Feishu/CRM webhook URL here to enable push (replaces formsubmit as primary sink) ---
+  // Example: "https://open.feishu.cn/open-apis/bot/v2/hook/xxxxxxxx"
+  var LEAD_WEBHOOK = "";
+
+  // --- UTM / source capture ---
+  function getParams() {
+    try {
+      var q = new URLSearchParams(location.search);
+      return {
+        utm_source: q.get('utm_source') || '',
+        utm_medium: q.get('utm_medium') || '',
+        utm_campaign: q.get('utm_campaign') || '',
+        ref: document.referrer || ''
+      };
+    } catch (e) { return { utm_source: '', utm_medium: '', utm_campaign: '', ref: '' }; }
+  }
+
+  // local lead inbox (offline CRM snapshot, always kept)
   function saveLead(data) {
     try {
       var box = JSON.parse(localStorage.getItem('yunlv_lead_inbox') || '[]');
@@ -129,8 +146,22 @@
     } catch (e) {}
   }
 
+  // push to webhook if configured (Feishu bot / CRM endpoint)
+  function pushWebhook(data) {
+    if (!LEAD_WEBHOOK) return Promise.resolve(false);
+    try {
+      return fetch(LEAD_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          msg_type: 'text',
+          content: { text: '🔔 [AI-Native Lead]\nName: ' + data.name + '\nEmail: ' + data.email + '\nCompany: ' + data.company + '\nWebsite: ' + data.website + '\nUTM: ' + (data.utm_source || '-') + ' / ' + (data.utm_medium || '-') + ' / ' + (data.utm_campaign || '-') + '\nPage: ' + data.page + '\nTime: ' + data.ts }
+        })
+      }).then(function (r) { return r.ok; }).catch(function () { return false; });
+    } catch (e) { return Promise.resolve(false); }
+  }
+
   function track(event, data) {
-    // lightweight tracking: window.dataLayer for GA4 if present
     try {
       if (window.dataLayer) window.dataLayer.push({ event: event, ...data });
     } catch (e) {}
@@ -143,11 +174,31 @@
     var name = form.name.value.trim();
     var email = form.email.value.trim();
     if (!name || !email) { e.preventDefault(); showMsg('Please fill in name and work email.', 'err'); return; }
-    saveLead({ name: name, email: email, company: form.company.value.trim(), website: form.website.value.trim() });
-    track('lead_submit', { email: email, company: form.company.value.trim() });
+    var params = getParams();
+    var lead = {
+      name: name,
+      email: email,
+      company: form.company.value.trim(),
+      website: form.website.value.trim(),
+      utm_source: params.utm_source,
+      utm_medium: params.utm_medium,
+      utm_campaign: params.utm_campaign,
+      ref: params.ref
+    };
+    saveLead(lead);
+    track('lead_submit', { email: email, company: lead.company, utm_source: lead.utm_source, utm_medium: lead.utm_medium, utm_campaign: lead.utm_campaign });
     btn.disabled = true; btn.textContent = 'Sending...';
-    showMsg('Request received. Our team will reply within 24 hours.', 'ok');
-    // keep formsubmit POST going; fallback shown if it fails to load
+    if (LEAD_WEBHOOK) {
+      // webhook mode: suppress native formsubmit post to avoid duplicate inbox entries
+      e.preventDefault();
+      pushWebhook(lead).then(function (ok) {
+        showMsg(ok ? 'Request received. Our team will reply within 24 hours.' : 'Form is temporarily unavailable — please email contact@yunlvtech.cn. We reply within 24h.', ok ? 'ok' : 'err');
+        btn.disabled = false; btn.textContent = 'Request Free Assessment';
+      });
+    } else {
+      showMsg('Request received. Our team will reply within 24 hours.', 'ok');
+      // keep formsubmit POST going
+    }
   });
 
   function showMsg(text, kind) {

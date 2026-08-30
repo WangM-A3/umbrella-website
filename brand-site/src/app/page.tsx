@@ -412,6 +412,47 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
         </div>
       </section>
 
+      {/* AI Native Asset Center banner */}
+      <section className="max-w-6xl mx-auto px-8 pb-4">
+        <div className="relative overflow-hidden rounded-2xl border border-[#7b2fbe]/40 bg-gradient-to-r from-[#1a1a3e] via-[#241244] to-[#1a1a3e] p-8 md:p-10">
+          <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#7b2fbe]/20 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-24 -left-16 w-56 h-56 bg-[#ff4d9d]/10 rounded-full blur-3xl"></div>
+          <div className="relative flex flex-col md:flex-row md:items-center gap-8">
+            <div className="flex-1">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#ff4d9d]/40 bg-[#ff4d9d]/10 text-[#ff9dcb] text-xs font-medium mb-4">
+                🧬 AI NATIVE ASSET CENTER
+              </div>
+              <h2 className="text-2xl md:text-3xl font-bold text-white leading-snug">
+                中国企业 <span className="bg-gradient-to-r from-[#00f0ff] to-[#ff4d9d] bg-clip-text text-transparent">AI Native 白皮书</span> 发布
+              </h2>
+              <p className="text-gray-400 text-sm mt-3 max-w-xl">
+                三硬标准 · 五级成熟度 · 10 大先进模式 · 25 人 AI 员工军团真实案例。
+                2026 年 40% 企业应用嵌入 AI Agent——定义规则，还是被淘汰？
+              </p>
+              <div className="flex flex-wrap gap-3 mt-6">
+                <a href="/ai-native/whitepaper.html" className="px-5 py-2.5 bg-gradient-to-r from-[#00f0ff] to-[#7b2fbe] text-black font-semibold rounded-full hover:shadow-lg hover:shadow-[#00f0ff]/20 transition-all text-sm cursor-pointer inline-block">
+                  📖 免费读白皮书 →
+                </a>
+                <a href="/ai-native/landing-en.html" className="px-5 py-2.5 border border-white/20 rounded-full hover:bg-white/5 transition text-gray-300 text-sm cursor-pointer inline-block">
+                  🌐 English / 免费 AI 可见度体检
+                </a>
+                <a href="/ai-native/" className="px-5 py-2.5 border border-[#ff4d9d]/40 rounded-full hover:bg-[#ff4d9d]/10 transition text-[#ff9dcb] text-sm cursor-pointer inline-block">
+                  🚀 进入发布中心 →
+                </a>
+              </div>
+            </div>
+            <div className="grid grid-cols-3 gap-3 md:gap-4 shrink-0">
+              {[{ n: "25", t: "AI 员工军团" }, { n: "3", t: "硬标准" }, { n: "10", t: "先进模式" }].map((s) => (
+                <div key={s.t} className="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-center min-w-[86px]">
+                  <div className="text-xl font-bold text-[#00f0ff]">{s.n}</div>
+                  <div className="text-[10px] text-gray-500 mt-1">{s.t}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* AI Agent Architect with dynamic tabs */}
       <section className="max-w-6xl mx-auto px-8 py-16 border-t border-white/5">
         <div className="text-center mb-12">
