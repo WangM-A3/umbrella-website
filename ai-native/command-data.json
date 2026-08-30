@@ -1,0 +1,36 @@
+{
+  "ledger": [
+    {"ts": "2026-08-29 22:47", "emp": "YL-AI-001", "event": "geo_report", "meta": {"score": 26}},
+    {"ts": "2026-08-29 22:47", "emp": "YL-AI-004", "event": "lead_found", "meta": {"confidence": 0.92}},
+    {"ts": "2026-08-29 22:47", "emp": "YL-AI-004", "event": "lead_found", "meta": {"confidence": 0.48}},
+    {"ts": "2026-08-29 22:53", "emp": "YL-AI-002", "event": "content_pack", "meta": {"items": 5}},
+    {"ts": "2026-08-29 22:53", "emp": "YL-AI-003", "event": "intel_weekly", "meta": {"competitors": 7}},
+    {"ts": "2026-08-29 22:53", "emp": "YL-AI-006", "event": "training_support", "meta": {"qa": 4, "graded": 3}},
+    {"ts": "2026-08-29 22:53", "emp": "YL-AI-007", "event": "deployment_check", "meta": {"accept": 7, "total": 8}},
+    {"ts": "2026-08-29 22:53", "emp": "YL-AI-008", "event": "qa_inspection", "meta": {"passed": 6, "total": 6}}
+  ],
+  "memory": [
+    {"key": "buyer:BearingTech", "scope": "business", "value": {"pref": "参数", "market": "de", "signal": "进口6批", "confidence": 0.92}},
+    {"key": "buyer:Midwest", "scope": "business", "value": {"pref": "认证", "market": "us", "signal": "ABEC需求", "confidence": 0.87}},
+    {"key": "touch:BearingTech", "scope": "business", "value": {"sent": 2, "channel": "email", "result": "replied", "winner": "参数版"}},
+    {"key": "lifecycle:BearingTech", "scope": "business", "value": {"stage": "inquiry", "risk": "low", "renewal": "2026-12"}},
+    {"key": "geo:cceecexpo", "scope": "business", "value": {"baseline": 26, "p0": "引用率0", "plan": "30天优化"}},
+    {"key": "content:cceecexpo", "scope": "business", "value": {"items": 5, "llms": "done", "faq": 4, "schema": "done"}},
+    {"key": "drama:waimao", "scope": "business", "value": {"script": "外贸老板的一天", "duration": 15, "platform": "douyin"}},
+    {"key": "ads:ab", "scope": "business", "value": {"winner": "结果开头", "roi": "1.75->2.0"}},
+    {"key": "intel:competitors", "scope": "business", "value": {"monitored": 7, "top": "dify", "stars": 154000}},
+    {"key": "ops:confidence", "scope": "business", "value": {"finding": "置信度过滤有效", "lead_rate": "71%"}},
+    {"key": "ops:geo_insight", "scope": "business", "value": {"finding": "引用率是最大短板", "action": "聚焦P0"}},
+    {"key": "finance:ledger", "scope": "business", "value": {"events": 8, "cost": "护栏内"}},
+    {"key": "compliance:today", "scope": "business", "value": {"checked": 11, "violations": 0}}
+  ],
+  "templates": [
+    {"name": "waimao_de", "sent": 200, "replied": 10, "wilson": 0.0274},
+    {"name": "waimao_price", "sent": 200, "replied": 20, "wilson": 0.0657}
+  ],
+  "evolution": {
+    "distilled": 88, "sources": 56, "algorithm_assets": 88,
+    "kinds": {"official": 4, "competitor": 12, "local": 31, "hub": 16, "pattern": 25},
+    "dsh_skills": 132, "yunlv_skills": 114, "ai_employees": 25, "deliverables": 28
+  }
+}
