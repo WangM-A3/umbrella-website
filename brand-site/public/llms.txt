@@ -17,6 +17,7 @@
 - [运营指挥舱（动态版）](https://www.silicon-army.cn/ai-native/command-center-dynamic.html): AI 员工军团实时运营数据。
 - [Skill 资产市场 MVP](https://www.silicon-army.cn/ai-native/market.html): 11 行业 skill 包 ¥299/月、通用能力包 ¥199/月、四档订阅。
 - [AI Native 咨询产品与定价](https://www.silicon-army.cn/ai-native/consulting.html): 体检/改造/陪跑产品明细。
+- [AI 安全承诺与安全评分](https://www.silicon-army.cn/ai-native/security.html): 云旅内部安全自查基线 100/100（8 维工具实跑）；五层 PII 脱敏；插件供应链 100% 注入扫描；竞品第三方 ZeroLeaks 评测 2/100 对比（可追溯信源）。
 - [AI Employee Army Command Center (EN)](https://www.silicon-army.cn/ai-native/command-center-en.html): English command center.
 - [白皮书英文版 (Markdown)](https://www.silicon-army.cn/ai-native/whitepaper-en.md)
 

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>安全评分 100 vs 2/100 · 云旅科技集团 AI 安全承诺</title>
+<link rel="alternate" type="text/plain" href="/llms.txt">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"云旅科技集团 AI 安全承诺与安全评分","url":"https://www.silicon-army.cn/ai-native/security.html","description":"云旅内部安全自查基线 100/100（8 维，工具实跑可复现）；五层 PII 脱敏；插件供应链 100% 注入扫描；对比 OpenClaw 第三方评测 2/100（ZeroLeaks）。","provider":{"@type":"Organization","name":"云旅科技集团","url":"https://www.silicon-army.cn"}}
+</script>
+<style>
+  :root { --bg:#0a0e1f; --card:#131a38; --card2:#1b2148; --cyan:#00e5ff; --purple:#8b5cf6; --pink:#ff4d9d; --green:#34d399; --yellow:#fbbf24; --red:#ff4d6d; --text:#e8ecf8; --text2:#a6b0d6; --muted:#6b7aa8; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Microsoft YaHei','PingFang SC',sans-serif; background:var(--bg); color:var(--text); line-height:1.7; }
+  .lang-bar { text-align:right; padding:10px 24px; font-size:12px; border-bottom:1px solid #1b2148; }
+  .lang-bar a { color:var(--cyan); text-decoration:none; margin-left:14px; }
+  .hero { text-align:center; padding:60px 20px 40px; background:linear-gradient(180deg,#0a0e1f,#10122e 60%,#1d1040); }
+  .hero .brand { display:inline-block; font-size:12px; color:var(--cyan); border:1px solid var(--cyan); padding:5px 18px; border-radius:20px; }
+  .hero h1 { font-size:38px; font-weight:900; margin:20px 0 10px; }
+  .hero h1 span { background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .hero p { color:var(--text2); font-size:15px; max-width:680px; margin:0 auto; }
+  .container { max-width:920px; margin:0 auto; padding:24px; }
+  .score-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:30px 0; }
+  .score-card { background:var(--card); border-radius:16px; padding:28px; text-align:center; border:1px solid #2a3160; }
+  .score-card.me { border-color:var(--green); }
+  .score-card .n { font-size:64px; font-weight:900; }
+  .score-card.me .n { color:var(--green); }
+  .score-card.opp .n { color:var(--red); }
+  .score-card .t { font-size:13px; color:var(--text2); margin-top:6px; }
+  .score-card .s { font-size:11px; color:var(--muted); margin-top:8px; line-height:1.5; }
+  .vs { position:absolute; }
+  .dims { margin:30px 0; }
+  .dims h2 { font-size:20px; margin-bottom:14px; border-left:4px solid var(--cyan); padding-left:12px; }
+  .dim { display:flex; align-items:center; margin:8px 0; font-size:13px; }
+  .dim .name { width:200px; color:var(--text2); }
+  .dim .bar { flex:1; height:14px; background:var(--card2); border-radius:7px; overflow:hidden; }
+  .dim .bar i { display:block; height:100%; background:linear-gradient(90deg,var(--cyan),var(--green)); border-radius:7px; }
+  .dim .v { width:56px; text-align:right; color:var(--cyan); font-weight:700; }
+  .pills { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; margin:24px 0; }
+  .pill { background:var(--card); border:1px solid #2a3160; border-radius:12px; padding:16px; }
+  .pill h4 { color:var(--cyan); font-size:14px; margin-bottom:6px; }
+  .pill p { font-size:12px; color:var(--text2); margin:0; }
+  .fact-table { width:100%; border-collapse:collapse; margin:20px 0; font-size:13px; }
+  .fact-table th { background:var(--card2); color:var(--cyan); padding:10px 12px; text-align:left; }
+  .fact-table td { padding:10px 12px; border-bottom:1px solid #1b2148; color:var(--text2); }
+  .fact-table .src { color:var(--muted); font-size:11px; }
+  .note { font-size:11px; color:var(--muted); margin-top:16px; line-height:1.6; }
+  .cta { text-align:center; margin:40px 0 0; padding:36px; background:var(--card); border:1px solid var(--cyan); border-radius:16px; }
+  .cta .btn { display:inline-block; margin:12px 8px 0; padding:12px 30px; border-radius:8px; text-decoration:none; font-weight:700; }
+  .btn.primary { background:linear-gradient(90deg,var(--cyan),var(--purple)); color:#fff; }
+  .btn.ghost { border:1px solid var(--cyan); color:var(--cyan); }
+  .footer { text-align:center; padding:24px; color:var(--muted); font-size:11px; }
+</style>
+</head>
+<body>
+
+<div class="lang-bar">
+  🌐 <a href="index.html">发布中心</a> · <a href="whitepaper.html">白皮书</a> · <a href="landing-zh.html">免费体检</a> · <a href="landing-en.html">EN</a>
+</div>
+
+<div class="hero">
+  <div class="brand">云旅科技集团 · 安全承诺</div>
+  <h1>AI 安全，不是补丁，是<span>第一天就有的架构</span></h1>
+  <p>当竞品被第三方评测打 2/100 分时，我们把安全做成了默认配置。数据证据可复现、可审计、可背调。</p>
+</div>
+
+<div class="container">
+
+  <div class="score-row">
+    <div class="score-card me">
+      <div class="n">100<span style="font-size:22px;color:var(--text2)">/100</span></div>
+      <div class="t">云旅科技集团 · 内部安全自查基线（O4-P1 工具实跑，8 维全绿）</div>
+      <div class="s">注入扫描 91 技能 0 风险 · 密钥 0 明文 · PII 六类脱敏 · 沙箱默认开启 · 审计全链路</div>
+    </div>
+    <div class="score-card opp">
+      <div class="n">2<span style="font-size:22px;color:var(--text2)">/100</span></div>
+      <div class="t">某桌面 AI Agent 竞品 · ZeroLeaks 第三方安全评测（数据提取成功率 84%）</div>
+      <div class="s">官方声明"共享会话不是安全边界" · 沙箱默认关闭 · 23 万暴露实例（CVE-2026-65105）</div>
+    </div>
+  </div>
+
+  <div class="dims">
+    <h2>云旅 8 维安全自查（100/100）</h2>
+    <div class="dim"><span class="name">凭证与密钥保护</span><div class="bar"><i style="width:100%"></i></div><span class="v">100</span></div>
+    <div class="dim"><span class="name">PII 与隐私合规（六类脱敏）</span><div class="bar"><i style="width:100%"></i></div><span class="v">100</span></div>
+    <div class="dim"><span class="name">插件供应链（注入扫描）</span><div class="bar"><i style="width:100%"></i></div><span class="v">100</span></div>
+    <div class="dim"><span class="name">沙箱与执行隔离</span><div class="bar"><i style="width:100%"></i></div><span class="v">100</span></div>
+    <div class="dim"><span class="name">多租户隔离</span><div class="bar"><i style="width:100%"></i></div><span class="v">100</span></div>
+    <div class="dim"><span class="name">人工闸门与审批</span><div class="bar"><i style="width:100%"></i></div><span class="v">100</span></div>
+    <div class="dim"><span class="name">审计与可追溯</span><div class="bar"><i style="width:100%"></i></div><span class="v">100</span></div>
+    <div class="dim"><span class="name">成本护栏</span><div class="bar"><i style="width:100%"></i></div><span class="v">100</span></div>
+  </div>
+
+  <div class="pills">
+    <div class="pill"><h4>五层 PII 脱敏</h4><p>输入检测 → 处理脱敏 → 加密存储 → 输出过滤 → 全链路审计。原始值不落日志（"人称地证卡"六类识别）。</p></div>
+    <div class="pill"><h4>沙箱默认开启</h4><p>每个 Agent 独立沙箱，默认 read-only，命令执行注入模式自动拦截。安全不需要人工配置。</p></div>
+    <div class="pill"><h4>插件 100% 审查</h4><p>上架前过注入扫描（9 类模式）+ 来源白名单；全库 91 技能 0 风险，恶意样本精准拦截。</p></div>
+    <div class="pill"><h4>密钥 0 明文</h4><p>架构层禁止明文密钥，环境变量/密钥管理读取；出站绑定白名单（G-15/G-21）。</p></div>
+  </div>
+
+  <h2 style="font-size:20px;margin:26px 0 6px;border-left:4px solid var(--red);padding-left:12px;">为什么 AI 安全不能只看功能</h2>
+  <table class="fact-table">
+    <tr><th>事实</th><th>数据</th><th>来源</th></tr>
+    <tr><td>竞品技能市场注入率</td><td>36% 技能含 Prompt 注入</td><td class="src">Cisco Talos + Kaspersky（T2）</td></tr>
+    <tr><td>恶意技能包</td><td>1,184 个，占社区 34%</td><td class="src">工信部/CSDN 8/28（T2）</td></tr>
+    <tr><td>竞品安全评分</td><td>2/100，数据提取成功率 84%，注入成功率 91%</td><td class="src">ZeroLeaks 8/27（T2）</td></tr>
+    <tr><td>暴露实例</td><td>23 万个（恶意浏览器标签植入本地模型持久化指令）</td><td class="src">CVE-2026-65105 / 安天（T1/T2）</td></tr>
+    <tr><td>官方定位原文</td><td>"共享会话控制不是安全边界，一个 Gateway 是一个信任域"</td><td class="src">OpenClaw 官方文档（T1）</td></tr>
+  </table>
+
+  <div class="note">
+    口径说明（合规红线对齐）：云旅 100/100 为<b>内部自查基线</b>（trade_engine/security_self_audit.py 8 维工具实跑，可复现）；竞品 2/100 为<b>第三方 ZeroLeaks 评测</b>（T2 信源，可追溯）。第三方背书评测进行中，最终以盖章报告为准。本页不含绝对化承诺。
+  </div>
+
+  <div class="cta">
+    <h3 style="color:var(--text);font-size:22px;">把安全变成您的竞争力</h3>
+    <p style="color:var(--text2);font-size:13px;">免费 AI 可见度体检 + 安全基线检查，30 分钟出报告</p>
+    <a class="btn primary" href="landing-zh.html">预约免费体检</a>
+    <a class="btn ghost" href="whitepaper.html">读白皮书</a>
+  </div>
+
+  <div class="footer">
+    云旅科技集团 · AI Native 系列 ｜ 安全评分页 ｜ © 2026
+  </div>
+</div>
+
+</body>
+</html>
