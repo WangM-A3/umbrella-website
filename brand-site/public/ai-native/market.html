@@ -40,6 +40,21 @@
   .tier li::before { content:"✓ "; color:var(--green); }
   .footer { text-align:center; padding:40px; color:var(--muted); font-size:13px; }
   .note { color: var(--muted); font-size:12px; }
+  /* ---- E0 W2 插件市场区块 ---- */
+  .plugin-bar { display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin:16px 0; }
+  .plugin-bar input { flex:1; min-width:220px; padding:12px 16px; border-radius:10px; border:1px solid #2a3160; background:var(--card); color:var(--text); font-size:14px; }
+  .plugin-bar select { padding:12px 14px; border-radius:10px; border:1px solid #2a3160; background:var(--card); color:var(--text); font-size:13px; }
+  .plugin-bar .count { font-size:12px; color:var(--muted); }
+  .plugin-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:14px; }
+  .pcard { background:var(--card); border:1px solid #2a3160; border-radius:12px; padding:16px; }
+  .pcard h4 { font-size:14px; margin-bottom:6px; word-break:break-all; }
+  .pcard .desc { color:var(--text2); font-size:12px; min-height:34px; margin-bottom:8px; }
+  .pcard .meta { display:flex; justify-content:space-between; align-items:center; font-size:11px; }
+  .pbadge { padding:2px 10px; border-radius:10px; font-size:10px; }
+  .pbadge.pass { background:rgba(52,211,153,.15); color:var(--green); }
+  .pbadge.review { background:rgba(251,191,36,.15); color:var(--yellow); }
+  .pbadge.block { background:rgba(255,77,109,.15); color:var(--red); }
+  .ptag { color:var(--cyan); }
 </style>
 </head>
 <body>
@@ -117,6 +132,76 @@
     <p>云旅 Skill 市场 · 由 Yunlv Evolve OS 全球蒸馏驱动 · 60+ skill 每日自动进化</p>
     <p class="note">每个 skill 带溯源（来源仓库）+ 三重保险（人工审批/成本熔断/全程审计）· 订阅后拉进企微群，一句话出结果</p>
   </div>
+
+  <!-- ======== E0 W2 插件市场（DSH 生态，数据驱动） ======== -->
+  <div class="section-title">🧩 DSH 插件市场 <span>（200+ 生态插件 · 全部过注入扫描门禁）</span></div>
+  <div class="plugin-bar">
+    <input type="text" id="plSearch" placeholder="搜索插件（名称/描述）…" oninput="renderPlugins()">
+    <select id="plCat" onchange="renderPlugins()">
+      <option value="">全部分类</option>
+    </select>
+    <select id="plVerdict" onchange="renderPlugins()">
+      <option value="">全部裁决</option>
+      <option value="pass">已审查 ✅</option>
+      <option value="review">待复核 ⚠️</option>
+    </select>
+    <span class="count" id="plCount">加载中…</span>
+  </div>
+  <div class="plugin-grid" id="plGrid"><p style="color:var(--muted)">加载插件索引…</p></div>
+
 </div>
+
+<script>
+/* E0 W2：加载 plugins-index.json（与市场同源部署），搜索/分类/裁决筛选 */
+var PLUGINS = [];
+fetch('/ai-native/plugins-index.json')
+  .then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
+  .then(function (d) {
+    PLUGINS = d.plugins || [];
+    var cats = {};
+    PLUGINS.forEach(function (p) { cats[p.package] = (cats[p.package] || 0) + 1; });
+    var sel = document.getElementById('plCat');
+    Object.keys(cats).sort().forEach(function (c) {
+      var o = document.createElement('option');
+      o.value = c; o.textContent = c + '（' + cats[c] + '）'; sel.appendChild(o);
+    });
+    renderPlugins();
+  })
+  .catch(function (e) {
+    document.getElementById('plGrid').innerHTML =
+      '<p style="color:var(--muted)">插件索引加载失败（' + e.message + '）—— 已离线快照？请联系云旅。</p>';
+  });
+
+function renderPlugins() {
+  var q = (document.getElementById('plSearch').value || '').toLowerCase().trim();
+  var cat = document.getElementById('plCat').value;
+  var vd = document.getElementById('plVerdict').value;
+  var list = PLUGINS.filter(function (p) {
+    if (cat && p.package !== cat) return false;
+    if (vd && p.verdict !== vd) return false;
+    if (q && !((p.name + ' ' + p.desc + ' ' + p.cat).toLowerCase().indexOf(q) >= 0)) return false;
+    return true;
+  });
+  document.getElementById('plCount').textContent = '共 ' + list.length + ' 个';
+  var grid = document.getElementById('plGrid');
+  if (!list.length) { grid.innerHTML = '<p style="color:var(--muted)">无匹配插件</p>'; return; }
+  var html = '';
+  list.slice(0, 60).forEach(function (p) {
+    var badge = p.verdict === 'pass'
+      ? '<span class="pbadge pass">已审查 ✅</span>'
+      : '<span class="pbadge review">待复核 ⚠️</span>';
+    html += '<div class="pcard"><h4>' + esc(p.name) + '</h4>'
+      + '<div class="desc">' + esc(p.desc || '') + '</div>'
+      + '<div class="meta"><span class="ptag">' + esc(p.package) + ' / ' + esc(p.cat) + '</span>' + badge + '</div></div>';
+  });
+  if (list.length > 60) html += '<p style="color:var(--muted);grid-column:1/-1">仅显示前 60 个，输入关键词精确检索</p>';
+  grid.innerHTML = html;
+}
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+</script>
 </body>
 </html>
