@@ -55,6 +55,25 @@
   .pbadge.review { background:rgba(251,191,36,.15); color:var(--yellow); }
   .pbadge.block { background:rgba(255,77,109,.15); color:var(--red); }
   .ptag { color:var(--cyan); }
+  /* ---- S3 订阅意向收集 ---- */
+  #orderFormWrap { display:none; max-width:520px; margin:24px auto; background:var(--card2); border:1px solid var(--cyan); border-radius:14px; padding:24px; }
+  #orderFormWrap h3 { color:var(--cyan); font-size:17px; margin-bottom:4px; }
+  #orderFormWrap p { color:var(--text2); font-size:12px; margin-bottom:14px; }
+  #orderFormWrap input { width:100%; padding:11px 14px; margin:7px 0; border-radius:8px; border:1px solid #2a3160; background:var(--bg); color:var(--text); font-size:14px; }
+  #orderFormWrap button { width:100%; padding:13px; margin-top:10px; border:none; border-radius:8px; background:linear-gradient(90deg,var(--cyan),var(--purple)); color:#fff; font-size:15px; font-weight:700; cursor:pointer; }
+  #orderMsg { display:none; text-align:center; padding:12px; border-radius:8px; margin-top:10px; font-size:13px; }
+  /* ---- 云旅自有真实 Skill（核心货架） ---- */
+  .sk-bar { display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin:14px 0; }
+  .sk-bar input { flex:1; min-width:200px; padding:11px 14px; border-radius:10px; border:1px solid #2a3160; background:var(--card); color:var(--text); font-size:13px; }
+  .sk-bar select { padding:11px 12px; border-radius:10px; border:1px solid #2a3160; background:var(--card); color:var(--text); font-size:12px; }
+  .sk-bar .count { font-size:12px; color:var(--muted); }
+  .sk-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:12px; }
+  .skard { background:var(--card); border:1px solid var(--green); border-radius:12px; padding:14px; }
+  .skard h4 { font-size:13px; margin-bottom:4px; color:var(--text); word-break:break-all; }
+  .skard .desc { color:var(--text2); font-size:11px; min-height:30px; margin-bottom:6px; }
+  .skard .meta { display:flex; justify-content:space-between; font-size:10px; color:var(--muted); }
+  .skbadge { padding:1px 8px; border-radius:8px; font-size:10px; background:rgba(52,211,153,.15); color:var(--green); }
+  .skkind { color:var(--cyan); }
 </style>
 </head>
 <body>
@@ -65,6 +84,16 @@
 </div>
 
 <div class="container">
+  <!-- ======== 云旅自有真实 Skill（核心货架） ======== -->
+  <div class="section-title">🌱 云旅自有 Skill <span>（93 个真实蒸馏资产 · 已挂载可调用 · 每个都过注入门禁）</span></div>
+  <p style="color:var(--muted);font-size:12px;">以下为云旅自进化引擎从全球语料蒸馏的真实 Skill（SKILL.md 完整文件，本页演示可用）；订阅任意行业包/通用包即含对应 Skill 交付。</p>
+  <div class="sk-bar">
+    <input type="text" id="skSearch" placeholder="搜索自有 Skill（名称/描述/触发词）…" oninput="renderSkills()">
+    <select id="skKind" onchange="renderSkills()"><option value="">全部类型</option></select>
+    <span class="count" id="skCount">加载中…</span>
+  </div>
+  <div class="sk-grid" id="skGrid"><p style="color:var(--muted)">加载真实 Skill 索引…</p></div>
+
   <div class="section-title">⚡ 定价方案 <span>Pricing</span></div>
   <div class="tier-grid">
     <div class="tier">
@@ -135,6 +164,7 @@
 
   <!-- ======== E0 W2 插件市场（DSH 生态，数据驱动） ======== -->
   <div class="section-title">🧩 DSH 插件市场 <span>（200+ 生态插件 · 全部过注入扫描门禁）</span></div>
+  <p style="color:var(--muted);font-size:11px;">生态目录索引（来源 dsh-plugins-market，真实开源项目）；上架前逐验安装，裁决徽标 = 静态注入扫描结果。</p>
   <div class="plugin-bar">
     <input type="text" id="plSearch" placeholder="搜索插件（名称/描述）…" oninput="renderPlugins()">
     <select id="plCat" onchange="renderPlugins()">
@@ -202,6 +232,102 @@ function esc(s) {
     return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
   });
 }
+
+/* ---- 云旅自有真实 Skill：加载 yunlv-skills-index.json ---- */
+var OWNED = [];
+fetch('/ai-native/yunlv-skills-index.json')
+  .then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
+  .then(function (d) {
+    OWNED = d.skills || [];
+    var kinds = {};
+    OWNED.forEach(function (s) { kinds[s.kind] = (kinds[s.kind] || 0) + 1; });
+    var sel = document.getElementById('skKind');
+    Object.keys(kinds).sort().forEach(function (k) {
+      var o = document.createElement('option');
+      o.value = k; o.textContent = k + '（' + kinds[k] + '）'; sel.appendChild(o);
+    });
+    renderSkills();
+  })
+  .catch(function (e) {
+    var g = document.getElementById('skGrid');
+    if (g) g.innerHTML = '<p style="color:var(--muted)">自有 Skill 索引加载失败（' + e.message + '）</p>';
+  });
+
+function renderSkills() {
+  var q = (document.getElementById('skSearch').value || '').toLowerCase().trim();
+  var kind = document.getElementById('skKind').value;
+  var list = OWNED.filter(function (s) {
+    if (kind && s.kind !== kind) return false;
+    if (q && !((s.name + ' ' + s.desc + ' ' + (s.trigger || '')).toLowerCase().indexOf(q) >= 0)) return false;
+    return true;
+  });
+  document.getElementById('skCount').textContent = '共 ' + list.length + ' 个（真实可调用）';
+  var grid = document.getElementById('skGrid');
+  if (!list.length) { grid.innerHTML = '<p style="color:var(--muted)">无匹配 Skill</p>'; return; }
+  var html = '';
+  list.slice(0, 60).forEach(function (s) {
+    html += '<div class="skard"><h4>' + esc(s.name) + ' <span class="skbadge">自有 ✅</span></h4>'
+      + '<div class="desc">' + esc(s.desc || '') + '</div>'
+      + '<div class="meta"><span class="skkind">' + esc(s.kind) + '</span>'
+      + (s.trigger ? '<span>' + esc(s.trigger.slice(0, 60)) + '</span>' : '') + '</div></div>';
+  });
+  if (list.length > 60) html += '<p style="color:var(--muted);grid-column:1/-1">仅显示前 60 个，输入关键词精确检索</p>';
+  grid.innerHTML = html;
+}
+
+/* ---- S3：订阅意向收集（formsubmit → contact@yunlvtech.cn） ---- */
+(function () {
+  var wrap = document.getElementById('orderFormWrap');
+  if (!wrap) return;
+  var form = document.getElementById('orderForm');
+  var product = document.getElementById('orderProduct');
+  var msg = document.getElementById('orderMsg');
+  var boxEl = document.getElementById('orderEmail');
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a.btn') : null;
+    if (!a || a.getAttribute('href') !== '#') return;
+    e.preventDefault();
+    var card = a.closest('.card, .tier, .pcard');
+    var name = '';
+    if (card) { var h = card.querySelector('h3, h4'); if (h) name = h.textContent.trim(); }
+    product.value = name || 'Skill 市场订阅';
+    wrap.style.display = 'block';
+    wrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (boxEl) boxEl.focus();
+  });
+
+  form.addEventListener('submit', function (e) {
+    var email = boxEl.value.trim();
+    if (!email) { e.preventDefault(); show('请填写邮箱以便我们联系您', 'err'); return; }
+    show('已收到订阅意向，销售将在 24 小时内联系您。', 'ok');
+  });
+
+  function show(text, kind) {
+    msg.style.display = 'block';
+    msg.style.background = kind === 'ok' ? 'rgba(52,211,153,.12)' : 'rgba(255,77,157,.12)';
+    msg.style.color = kind === 'ok' ? 'var(--green)' : 'var(--pink)';
+    msg.textContent = text;
+  }
+})();
 </script>
+
+<!-- S3 订阅意向表单 -->
+<div id="orderFormWrap">
+  <h3>📦 订阅意向</h3>
+  <p>填写邮箱，销售团队 24 小时内联系您开通（对公付款/企微交付均可）。</p>
+  <form id="orderForm" action="https://formsubmit.co/contact@yunlvtech.cn" method="POST">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_subject" value="[Skill 市场订阅意向]">
+    <input type="hidden" name="product" id="orderProduct" value="Skill 市场订阅">
+    <input type="email" name="email" id="orderEmail" placeholder="工作邮箱" required>
+    <input type="text" name="company" placeholder="公司 / 行业">
+    <input type="text" name="note" placeholder="想订阅的包 / 想装哪些插件（选填）">
+    <input type="hidden" name="_honey" value="" style="display:none">
+    <button type="submit">提交订阅意向</button>
+  </form>
+  <div id="orderMsg"></div>
+</div>
 </body>
 </html>
