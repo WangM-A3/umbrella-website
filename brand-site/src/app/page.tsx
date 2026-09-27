@@ -101,15 +101,11 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
  };
 
  export default function Home() {
-  const [liveData, setLiveData] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setLiveData((prev) => prev + Math.floor(Math.random() * 3));
-    }, 2500);
-    return () => clearInterval(interval);
-  }, []);
-
+  // 这里原来有一个每 2.5 秒执行一次 `setLiveData(prev => prev + Math.floor(Math.random()*3))`
+  // 的计时器，专门用来让首页那几个数字"看起来在实时增长"。
+  // 它是 Math.random()，不是任何真实数据——已移除。
+  // 本站是 `output: "export"` 静态导出，没有运行时数据源，
+  // 所以首页只展示可以核对的事实，不再展示"实时"数字。
   const [showForm, setShowForm] = useState(false);
   const [formStatus, setFormStatus] = useState("");
   const [formData, setFormData] = useState({
@@ -265,9 +261,9 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
   
   const filteredProducts = activeCategory === "全部" ? heroProducts : heroProducts.filter(p => p.cat === activeCategory);
   const allCategories = ["全部", ...new Set(heroProducts.map(p => p.cat))];
-  const totalClients = 2849 + Math.floor(liveData * 0.05);
-  const totalCalls = 244 + Math.floor(liveData * 0.02);
-  const todayActive = 48 + Math.floor(liveData * 0.1);
+  // 固定口径。原来这三行都带一个随计时器漂移的随机增量，现在改成常量。
+  const totalClients = 2849;
+  const totalCalls = 244;
 
   return (
     <div className="min-h-screen bg-[#0a0e27] text-white font-sans">
@@ -351,14 +347,13 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
             从渠道采购到外贸拓客，全链路落地交付
           </p>
 
-          {/* Live data */}
+          {/* 关键数字：静态口径。本站是静态导出，没有运行时数据源，所以不标"实时"。 */}
           <div className="flex flex-wrap gap-6 mt-8 text-sm text-gray-400 border-t border-white/5 pt-6">
             <span>🚀 已服务 <strong className="text-[#00f0ff] text-lg">{totalClients}</strong> 家企业</span>
             <span>⚡ AI调用 <strong className="text-[#00f0ff] text-lg">{totalCalls}</strong> 万次</span>
-            <span>📊 今日活跃 <strong className="text-[#00f0ff] text-lg">{todayActive}</strong> 家</span>
+            <span>📦 <strong className="text-[#00f0ff] text-lg">16</strong> 款可运营产品</span>
             <span className="flex items-center gap-1.5">
-              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-              <span className="text-gray-500 text-xs">实时</span><span className="ml-2 px-2 py-0.5 rounded-full text-[9px] bg-[#00f0ff]/10 border border-[#00f0ff]/20 text-[#00f0ff] whitespace-nowrap">🤖 自主决策 33%</span><div className="bg-white/5 text-gray-600 text-[10px] px-1.5 py-0.5 rounded ml-1 inline-block">demo</div>
+              <span className="px-2 py-0.5 rounded-full text-[9px] bg-[#00f0ff]/10 border border-[#00f0ff]/20 text-[#00f0ff] whitespace-nowrap">✓ 按结果付费 · 无效果不计费</span>
             </span>
           </div>
 
@@ -583,39 +578,42 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
       </section>
 <section className="max-w-6xl mx-auto px-8 py-20 border-t border-white/5">
         <div className="text-center mb-12">
-          <span className="text-[#00f0ff] text-sm tracking-widest">LIVE</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-2">NEXUS平台实时状态</h2>
-          <p className="text-gray-400 mt-2">今日API调用 · 活跃Agent · 实时询盘</p>
+          <span className="text-[#00f0ff] text-sm tracking-widest">COMMITMENT</span>
+          <h2 className="text-3xl md:text-4xl font-bold mt-2">交付承诺</h2>
+          <p className="text-gray-400 mt-2">按结果付费 · 未达标不收费 · 全链路落地交付</p>
         </div>
+        {/* 这一段原来是「LIVE 平台实时状态」：数字由 Math.random() 每 2.5 秒自增，
+            下面是「刚刚 / 2分钟前」的好几条假动态。静态站拿不到运行时数据，
+            与其编，不如把已经在站上写明过的承诺列出来。 */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <div className="glass rounded-xl p-4 text-center">
-            <div className="text-2xl font-bold text-[#00f0ff]">{totalCalls}k</div>
-            <div className="text-sm text-gray-500">今日API调用</div>
-            <div className="text-[10px] text-green-400 mt-1">+15% vs 昨日</div>
+            <div className="text-2xl font-bold text-[#00f0ff]">16</div>
+            <div className="text-sm text-gray-500">款可运营产品</div>
+            <div className="text-[10px] text-gray-500 mt-1">外贸 / 合规 / 内容 / 行业方案</div>
           </div>
           <div className="glass rounded-xl p-4 text-center">
-            <div className="text-2xl font-bold text-green-400">{Math.floor(todayActive * 0.3)}/15</div>
-            <div className="text-sm text-gray-500">活跃Agent</div>
-            <div className="text-[10px] text-gray-500 mt-1">在线</div>
+            <div className="text-2xl font-bold text-green-400">4</div>
+            <div className="text-sm text-gray-500">个 Agent API</div>
+            <div className="text-[10px] text-gray-500 mt-1">REST 即插即用 · 11 个端点</div>
           </div>
           <div className="glass rounded-xl p-4 text-center">
-            <div className="text-2xl font-bold text-yellow-400">{todayActive + Math.floor(liveData * 0.5)}</div>
-            <div className="text-sm text-gray-500">今日询盘</div>
-            <div className="text-[10px] text-green-400 mt-1">+实时</div>
+            <div className="text-2xl font-bold text-yellow-400">3周</div>
+            <div className="text-sm text-gray-500">最快见效</div>
+            <div className="text-[10px] text-gray-500 mt-1">诊断 → 配置 → 运行</div>
           </div>
           <div className="glass rounded-xl p-4 text-center">
-            <div className="text-2xl font-bold text-red-400">0</div>
-            <div className="text-sm text-gray-500">告警</div>
-            <div className="text-[10px] text-green-400 mt-1">正常运行</div>
+            <div className="text-2xl font-bold text-[#00f0ff]">私有化</div>
+            <div className="text-sm text-gray-500">部署方式</div>
+            <div className="text-[10px] text-gray-500 mt-1">数据不出企业内网</div>
           </div>
         </div>
         <div className="glass rounded-xl p-4">
-          <h4 className="text-sm text-gray-500 mb-3">最近活动</h4>
+          <h4 className="text-sm text-gray-500 mb-3">合作方式</h4>
           <div className="space-y-1 text-sm">
-            <div className="flex gap-4 text-gray-400 border-b border-white/5 py-1"><span className="text-[#00f0ff]">刚刚</span><span>Trade Engine 完成一轮巡检</span></div>
-            <div className="flex gap-4 text-gray-400 border-b border-white/5 py-1"><span className="text-[#00f0ff]">2分钟前</span><span>AI诊断完成 - 某跨境企业</span></div>
-            <div className="flex gap-4 text-gray-400 border-b border-white/5 py-1"><span className="text-[#00f0ff]">5分钟前</span><span>WorkBuddy 新合约部署</span></div>
-            <div className="flex gap-4 text-gray-400 border-b border-white/5 py-1"><span className="text-[#00f0ff]">12分钟前</span><span>智能体巡检完成，0异常</span></div>
+            <div className="flex gap-4 text-gray-400 border-b border-white/5 py-1"><span className="text-[#00f0ff]">01</span><span>共同设定可量化 KPI，达成才收费，未达成不收费</span></div>
+            <div className="flex gap-4 text-gray-400 border-b border-white/5 py-1"><span className="text-[#00f0ff]">02</span><span>3 个工作日内完成 Agent 初始化与数据对接</span></div>
+            <div className="flex gap-4 text-gray-400 border-b border-white/5 py-1"><span className="text-[#00f0ff]">03</span><span>支持私有化部署，数据不出企业内网</span></div>
+            <div className="flex gap-4 text-gray-400 border-b border-white/5 py-1"><span className="text-[#00f0ff]">04</span><span>飞轮持续学习，模板与策略自动迭代</span></div>
           </div>
           <a href="/platform.html" className="block mt-4 text-center text-[#00f0ff] text-sm hover:underline">进入运营管理平台 →</a>
         </div>
@@ -799,7 +797,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
           <span className="text-[#00f0ff] text-sm tracking-widest">ABOUT</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-2">关于我们</h2>
           <p className="text-gray-400 mt-4 leading-relaxed text-sm">NEXUS 专注于AI Agent架构与商业落地，为出海企业提供全链路AI解决方案。</p>
-          <div className="flex flex-wrap justify-center gap-8 mt-8"><div><div className="text-2xl font-bold text-[#00f0ff]">5+</div><div className="text-xs text-gray-500 mt-1">年AI经验</div></div><div><div className="text-2xl font-bold text-[#00f0ff]">15</div><div className="text-xs text-gray-500 mt-1">款产品</div></div><div><div className="text-2xl font-bold text-[#00f0ff]">2849</div><div className="text-xs text-gray-500 mt-1">服务企业</div></div></div>
+          <div className="flex flex-wrap justify-center gap-8 mt-8"><div><div className="text-2xl font-bold text-[#00f0ff]">5+</div><div className="text-xs text-gray-500 mt-1">年AI经验</div></div><div><div className="text-2xl font-bold text-[#00f0ff]">16</div><div className="text-xs text-gray-500 mt-1">款产品</div></div><div><div className="text-2xl font-bold text-[#00f0ff]">2849</div><div className="text-xs text-gray-500 mt-1">服务企业</div></div></div>
         </div>
       </section>
 
@@ -991,31 +989,29 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
           <h2 className="text-3xl md:text-4xl font-bold mt-2">运营管理平台</h2>
           <p className="text-gray-400 mt-2">实时监控 · 智能决策 · 数据驱动</p>
         </div>
-        {/* Feature preview cards */}
+        {/* 这四张卡原来写的是「今日询盘 23 · 响应率 31%」「15个智能体运行中 · 0 异常」
+            「近7天 · 12次巡检」，并配了一个闪烁的绿点——都是写死的运营数字，
+            看起来像实时看板，实际不是。静态站没有运行时数据，改回"这个平台能做什么"。 */}
         <a href="/platform.html" className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8 no-underline">
           <div className="glass rounded-xl p-4 text-center hover:neon-border transition-all">
             <div className="text-2xl mb-1">📊</div>
-            <div className="text-xs font-semibold text-white">实时数据看板</div>
-            <div className="text-[10px] text-gray-500 mt-1">今日询盘 23 · 响应率 31%</div>
-            <div className="flex justify-center gap-2 mt-2 text-[10px]"><span className="text-green-400">↑12%</span><span className="text-gray-600">转化</span></div>
+            <div className="text-xs font-semibold text-white">数据看板</div>
+            <div className="text-[10px] text-gray-500 mt-1">询盘 · 响应率 · 转化漏斗</div>
           </div>
           <div className="glass rounded-xl p-4 text-center hover:neon-border transition-all">
             <div className="text-2xl mb-1">🤖</div>
             <div className="text-xs font-semibold text-white">Agent 状态</div>
-            <div className="text-[10px] text-gray-500 mt-1">15个智能体运行中</div>
-            <div className="flex items-center justify-center gap-1 mt-2"><span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span><span className="text-[10px] text-green-400">0 异常</span></div>
+            <div className="text-[10px] text-gray-500 mt-1">运行状态 · 异常告警</div>
           </div>
           <div className="glass rounded-xl p-4 text-center hover:neon-border transition-all">
             <div className="text-2xl mb-1">📈</div>
             <div className="text-xs font-semibold text-white">巡检历史</div>
-            <div className="text-[10px] text-gray-500 mt-1">近7天 · 12次巡检</div>
-            <div className="flex justify-center gap-1 mt-2 text-[10px]"><span className="text-green-400">■■</span><span className="text-gray-600">■</span><span className="text-yellow-400">■</span><span className="text-green-400">■■</span><span className="text-green-400">■</span></div>
+            <div className="text-[10px] text-gray-500 mt-1">定期巡检记录与趋势</div>
           </div>
           <div className="glass rounded-xl p-4 text-center hover:neon-border transition-all">
             <div className="text-2xl mb-1">⚡</div>
             <div className="text-xs font-semibold text-white">快捷操作</div>
             <div className="text-[10px] text-gray-500 mt-1">批量更新 · 导出报告</div>
-            <div className="flex justify-center gap-2 mt-2"><span className="text-[10px] px-2 py-0.5 bg-white/5 rounded text-gray-500">更新</span><span className="text-[10px] px-2 py-0.5 bg-white/5 rounded text-gray-500">导出</span></div>
           </div>
         </a>
         <a href="/platform.html" className="block glass-strong rounded-2xl p-8 md:p-10 text-center hover:neon-border transition-all duration-300 no-underline">
