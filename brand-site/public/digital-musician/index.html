@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 数字音乐人 · 一首歌到数字人演唱成片 · NEXUS</title>
+<meta name="description" content="县域文旅与非遗主题曲的数字人演唱成片服务：AI 生成歌曲 + 数字人演唱 + 精确字幕 + 发布套件 + 质量报告。出一个片子的算力成本可量化，画面质量有报告可查。">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #0a0e27; color: #e8e8f0; line-height: 1.7; min-height: 100vh;
+  }
+  a { color: #00f0ff; text-decoration: none; }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+  .navbar {
+    padding: 16px 24px; display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.06); background: rgba(10,14,39,0.9);
+    backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; flex-wrap: wrap; gap: 10px;
+  }
+  .logo { font-size: 20px; font-weight: 700; background: linear-gradient(135deg,#00f0ff,#7b2fbe);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .nav-links { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+  .nav-links a { color: rgba(255,255,255,0.45); font-size: 14px; }
+  .nav-links a:hover { color: #00f0ff; }
+  .nav-links a.cta { color: #00f0ff; border: 1px solid rgba(0,240,255,0.3); padding: 6px 16px; border-radius: 18px; }
+
+  header.hero { padding: 56px 0 40px; }
+  .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+  .tag { font-size: 12px; padding: 4px 12px; border-radius: 14px; background: rgba(0,240,255,0.08);
+    border: 1px solid rgba(0,240,255,0.2); color: #00f0ff; }
+  .tag.grey { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); }
+  h1 { font-size: 42px; line-height: 1.25; margin-bottom: 14px; }
+  h1 em { font-style: normal; background: linear-gradient(135deg,#00f0ff,#7b2fbe);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .lead { font-size: 17px; color: rgba(255,255,255,0.62); max-width: 680px; }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 26px; }
+  .btn { display: inline-block; padding: 12px 26px; border-radius: 24px; font-size: 15px; font-weight: 600; }
+  .btn.primary { background: linear-gradient(135deg,#00f0ff,#7b2fbe); color: #06122b; }
+  .btn.ghost { border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.75); }
+
+  section { padding: 44px 0; border-top: 1px solid rgba(255,255,255,0.06); }
+  h2 { font-size: 26px; margin-bottom: 8px; }
+  .sub { color: rgba(255,255,255,0.45); font-size: 14px; margin-bottom: 26px; }
+
+  .demo-grid { display: grid; grid-template-columns: minmax(260px, 320px) 1fr; gap: 28px; align-items: start; }
+  video { width: 100%; border-radius: 14px; border: 1px solid rgba(255,255,255,0.08); background: #000; }
+  .demo-note { font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 10px; }
+  .stills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .stills img { width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); display: block; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px; padding: 20px; }
+  .card h3 { font-size: 16px; margin-bottom: 8px; }
+  .card p { font-size: 14px; color: rgba(255,255,255,0.55); }
+  .card .num { font-size: 22px; font-weight: 700; color: #00f0ff; }
+
+  ol.steps { list-style: none; counter-reset: s; }
+  ol.steps li { counter-increment: s; padding: 12px 0 12px 46px; position: relative;
+    border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 15px; }
+  ol.steps li::before { content: counter(s, decimal-leading-zero); position: absolute; left: 0; top: 12px;
+    color: #00f0ff; font-weight: 700; font-size: 13px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,0.07); vertical-align: top; }
+  th { color: rgba(255,255,255,0.45); font-weight: 500; font-size: 13px; }
+  td strong { color: #00f0ff; }
+
+  .boundary { background: rgba(255,180,0,0.05); border: 1px solid rgba(255,180,0,0.18);
+    border-radius: 14px; padding: 20px; }
+  .boundary h3 { font-size: 15px; color: #ffc857; margin-bottom: 10px; }
+  .boundary li { font-size: 14px; color: rgba(255,255,255,0.6); margin-left: 18px; margin-bottom: 8px; }
+
+  details { border-bottom: 1px solid rgba(255,255,255,0.06); padding: 14px 0; }
+  summary { cursor: pointer; font-size: 15px; }
+  details p { font-size: 14px; color: rgba(255,255,255,0.55); margin-top: 8px; }
+
+  footer { padding: 40px 0 64px; border-top: 1px solid rgba(255,255,255,0.06); }
+  @media (max-width: 760px) {
+    h1 { font-size: 30px; }
+    .demo-grid { grid-template-columns: 1fr; }
+    .wrap { padding: 0 18px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo"><a href="/" style="-webkit-text-fill-color:inherit">NEXUS</a></div>
+  <div class="nav-links">
+    <a href="/products/">← 返回产品矩阵</a>
+    <a href="/#contact" class="cta">立即咨询</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="tag-row">
+      <span class="tag">内容创意</span>
+      <span class="tag grey">县域文旅 · 非遗</span>
+      <span class="tag grey">数字人演唱</span>
+      <span class="tag grey">按需定价</span>
+    </div>
+    <h1>AI 数字音乐人<br><em>从一首歌，到一条数字人演唱成片</em></h1>
+    <p class="lead">
+      给地方文旅、非遗项目和品牌做主题曲：AI 生成歌曲 → 数字人演唱成片 → 精确字幕 → 发布套件。
+      竖屏 720×1280，一条片子对应一首完整歌曲。<strong>算力成本可量化、画面质量有报告可查</strong>——这是它和"找个号代做视频"的区别。
+    </p>
+    <div class="hero-cta">
+      <a class="btn primary" href="/#contact">获取方案与报价 →</a>
+      <a class="btn ghost" href="#deliverables">先看交付物</a>
+    </div>
+  </header>
+
+  <section id="demo">
+    <h2>先看东西</h2>
+    <p class="sub">15 秒预告片（整首歌的副歌段落，竖屏 720×1280，字幕为成片实际字幕）</p>
+    <div class="demo-grid">
+      <div>
+        <video controls playsinline preload="metadata" poster="/digital-musician/poster.jpg">
+          <source src="/digital-musician/teaser-15s.mp4" type="video/mp4">
+          你的浏览器不支持 video。
+        </video>
+        <p class="demo-note">示例作品：《月圆照我心》· 开化满山唱 · 香火草龙主题</p>
+      </div>
+      <div>
+        <div class="stills">
+          <img src="/digital-musician/still-01-chorus.jpg" alt="副歌段落：中景机位，晨雾梯田与村落灯火">
+          <img src="/digital-musician/still-02-moon.jpg" alt="特写机位：月下演唱，口型张开">
+        </div>
+        <p class="demo-note">
+          完整成片 171 秒（一首歌长度），可按需提供。上面两帧分别是中景与特写机位，
+          机位之间是硬切，同一机位内是续接——所以口型不会跳。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>它解决什么问题</h2>
+    <p class="sub">地方文旅做主题曲，卡住的通常不是"能不能写歌"，而是这几件事</p>
+    <div class="cards">
+      <div class="card">
+        <h3>请人唱、请人拍，钱花在哪说不清</h3>
+        <p>歌、棚、拍摄、剪辑、字幕分包给四拨人，周期长、账算不明。这里是一套流水线，每批出片的算力成本是记账实测的。</p>
+      </div>
+      <div class="card">
+        <h3>方言歌词，机器听不懂，字幕对不上</h3>
+        <p>满山唱这类方言+散板，普通自动字幕会整段错位。我们用"词级时间锚点 + 全局对齐"，先对时间轴，再人工听一遍兜底。</p>
+      </div>
+      <div class="card">
+        <h3>交给别人做，画面好坏只能凭感觉</h3>
+        <p>交付时给一份质量报告：运动是否够、接缝亮度台阶多大、关键帧缩略图、以及发布该选哪个 AI 标注标签。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="deliverables">
+    <h2>客户拿到什么</h2>
+    <p class="sub">一次项目交付物（下方"包月"模式下按数量累加）</p>
+    <table>
+      <tr><th>交付物</th><th>规格 / 说明</th></tr>
+      <tr><td><strong>主题曲 1 首</strong></td><td>AI 生成，带情绪与文化标签；可出多语言版本，但外语版须按旋律重填并由母语者校对</td></tr>
+      <tr><td><strong>数字人演唱成片 1 条</strong></td><td>竖屏 720×1280，16fps，长度=整首歌（示例 171 秒）；多机位硬切，整首歌作音轨，口型同步</td></tr>
+      <tr><td><strong>精确字幕 SRT</strong></td><td>词级锚点 + 全局对齐；示例作品 30 句，覆盖全曲人声段</td></tr>
+      <tr><td><strong>发布套件</strong></td><td>15 秒钩子（音/视频）+ TikTok / YouTube / Spotify 元数据与标签草稿（含"用这段声音拍你的版本"复刻引导）</td></tr>
+      <tr><td><strong>质量报告</strong></td><td>运动质量、接缝结构与亮度台阶、关键帧缩略图、平台合规建议（网信办 6 类必选标签 + C2PA 标注检测）</td></tr>
+      <tr><td><strong>配置与源码</strong></td><td>机位计划 / 表演指导 / 批次配置全部落文件；客户自持时可自行改题材复跑</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>两档服务模式</h2>
+    <p class="sub">按需定价——具体报价取决于歌曲数量、机位数量、是否需要形象定制与交付周期</p>
+    <table>
+      <tr><th></th><th>项目制</th><th>包月内容工厂</th></tr>
+      <tr>
+        <td><strong>形态</strong></td>
+        <td>一首歌 → 一条成片 + 字幕 + 发布包</td>
+        <td>每月固定条数，复用同一形象与创作人格，风格连续</td>
+      </tr>
+      <tr>
+        <td><strong>适合谁</strong></td>
+        <td>县域文旅、非遗项目、单个节庆宣传</td>
+        <td>文旅日常更新、MCN、品牌号、需要持续产出的地方文化 IP</td>
+      </tr>
+      <tr>
+        <td><strong>形象</strong></td>
+        <td>用已有形象或按参考图集新建</td>
+        <td>形象一次确认，长期复用，人物不漂移</td>
+      </tr>
+      <tr>
+        <td><strong>周期</strong></td>
+        <td>按题材与机位数量排期</td>
+        <td>按月度节奏排产</td>
+      </tr>
+      <tr>
+        <td><strong>价格</strong></td>
+        <td colspan="2">按需定价 · <a href="/#contact">联系我们获取报价</a></td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>怎么跑一遍</h2>
+    <p class="sub">从需求到可发布素材</p>
+    <ol class="steps">
+      <li><strong>需求与词曲方向</strong>：题材、方言、情绪、使用场景（节庆 / 宣传片 / 短视频）。</li>
+      <li><strong>歌曲生成与人格设定</strong>：确定演唱人格与创作路径；反馈会回流影响后续作品，越做越像同一个人。</li>
+      <li><strong>形象与机位确认</strong>：准备形象参考图集，定几个机位（近景/中景/远景/特写）。</li>
+      <li><strong>分批出片</strong>：按机位分批生成，机位内续接保证连续表演；示例作品为 9 批。</li>
+      <li><strong>字幕对齐与烧录</strong>：词级对齐 → 人工听一遍 → 烧字幕。</li>
+      <li><strong>质量报告与验收 → 发布包交付</strong>：附质量报告与合规标签建议。</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>为什么成本和质量可控</h2>
+    <p class="sub">下面每条都是实测数据，不是估算</p>
+    <div class="cards">
+      <div class="card"><div class="num">¥0.58</div><h3>单批算力成本（实测）</h3><p>720×1280 单批约 17.5 分钟、约 0.58 元。一首歌 9 批，直接算力成本在个位数元级别——主要成本是人工与沟通。</p></div>
+      <div class="card"><div class="num">9 秒</div><h3>出一份质量报告</h3><p>运动质量、接缝、关键帧缩略图、合规建议一次出齐，不靠人逐帧看 171 秒。</p></div>
+      <div class="card"><div class="num">30 句</div><h3>字幕对到词级</h3><p>专用对齐流程处理方言与散板；示例作品 30 句全部落在人声段内。</p></div>
+      <div class="card"><div class="num">100%</div><h3>配置即产物</h3><p>机位、表演、批次、字幕全部落配置文件。换题材只改配置，不改代码，可复现。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>交付前必须知道的边界</h2>
+    <p class="sub">这些不是免责声明，是选型依据——知道边界，才知道它适不适合你的项目</p>
+    <div class="boundary">
+      <h3>三件它做不到的事</h3>
+      <ul>
+        <li><strong>没有人声的段落，人不会张嘴。</strong>口型由音频驱动。示例歌曲前 33 秒是器乐引子，那一段人物就是不唱的——这是物理约束，不是画质问题。选曲时要考虑引子长度。</li>
+        <li><strong>画面里不会出现真实非遗道具。</strong>让 AI 直接画"香火草龙"会命中错误先验、生成像插画的画面，所以我们选择只生成地形与夜景，道具靠实拍或后期叠加。</li>
+        <li><strong>审美必须人工验收。</strong>质量报告只负责指出"哪里可能有问题"（运动是否像静止照片、接缝亮度台阶、画面是否过曝），"好不好看"由人判断。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>常见问题</h2>
+    <details><summary>交付周期多久？</summary><p>取决于歌曲与机位数量。示例作品（9 批、4 个机位）的纯机器时间约几小时，实际排期还要算上歌曲打磨、形象确认与人工验收。</p></details>
+    <details><summary>能改成我们自己的形象吗？</summary><p>可以。需要一组形象参考图（多角度、不同光照），我们会先检查分辨率与覆盖度，再开始出片。包月模式下形象一次确认、长期复用。</p></details>
+    <details><summary>歌曲版权归谁？</summary><p>按合同约定。发布时需按平台要求选择标注——AI 生成内容在中国大陆平台属于必选标签，我们会给出标签建议并在质量报告里写明依据。</p></details>
+    <details><summary>能出外语版本吗？</summary><p>可以，但外语版必须按旋律重新填词、并由母语者校对，不能直接把中文歌词翻译过去——机器翻译的歌词唱不出来。</p></details>
+    <details><summary>为什么报价要"按需"？</summary><p>成本主要取决于歌曲数量、机位数量、是否需要从零做形象，以及交付周期。我们不报一个拍脑袋的统一价，先看需求再给方案。</p></details>
+  </section>
+
+  <section style="text-align:center; border-bottom:none;">
+    <h2>把你的题材发给我们</h2>
+    <p class="sub" style="margin-bottom:22px;">描述题材与用途，我们回一份方案与报价</p>
+    <a class="btn primary" href="/#contact">立即咨询 →</a>
+    <p class="demo-note" style="margin-top:20px;">
+      也可邮件：<a href="mailto:577726281@qq.com">577726281@qq.com</a> · 微信：13336021626
+    </p>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap" style="color:rgba(255,255,255,0.35); font-size:13px;">
+    © 2026 NEXUS · 杭州云旅科技 · <a href="/">返回首页</a> · <a href="/products/">全部 16 款产品</a> · <a href="/privacy.html">隐私政策</a>
+  </div>
+</footer>
+
+</body>
+</html>

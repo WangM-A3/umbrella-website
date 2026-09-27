@@ -804,6 +804,7 @@
         }, {
             id: 'digital-musician',
             icon: '🎵',
+            page: '/digital-musician/',
             category: '内容创意',
             name: 'AI 数字音乐人',
             desc: '一首歌 → 数字人演唱成片 · 歌曲生成 + 口型同步 + 精确字幕',
@@ -875,6 +876,9 @@
                 <!-- 操作按钮 -->
                 <div class="action-bar">
                     <button class="btn-primary" onclick="alert('已记录咨询意向，销售将联系您')">📞 立即咨询</button>
+                    <!-- 有独立产品页的产品（当前只有 AI 数字音乐人）给一个直达入口；
+                         其余产品是模板详情页，没有 page 字段就不显示。 -->
+                    ${product.page ? `<a class="btn-secondary" href="${product.page}" style="text-decoration:none;display:inline-block">📄 完整产品介绍</a>` : ''}
                     ${product.hasApi ? `<button class="btn-api" onclick="alert('API文档：/api/v1/products/${product.id}')">🔗 查看API</button>` : ''}
                     <button class="btn-secondary" onclick="history.back()">← 返回产品矩阵</button>
                 </div>
