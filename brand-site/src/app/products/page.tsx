@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 import Link from 'next/link';
 
 const products = [
@@ -14,6 +14,7 @@ const products = [
   { id: 'crossborder-cmpl', name: '跨境数据合规', category: '合规安全', price: '¥10-40万/年', desc: 'GDPR·CCPA·跨境数据' },
   { id: 'ai-solution-gen', name: 'AI Solution Gen', category: '行业方案', price: '¥3-10万/次', desc: '5个Agent自动生成方案' },
   { id: 'scifi-select', name: '科幻IP选品', category: '内容创意', price: '¥2-5万/月', desc: 'Reddit挖掘+AI分析' },
+  { id: 'digital-musician', name: 'AI 数字音乐人', category: '内容创意', price: '按需定价', desc: '一首歌→数字人演唱成片' },
 ];
 
 const categories = ['全部', '外贸核心', '合规安全', '内容创意', '平台基础设施', '企业AI辅助', '行业方案'];
@@ -22,7 +23,7 @@ export default function ProductsPage() {
   return (
     <main className="min-h-screen pt-32 pb-20 max-w-6xl mx-auto px-8 bg-black text-white">
       <h1 className="text-4xl font-bold mb-2">AI产品家族</h1>
-      <p className="text-gray-400 mb-8">15款可运营产品，覆盖全链路AI需求</p>
+      <p className="text-gray-400 mb-8">16款可运营产品，覆盖全链路AI需求</p>
       <div className="flex flex-wrap gap-2 mb-8">
         {categories.map(cat => (
           <button key={cat} className="px-4 py-2 bg-white/5 text-gray-400 rounded-lg text-sm hover:bg-white/10 hover:text-white transition-colors">{cat}</button>

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -801,6 +801,31 @@
             ],
             scenario: '视频平台/内容团队，基于MoE架构的视频处理',
             relatedIds: ['boss-ip', 'short-drama', 'scifi-select', 'trade-engine', 'workbuddy', 'taini-cloud']
+        }, {
+            id: 'digital-musician',
+            icon: '🎵',
+            category: '内容创意',
+            name: 'AI 数字音乐人',
+            desc: '一首歌 → 数字人演唱成片 · 歌曲生成 + 口型同步 + 精确字幕',
+            price: '按需定价',
+            tags: ['数字人', '音乐IP', '文旅'],
+            hasApi: false,
+            metrics: [
+                { number: '171s', label: '整首歌成片' },
+                { number: '720×1280', label: '竖屏输出' },
+                { number: '¥0.58', label: '单批实测成本' },
+                { number: '9秒', label: '质量报告' }
+            ],
+            capabilities: [
+                { title: '音潮 · 歌曲生成', desc: '创作人格 + 路径权重随反馈进化，越做越像同一个人' },
+                { title: '数字人演唱 · S2V', desc: '分批出片 + 机位内续接，整首歌作音轨，口型不乱' },
+                { title: '精确字幕 · 词级对齐', desc: '词级时间锚点 + 全局动态规划，方言之类也扛得住' },
+                { title: '质量评判 · 可量化', desc: '运动质量 / 接缝亮度台阶 / 关键帧缩略图，9 秒出报告' },
+                { title: '平台合规 · 规则库', desc: '中央网信办 6 类必选标签 + C2PA 标注痕迹检测' },
+                { title: '发布套件 · 15秒钩子', desc: '按结构边界自动切钩子，输出三平台元数据草稿' }
+            ],
+            scenario: '县域文旅与非遗主题曲：从一首歌到数字人演唱短视频全自动出片，逐批成本与画面质量都可量化',
+            relatedIds: ['short-drama', 'moe-video', 'boss-ip', 'scifi-select', 'taini-cloud', 'workbuddy']
         }];
 
         // =============================================================
@@ -944,7 +969,7 @@
 </html>
 使用说明
 步骤	操作	效果
-1	双击打开 product_demo.html	看到15款产品网格
+1	双击打开 product_demo.html	看到16款产品网格
 2	点击任意产品卡片（如"V6.0 AI 安全治理"）	自动跳转到 product_detail.html?id=v6-security
 3	详情页展示	完整产品信息：指标+能力+场景+同类推荐
 4	点击"立即咨询"	演示销售线索收集
@@ -952,7 +977,7 @@
 6	点击同类产品卡片	跳转到对应产品详情
 演示话术（直接可用）
 text
-"我们有15款产品，从外贸拓客到AI安全合规，每一款都已经跑通。"
+"我们有16款产品，从外贸拓客到AI安全合规，每一款都已经跑通。"
 
 [点击V6.0卡片]
 

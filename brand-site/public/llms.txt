@@ -5,7 +5,7 @@
 
 ## 主站
 
-- [首页 / 硅基军团产品矩阵](https://www.silicon-army.cn/): 外贸 AI 决策 OS、Agent Skills API、V6 安全治理、BOSS IP Factory、Platform Kernel、WorkBuddy、AI-OS、AI 短剧等 15 款产品，按结果付费。中文。
+- [首页 / 硅基军团产品矩阵](https://www.silicon-army.cn/): 外贸 AI 决策 OS、Agent Skills API、V6 安全治理、BOSS IP Factory、Platform Kernel、WorkBuddy、AI-OS、AI 短剧、AI 数字音乐人等 16 款产品，按结果付费。中文。
 
 ## AI Native 发布中心（/ai-native/）
 

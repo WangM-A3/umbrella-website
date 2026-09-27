@@ -298,7 +298,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
               产品 <span className="text-[10px]">&#9660;</span>
             </button>
             <div className={"absolute top-full left-0 mt-2 w-64 bg-[#1a1a3e]/95 backdrop-blur-xl border border-white/10 rounded-xl p-2 transition-all duration-200 shadow-xl z-50 " + (openMenu === "products" ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none")}>
-              <a href="/products" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">AI产品家族（15款）</a>
+              <a href="/products" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">AI产品家族（16款）</a>
               <a href="/product_detail.html?id=skills-api" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">API文档与集成</a>
               <a href="/platform.html" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">运营管理平台</a>
               <a href="/bid-check.html" onClick={closeAllMenus} className="block px-4 py-2.5 hover:bg-white/5 rounded-lg text-sm text-gray-400 hover:text-[#00f0ff] transition-colors">📋 招标AI检测</a>
@@ -374,7 +374,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
               🎯 3步AI诊断
             </a>
             <a href="/products" className="px-8 py-3.5 border border-white/15 rounded-full hover:bg-white/5 transition text-gray-300 flex items-center gap-2 cursor-pointer">
-              🔍 浏览15款AI产品
+              🔍 浏览16款AI产品
             </a>
             <a href="/ai-native/" className="px-6 py-3 bg-gradient-to-r from-[#7b2fbe] to-[#ff4d9d] text-white font-semibold rounded-full hover:shadow-xl hover:shadow-[#ff4d9d]/20 transition-all flex items-center gap-2 text-sm cursor-pointer">
               🚀 AI Native 发布中心 →
@@ -385,7 +385,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
           <div className="flex flex-wrap gap-6 mt-6 text-xs text-gray-500">
             <span>✓ 按效果付费</span>
             <span>✓ 无效果不计费</span>
-            <span>✓ 15款可运营产品</span>
+            <span>✓ 16款可运营产品</span>
           </div>
           {/* Industry tags */}
           <div className="flex flex-wrap gap-2 mt-6">
@@ -665,7 +665,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
         </div>
         <div className="text-center mt-8">
           <a href="/solutions.html" className="text-sm text-[#00f0ff] hover:underline inline-flex items-center gap-1">
-            查看全部 15 款产品矩阵 + 3步诊断 →
+            查看全部 16 款产品矩阵 + 3步诊断 →
           </a>
         </div>
       </section>
@@ -1129,7 +1129,7 @@ const ParticleBackground = dynamic(() => import("@/components/ParticleBackground
               <div className="text-gray-500 group-hover:text-gray-300 transition-colors">已服务企业</div>
             </a>
             <a href="/products" className="glass rounded-xl px-6 py-4 block hover:neon-border transition-all group no-underline">
-              <div className="text-[#00f0ff] font-bold group-hover:text-white transition-colors">15款</div>
+              <div className="text-[#00f0ff] font-bold group-hover:text-white transition-colors">16款</div>
               <div className="text-gray-500 group-hover:text-gray-300 transition-colors">可运营产品</div>
             </a>
           </div>
