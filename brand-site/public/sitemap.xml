@@ -1,7 +1,30 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.silicon-army.cn/</loc><priority>1.0</priority></url>
+  <url><loc>https://www.silicon-army.cn/products/</loc><priority>0.9</priority></url>
   <url><loc>https://www.silicon-army.cn/solutions.html</loc><priority>0.9</priority></url>
+  <url><loc>https://www.silicon-army.cn/portal.html</loc><priority>0.8</priority></url>
   <url><loc>https://www.silicon-army.cn/platform.html</loc><priority>0.8</priority></url>
+  <url><loc>https://www.silicon-army.cn/diagnose/</loc><priority>0.8</priority></url>
+  <url><loc>https://www.silicon-army.cn/cases/</loc><priority>0.8</priority></url>
+  <url><loc>https://www.silicon-army.cn/cases/hardware-tools/</loc><priority>0.7</priority></url>
+  <url><loc>https://www.silicon-army.cn/cases/yiwu-trader/</loc><priority>0.7</priority></url>
+  <url><loc>https://www.silicon-army.cn/cases/brand-retail/</loc><priority>0.7</priority></url>
   <url><loc>https://www.silicon-army.cn/product_detail.html</loc><priority>0.7</priority></url>
+  <url><loc>https://www.silicon-army.cn/geo/</loc><priority>0.7</priority></url>
+  <url><loc>https://www.silicon-army.cn/roi-calculator/</loc><priority>0.7</priority></url>
+  <url><loc>https://www.silicon-army.cn/bid-check.html</loc><priority>0.7</priority></url>
+  <url><loc>https://www.silicon-army.cn/playground/</loc><priority>0.6</priority></url>
+  <url><loc>https://www.silicon-army.cn/ai-native/</loc><priority>0.8</priority></url>
+  <url><loc>https://www.silicon-army.cn/ai-native/whitepaper.html</loc><priority>0.7</priority></url>
+  <url><loc>https://www.silicon-army.cn/ai-native/landing-zh.html</loc><priority>0.7</priority></url>
+  <url><loc>https://www.silicon-army.cn/ai-native/market.html</loc><priority>0.7</priority></url>
+  <url><loc>https://www.silicon-army.cn/ai-native/security.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.silicon-army.cn/ai-native/consulting.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.silicon-army.cn/ai-native/demo.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.silicon-army.cn/ai-native/landing-en.html</loc><priority>0.6</priority></url>
+  <url><loc>https://www.silicon-army.cn/ai-native/command-center-dynamic.html</loc><priority>0.5</priority></url>
+  <url><loc>https://www.silicon-army.cn/ai-native/command-center.html</loc><priority>0.5</priority></url>
+  <url><loc>https://www.silicon-army.cn/ai-native/command-center-en.html</loc><priority>0.4</priority></url>
+  <url><loc>https://www.silicon-army.cn/privacy.html</loc><priority>0.3</priority></url>
 </urlset>
